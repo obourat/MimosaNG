@@ -22,6 +22,19 @@ public:
     //Destructeur
     ~MainWindow();
 
+private slots:
+    //Slots du clic sur les différents boutons de la MainWindow
+
+    void on_environmentalVariablesButton_released();
+
+    void on_attributesConfigurationsButton_released();
+
+    void on_attributesButton_released();
+
+    void on_caseSelectionButton_released();
+
+    void on_officialsButton_released();
+
 private:
     //User Interface
     Ui::MainWindow *ui;

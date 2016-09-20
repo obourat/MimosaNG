@@ -13,7 +13,86 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QGroupBox" name="caseSelectionGroupBox">
+      <property name="title">
+       <string>Selection de l'affaire</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QPushButton" name="caseSelectionButton">
+         <property name="text">
+          <string>Selectionner de l'affaire</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="documentManagementGroupBox">
+      <property name="title">
+       <string>Gestion des documents</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="foldersButton">
+         <property name="text">
+          <string>Afficher la liste des dossiers </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="documentsButton">
+         <property name="text">
+          <string>Afficher la liste des documents</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="administrativeGroupBox">
+      <property name="title">
+       <string>Administration</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="1">
+        <widget class="QPushButton" name="officialsButton">
+         <property name="text">
+          <string>Afficher la liste des responsables</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="environmentalVariablesButton">
+         <property name="text">
+          <string>Afficher la liste des variables d'environnement </string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="attributesConfigurationsButton">
+         <property name="text">
+          <string>Afficher la liste des configurations d'attributs</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="attributesButton">
+         <property name="text">
+          <string>Afficher la liste des attributs</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>

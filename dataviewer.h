@@ -16,7 +16,7 @@ class DataViewer : public QDialog
 
 public:
     //Constructeur
-    explicit DataViewer(const QStringList &keysAttr, const QList<QMap<QString, QString> >& maps, QWidget *parent = 0);
+    explicit DataViewer(const QStringList &currentAttrConfigKeys, const QList<QMap<QString, QString> >& maps, QWidget *parent = 0);
     //Destructeur
     ~DataViewer();
 

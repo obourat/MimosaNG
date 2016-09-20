@@ -5,7 +5,7 @@
 #include <QSortFilterProxyModel>
 
 //Constructeur
-DataViewer::DataViewer(const QStringList& keysAttr, const QList<QMap<QString, QString> >& maps, QWidget *parent) :
+DataViewer::DataViewer(const QStringList& currentAttrConfigKeys, const QList<QMap<QString, QString> >& maps, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DataViewer)
 {
@@ -13,7 +13,7 @@ DataViewer::DataViewer(const QStringList& keysAttr, const QList<QMap<QString, QS
     ui->setupUi(this);
 
     //On définit un modèle qui contient toutes les clés récupérées
-    myModel = new Model(keysAttr, maps);
+    myModel = new Model(currentAttrConfigKeys, maps);
     //On définit un proxyModel servant pour le tri (croissant, décroissant, alphabétique, numérique)
     proxyModel = new QSortFilterProxyModel(this);
 

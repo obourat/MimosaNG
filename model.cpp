@@ -3,48 +3,41 @@
 #include <QStandardItemModel>
 
 //Constructeur
-Model::Model(
-        const QStringList &keysAttr,
-        const QList<QMap<QString, QString> > &maps
-        )
+Model::Model(const QStringList &attributesOfCurrentConfig, const QList<QMap<QString, QString> > &smallMapsFromMapName)
 {
 #if 1
-    // Compter le nombre d'attribut à afficher
-    int nbAttrToDisplay = 0;
 
-    // Faux
-    nbAttrToDisplay = keysAttr.count();
     //On définit un nouveau modèle de données
     model = new QStandardItemModel(this);
 
-    for (int i = 0; i < maps.count(); ++i)
+    for (int i = 0; i < smallMapsFromMapName.count(); ++i)
     {
         // recuperation des valeurs de la qmap courante (pour chaque clé i on récupère les valeurs dans values)
-        QList<QString> values;
-        values = maps[i].values();
+        QList<QString> valuesOfSmallMaps;
+        valuesOfSmallMaps = smallMapsFromMapName[i].values();
 
         // On définit une QList items qui prend les items à inclure dans le model (en fonction de la configuration d'attributs)
-        QList<QStandardItem*> items;
-        for (int j = 0; j < values.count(); ++j)
+        QList<QStandardItem*> itemsToInclude;
+        for (int j = 0; j < valuesOfSmallMaps.count(); ++j)
         {
             // Ici il faut selectionner les valeurs qu'il faut afficher selon la cfg d'attributs
 
             QStandardItem *item;
-            item = new QStandardItem(values[j]);
+            item = new QStandardItem(valuesOfSmallMaps[j]);
 
-            items << item;
+            itemsToInclude << item;
         }
         // Ajout de la liste d'elements au modele
-        model->appendRow(items);
+        model->appendRow(itemsToInclude);
     }
 
     // Mise a jour des en tetes (on cherche le nombre de colonnes maximum pour les objets, ce qui correspond au nombre de clés pour chaque objet)
     QList<QString> keys;
-    for(int k=0; k< maps.count(); ++ k)
+    for(int k=0; k< smallMapsFromMapName.count(); ++ k)
     {
-        if(maps[k].keys().count() > keys.count())
+        if(smallMapsFromMapName[k].keys().count() > keys.count())
         {
-            keys = maps[k].keys();
+            keys = smallMapsFromMapName[k].keys();
         }
     }
     //On remplit l'en tête avec le nom ds clés comme noms de colonnes
