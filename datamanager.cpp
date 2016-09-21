@@ -207,6 +207,11 @@ const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsLis
     QList<QMap<QString, QString> > mapsSelectedForCurrentConfig;
     QStringList attributesOfCurrentConfig = getAttributesOfCurrentConfig(codeObject);
     QMap<QString, QString > mapTempOfSelectedAttributes;
+    QMap<QString, QString> valueOfSmallMapSelected;
+    QString iteratorAttribute;
+    QString nomAttributeDisplayed;
+    QString nomAttributeSelected;
+    QString valueAttributeSelected;
     QString numeroInterne;
     QString infoInterne;
     QString keyOfmapConcordance;
@@ -220,33 +225,34 @@ const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsLis
         for(int i=0 ; i<attributesOfCurrentConfig.length(); ++i)
         {
             //IteratorAttribute prend en paramètre la clé de l'attribut sur lequel il itère
-            QString iteratorAttribute = attributesOfCurrentConfig.at(i);
+            iteratorAttribute = attributesOfCurrentConfig.at(i);
 
             //Si l'indicateur d'affichage de l'attribut séléctionné est égal à "oui"
             if(mapGAT[iteratorAttribute]["IndicAffichage"] == "Oui")
             {
-                //On sélectionne le Titre de l'attribut qui est notre critère de sélection dans la map
-
-                QString nomAttributeDisplayed = mapGAT[iteratorAttribute]["Titre"];
+                //On sélectionne le Titre de l'attribut à afficher dans l'en tête
+                nomAttributeDisplayed = mapGAT[iteratorAttribute]["NomAttribut"];
+                //On selectionne le premier critère NuméroInterne permettant de trouver le nom de la balise à sélectionner
                 numeroInterne = mapGAT[iteratorAttribute]["NumeroInterne"];
+                //On sélectionne le deuxième critère InfoInterne permettant de trouver le nom de la balise à sélectionner
                 infoInterne = mapGAT[iteratorAttribute]["InfoInterne"];
 
+                //On obtient la clé de la valeur à aller chercher dans mapConcordance pour obtenir le nom de la balise sur le XML en concaténant les 3 critères
                 keyOfmapConcordance = codeObject % numeroInterne % infoInterne;
 
-                QString nomAttributeSelected = mapConcordance[keyOfmapConcordance];
-                QMap<QString, QString> valueOfSmallMapSelected = maps.at(j);
-                QString valueAttributeSelected = valueOfSmallMapSelected[nomAttributeSelected];
-
+                //On cherche la valeur dans mapConcordance
+                nomAttributeSelected = mapConcordance[keyOfmapConcordance];
+                //On sélectionne le l'élément à traiter dans la petite map
+                valueOfSmallMapSelected = maps.at(j);
+                //On va chercher la valeur dans l'élément de la petite map à la balise nomAttributeSelected
+                valueAttributeSelected = valueOfSmallMapSelected[nomAttributeSelected];
+                //On insère la valeur dans la map temporaire des éléments sélectionnés
                 mapTempOfSelectedAttributes.insert(nomAttributeDisplayed, valueAttributeSelected);
-
-
-                    //On stocke dans la nouvelle map tous les attributs de la configuration courante
-                    //mapsSelectedForCurrentConfig << iteratorMap[nomAttributeSelected];
-
 
             }
 
         }
+        //On stocke dans la nouvelle map tous les attributs de la configuration courante
         mapsSelectedForCurrentConfig << mapTempOfSelectedAttributes;
     }
 
@@ -261,28 +267,39 @@ void DataManager::setDataOfMapConcordance()
     QString numeroInterne;
     QString infoInterne;
     QString titre;
+    QString currentKey;
     QString newKey;
-    //On définit un iterateur sur la grande qMap pour passer en revue les clés
+    //On définit un iterateur sur les grande qMap pour passer en revue les clés
     QMap<QString, QMap<QString, QString> >::Iterator iteratorGCS;
     QMap<QString, QMap<QString, QString> >::Iterator iteratorGCA;
     QMap<QString, QMap<QString, QString> >::Iterator iteratorGAT;
 
+    //Pour chaque éléments de mapGCS
     for(iteratorGCS = mapGCS.begin(); iteratorGCS != mapGCS.end(); ++iteratorGCS)
     {
-        QString currentKey = iteratorGCS.key();
+        //On stocke la clé = au codeObjet
+        currentKey = iteratorGCS.key();
+        //On prend en paramètre le nom de la conf servant à l'export XML
         nameConfXML = iteratorGCS.value()["NomConfXML"];
 
+        //Pour chaque configuration d'attribut
         for(iteratorGCA = mapGCA.begin(); iteratorGCA != mapGCA.end(); ++iteratorGCA)
         {
+            //Si le code objet correspond
             if(iteratorGCA.value()["CodeObjet"] == currentKey)
             {
+                //Si il s'agit de la bonne configuration pour le bon code objet
                 if(iteratorGCA.value()["NomConf"] == nameConfXML)
                 {
+                    //On stocke l'Id de la configuration
                     idConf = iteratorGCA.value()["Id"];
+                    //Pour chaque attribut de la map d'attribut
                     for(iteratorGAT = mapGAT.begin(); iteratorGAT != mapGAT.end(); ++iteratorGAT)
                     {
+                        //Si l'attribut correpond à la bonne configuration
                         if(iteratorGAT.value()["IdCnfAtt"] == idConf)
                         {
+                            //On stocke les valeurs des triplés qui une fois concaténés vont nous servir de clés pour accéder au nom de balise
                             codeObject = iteratorGAT.value()["CodeObj"];
                             numeroInterne = iteratorGAT.value()["NumeroInterne"];
                             infoInterne = iteratorGAT.value()["InfoInterne"];
@@ -290,6 +307,7 @@ void DataManager::setDataOfMapConcordance()
 
                             newKey = codeObject % numeroInterne % infoInterne;
 
+                            //On insère la valeur dans mapConcordance
                             mapConcordance.insert(newKey, titre);
                         }
                     }
