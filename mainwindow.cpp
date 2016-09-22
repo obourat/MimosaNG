@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //On instancie un DataManager et un FileReader
     dataManager = new DataManager();
     fileReader = new FileReader(dataManager);
+    QString standardConfigName;
 
     //On fait appel au fileReader pour parser les fichiers à l'aide de la fonction parseFile()
     fileReader->setFileName("GVE_Export.xml");
@@ -32,14 +33,21 @@ MainWindow::MainWindow(QWidget *parent) :
     dataManager->setDataOfMapConcordance();
 
     //On définit le nom de la configuration courante par défaut
-    dataManager->setCurrentConfigName("*standard");
+    standardConfigName = dataManager->getStandardConfigName("GCA");
+    dataManager->setCurrentConfigNameGCA(standardConfigName);
+    standardConfigName = dataManager->getStandardConfigName("GAT");
+    dataManager->setCurrentConfigNameGAT(standardConfigName);
+    standardConfigName = dataManager->getStandardConfigName("GRS");
+    dataManager->setCurrentConfigNameGRS(standardConfigName);
+    standardConfigName = dataManager->getStandardConfigName("GVE");
+    dataManager->setCurrentConfigNameGVE(standardConfigName);
 
 }
 
 //Destructeur
 MainWindow::~MainWindow()
 {
-    delete dataViewer;
+    //delete dataViewer;
     delete dataManager;
     delete fileReader;
     delete ui;
@@ -49,21 +57,21 @@ MainWindow::~MainWindow()
 void MainWindow::on_environmentalVariablesButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
-    dataViewer = new DataViewer(dataManager->getAttributesOfCurrentConfig("GVE"),dataManager->getSmallMapsFromMapName("mapGVE", "GVE"), this);
+    dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGVE", "GVE"),"GVE", this);
     dataViewer->exec();
 }
 
 void MainWindow::on_attributesConfigurationsButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
-    dataViewer = new DataViewer(dataManager->getAttributesOfCurrentConfig("GCA"),dataManager->getSmallMapsFromMapName("mapGCA", "GCA"), this);
+    dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGCA", "GCA"), "GCA",  this);
     dataViewer->exec();
 }
 
 void MainWindow::on_attributesButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
-    dataViewer = new DataViewer(dataManager->getAttributesOfCurrentConfig("GAT"),dataManager->getSmallMapsFromMapName("mapGAT", "GAT"), this);
+    dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGAT", "GAT"), "GAT", this);
     dataViewer->exec();
 }
 
@@ -75,6 +83,11 @@ void MainWindow::on_caseSelectionButton_released()
 void MainWindow::on_officialsButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
-    dataViewer = new DataViewer(dataManager->getAttributesOfCurrentConfig("GRS"),dataManager->getSmallMapsFromMapName("mapGRS", "GRS"), this);
+    dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGRS", "GRS"), "GRS", this);
     dataViewer->exec();
 }
+
+
+
+
+

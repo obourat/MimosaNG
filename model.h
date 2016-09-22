@@ -9,7 +9,7 @@ class Model : public QAbstractTableModel
 {
 public:
     // Constructeur
-    explicit Model(const QStringList &attributesOfCurrentConfig, const QList<QMap<QString, QString> > &smallMapsFromMapName);
+    explicit Model(const QList<QMap<QString, QString> > &smallMapsFromMapName);
     // Destructeur
     ~Model();
 

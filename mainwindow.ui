@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Atelier de maîtrise d'oeuvre MIMOSA</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -24,7 +24,7 @@
        <item>
         <widget class="QPushButton" name="caseSelectionButton">
          <property name="text">
-          <string>Selectionner de l'affaire</string>
+          <string>Selection de l'affaire</string>
          </property>
         </widget>
        </item>

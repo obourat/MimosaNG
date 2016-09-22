@@ -3,7 +3,7 @@
 #include <QStandardItemModel>
 
 //Constructeur
-Model::Model(const QStringList &attributesOfCurrentConfig, const QList<QMap<QString, QString> > &smallMapsFromMapName)
+Model::Model(const QList<QMap<QString, QString> > &smallMapsFromMapName)
 {
 #if 1
 
