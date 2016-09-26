@@ -31,17 +31,20 @@ public slots:
 private slots:
     //Slots pour les bouttons du menu
     void onChangeCurrentConfigButtonTriggered();
+    void onChangeCurrentConfigAttributesButtonTriggered();
 private:
     //User Interface
     Ui::DataViewer *ui;
 
-    //On définit les objets dont on a besoin
+    //On définit les objets dont on a besoin pour l'affichage, et pour la visualisation des options
     Model *myModel;
     QSortFilterProxyModel *proxyModel;
     OptionsViewer *optionsViewerCurrentConfig;
+    OptionsViewer *optionsViewerCurrentConfigAttributes;
     DataManager *dataManager;
     FileReader *fileReaderOptions;
 
+    //Code Objet associé au type de données affichées
     QString codeObject;
 };
 

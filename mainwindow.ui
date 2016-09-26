@@ -16,11 +16,41 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
+     <widget class="QGroupBox" name="userAutorizationGroupbox">
+      <property name="title">
+       <string>Vue générale</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QPushButton" name="consultationButton">
+         <property name="text">
+          <string>Consultation</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="modificationButton">
+         <property name="text">
+          <string>Modification</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="adminButton">
+         <property name="text">
+          <string>Administration</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
      <widget class="QGroupBox" name="caseSelectionGroupBox">
       <property name="title">
        <string>Selection de l'affaire</string>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <widget class="QPushButton" name="caseSelectionButton">
          <property name="text">
@@ -92,16 +122,6 @@
      </widget>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1007</width>
-     <height>25</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
