@@ -17,13 +17,16 @@ SOURCES += main.cpp\
     filereader.cpp \
     datamanager.cpp \
     model.cpp \
-    dataviewer.cpp
+    dataviewer.cpp \
+    optionsviewer.cpp
 
 HEADERS  += mainwindow.h \
     filereader.h \
     datamanager.h \
     model.h \
-    dataviewer.h
+    dataviewer.h \
+    optionsviewer.h
 
 FORMS    += mainwindow.ui \
-    dataviewer.ui
+    dataviewer.ui \
+    optionsviewer.ui

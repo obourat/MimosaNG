@@ -22,6 +22,7 @@ public:
     //Destructeur
     ~MainWindow();
 
+
 private slots:
     //Slots du clic sur les différents boutons de la MainWindow
 

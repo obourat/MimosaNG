@@ -1,19 +1,25 @@
 #include "dataviewer.h"
 #include "ui_dataviewer.h"
 #include "model.h"
+#include "datamanager.h"
+#include "optionsviewer.h"
+#include "filereader.h"
 
 #include <QSortFilterProxyModel>
+#include <QtGui>
 
 //Constructeur
-DataViewer::DataViewer(const QStringList& currentAttrConfigKeys, const QList<QMap<QString, QString> >& maps, QWidget *parent) :
+DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent) : dataManager(dataManager),
     QDialog(parent),
     ui(new Ui::DataViewer)
 {
     //On instancie la fenêtre
     ui->setupUi(this);
 
+    this->codeObject = codeObject;
+
     //On définit un modèle qui contient toutes les clés récupérées
-    myModel = new Model(currentAttrConfigKeys, maps);
+    myModel = new Model(maps);
     //On définit un proxyModel servant pour le tri (croissant, décroissant, alphabétique, numérique)
     proxyModel = new QSortFilterProxyModel(this);
 
@@ -24,6 +30,13 @@ DataViewer::DataViewer(const QStringList& currentAttrConfigKeys, const QList<QMa
 
     //On ajuste la taille des colonnes au contenu
     ui->tableView->resizeColumnsToContents();
+
+    ui->tableView->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    //ui->tableView->horizontalHeader()->setStretchLastSection(true);
+
+    //QVBoxLayout *l = new QVBoxLayout(this);
+    ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(ui->tableView, SIGNAL(customContextMenuRequested(QPoint)),this, SLOT(customMenuRequested(QPoint)));
 }
 
 //Destructeur
@@ -31,3 +44,26 @@ DataViewer::~DataViewer()
 {
     delete ui;
 }
+
+void DataViewer::customMenuRequested(QPoint pos)
+{
+    QModelIndex index = ui->tableView->indexAt(pos);
+
+    QMenu *menu = new QMenu(this);
+    QAction *changeCurrentConfig = new QAction("Voir les configurations d'attribut de l'objet", this);
+    menu->addAction(changeCurrentConfig);
+    menu->popup(ui->tableView->viewport()->mapToGlobal(pos));
+
+    connect(changeCurrentConfig, SIGNAL(triggered()), this, SLOT(onChangeCurrentConfigButtonTriggered()));
+
+}
+
+void DataViewer::onChangeCurrentConfigButtonTriggered()
+{
+
+    //On instancie une vue optionsViewer en rentrant les valeurs données par le dataManager
+    optionsViewerCurrentConfig = new OptionsViewer(codeObject, dataManager, dataManager->getSmallMapsFromMapNameOptions("mapGCA", "GCA", codeObject), this);
+    optionsViewerCurrentConfig->exec();
+
+}
+

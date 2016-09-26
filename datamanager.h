@@ -18,13 +18,30 @@ public:
     const QStringList getAttributesOfCurrentConfig(const QString& objectType);
     //Prend en paramètre une map mapName et retourne la liste de sousMaps contenue dans mapName
     const QList<QMap<QString, QString> > getSmallMapsFromMapName(const QString& mapName, QString codeObject);
+    //Prend en paramètre  une map mapName et retourne la liste des configurations d'attributs correspondants au code objet codeObject
+    const QList<QMap<QString, QString> > getSmallMapsFromMapNameOptions(const QString& mapName, QString codeObject, QString codeObjectForOptions);
     //Prend en parmètre une liste de sous map et renvoie les valeurs faisant partie de la configuration d'attribut
     const QList<QMap<QString, QString> > selectAttributesOfSmallMapsList(const QList<QMap<QString, QString> > maps, const QString codeObject);
+    //Selectionne les attributs à afficher pour les options uniquement
+    const QList<QMap<QString, QString> > selectAttributesOfSmallMapsListOptions(const QList<QMap<QString, QString> > maps, const QString codeObject);
+    //Cherche dans le fichier GCS le nom de la configuration standard pour chaque objet
+    const QString getStandardConfigName(QString codeObject);
     //Insère dans mapConcordance les valeurs pour chaque objet
     void setDataOfMapConcordance();
 
-    QString getCurrentConfigName() const;
-    void setCurrentConfigName(const QString &value);
+
+    //getters et setters des noms de configurations courantes pour les différents objets
+    QString getCurrentConfigNameGCA() const;
+    void setCurrentConfigNameGCA(const QString &value);
+
+    QString getCurrentConfigNameGAT() const;
+    void setCurrentConfigNameGAT(const QString &value);
+
+    QString getCurrentConfigNameGRS() const;
+    void setCurrentConfigNameGRS(const QString &value);
+
+    QString getCurrentConfigNameGVE() const;
+    void setCurrentConfigNameGVE(const QString &value);
 
 private:
 
@@ -40,7 +57,10 @@ private:
     QMap<QString, QString> mapConcordance;
 
     //On définit l'attribut correpondant au nom de la configuration courante
-    QString currentConfigName;
+    QString currentConfigNameGCA;
+    QString currentConfigNameGAT;
+    QString currentConfigNameGRS;
+    QString currentConfigNameGVE;
 };
 
 #endif // DATAMANAGER_H
