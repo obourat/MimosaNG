@@ -7,6 +7,7 @@
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QMAKE_CXXFLAGS_WARN_ON += -Wno-reoder
 
 TARGET = Version2
 TEMPLATE = app
@@ -18,15 +19,18 @@ SOURCES += main.cpp\
     datamanager.cpp \
     model.cpp \
     dataviewer.cpp \
-    optionsviewer.cpp
+    optionsviewer.cpp \
+    descriptivecard.cpp
 
 HEADERS  += mainwindow.h \
     filereader.h \
     datamanager.h \
     model.h \
     dataviewer.h \
-    optionsviewer.h
+    optionsviewer.h \
+    descriptivecard.h \
 
 FORMS    += mainwindow.ui \
     dataviewer.ui \
-    optionsviewer.ui
+    optionsviewer.ui \
+    descriptivecard.ui

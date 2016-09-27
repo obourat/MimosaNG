@@ -25,7 +25,6 @@ public:
 
 private slots:
     //Slots du clic sur les différents boutons de la MainWindow
-
     void on_environmentalVariablesButton_released();
 
     void on_attributesConfigurationsButton_released();

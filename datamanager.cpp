@@ -109,6 +109,8 @@ const QMap<QString, QMap<QString, QString> >* DataManager::getMapFromName(const 
         return NULL;
     }
 }
+
+
 QString DataManager::getCurrentConfigNameGVE() const
 {
     return currentConfigNameGVE;
@@ -219,6 +221,75 @@ const QStringList DataManager::getAttributesOfCurrentConfig(const QString &objec
     return keys;
 }
 
+const QStringList DataManager::getAttributesOfExportConfig(const QString &objectType)
+{
+    //On définit une liste de clés keys nous permettant de lister les clés des confs de l'objet objectType
+    QStringList keys;
+
+    //On définit un iterateur sur la grande qMap pour passer en revue les clés
+    QMap<QString, QMap<QString, QString> >::Iterator iterator;
+
+    //Pour toutes les clés de la qMap GCA
+    for (iterator = mapGCA.begin(); iterator != mapGCA.end(); ++iterator)
+    {
+        //Si l'élément CodeObjet de la clé sélectionnée par l'iterateur est égal au type d'objet rentré
+        if(iterator.value()["CodeObjet"] == objectType)
+        {
+            //On ajoute la clé sélectionnée par l'itérateur dans la liste keys
+            keys.append(iterator.key());
+        }
+    }
+    //On définit un string currentKey qui sert a sélectionner la clé pour la configuration courante
+    QString currentConfigKey;
+    //Pour toutes les clés de la liste keys des clés sélectionnées
+    for (int i = 0; i <  keys.length(); ++i)
+    {
+#warning probleme signe euro
+        //Si la balise NomConf de la clé sélectionnée contient le nom de la configuration courante
+        int compareValue;
+        if(objectType == "GCA")
+        {
+            compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], mapGCS["GCA"]["NomConfXML"], Qt::CaseSensitive);
+        }
+        else if(objectType == "GAT")
+        {
+            compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], mapGCS["GAT"]["NomConfXML"], Qt::CaseSensitive);
+        }
+        else if(objectType == "GRS")
+        {
+            compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], mapGCS["GRS"]["NomConfXML"], Qt::CaseSensitive);
+        }
+        else if(objectType == "GVE")
+        {
+            compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], mapGCS["GVE"]["NomConfXML"], Qt::CaseSensitive);
+        }
+
+        if (compareValue == 0)
+        {
+            //on sélectionne cette clé comme configuration courante
+            currentConfigKey = keys[i];
+            //exit
+            break;
+        }
+    }
+
+    //On efface la liste de clés
+    keys.clear();
+    //Pour chaque clé de la mapGAT
+    for (iterator = mapGAT.begin(); iterator != mapGAT.end(); ++iterator)
+    {
+        //Si la valeur de la balise InCnfAtt est égale à la valeur de la clé de la configuration courante
+        if(iterator.value()["IdCnfAtt"] == currentConfigKey)
+        {
+            //On ajoute la clé sélectionnée par l'iterateur dans la liste keys
+            keys.append(iterator.key());
+        }
+    }
+    //On renvoie la liste de clés (correspondant à la liste des clés des attributs pour la configuration d'attribut courante)
+    return keys;
+}
+
+
 const QList<QMap<QString, QString> > DataManager::getSmallMapsFromMapName(const QString &mapName, QString codeObject)
 {
     //On définit une liste de maps<clé, valeur>
@@ -254,6 +325,7 @@ const QList<QMap<QString, QString> > DataManager::getSmallMapsFromMapNameOptions
     QMap<QString, QString> currentTestedMap;
     //On définit une map selectedMap qui sera égale à la map sélectionnée
     const QMap<QString, QMap<QString, QString> >* selectedMap;
+    QString currentConfigName;
     //retourne la map correspondante au nom rentré par l'utilisateur (si ce nom est valide)
     selectedMap = getMapFromName(mapName);
 
@@ -270,12 +342,48 @@ const QList<QMap<QString, QString> > DataManager::getSmallMapsFromMapNameOptions
     {
         //On définit une map qui est égale à la map de la ligne sélectionnée dans selectedMap
         currentTestedMap = selectedMap->value(iterator.key());
-        //Si le codeObjet de la map testée est égal au code objet de l'objet selectionné, on sélectionne la configuration d'attribut
-        if(currentTestedMap["CodeObjet"] == codeObjectForOptions)
+        //Si le codeObjet de la map testée est égal au code objet de l'objet selectionné, on sélectionne l'objet (configuration d'attr ou attr)
+        if(mapName == "mapGCA")
         {
-            //On ajoute dans la liste maps les valeurs correpsondantes au contenu de la clé (la sous map)
-            maps << selectedMap->value(iterator.key());
+            if(currentTestedMap["CodeObjet"] == codeObjectForOptions)
+            {
+                //On ajoute dans la liste maps les valeurs correpsondantes au contenu de la clé (la sous map)
+                maps << selectedMap->value(iterator.key());
+            }
         }
+
+        else if(mapName == "mapGAT")
+        {
+            if(currentTestedMap["CodeObj"] == codeObjectForOptions)
+            {
+                if(codeObjectForOptions == "GCA")
+                {
+                    currentConfigName = getCurrentConfigNameGCA();
+                }
+                else if(codeObjectForOptions == "GAT")
+                {
+                    currentConfigName = getCurrentConfigNameGAT();
+                }
+                else if(codeObjectForOptions == "GVE")
+                {
+                    currentConfigName = getCurrentConfigNameGVE();
+                }
+                else if(codeObjectForOptions == "GRS")
+                {
+                    currentConfigName = getCurrentConfigNameGRS();
+                }
+
+
+                QString idCurrentCnfAtt = getCurrentConfigId(currentConfigName, "mapGCA", codeObjectForOptions);
+                if(currentTestedMap["IdCnfAtt"] == idCurrentCnfAtt )
+                {
+                    //On ajoute dans la liste maps les valeurs correpsondantes au contenu de la clé (la sous map)
+                    maps << selectedMap->value(iterator.key());
+                }
+            }
+
+        }
+
     }
     //On sélectionne dans maps les attributs que l'on veut afficher et on retourne le résultat
     return selectAttributesOfSmallMapsListOptions(maps, codeObject);
@@ -343,7 +451,7 @@ const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsLis
 const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsListOptions(const QList<QMap<QString, QString> > maps, const QString codeObject)
 {
     QList<QMap<QString, QString> > mapsSelectedForCurrentConfig;
-    QStringList attributesOfCurrentConfig = getAttributesOfCurrentConfig(codeObject);
+    QStringList attributesOfCurrentConfig = getAttributesOfExportConfig(codeObject);
     QStringList attributesOfCurrentConfigOptions;
     QMap<QString, QString > mapTempOfSelectedAttributes;
     QMap<QString, QString> valueOfSmallMapSelected;
@@ -360,22 +468,51 @@ const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsLis
     {
         //IteratorAttribute prend en paramètre la clé de l'attribut sur lequel il itère
         iteratorAttribute = attributesOfCurrentConfig.at(k);
-
+        if(codeObject == "GCA")
+        {
 #if 0
-        if(mapGAT[iteratorAttribute]["Titre"] == "NomObjet")
-        {
-            attributesOfCurrentConfigOptions.append(iteratorAttribute);
-        }
+            if(mapGAT[iteratorAttribute]["Titre"] == "NomObjet")
+            {
+                attributesOfCurrentConfigOptions.append(iteratorAttribute);
+            }
 #endif
-        if(mapGAT[iteratorAttribute]["Titre"] == "NomConf")
-        {
-            attributesOfCurrentConfigOptions.append(iteratorAttribute);
+            if(mapGAT[iteratorAttribute]["Titre"] == "NomConf")
+            {
+                attributesOfCurrentConfigOptions.append(iteratorAttribute);
+            }
+
+            if(mapGAT[iteratorAttribute]["Titre"] == "Type")
+            {
+                attributesOfCurrentConfigOptions.append(iteratorAttribute);
+            }
         }
 
-        if(mapGAT[iteratorAttribute]["Titre"] == "Type")
+        else if(codeObject == "GAT")
         {
-            attributesOfCurrentConfigOptions.append(iteratorAttribute);
+
+            if(mapGAT[iteratorAttribute]["Titre"] == "NomAttribut")
+            {
+                attributesOfCurrentConfigOptions.append(iteratorAttribute);
+            }
+            if(mapGAT[iteratorAttribute]["Titre"] == "IndicAffichage")
+            {
+                attributesOfCurrentConfigOptions.append(iteratorAttribute);
+            }
+            if(mapGAT[iteratorAttribute]["Titre"] == "IndicImpression")
+            {
+                attributesOfCurrentConfigOptions.append(iteratorAttribute);
+            }
+            if(mapGAT[iteratorAttribute]["Titre"] == "IndicTri")
+            {
+                attributesOfCurrentConfigOptions.append(iteratorAttribute);
+            }
+            if(mapGAT[iteratorAttribute]["Titre"] == "Rang")
+            {
+                attributesOfCurrentConfigOptions.append(iteratorAttribute);
+            }
+
         }
+
 
     }
 
@@ -389,9 +526,7 @@ const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsLis
             //IteratorAttribute prend en paramètre la clé de l'attribut sur lequel il itère
             iteratorAttribute = attributesOfCurrentConfigOptions.at(i);
 
-            //Si l'indicateur d'affichage de l'attribut séléctionné est égal à "oui"
-            if(mapGAT[iteratorAttribute]["IndicAffichage"] == "Oui")
-            {
+
                 //On sélectionne le Titre de l'attribut à afficher dans l'en tête
                 nomAttributeDisplayed = mapGAT[iteratorAttribute]["NomAttribut"];
                 //On selectionne le premier critère NuméroInterne permettant de trouver le nom de la balise à sélectionner
@@ -411,7 +546,6 @@ const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsLis
                 //On insère la valeur dans la map temporaire des éléments sélectionnés
                 mapTempOfSelectedAttributes.insert(nomAttributeDisplayed, valueAttributeSelected);
 
-            }
 
         }
         //On stocke dans la nouvelle map tous les attributs de la configuration courante
@@ -420,6 +554,7 @@ const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsLis
 
     return mapsSelectedForCurrentConfig;
 }
+
 const QString DataManager::getStandardConfigName(QString codeObject)
 {
     QString standardConfigName;
@@ -452,6 +587,43 @@ const QString DataManager::getStandardConfigName(QString codeObject)
     }
     //On sélectionne dans maps les attributs que l'on veut afficher et on retourne le résultat
     return standardConfigName;
+}
+
+const QString DataManager::getCurrentConfigId(const QString currentConfigName, const QString mapName, const QString codeObject)
+{
+    QString currentConfigId;
+    QMap<QString, QString> currentTestedMap;
+    //On définit une map selectedMap qui sera égale à la map sélectionnée
+    const QMap<QString, QMap<QString, QString> >* selectedMap;
+    //retourne la map correspondante au nom rentré par l'utilisateur (si ce nom est valide)
+    selectedMap = getMapFromName(mapName);
+
+    //Si la map est nulle
+    if(selectedMap == NULL)
+    {
+        //On retourne une liste vide
+        return currentConfigId;
+    }
+    //On définit un iterateur qui parcours les clés de la map sélectionnée
+    QMap<QString, QMap<QString, QString> >::ConstIterator iterator;
+    //Tant que l'iterateur n'a pas parcouru toutes les clés de la map sélectionnée
+    for (iterator= selectedMap->begin(); iterator != selectedMap->end(); ++iterator)
+    {
+        //On définit une map qui est égale à la map de la ligne sélectionnée dans selectedMap
+        currentTestedMap = selectedMap->value(iterator.key());
+        //Si le codeObjet de la map testée est égal au code objet de l'objet selectionné, on sélectionne la configuration d'attribut
+        if(currentTestedMap["CodeObjet"] == codeObject )
+        {
+            if(currentTestedMap["NomConf"] == currentConfigName)
+            {
+                //On ajoute dans la liste maps les valeurs correpsondantes au contenu de la clé (la sous map)
+                currentConfigId = currentTestedMap["Id"];
+                break;
+            }
+        }
+    }
+    //On sélectionne dans maps les attributs que l'on veut afficher et on retourne le résultat
+    return currentConfigId;
 }
 
 void DataManager::setDataOfMapConcordance()

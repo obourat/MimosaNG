@@ -24,7 +24,7 @@ private:
     void handlesBlock(const QString &keyBlock, const QString& mapName);
 
 private:
-    //On définit les objets dont on a besoin
+    //On définit les objets dont on a besoin pour lire le fichier et transmettre les données au datamanager
     DataManager *dataManager;
     QString fileName;
     QXmlStreamReader reader;
