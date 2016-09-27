@@ -438,6 +438,7 @@ const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsLis
                 mapTempOfSelectedAttributes.insert(nomAttributeDisplayed, valueAttributeSelected);
 
             }
+            //mapTempOfSelectedAttributes.insert("key", iteratorAttribute );
 
         }
         //On stocke dans la nouvelle map tous les attributs de la configuration courante
