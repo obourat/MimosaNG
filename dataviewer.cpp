@@ -84,8 +84,35 @@ DataViewer::~DataViewer()
 void DataViewer::customMenuRequested(QPoint pos)
 {
     QModelIndex index = ui->tableView->indexAt(pos);
-    //QVariant test = myModel->data(index,0);
-    //QString aa = test.toString();
+#if 0
+    //On compte le nombre de lignes sélectionnées
+    int rowCount = ui->tableView->selectionModel()->selectedRows().count();
+#endif
+    //On compte le nombre de colonnes sélectionnées -1 pour aoir l'index de la dernière colonne
+    QAbstractItemModel* tableModel = ui->tableView->model();
+    int columnCount = tableModel->columnCount();
+    --columnCount;
+    //On crée le string permettant de stocker la clé de la ligne sélectionnée
+    QString key;
+    //On crée la liste d'index qui contient tous les index de toutes les colonnes des lignes sélectionnées
+    QModelIndexList selectedIndexes = ui->tableView->selectionModel()->selectedIndexes();
+
+    //On soustrait de la liste d'index les index dont la colonne n'est pas égal à la dernière
+    for(int j=0; j<selectedIndexes.count(); ++j)
+    {
+        if(selectedIndexes[j].column() != columnCount)
+        {
+            selectedIndexes.removeOne(selectedIndexes[j]);
+            --j;
+        }
+    }
+
+    //Pour les éléments restants de la liste, on va chercher la valeur correpondant à la clé et on l'ajoute à la liste de clés
+    for(int i=0; i<selectedIndexes.length(); ++i)
+    {
+        key = selectedIndexes[i].data(0).toString();
+        keysList.append(key);
+    }
 
     QMenu *menu = new QMenu(this);
     QAction *changeCurrentConfig = new QAction("Voir les configurations d'attribut du type d'objet", this);

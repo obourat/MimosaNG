@@ -46,6 +46,8 @@ private:
 
     //Code Objet associé au type de données affichées
     QString codeObject;
+    //Liste de clés associée aux objets sélectionnés
+    QStringList keysList;
 };
 
 #endif // DATAVIEWER_H

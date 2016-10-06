@@ -122,7 +122,11 @@ void OptionsViewer::on_confirmButtonBox_accepted()
 
 void OptionsViewer::on_optionsView_clicked()
 {
-    currentConfigSelectedName = ui->optionsView->selectionModel()->currentIndex().data(0).toString();
+    //Si il s'agit d'une selecton de configuration, on selectionne la valeur de la première colonne de la selection qui correspond au nom de la conf
+    if(selectedOption == "configurations")
+    {
+        currentConfigSelectedName = ui->optionsView->selectionModel()->selectedIndexes().first().data(0).toString();
+    }
 }
 
 void OptionsViewer::onPopObjectCardButtonTriggered()
