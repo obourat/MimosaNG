@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     model.cpp \
     dataviewer.cpp \
     optionsviewer.cpp \
-    descriptivecard.cpp
+    descriptivecard.cpp \
+    searchcard.cpp
 
 HEADERS  += mainwindow.h \
     filereader.h \
@@ -29,8 +30,10 @@ HEADERS  += mainwindow.h \
     dataviewer.h \
     optionsviewer.h \
     descriptivecard.h \
+    searchcard.h
 
 FORMS    += mainwindow.ui \
     dataviewer.ui \
     optionsviewer.ui \
-    descriptivecard.ui
+    descriptivecard.ui \
+    searchcard.ui

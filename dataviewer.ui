@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>DataViewer</class>
  <widget class="QDialog" name="DataViewer">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -16,8 +19,11 @@
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0">
+   <item row="3" column="1">
     <widget class="QTableView" name="tableView">
      <property name="contextMenuPolicy">
       <enum>Qt::DefaultContextMenu</enum>
@@ -49,12 +55,28 @@
      <attribute name="horizontalHeaderCascadingSectionResizes">
       <bool>false</bool>
      </attribute>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>false</bool>
+     </attribute>
     </widget>
    </item>
-   <item row="0" column="0">
+   <item row="0" column="1">
     <widget class="QLabel" name="infoNomConf">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QLabel" name="infoNbObject">
+     <property name="text">
+      <string>TextLabel</string>
      </property>
     </widget>
    </item>

@@ -5,6 +5,8 @@
 #include <QtGui/QWidget>
 #include <QModelIndex>
 
+class DataManager;
+
 namespace Ui {
 class DescriptiveCard;
 }
@@ -14,11 +16,15 @@ class DescriptiveCard : public QDialog
     Q_OBJECT
 
 public:
-    explicit DescriptiveCard(QWidget *parent = 0);
+    explicit DescriptiveCard(DataManager *dataManager, QString codeObject, QString key,QString selection, QWidget *parent = 0);
     ~DescriptiveCard();
 
 private:
+    void setNewWidget(QString type, QString name, QString value);
+private:
     Ui::DescriptiveCard *ui;
+
+    DataManager *dataManager;
 };
 
 #endif // DESCRIPTIVECARD_H

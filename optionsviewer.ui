@@ -14,7 +14,7 @@
    <string>Liste des configurations d'attribut de l'objet</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0">
+   <item row="2" column="0">
     <widget class="QTableView" name="optionsView">
      <property name="alternatingRowColors">
       <bool>true</bool>
@@ -30,7 +30,7 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="0">
+   <item row="6" column="0">
     <widget class="QDialogButtonBox" name="confirmButtonBox">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -53,7 +53,14 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item row="3" column="0">
+    <widget class="QLabel" name="infoNbObject">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
     <widget class="QLabel" name="instructionsLabel">
      <property name="text">
       <string/>

@@ -5,6 +5,7 @@
 #include "datamanager.h"
 #include "dataviewer.h"
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -42,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     standardConfigName = dataManager->getStandardConfigName("GVE");
     dataManager->setCurrentConfigNameGVE(standardConfigName);
 
+
 }
 
 //Destructeur
@@ -58,21 +60,22 @@ void MainWindow::on_environmentalVariablesButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
     dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGVE", "GVE"),"GVE", this);
-    dataViewer->exec();
+    dataViewer->show();
+
 }
 
 void MainWindow::on_attributesConfigurationsButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
     dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGCA", "GCA"), "GCA",  this);
-    dataViewer->exec();
+    dataViewer->show();
 }
 
 void MainWindow::on_attributesButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
     dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGAT", "GAT"), "GAT", this);
-    dataViewer->exec();
+    dataViewer->show();
 }
 
 void MainWindow::on_caseSelectionButton_released()
@@ -84,7 +87,7 @@ void MainWindow::on_officialsButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
     dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGRS", "GRS"), "GRS", this);
-    dataViewer->exec();
+    dataViewer->show();
 }
 
 
