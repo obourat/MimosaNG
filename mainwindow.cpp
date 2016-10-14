@@ -27,6 +27,8 @@ MainWindow::MainWindow(QWidget *parent) :
     fileReader->parseFile("Objects_list", "Object", "Id", "mapGAT");
     fileReader->setFileName("GRS_Export.xml");
     fileReader->parseFile("Objects_list", "Object", "Id", "mapGRS");
+    fileReader->setFileName("GDO_Export.xml");
+    fileReader->parseFile("Objects_list", "Object", "NumOrdre", "mapGDO");
     fileReader->setFileName("GCS_Export.xml");
     fileReader->parseFile("Objects_list", "Object", "CodeObjet", "mapGCS");
 
@@ -42,7 +44,14 @@ MainWindow::MainWindow(QWidget *parent) :
     dataManager->setCurrentConfigNameGRS(standardConfigName);
     standardConfigName = dataManager->getStandardConfigName("GVE");
     dataManager->setCurrentConfigNameGVE(standardConfigName);
+    standardConfigName = dataManager->getStandardConfigName("GDO");
+    dataManager->setCurrentConfigNameGDO(standardConfigName);
 
+    QPalette Pal(palette());
+    Pal.setColor(QPalette::Window, QColor(255,255,255,240));
+    this->setAutoFillBackground(true);
+    this->setPalette(Pal);
+    this->show();
 
 }
 
@@ -60,6 +69,7 @@ void MainWindow::on_environmentalVariablesButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
     dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGVE", "GVE"),"GVE", this);
+    dataViewer->setAttribute(Qt::WA_DeleteOnClose);
     dataViewer->show();
 
 }
@@ -68,6 +78,7 @@ void MainWindow::on_attributesConfigurationsButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
     dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGCA", "GCA"), "GCA",  this);
+    dataViewer->setAttribute(Qt::WA_DeleteOnClose);
     dataViewer->show();
 }
 
@@ -75,6 +86,7 @@ void MainWindow::on_attributesButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
     dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGAT", "GAT"), "GAT", this);
+    dataViewer->setAttribute(Qt::WA_DeleteOnClose);
     dataViewer->show();
 }
 
@@ -87,10 +99,14 @@ void MainWindow::on_officialsButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
     dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGRS", "GRS"), "GRS", this);
+    dataViewer->setAttribute(Qt::WA_DeleteOnClose);
     dataViewer->show();
 }
 
-
-
-
-
+void MainWindow::on_documentsButton_released()
+{
+    //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
+    dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGDO", "GDO"), "GDO", this);
+    dataViewer->setAttribute(Qt::WA_DeleteOnClose);
+    dataViewer->show();
+}

@@ -9,10 +9,15 @@
 
 #include <QSortFilterProxyModel>
 #include <QtGui>
+#include <QMessageBox>
 
 //Constructeur
-DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent) :dataManager(dataManager), QDialog(parent),
-    ui(new Ui::DataViewer)
+DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::DataViewer),
+    dataManager(dataManager),
+    mySetting(new QSettings("dataviewer.cpp", QSettings::IniFormat))
+
 {
     //On instancie la fenêtre
     ui->setupUi(this);
@@ -36,12 +41,45 @@ DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QStrin
     //On ajuste la taille des colonnes au contenu
     ui->tableView->resizeColumnsToContents();
 
-    ui->tableView->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    ui->tableView->horizontalHeader()->setResizeMode(QHeaderView::Interactive);
+    ui->tableView->horizontalHeader()->setStretchLastSection(true);
+    ui->tableView->horizontalHeader()->setContextMenuPolicy(Qt::CustomContextMenu);
+
+
+    if(codeObject == "GCA")
+    {
+        QByteArray myArray = mySetting.value("columnConfigGCA","").toByteArray();
+        ui->tableView->horizontalHeader()->restoreState(myArray);
+    }
+    else if(codeObject == "GAT")
+    {
+        QByteArray myArray = mySetting.value("columnConfigGAT","").toByteArray();
+        ui->tableView->horizontalHeader()->restoreState(myArray);
+    }
+    else if(codeObject == "GVE")
+    {
+        QByteArray myArray = mySetting.value("columnConfigGVE","").toByteArray();
+        ui->tableView->horizontalHeader()->restoreState(myArray);
+    }
+    else if(codeObject == "GDO")
+    {
+        QByteArray myArray = mySetting.value("columnConfigGDO","").toByteArray();
+        ui->tableView->horizontalHeader()->restoreState(myArray);
+    }
+    else if(codeObject == "GRS")
+    {
+        QByteArray myArray = mySetting.value("columnConfigGRS","").toByteArray();
+        ui->tableView->horizontalHeader()->restoreState(myArray);
+    }
+
+    connect(ui->tableView->horizontalHeader(), SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(customHeaderMenuRequested(QPoint)));
+    connect(ui->tableView->horizontalHeader(), SIGNAL(sectionResized(int,int,int)), this, SLOT(resizeSection()));
     //ui->tableView->horizontalHeader()->setStretchLastSection(true);
 
     //QVBoxLayout *l = new QVBoxLayout(this);
     ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tableView, SIGNAL(customContextMenuRequested(QPoint)),this, SLOT(customMenuRequested(QPoint)));
+    connect(ui->tableView, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(onItemDoubleClicked()));
 
     QString currentConfigName;
 
@@ -79,8 +117,8 @@ DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QStrin
     else if(this->codeObject == "GDO")
     {
         this->setWindowTitle("Liste des objets de type : Documents");
-        //currentConfigName = dataManager->getCurrentConfigNameGDO();
-        //ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
+        currentConfigName = dataManager->getCurrentConfigNameGDO();
+        ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
     }
 
     QString rows = QString::number(rowCount);
@@ -93,13 +131,79 @@ DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QStrin
     Qt::WindowFlags flags = Qt::Window | Qt::WindowSystemMenuHint| Qt::WindowMinimizeButtonHint| Qt::WindowCloseButtonHint;
     this->setWindowFlags(flags);
 
+    QPalette Pal(palette());
+    Pal.setColor(QPalette::Window, QColor(255,255,255,240));
+    this->setAutoFillBackground(true);
+    this->setPalette(Pal);
+    this->show();
+
 }
 
+void DataViewer::updateLayout()
+{
+    if(codeObject == "GCA")
+    {
+        const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGCA", "GCA");
+        Model *newModel = new Model(maps);
+        proxyModel->setSourceModel(newModel);
+        ui->tableView->setModel(proxyModel);
+    }
+    else if(codeObject == "GAT")
+    {
+        const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGAT", "GAT");
+        Model *newModel = new Model(maps);
+        proxyModel->setSourceModel(newModel);
+        ui->tableView->setModel(proxyModel);
+    }
+    else if(codeObject == "GRS")
+    {
+        const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGRS", "GRS");
+        Model *newModel = new Model(maps);
+        proxyModel->setSourceModel(newModel);
+        ui->tableView->setModel(proxyModel);
+    }
+    else if(codeObject == "GDO")
+    {
+        const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGDO", "GDO");
+        Model *newModel = new Model(maps);
+        proxyModel->setSourceModel(newModel);
+        ui->tableView->setModel(proxyModel);
+    }
+    else if(codeObject == "GVE")
+    {
+        const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGVE", "GVE");
+        Model *newModel = new Model(maps);
+        proxyModel->setSourceModel(newModel);
+        ui->tableView->setModel(proxyModel);
+    }
+
+}
 
 
 //Destructeur
 DataViewer::~DataViewer()
 {
+    QByteArray myArray = ui->tableView->horizontalHeader()->saveState();
+    if(codeObject == "GCA")
+    {
+        mySetting.setValue("columnConfigGCA", myArray);
+    }
+    else if(codeObject == "GAT")
+    {
+        mySetting.setValue("columnConfigGAT", myArray);
+    }
+    else if(codeObject == "GVE")
+    {
+        mySetting.setValue("columnConfigGVE", myArray);
+    }
+    else if(codeObject == "GDO")
+    {
+        mySetting.setValue("columnConfigGDO", myArray);
+    }
+    if(codeObject == "GRS")
+    {
+        mySetting.setValue("columnConfigGRS", myArray);
+    }
     delete ui;
 }
 
@@ -173,11 +277,24 @@ void DataViewer::customMenuRequested(QPoint pos)
 
 }
 
+void DataViewer::customHeaderMenuRequested(QPoint pos)
+{
+    index = ui->tableView->horizontalHeader()->logicalIndexAt(pos);
+
+    QMenu* menu = new QMenu(this);
+    QAction* hideColumn = new QAction("Masquer la colonne selectionnee", this);
+    menu->addAction(hideColumn);
+    menu->popup(ui->tableView->viewport()->mapToGlobal(pos));
+    connect(hideColumn, SIGNAL(triggered()), this, SLOT(setColumnHidden()));
+
+}
+
+
+
 void DataViewer::onChangeCurrentConfigButtonTriggered()
 {
-
     //On instancie une vue optionsViewer en rentrant les valeurs données par le dataManager en utilisant les méthodes spécifiques aux options
-    optionsViewerCurrentConfig = new OptionsViewer(codeObject, dataManager, dataManager->getSmallMapsFromMapNameOptions("mapGCA", "GCA",codeObject),"configurations", this);
+    optionsViewerCurrentConfig = new OptionsViewer(codeObject, dataManager,this,dataManager->getSmallMapsFromMapNameOptions("mapGCA", "GCA",codeObject),"configurations", this);
     optionsViewerCurrentConfig->exec();
 
 }
@@ -185,7 +302,7 @@ void DataViewer::onChangeCurrentConfigButtonTriggered()
 void DataViewer::onChangeCurrentConfigAttributesButtonTriggered()
 {
     //On instancie une vue optionsViewer en rentrant les valeurs données par le dataManager en utilisant les méthodes spécifiques aux options
-    optionsViewerCurrentConfigAttributes = new OptionsViewer(codeObject, dataManager, dataManager->getSmallMapsFromMapNameOptions("mapGAT","GAT", codeObject),"attributes", this);
+    optionsViewerCurrentConfigAttributes = new OptionsViewer(codeObject, dataManager,this, dataManager->getSmallMapsFromMapNameOptions("mapGAT","GAT", codeObject),"attributes", this);
     optionsViewerCurrentConfigAttributes->exec();
 }
 
@@ -193,6 +310,7 @@ void DataViewer::onDisplayDescriptiveCardButtonTriggered()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, codeObject, keysList[0],"current",this);
+    descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
     descriptiveCard->show();
 
 }
@@ -201,6 +319,7 @@ void DataViewer::onDisplayDescriptiveCardCompleteButtonTriggered()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, codeObject, keysList[0],"complete",this);
+    descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
     descriptiveCard->show();
 }
 
@@ -259,6 +378,11 @@ void DataViewer::onResetSelectionButtonTriggered()
     {
         ui->tableView->showRow(k);
     }
+//    int columnCountMinus = --columnCount;
+//    for(int l=0; l!= columnCountMinus; ++l)
+//    {
+//        ui->tableView->showColumn(l);
+//    }
 
     QString rows = QString::number(rowCount);
     ui->infoNbObject->setText("Nombre d'objets: "+rows);
@@ -277,7 +401,7 @@ void DataViewer::onSubListButtonTriggered()
     //connect(searchCard, SIGNAL(accepted()), this, SLOT(getSearchResults()));
 
     QList<QString> searchResults = searchCard->getSearchResults();
-
+    int newRowCount = 0;
     QString testedKey;
     for(int k=0; k!= rowCount; ++k)
     {
@@ -287,6 +411,7 @@ void DataViewer::onSubListButtonTriggered()
             if( testedKey == searchResults[l])
             {
                 ui->tableView->showRow(k);
+                ++newRowCount;
                 break;
             }
             else
@@ -297,8 +422,18 @@ void DataViewer::onSubListButtonTriggered()
         }
     }
 
-    QString rows = QString::number(keysList.count());
-    ui->infoNbObject->setText("Nombre d'objets: "+rows);
+    int confirmsearch = searchCard->getConfirmSearch();
+
+    if(newRowCount == 0 && confirmsearch == 1)
+    {
+        QMessageBox::information(this, "Information", "Aucun resultat disponible pour cette recherche");
+    }
+
+    if(newRowCount != 0)
+    {
+        QString newRowCountToString = QString::number(newRowCount);
+        ui->infoNbObject->setText("Nombre d'objets: "+newRowCountToString);
+    }
 
 }
 
@@ -307,4 +442,24 @@ void DataViewer::getSearchResults()
 {
     QList<QString> searchResults = searchCard->getSearchResults();
 }
+
+void DataViewer::onItemDoubleClicked()
+{
+    keysList.clear();
+    //On crée la liste d'index qui contient tous les index de toutes les colonnes des lignes sélectionnées
+    QModelIndexList selectedIndexes = ui->tableView->selectionModel()->selectedIndexes();
+    QString key;
+    key = selectedIndexes[columnCount].data(0).toString();
+    keysList.append(key);
+    //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
+    descriptiveCard = new DescriptiveCard(dataManager, codeObject, keysList[0],"complete",this);
+    descriptiveCard->show();
+}
+
+void DataViewer::setColumnHidden()
+{
+    ui->tableView->setColumnHidden(index,true);
+}
+
+
 

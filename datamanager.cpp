@@ -72,6 +72,116 @@ void DataManager::insertDataToMap(const QString &mapName, const QString &key, co
             mapGRS.insert(key, map);
         }
     }
+    // Choix de la map par rapport au nom donné
+    else if(mapName == "mapGDO")
+    {
+        // Si la map ne contient pas deja la clef key
+        if(!mapGDO.contains(mapName))
+        {
+            // Insertion des données
+            mapGDO.insert(key, map);
+        }
+    }
+
+}
+
+void DataManager::replaceDataOfMap(const QString &mapName, const QString &key, const QString &valueToAdd, const QString smallKeyNameToReplace)
+{
+    // Si la clef est vide
+    if(key.isEmpty())
+    {
+        // Quitter
+        return;
+    }
+
+    QString type;
+    QMap<QString, QString> smallMap;
+    QStringList list;
+
+    // Choix de la map par rapport au nom donné
+    if(mapName == "mapGCA")
+    {
+        if(!mapGCA[key][smallKeyNameToReplace].isNull())
+        {
+            smallMap = mapGCA[key];
+            list = smallMap.values(smallKeyNameToReplace);
+            type = list[1];
+
+            mapGCA[key].remove(smallKeyNameToReplace);
+        }
+        mapGCA[key].insert(smallKeyNameToReplace,type);
+        mapGCA[key].insertMulti(smallKeyNameToReplace,valueToAdd);
+    }
+    // Choix de la map par rapport au nom donné
+    else if(mapName == "mapGAT")
+    {
+        if(!mapGAT[key][smallKeyNameToReplace].isNull())
+        {
+            smallMap = mapGAT[key];
+            list = smallMap.values(smallKeyNameToReplace);
+            type = list[1];
+
+            mapGAT[key].remove(smallKeyNameToReplace);
+        }
+        mapGAT[key].insert(smallKeyNameToReplace,type);
+        mapGAT[key].insertMulti(smallKeyNameToReplace,valueToAdd);
+    }
+    // Choix de la map par rapport au nom donné
+    else if(mapName == "mapGVE")
+    {
+        if(!mapGVE[key][smallKeyNameToReplace].isNull())
+        {
+            smallMap = mapGVE[key];
+            list = smallMap.values(smallKeyNameToReplace);
+            type = list[1];
+
+            mapGVE[key].remove(smallKeyNameToReplace);
+        }
+        mapGVE[key].insert(smallKeyNameToReplace,type);
+        mapGVE[key].insertMulti(smallKeyNameToReplace,valueToAdd);
+    }
+    // Choix de la map par rapport au nom donné
+    else if(mapName == "mapGCS")
+    {
+        if(!mapGCS[key][smallKeyNameToReplace].isNull())
+        {
+            smallMap = mapGCS[key];
+            list = smallMap.values(smallKeyNameToReplace);
+            type = list[1];
+
+            mapGCS[key].remove(smallKeyNameToReplace);
+        }
+        mapGCS[key].insert(smallKeyNameToReplace,type);
+        mapGCS[key].insertMulti(smallKeyNameToReplace,valueToAdd);
+    }
+    // Choix de la map par rapport au nom donné
+    else if(mapName == "mapGRS")
+    {
+        if(!mapGRS[key][smallKeyNameToReplace].isNull())
+        {
+            smallMap = mapGRS[key];
+            list = smallMap.values(smallKeyNameToReplace);
+            type = list[1];
+
+            mapGRS[key].remove(smallKeyNameToReplace);
+        }
+        mapGRS[key].insert(smallKeyNameToReplace,type);
+        mapGRS[key].insertMulti(smallKeyNameToReplace,valueToAdd);
+    }
+    // Choix de la map par rapport au nom donné
+    else if(mapName == "mapGDO")
+    {
+        if(!mapGDO[key][smallKeyNameToReplace].isNull())
+        {
+            smallMap = mapGDO[key];
+            list = smallMap.values(smallKeyNameToReplace);
+            type = list[1];
+
+            mapGDO[key].remove(smallKeyNameToReplace);
+        }
+        mapGDO[key].insert(smallKeyNameToReplace,type);
+        mapGDO[key].insertMulti(smallKeyNameToReplace,valueToAdd);
+    }
 
 }
 
@@ -103,6 +213,12 @@ const QMap<QString, QMap<QString, QString> >* DataManager::getMapFromName(const 
     {
         return &mapGRS;
     }
+    //Retourne la map correspondante sur le bon nom est rentré
+    else if(mapName == "mapGDO")
+    {
+        return &mapGDO;
+    }
+
     //Si un nom invalide ou nul est rentré, on ne renvoie rien
     else
     {
@@ -110,6 +226,10 @@ const QMap<QString, QMap<QString, QString> >* DataManager::getMapFromName(const 
     }
 }
 
+const QMap<QString, QString>* DataManager::getMapConcordance() const
+{
+    return &mapConcordance;
+}
 
 QString DataManager::getCurrentConfigNameGVE() const
 {
@@ -120,6 +240,16 @@ void DataManager::setCurrentConfigNameGVE(const QString &value)
 {
     currentConfigNameGVE = value;
 }
+QString DataManager::getCurrentConfigNameGDO() const
+{
+    return currentConfigNameGDO;
+}
+
+void DataManager::setCurrentConfigNameGDO(const QString &value)
+{
+    currentConfigNameGDO = value;
+}
+
 
 QString DataManager::getCurrentConfigNameGRS() const
 {
@@ -165,6 +295,7 @@ const QStringList DataManager::getAttributesOfCurrentConfig(const QString &objec
     for (iterator = mapGCA.begin(); iterator != mapGCA.end(); ++iterator)
     {
         //Si l'élément CodeObjet de la clé sélectionnée par l'iterateur est égal au type d'objet rentré
+        QString test = iterator.value()["CodeObjet"];
         if(iterator.value()["CodeObjet"] == objectType)
         {
             //On ajoute la clé sélectionnée par l'itérateur dans la liste keys
@@ -194,6 +325,10 @@ const QStringList DataManager::getAttributesOfCurrentConfig(const QString &objec
         else if(objectType == "GVE")
         {
             compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], currentConfigNameGVE, Qt::CaseSensitive);
+        }
+        else if(objectType == "GDO")
+        {
+            compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], currentConfigNameGDO, Qt::CaseSensitive);
         }
 
         if (compareValue == 0)
@@ -287,6 +422,10 @@ const QStringList DataManager::getAttributesOfExportConfig(const QString &object
         {
             compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], mapGCS["GVE"]["NomConfXML"], Qt::CaseSensitive);
         }
+        else if(objectType == "GDO")
+        {
+            compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], mapGCS["GDO"]["NomConfXML"], Qt::CaseSensitive);
+        }
 
         if (compareValue == 0)
         {
@@ -325,7 +464,17 @@ const QList<QMap<QString, QString> > DataManager::getSmallMapsFromMapName(const 
     //retourne la map correspondante au nom rentré par l'utilisateur (si ce nom est valide)
     selectedMap = getMapFromName(mapName);
     //représente le nom de la clé dans chaque sous map de selectedMap, on différenciera les cas ci besoin
-    QString keyName = "Id";
+    QString keyName;
+
+    if(codeObject == "GDO")
+    {
+        keyName = "NumOrdre";
+    }
+    else
+    {
+        keyName = "Id";
+    }
+
     //Si la map est nulle
     if(selectedMap == NULL)
     {
@@ -363,7 +512,6 @@ const QList<QMap<QString, QString> > DataManager::getSmallMapsFromMapName(const 
 
     }
 #endif
-#warning fix this
     //On sélectionne dans maps les attributs que l'on veut afficher et on retourne le résultat
     return selectAttributesOfSmallMapsList(maps, codeObject, keyName);
 
@@ -423,6 +571,10 @@ const QList<QMap<QString, QString> > DataManager::getSmallMapsFromMapNameOptions
                 else if(codeObjectForOptions == "GRS")
                 {
                     currentConfigName = getCurrentConfigNameGRS();
+                }
+                else if(codeObjectForOptions == "GDO")
+                {
+                    currentConfigName = getCurrentConfigNameGDO();
                 }
 
 
@@ -496,7 +648,6 @@ const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsLis
         //On stocke dans la nouvelle map tous les attributs de la configuration courante
         mapsSelectedForCurrentConfig << mapTempOfSelectedAttributes;
     }
-
     return mapsSelectedForCurrentConfig;
 }
 
@@ -690,6 +841,7 @@ void DataManager::setDataOfMapConcordance()
     QString titre;
     QString currentKey;
     QString newKey;
+    QStringList list;
     //On définit un iterateur sur les grande qMap pour passer en revue les clés
     QMap<QString, QMap<QString, QString> >::Iterator iteratorGCS;
     QMap<QString, QMap<QString, QString> >::Iterator iteratorGCA;
@@ -724,7 +876,11 @@ void DataManager::setDataOfMapConcordance()
                             codeObject = iteratorGAT.value()["CodeObj"];
                             numeroInterne = iteratorGAT.value()["NumeroInterne"];
                             infoInterne = iteratorGAT.value()["InfoInterne"];
+
                             titre = iteratorGAT.value()["Titre"];
+
+                                list = titre.split(" ");
+                                titre = list[0];
 
                             newKey = codeObject % numeroInterne % infoInterne;
 

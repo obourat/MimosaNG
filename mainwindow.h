@@ -35,6 +35,8 @@ private slots:
 
     void on_officialsButton_released();
 
+    void on_documentsButton_released();
+
 private:
     //User Interface
     Ui::MainWindow *ui;

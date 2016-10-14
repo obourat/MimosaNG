@@ -1,0 +1,2195 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<Objects_list>
+	<Object>
+		<NumOrdre type="num">1</NumOrdre>
+		<Id type="num" key="1">20919</Id>
+		<CodeObjet>GAF</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ANALYSE</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>25</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">10/02/1997 15h52</MDate>
+		<MDateNum type="time">855586348</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">2</NumOrdre>
+		<Id type="num" key="1">23147</Id>
+		<CodeObjet>GAF</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ANALYSE</NomObjet>
+		<NomConf>imp_AFT_DILS</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>25</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">09/06/1997 16h01</CDate>
+		<CDateNum type="time">865864872</CDateNum>
+		<MDate type="strtime">09/06/1997 16h01</MDate>
+		<MDateNum type="time">865864903</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">3</NumOrdre>
+		<Id type="num" key="1">29</Id>
+		<CodeObjet>GAP</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE PROTOTYPE LIVRE</NomObjet>
+		<NomConf>*COMP_PROTO</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">4</NumOrdre>
+		<Id type="num" key="1">43</Id>
+		<CodeObjet>GAP</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE PROTOTYPE LIVRE</NomObjet>
+		<NomConf>*CONF_CFT</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>30</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">24/07/1995 17h58</CDate>
+		<CDateNum type="time">806601500</CDateNum>
+		<MDate type="strtime">19/09/1995 18h36</MDate>
+		<MDateNum type="time">811528567</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">5</NumOrdre>
+		<Id type="num" key="1">41</Id>
+		<CodeObjet>GAP</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE PROTOTYPE LIVRE</NomObjet>
+		<NomConf>*CONF_DEP</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>30</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">24/07/1995 17h41</CDate>
+		<CDateNum type="time">806600500</CDateNum>
+		<MDate type="strtime">19/09/1995 18h36</MDate>
+		<MDateNum type="time">811528583</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">6</NumOrdre>
+		<Id type="num" key="1">42</Id>
+		<CodeObjet>GAP</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE PROTOTYPE LIVRE</NomObjet>
+		<NomConf>*CONF_DEROG</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>30</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">24/07/1995 17h50</CDate>
+		<CDateNum type="time">806601000</CDateNum>
+		<MDate type="strtime">19/09/1995 18h36</MDate>
+		<MDateNum type="time">811528604</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">7</NumOrdre>
+		<Id type="num" key="1">44</Id>
+		<CodeObjet>GAP</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE PROTOTYPE LIVRE</NomObjet>
+		<NomConf>*CONF_FE</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>30</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">24/07/1995 17h58</CDate>
+		<CDateNum type="time">806601500</CDateNum>
+		<MDate type="strtime">19/09/1995 18h36</MDate>
+		<MDateNum type="time">811528616</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">8</NumOrdre>
+		<Id type="num" key="1">24231</Id>
+		<CodeObjet>GAP</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE PROTOTYPE LIVRE</NomObjet>
+		<NomConf>*CONF_FIST</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">18/07/1997 13h17</CDate>
+		<CDateNum type="time">869224667</CDateNum>
+		<MDate type="strtime">18/07/1997 13h17</MDate>
+		<MDateNum type="time">869224667</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">9</NumOrdre>
+		<Id type="num" key="1">31</Id>
+		<CodeObjet>GAP</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE PROTOTYPE LIVRE</NomObjet>
+		<NomConf>*DELTA_PROTO</NomConf>
+		<Type type="enum" var="GCA_TYPE">Interne</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">10</NumOrdre>
+		<Id type="num" key="1">30</Id>
+		<CodeObjet>GAP</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE PROTOTYPE LIVRE</NomObjet>
+		<NomConf>*DIFF_PROTO</NomConf>
+		<Type type="enum" var="GCA_TYPE">Interne</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">11</NumOrdre>
+		<Id type="num" key="1">5</Id>
+		<CodeObjet>GAP</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE PROTOTYPE LIVRE</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">12</NumOrdre>
+		<Id type="num" key="1">25481</Id>
+		<CodeObjet>GAP</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE PROTOTYPE LIVRE</NomObjet>
+		<NomConf>CONF_FE/RE</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>30</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/05/1997 13h19</CDate>
+		<CDateNum type="time">863522355</CDateNum>
+		<MDate type="strtime">31/10/1997 14h54</MDate>
+		<MDateNum type="time">878306076</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">13</NumOrdre>
+		<Id type="num" key="1">25735</Id>
+		<CodeObjet>GAP</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE PROTOTYPE LIVRE</NomObjet>
+		<NomConf>IMPRESSION</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">16/06/1997 15h56</CDate>
+		<CDateNum type="time">866469379</CDateNum>
+		<MDate type="strtime">25/11/1997 17h17</MDate>
+		<MDateNum type="time">880474635</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">14</NumOrdre>
+		<Id type="num" key="1">25483</Id>
+		<CodeObjet>GAP</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE PROTOTYPE LIVRE</NomObjet>
+		<NomConf>compo</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">27/02/1996 11h45</CDate>
+		<CDateNum type="time">825417959</CDateNum>
+		<MDate type="strtime">31/10/1997 14h57</MDate>
+		<MDateNum type="time">878306238</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">15</NumOrdre>
+		<Id type="num" key="1">26</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>*COMP_SYS</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">16</NumOrdre>
+		<Id type="num" key="1">20</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>*CONF_APP</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">19/09/1995 18h37</MDate>
+		<MDateNum type="time">811528631</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">17</NumOrdre>
+		<Id type="num" key="1">40</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>*CONF_APP_RP</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>30</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">24/07/1995 17h33</CDate>
+		<CDateNum type="time">806600000</CDateNum>
+		<MDate type="strtime">19/09/1995 18h52</MDate>
+		<MDateNum type="time">811529525</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">18</NumOrdre>
+		<Id type="num" key="1">23</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>*CONF_REF</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">19/09/1995 18h37</MDate>
+		<MDateNum type="time">811528652</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">19</NumOrdre>
+		<Id type="num" key="1">22</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>*DELTA_APP</NomConf>
+		<Type type="enum" var="GCA_TYPE">Interne</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">20</NumOrdre>
+		<Id type="num" key="1">25</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>*DELTA_REF</NomConf>
+		<Type type="enum" var="GCA_TYPE">Interne</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">21</NumOrdre>
+		<Id type="num" key="1">28</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>*DELTA_SYS</NomConf>
+		<Type type="enum" var="GCA_TYPE">Interne</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">22</NumOrdre>
+		<Id type="num" key="1">21</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>*DIFF_APP</NomConf>
+		<Type type="enum" var="GCA_TYPE">Interne</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">23</NumOrdre>
+		<Id type="num" key="1">24</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>*DIFF_REF</NomConf>
+		<Type type="enum" var="GCA_TYPE">Interne</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">24</NumOrdre>
+		<Id type="num" key="1">27</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>*DIFF_SYS</NomConf>
+		<Type type="enum" var="GCA_TYPE">Interne</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">25</NumOrdre>
+		<Id type="num" key="1">1</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>22</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">26</NumOrdre>
+		<Id type="num" key="1">25474</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>ANNEXE A PGC</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>22</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">01/03/1996 14h28</CDate>
+		<CDateNum type="time">825686930</CDateNum>
+		<MDate type="strtime">31/10/1997 14h43</MDate>
+		<MDateNum type="time">878305385</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">27</NumOrdre>
+		<Id type="num" key="1">25475</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>CONF_APP GILON</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">14/11/1996 12h20</CDate>
+		<CDateNum type="time">847970406</CDateNum>
+		<MDate type="strtime">31/10/1997 14h45</MDate>
+		<MDateNum type="time">878305503</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">28</NumOrdre>
+		<Id type="num" key="1">37973</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>CONF_APP_MO</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>46</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Portrait</Orientation>
+		<CDate type="strtime">04/06/1997 11h44</CDate>
+		<CDateNum type="time">865417490</CDateNum>
+		<MDate type="strtime">06/06/2005 17h31</MDate>
+		<MDateNum type="time">1118071882</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">29</NumOrdre>
+		<Id type="num" key="1">25477</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>CONF_REF_FONC</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">24/10/1996 11h03</CDate>
+		<CDateNum type="time">846147838</CDateNum>
+		<MDate type="strtime">31/10/1997 14h48</MDate>
+		<MDateNum type="time">878305689</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">30</NumOrdre>
+		<Id type="num" key="1">25478</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>compo</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>22</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">27/02/1996 11h53</CDate>
+		<CDateNum type="time">825418393</CDateNum>
+		<MDate type="strtime">31/10/1997 14h49</MDate>
+		<MDateNum type="time">878305795</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">31</NumOrdre>
+		<Id type="num" key="1">25479</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>export</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>22</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">11/03/1997 16h22</CDate>
+		<CDateNum type="time">858093778</CDateNum>
+		<MDate type="strtime">31/10/1997 14h51</MDate>
+		<MDateNum type="time">878305865</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">32</NumOrdre>
+		<Id type="num" key="1">25480</Id>
+		<CodeObjet>GAR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ARTICLE DE CONFIGURATION</NomObjet>
+		<NomConf>standard CR</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>ARTICLES RBE2</TitreImpression>
+		<NbLignesParPage>22</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">08/09/1994 17h17</CDate>
+		<CDateNum type="time">779037422</CDateNum>
+		<MDate type="strtime">31/10/1997 14h52</MDate>
+		<MDateNum type="time">878305941</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">33</NumOrdre>
+		<Id type="num" key="1">43440</Id>
+		<CodeObjet>GAT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ATTRIBUT D'OBJET</NomObjet>
+		<NomConf>*>GAT_Export_xml.txt</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">16/08/2016 15h50</CDate>
+		<CDateNum type="time">1471355447</CDateNum>
+		<MDate type="strtime">16/08/2016 15h59</MDate>
+		<MDateNum type="time">1471355980</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">34</NumOrdre>
+		<Id type="num" key="1">3</Id>
+		<CodeObjet>GAT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ATTRIBUT D'OBJET</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">35</NumOrdre>
+		<Id type="num" key="1">30059</Id>
+		<CodeObjet>GAT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ATTRIBUT D'OBJET</NomObjet>
+		<NomConf>CIA_GIR</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">12/02/1998 12h44</CDate>
+		<CDateNum type="time">887283857</CDateNum>
+		<MDate type="strtime">12/02/1998 12h44</MDate>
+		<MDateNum type="time">887283857</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">36</NumOrdre>
+		<Id type="num" key="1">30238</Id>
+		<CodeObjet>GAT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ATTRIBUT D'OBJET</NomObjet>
+		<NomConf>html</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">19/03/1998 17h01</CDate>
+		<CDateNum type="time">890323271</CDateNum>
+		<MDate type="strtime">19/03/1998 17h06</MDate>
+		<MDateNum type="time">890323593</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">37</NumOrdre>
+		<Id type="num" key="1">25513</Id>
+		<CodeObjet>GAT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">ATTRIBUT D'OBJET</NomObjet>
+		<NomConf>standard 1</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">31/10/1997 15h56</CDate>
+		<CDateNum type="time">878309799</CDateNum>
+		<MDate type="strtime">31/10/1997 15h56</MDate>
+		<MDateNum type="time">878309799</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">38</NumOrdre>
+		<Id type="num" key="1">43272</Id>
+		<CodeObjet>GCA</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONFIGURATION D'ATTRIBUTS</NomObjet>
+		<NomConf>*>Export_GCA.txt</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">11/04/2016 14h05</CDate>
+		<CDateNum type="time">1460376330</CDateNum>
+		<MDate type="strtime">11/04/2016 14h05</MDate>
+		<MDateNum type="time">1460376330</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">39</NumOrdre>
+		<Id type="num" key="1">43490</Id>
+		<CodeObjet>GCA</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONFIGURATION D'ATTRIBUTS</NomObjet>
+		<NomConf>*>GCA_Export_xml.txt</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">16/08/2016 16h34</CDate>
+		<CDateNum type="time">1471358071</CDateNum>
+		<MDate type="strtime">05/10/2016 14h13</MDate>
+		<MDateNum type="time">1475669638</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">40</NumOrdre>
+		<Id type="num" key="1">16</Id>
+		<CodeObjet>GCA</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONFIGURATION D'ATTRIBUTS</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">41</NumOrdre>
+		<Id type="num" key="1">10167</Id>
+		<CodeObjet>GCA</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONFIGURATION D'ATTRIBUTS</NomObjet>
+		<NomConf>standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>LISTE CONFIGURATION FICHE D'EVOLUTION</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">16/06/1994 16h08</CDate>
+		<CDateNum type="time">771775707</CDateNum>
+		<MDate type="strtime">16/06/1994 16h08</MDate>
+		<MDateNum type="time">771775709</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">42</NumOrdre>
+		<Id type="num" key="1">43330</Id>
+		<CodeObjet>GCT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONSTITUANT</NomObjet>
+		<NomConf>*>Export_xml.txt</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">31/05/2016 12h27</CDate>
+		<CDateNum type="time">1464690478</CDateNum>
+		<MDate type="strtime">31/05/2016 12h27</MDate>
+		<MDateNum type="time">1464690478</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">43</NumOrdre>
+		<Id type="num" key="1">43479</Id>
+		<CodeObjet>GCT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONSTITUANT</NomObjet>
+		<NomConf>*>GCT_Export_xml.txt</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">31/05/2016 12h27</CDate>
+		<CDateNum type="time">1464690478</CDateNum>
+		<MDate type="strtime">03/10/2016 13h56</MDate>
+		<MDateNum type="time">1475495770</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">44</NumOrdre>
+		<Id type="num" key="1">4</Id>
+		<CodeObjet>GCT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONSTITUANT</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">45</NumOrdre>
+		<Id type="num" key="1">25473</Id>
+		<CodeObjet>GCT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONSTITUANT</NomObjet>
+		<NomConf>standard 2</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>LISTE DES CONSTITUANTS SYSTEME RBE2</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">31/08/1994 11h20</CDate>
+		<CDateNum type="time">778324836</CDateNum>
+		<MDate type="strtime">31/10/1997 14h41</MDate>
+		<MDateNum type="time">878305270</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">46</NumOrdre>
+		<Id type="num" key="1">43269</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>*>Export_xml.txt</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">07/04/2016 17h09</CDate>
+		<CDateNum type="time">1460041789</CDateNum>
+		<MDate type="strtime">07/04/2016 17h09</MDate>
+		<MDateNum type="time">1460041789</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">47</NumOrdre>
+		<Id type="num" key="1">43496</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>*>GDO_Export_xml.txt</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">16/08/2016 15h10</CDate>
+		<CDateNum type="time">1471353031</CDateNum>
+		<MDate type="strtime">05/10/2016 16h13</MDate>
+		<MDateNum type="time">1475676805</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">48</NumOrdre>
+		<Id type="num" key="1">6</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">49</NumOrdre>
+		<Id type="num" key="1">38378</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>C0RRECTION CD</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">09/10/1997 11h10</CDate>
+		<CDateNum type="time">876388218</CDateNum>
+		<MDate type="strtime">18/04/2006 11h28</MDate>
+		<MDateNum type="time">1145352509</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">50</NumOrdre>
+		<Id type="num" key="1">37459</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>CDRL</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>2</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">23/03/2000 11h38</CDate>
+		<CDateNum type="time">953807885</CDateNum>
+		<MDate type="strtime">29/09/2004 11h15</MDate>
+		<MDateNum type="time">1096449342</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">51</NumOrdre>
+		<Id type="num" key="1">25485</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>CLASSEMENT</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>LISTE DES DOCUMENTS DU CLASSEUR "  "</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1997 14h21</CDate>
+		<CDateNum type="time">853161684</CDateNum>
+		<MDate type="strtime">31/10/1997 15h02</MDate>
+		<MDateNum type="time">878306570</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">52</NumOrdre>
+		<Id type="num" key="1">37461</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>CLASSEUR</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>liste des documents du classeur ""</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>2</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">21/10/1999 16h28</CDate>
+		<CDateNum type="time">940516103</CDateNum>
+		<MDate type="strtime">29/09/2004 11h17</MDate>
+		<MDateNum type="time">1096449454</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">53</NumOrdre>
+		<Id type="num" key="1">25487</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>CONF.FONCT.</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>Liste des documents définissant la configuration fonctionnelle du standard F1</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">05/11/1996 18h08</CDate>
+		<CDateNum type="time">847213680</CDateNum>
+		<MDate type="strtime">12/10/1999 09h56</MDate>
+		<MDateNum type="time">939714996</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">54</NumOrdre>
+		<Id type="num" key="1">36877</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>CONF.FONCT. F2</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>Liste des documents définissant la configuration fonctionnelle F2</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">20/04/2001 13h10</CDate>
+		<CDateNum type="time">987765029</CDateNum>
+		<MDate type="strtime">05/09/2003 12h43</MDate>
+		<MDateNum type="time">1062758610</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">55</NumOrdre>
+		<Id type="num" key="1">39454</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>CONSULTATION</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>2</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/08/1996 10h04</CDate>
+		<CDateNum type="time">839923489</CDateNum>
+		<MDate type="strtime">16/04/2008 15h14</MDate>
+		<MDateNum type="time">1208351672</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">56</NumOrdre>
+		<Id type="num" key="1">37463</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>CONSULTATION 2</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>2</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">03/08/1998 15h16</CDate>
+		<CDateNum type="time">902150183</CDateNum>
+		<MDate type="strtime">29/09/2004 11h18</MDate>
+		<MDateNum type="time">1096449531</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">57</NumOrdre>
+		<Id type="num" key="1">25985</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>D. RBE2/A VENIR</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>LISTE DES DOCUMENTS EXISTANTS  QUI NE SONT PAS EN ARCHIVES</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>2</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">25/05/1994 14h43</CDate>
+		<CDateNum type="time">769869801</CDateNum>
+		<MDate type="strtime">07/01/1998 15h48</MDate>
+		<MDateNum type="time">884184501</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">58</NumOrdre>
+		<Id type="num" key="1">37464</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>DETENTEUR CD</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">21/09/2001 11h54</CDate>
+		<CDateNum type="time">1001066056</CDateNum>
+		<MDate type="strtime">29/09/2004 11h19</MDate>
+		<MDateNum type="time">1096449587</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">59</NumOrdre>
+		<Id type="num" key="1">25489</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>LISTE DIFF</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">21/10/1996 12h31</CDate>
+		<CDateNum type="time">845893907</CDateNum>
+		<MDate type="strtime">31/10/1997 15h08</MDate>
+		<MDateNum type="time">878306926</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">60</NumOrdre>
+		<Id type="num" key="1">39300</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>MONTAGNE</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>2</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">20/09/2007 17h00</CDate>
+		<CDateNum type="time">1190300456</CDateNum>
+		<MDate type="strtime">09/01/2008 11h53</MDate>
+		<MDateNum type="time">1199875988</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">61</NumOrdre>
+		<Id type="num" key="1">25490</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>MOREL</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">28/08/1996 08h28</CDate>
+		<CDateNum type="time">841213718</CDateNum>
+		<MDate type="strtime">31/10/1997 15h13</MDate>
+		<MDateNum type="time">878307193</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">62</NumOrdre>
+		<Id type="num" key="1">37465</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>NETOYAGE</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>2</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">15/04/1999 18h12</CDate>
+		<CDateNum type="time">924192725</CDateNum>
+		<MDate type="strtime">29/09/2004 11h21</MDate>
+		<MDateNum type="time">1096449677</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">63</NumOrdre>
+		<Id type="num" key="1">37466</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>RECTIF GIE</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>40</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">15/10/1996 18h34</CDate>
+		<CDateNum type="time">845397286</CDateNum>
+		<MDate type="strtime">29/09/2004 11h22</MDate>
+		<MDateNum type="time">1096449734</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">64</NumOrdre>
+		<Id type="num" key="1">25492</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>REPERTOIRE A1</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>DOCUMENTS RBE2 - ARMOIRE RBE2 N° X</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>2</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">25/05/1994 14h49</CDate>
+		<CDateNum type="time">769870171</CDateNum>
+		<MDate type="strtime">31/10/1997 15h16</MDate>
+		<MDateNum type="time">878307383</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">65</NumOrdre>
+		<Id type="num" key="1">37467</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>ROUSSELLE</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>LISTE DES DOCUMENTS DA</TitreImpression>
+		<NbLignesParPage>40</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">11/09/1997 12h08</CDate>
+		<CDateNum type="time">873972509</CDateNum>
+		<MDate type="strtime">29/09/2004 11h23</MDate>
+		<MDateNum type="time">1096449798</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">66</NumOrdre>
+		<Id type="num" key="1">37468</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>TYPE_CLASSEMNT</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>TYPES DE CLASSEMENT DES DOCUMENTS RBE2</TitreImpression>
+		<NbLignesParPage>50</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Portrait</Orientation>
+		<CDate type="strtime">07/05/1998 11h34</CDate>
+		<CDateNum type="time">894533648</CDateNum>
+		<MDate type="strtime">29/09/2004 11h24</MDate>
+		<MDateNum type="time">1096449848</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">67</NumOrdre>
+		<Id type="num" key="1">37469</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>proprio</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>25</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">21/11/1997 16h57</CDate>
+		<CDateNum type="time">880127851</CDateNum>
+		<MDate type="strtime">29/09/2004 11h24</MDate>
+		<MDateNum type="time">1096449890</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">68</NumOrdre>
+		<Id type="num" key="1">25494</Id>
+		<CodeObjet>GDO</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOCUMENT</NomObjet>
+		<NomConf>standardGILON</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">14/11/1996 12h20</CDate>
+		<CDateNum type="time">847970456</CDateNum>
+		<MDate type="strtime">31/10/1997 15h20</MDate>
+		<MDateNum type="time">878307622</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">69</NumOrdre>
+		<Id type="num" key="1">11</Id>
+		<CodeObjet>GDR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">NON CONFORMITE</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">70</NumOrdre>
+		<Id type="num" key="1">25501</Id>
+		<CodeObjet>GDR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">NON CONFORMITE</NomObjet>
+		<NomConf>Chr_DE_en cours</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>CHRONO DES DEROGATIONS DASSAULT ELECTRONIQUE EN COURS</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/04/1994 09h21</CDate>
+		<CDateNum type="time">766221688</CDateNum>
+		<MDate type="strtime">31/10/1997 15h31</MDate>
+		<MDateNum type="time">878308293</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">71</NumOrdre>
+		<Id type="num" key="1">25502</Id>
+		<CodeObjet>GDR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">NON CONFORMITE</NomObjet>
+		<NomConf>DER DE</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>ETAT DES DEROGATIONS DE D.E.</TitreImpression>
+		<NbLignesParPage>10</NbLignesParPage>
+		<NbLignesParObjet>2</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">18/05/1995 15h42</CDate>
+		<CDateNum type="time">800804557</CDateNum>
+		<MDate type="strtime">31/10/1997 15h33</MDate>
+		<MDateNum type="time">878308400</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">72</NumOrdre>
+		<Id type="num" key="1">25503</Id>
+		<CodeObjet>GDR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">NON CONFORMITE</NomObjet>
+		<NomConf>DER DE EME</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>ETAT DES DEROGATIONS DE D.E. EMETTEUR</TitreImpression>
+		<NbLignesParPage>10</NbLignesParPage>
+		<NbLignesParObjet>2</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">15/03/1995 08h26</CDate>
+		<CDateNum type="time">795252371</CDateNum>
+		<MDate type="strtime">31/10/1997 15h34</MDate>
+		<MDateNum type="time">878308476</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">73</NumOrdre>
+		<Id type="num" key="1">25504</Id>
+		<CodeObjet>GDR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">NON CONFORMITE</NomObjet>
+		<NomConf>DER Et. complet</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>ETAT COMPLET DES DEROGATIONS</TitreImpression>
+		<NbLignesParPage>13</NbLignesParPage>
+		<NbLignesParObjet>2</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">30/08/1994 16h05</CDate>
+		<CDateNum type="time">778255514</CDateNum>
+		<MDate type="strtime">31/10/1997 15h36</MDate>
+		<MDateNum type="time">878308577</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">74</NumOrdre>
+		<Id type="num" key="1">25505</Id>
+		<CodeObjet>GDR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">NON CONFORMITE</NomObjet>
+		<NomConf>DER GIE EME</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>ETAT DES DEROGATIONS GIE EMETTEUR</TitreImpression>
+		<NbLignesParPage>10</NbLignesParPage>
+		<NbLignesParObjet>2</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">15/03/1995 08h28</CDate>
+		<CDateNum type="time">795252487</CDateNum>
+		<MDate type="strtime">31/10/1997 15h37</MDate>
+		<MDateNum type="time">878308665</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">75</NumOrdre>
+		<Id type="num" key="1">25506</Id>
+		<CodeObjet>GDR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">NON CONFORMITE</NomObjet>
+		<NomConf>DEROG GIE</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>Liste des objets de type "DEROGATION" Base ats_rbe2_sys</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">09/02/1996 18h01</CDate>
+		<CDateNum type="time">823885293</CDateNum>
+		<MDate type="strtime">31/10/1997 15h39</MDate>
+		<MDateNum type="time">878308755</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">76</NumOrdre>
+		<Id type="num" key="1">25507</Id>
+		<CodeObjet>GDR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">NON CONFORMITE</NomObjet>
+		<NomConf>DE_en cours</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>DEROGATIONS DASSAULT ELECTRONIQUE EN COURS SUR</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">02/11/1995 18h04</CDate>
+		<CDateNum type="time">815331855</CDateNum>
+		<MDate type="strtime">31/10/1997 15h40</MDate>
+		<MDateNum type="time">878308841</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">77</NumOrdre>
+		<Id type="num" key="1">25508</Id>
+		<CodeObjet>GDR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">NON CONFORMITE</NomObjet>
+		<NomConf>Etat GIE</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>DEROGATIONS GIE RBE2</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">07/09/1994 19h27</CDate>
+		<CDateNum type="time">778958872</CDateNum>
+		<MDate type="strtime">31/10/1997 15h42</MDate>
+		<MDateNum type="time">878308930</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">78</NumOrdre>
+		<Id type="num" key="1">25509</Id>
+		<CodeObjet>GDR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">NON CONFORMITE</NomObjet>
+		<NomConf>Etat GIE/STTE</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>DEROGATIONS GIE RBE2 DEJA DIFFUSEES</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">09/09/1994 15h48</CDate>
+		<CDateNum type="time">779118513</CDateNum>
+		<MDate type="strtime">31/10/1997 15h43</MDate>
+		<MDateNum type="time">878309021</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">79</NumOrdre>
+		<Id type="num" key="1">25510</Id>
+		<CodeObjet>GDR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">NON CONFORMITE</NomObjet>
+		<NomConf>standard 1</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>15</NbLignesParPage>
+		<NbLignesParObjet>3</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/11/1996 16h11</CDate>
+		<CDateNum type="time">847897880</CDateNum>
+		<MDate type="strtime">31/10/1997 15h45</MDate>
+		<MDateNum type="time">878309131</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">80</NumOrdre>
+		<Id type="num" key="1">43495</Id>
+		<CodeObjet>GDS</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOSSIER</NomObjet>
+		<NomConf>*>GDS_Export_xml.txt</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Portrait</Orientation>
+		<CDate type="strtime">16/08/2016 16h33</CDate>
+		<CDateNum type="time">1471358007</CDateNum>
+		<MDate type="strtime">05/10/2016 16h12</MDate>
+		<MDateNum type="time">1475676742</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">81</NumOrdre>
+		<Id type="num" key="1">36626</Id>
+		<CodeObjet>GDS</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DOSSIER</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Portrait</Orientation>
+		<CDate type="strtime">03/06/2003 17h56</CDate>
+		<CDateNum type="time">1054655803</CDateNum>
+		<MDate type="strtime">03/06/2003 17h56</MDate>
+		<MDateNum type="time">1054655803</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">82</NumOrdre>
+		<Id type="num" key="1">25795</Id>
+		<CodeObjet>GEP</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DEMANDE D'EVOLUTION</NomObjet>
+		<NomConf>*Impacts</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">03/12/1997 10h40</CDate>
+		<CDateNum type="time">881142024</CDateNum>
+		<MDate type="strtime">03/12/1997 10h40</MDate>
+		<MDateNum type="time">881142037</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">83</NumOrdre>
+		<Id type="num" key="1">12</Id>
+		<CodeObjet>GEP</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">DEMANDE D'EVOLUTION</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">84</NumOrdre>
+		<Id type="num" key="1">43446</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>*>GFE_Export_xml.tx</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">11/04/2016 14h48</CDate>
+		<CDateNum type="time">1460378915</CDateNum>
+		<MDate type="strtime">24/08/2016 11h10</MDate>
+		<MDateNum type="time">1472029834</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">85</NumOrdre>
+		<Id type="num" key="1">55</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>*Applic</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>Applicabilité des fiches d'évolutions</TitreImpression>
+		<NbLignesParPage>50</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">20/10/1994 10h53</CDate>
+		<CDateNum type="time">782646803</CDateNum>
+		<MDate type="strtime">20/10/1994 10h53</MDate>
+		<MDateNum type="time">782646804</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">86</NumOrdre>
+		<Id type="num" key="1">50</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>*Applicabilité</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>50</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">87</NumOrdre>
+		<Id type="num" key="1">19</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>*Incidence</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>30</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">88</NumOrdre>
+		<Id type="num" key="1">7</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">89</NumOrdre>
+		<Id type="num" key="1">35995</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>AGNES</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>Liste des objets de type "FICHE DE MODIFICATION RADAR"</TitreImpression>
+		<NbLignesParPage>15</NbLignesParPage>
+		<NbLignesParObjet>4</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">12/11/2001 16h38</CDate>
+		<CDateNum type="time">1005579514</CDateNum>
+		<MDate type="strtime">12/11/2001 16h38</MDate>
+		<MDateNum type="time">1005579514</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">90</NumOrdre>
+		<Id type="num" key="1">38329</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>BARBIER</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>ETAT DE L'INSTRUCTION ET POINT D'APPLICATION DES FM RBE2</TitreImpression>
+		<NbLignesParPage>21</NbLignesParPage>
+		<NbLignesParObjet>2</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">08/03/2006 11h04</CDate>
+		<CDateNum type="time">1141812252</CDateNum>
+		<MDate type="strtime">08/03/2006 11h04</MDate>
+		<MDateNum type="time">1141812252</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">91</NumOrdre>
+		<Id type="num" key="1">25458</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>COULEAUD</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>C.R. REUNION GIE CGC N°XX DU JJ/MM/AA : F.E. TRANSMISES A D. E."  "</TitreImpression>
+		<NbLignesParPage>10</NbLignesParPage>
+		<NbLignesParObjet>4</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">14/11/1996 15h50</CDate>
+		<CDateNum type="time">847983046</CDateNum>
+		<MDate type="strtime">31/10/1997 11h58</MDate>
+		<MDateNum type="time">878295505</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">92</NumOrdre>
+		<Id type="num" key="1">25456</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>CROS</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">12/02/1997 18h31</CDate>
+		<CDateNum type="time">855768670</CDateNum>
+		<MDate type="strtime">31/10/1997 11h55</MDate>
+		<MDateNum type="time">878295328</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">93</NumOrdre>
+		<Id type="num" key="1">25459</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>FE CR/GIE</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>C.R. REUNION GIE CGC N°XX DU jj/mm/aa : F.E. TRANSMISES A D. E."  "</TitreImpression>
+		<NbLignesParPage>10</NbLignesParPage>
+		<NbLignesParObjet>4</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">14/09/1995 10h59</CDate>
+		<CDateNum type="time">811069164</CDateNum>
+		<MDate type="strtime">31/10/1997 14h05</MDate>
+		<MDateNum type="time">878303157</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">94</NumOrdre>
+		<Id type="num" key="1">33084</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>FE Déc. CGE M.O.</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>F.E. RBE2 : DECISIONS DE LA CGE Nº </TitreImpression>
+		<NbLignesParPage>8</NbLignesParPage>
+		<NbLignesParObjet>6</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">27/05/1999 10h06</CDate>
+		<CDateNum type="time">927792381</CDateNum>
+		<MDate type="strtime">27/05/1999 10h06</MDate>
+		<MDateNum type="time">927792381</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">95</NumOrdre>
+		<Id type="num" key="1">25460</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>FE Déc.CGE RCM</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>F.E. RBE2 : DECISIONS DE LA CGE Nº </TitreImpression>
+		<NbLignesParPage>10</NbLignesParPage>
+		<NbLignesParObjet>5</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">27/01/1997 08h50</CDate>
+		<CDateNum type="time">854351412</CDateNum>
+		<MDate type="strtime">31/10/1997 14h08</MDate>
+		<MDateNum type="time">878303296</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">96</NumOrdre>
+		<Id type="num" key="1">32852</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>FE OJ-CGE/RCM</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>F.E. RBE2 EN ETUDE : ORDRE DU JOUR CGE Nº XX DU jj/mm/aa</TitreImpression>
+		<NbLignesParPage>8</NbLignesParPage>
+		<NbLignesParObjet>6</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">14/11/1994 18h07</CDate>
+		<CDateNum type="time">784832839</CDateNum>
+		<MDate type="strtime">18/03/1999 18h22</MDate>
+		<MDateNum type="time">921777737</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">97</NumOrdre>
+		<Id type="num" key="1">25462</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>FE OJ/GIE</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>O.J. REUNION GIE DU jj/mm/aa : F.E. TRANSMISES A D.E. "EN ETUDE ACCEPTEES ABANDONNEES REFUSEES"</TitreImpression>
+		<NbLignesParPage>8</NbLignesParPage>
+		<NbLignesParObjet>4</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">14/09/1994 17h23</CDate>
+		<CDateNum type="time">779556202</CDateNum>
+		<MDate type="strtime">31/10/1997 14h12</MDate>
+		<MDateNum type="time">878303579</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">98</NumOrdre>
+		<Id type="num" key="1">25463</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>FE radar</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>Liste des objets de type "FICHE D'EVOLUTION RADAR"</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">27/10/1995 14h36</CDate>
+		<CDateNum type="time">814800963</CDateNum>
+		<MDate type="strtime">31/10/1997 14h14</MDate>
+		<MDateNum type="time">878303685</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">99</NumOrdre>
+		<Id type="num" key="1">25464</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>FM Etat complet</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>ETAT COMPLET FICHE DE MODIFICATION - RBE2 / CGC</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">20/06/1994 10h05</CDate>
+		<CDateNum type="time">772099540</CDateNum>
+		<MDate type="strtime">31/10/1997 14h16</MDate>
+		<MDateNum type="time">878303790</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">100</NumOrdre>
+		<Id type="num" key="1">25465</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>FM/E.L.export</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>FE NOTIFIEES</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">02/10/1996 09h09</CDate>
+		<CDateNum type="time">844240145</CDateNum>
+		<MDate type="strtime">31/10/1997 14h19</MDate>
+		<MDateNum type="time">878303951</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">101</NumOrdre>
+		<Id type="num" key="1">25466</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>GILON</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>POINT DES FICHES DE MODIFICATION RBE2 AU jj/mm/aa.</TitreImpression>
+		<NbLignesParPage>15</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">02/04/1996 18h09</CDate>
+		<CDateNum type="time">828461369</CDateNum>
+		<MDate type="strtime">31/10/1997 14h21</MDate>
+		<MDateNum type="time">878304068</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">102</NumOrdre>
+		<Id type="num" key="1">25467</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>IMPACT FE expor</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>IMPACT DES FE SUR LES CONSTITUANTS</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">16/02/1996 15h11</CDate>
+		<CDateNum type="time">824479863</CDateNum>
+		<MDate type="strtime">31/10/1997 14h23</MDate>
+		<MDateNum type="time">878304195</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">103</NumOrdre>
+		<Id type="num" key="1">25888</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>Imp_FE_Cr->Const</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">03/11/1997 15h42</CDate>
+		<CDateNum type="time">878568125</CDateNum>
+		<MDate type="strtime">10/12/1997 09h45</MDate>
+		<MDateNum type="time">881743538</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">104</NumOrdre>
+		<Id type="num" key="1">25469</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>LISTE FM DISPO</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>LISTE DES FICHES DE MODIFICATION RADAR</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">16/02/1996 14h50</CDate>
+		<CDateNum type="time">824478646</CDateNum>
+		<MDate type="strtime">31/10/1997 14h26</MDate>
+		<MDateNum type="time">878304405</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">105</NumOrdre>
+		<Id type="num" key="1">34195</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>MOREL</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>Liste des objets de type "FICHE DE MODIFICATION RADAR" au</TitreImpression>
+		<NbLignesParPage>21</NbLignesParPage>
+		<NbLignesParObjet>2</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">03/04/1996 09h49</CDate>
+		<CDateNum type="time">828517768</CDateNum>
+		<MDate type="strtime">20/04/2000 11h35</MDate>
+		<MDateNum type="time">956223345</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">106</NumOrdre>
+		<Id type="num" key="1">39450</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>MOREL2</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>Liste des objets de type "FICHE DE MODIFICATION RADAR" au</TitreImpression>
+		<NbLignesParPage>21</NbLignesParPage>
+		<NbLignesParObjet>2</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">03/06/1998 15h34</CDate>
+		<CDateNum type="time">896880899</CDateNum>
+		<MDate type="strtime">10/04/2008 10h23</MDate>
+		<MDateNum type="time">1207815808</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">107</NumOrdre>
+		<Id type="num" key="1">38448</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>MOREL3</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>Liste des objets de type "FICHE DE MODIFICATION RADAR" au</TitreImpression>
+		<NbLignesParPage>21</NbLignesParPage>
+		<NbLignesParObjet>2</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">14/06/2005 14h56</CDate>
+		<CDateNum type="time">1118753786</CDateNum>
+		<MDate type="strtime">07/06/2006 16h37</MDate>
+		<MDateNum type="time">1149691039</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">108</NumOrdre>
+		<Id type="num" key="1">25471</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>exp_FE_Const</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">28/04/1997 10h34</CDate>
+		<CDateNum type="time">862216443</CDateNum>
+		<MDate type="strtime">31/10/1997 14h30</MDate>
+		<MDateNum type="time">878304604</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">109</NumOrdre>
+		<Id type="num" key="1">30451</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>html</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">19/03/1998 16h20</CDate>
+		<CDateNum type="time">890320838</CDateNum>
+		<MDate type="strtime">31/03/1998 16h39</MDate>
+		<MDateNum type="time">891355154</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">110</NumOrdre>
+		<Id type="num" key="1">25472</Id>
+		<CodeObjet>GFE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FICHE D'EVOLUTION</NomObjet>
+		<NomConf>import-sys</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">02/08/1996 10h48</CDate>
+		<CDateNum type="time">838975732</CDateNum>
+		<MDate type="strtime">31/10/1997 14h32</MDate>
+		<MDateNum type="time">878304723</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">111</NumOrdre>
+		<Id type="num" key="1">24228</Id>
+		<CodeObjet>GFI</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">FIST</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>30</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">18/07/1997 13h10</CDate>
+		<CDateNum type="time">869224253</CDateNum>
+		<MDate type="strtime">18/07/1997 13h10</MDate>
+		<MDateNum type="time">869224253</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">112</NumOrdre>
+		<Id type="num" key="1">20918</Id>
+		<CodeObjet>GFT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONSTAT</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>25</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">10/02/1997 15h49</MDate>
+		<MDateNum type="time">855586184</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">113</NumOrdre>
+		<Id type="num" key="1">33584</Id>
+		<CodeObjet>GFT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONSTAT</NomObjet>
+		<NomConf>CFT_DOC</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>Etat des CFT sur documents du FBL RBE2</TitreImpression>
+		<NbLignesParPage>30</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">06/08/1999 09h58</CDate>
+		<CDateNum type="time">933926332</CDateNum>
+		<MDate type="strtime">21/09/1999 10h34</MDate>
+		<MDateNum type="time">937902874</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">114</NumOrdre>
+		<Id type="num" key="1">33589</Id>
+		<CodeObjet>GFT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONSTAT</NomObjet>
+		<NomConf>CIA D.E.</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>Etat des CIA émis sur matériels EME, STR et boitier IEMN </TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">02/09/1996 11h27</CDate>
+		<CDateNum type="time">841656458</CDateNum>
+		<MDate type="strtime">23/09/1999 15h56</MDate>
+		<MDateNum type="time">938095009</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">115</NumOrdre>
+		<Id type="num" key="1">25496</Id>
+		<CodeObjet>GFT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONSTAT</NomObjet>
+		<NomConf>CIA Diff</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>30</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">27/05/1997 14h54</CDate>
+		<CDateNum type="time">864737648</CDateNum>
+		<MDate type="strtime">31/10/1997 15h24</MDate>
+		<MDateNum type="time">878307856</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">116</NumOrdre>
+		<Id type="num" key="1">25497</Id>
+		<CodeObjet>GFT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONSTAT</NomObjet>
+		<NomConf>CIA MO</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">18/06/1997 09h58</CDate>
+		<CDateNum type="time">866620731</CDateNum>
+		<MDate type="strtime">31/10/1997 15h25</MDate>
+		<MDateNum type="time">878307946</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">117</NumOrdre>
+		<Id type="num" key="1">33120</Id>
+		<CodeObjet>GFT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONSTAT</NomObjet>
+		<NomConf>CIA_CRT</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>25</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Portrait</Orientation>
+		<CDate type="strtime">16/03/1998 13h32</CDate>
+		<CDateNum type="time">890051559</CDateNum>
+		<MDate type="strtime">03/06/1999 15h55</MDate>
+		<MDateNum type="time">928418135</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">118</NumOrdre>
+		<Id type="num" key="1">32782</Id>
+		<CodeObjet>GFT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONSTAT</NomObjet>
+		<NomConf>CIA_GIR</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>25</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">12/02/1998 12h48</CDate>
+		<CDateNum type="time">887284116</CDateNum>
+		<MDate type="strtime">09/03/1999 14h08</MDate>
+		<MDateNum type="time">920984893</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">119</NumOrdre>
+		<Id type="num" key="1">31330</Id>
+		<CodeObjet>GFT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONSTAT</NomObjet>
+		<NomConf>HTML</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>25</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">12/06/1998 14h25</CDate>
+		<CDateNum type="time">897654339</CDateNum>
+		<MDate type="strtime">15/06/1998 10h22</MDate>
+		<MDateNum type="time">897898928</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">120</NumOrdre>
+		<Id type="num" key="1">26024</Id>
+		<CodeObjet>GFT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONSTAT</NomObjet>
+		<NomConf>T.B.CIA</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>40</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Portrait</Orientation>
+		<CDate type="strtime">19/01/1998 17h58</CDate>
+		<CDateNum type="time">885229098</CDateNum>
+		<MDate type="strtime">22/01/1998 09h48</MDate>
+		<MDateNum type="time">885458932</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">121</NumOrdre>
+		<Id type="num" key="1">25498</Id>
+		<CodeObjet>GFT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONSTAT</NomObjet>
+		<NomConf>exp_cia_bil</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>25</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">21/05/1997 11h15</CDate>
+		<CDateNum type="time">864206142</CDateNum>
+		<MDate type="strtime">31/10/1997 15h26</MDate>
+		<MDateNum type="time">878307998</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">122</NumOrdre>
+		<Id type="num" key="1">25499</Id>
+		<CodeObjet>GFT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONSTAT</NomObjet>
+		<NomConf>saisie cia doc</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>25</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">10/06/1997 16h47</CDate>
+		<CDateNum type="time">865954047</CDateNum>
+		<MDate type="strtime">31/10/1997 15h27</MDate>
+		<MDateNum type="time">878308077</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">123</NumOrdre>
+		<Id type="num" key="1">25500</Id>
+		<CodeObjet>GFT</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONSTAT</NomObjet>
+		<NomConf>tr-cft-doc</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>25</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">27/03/1997 09h39</CDate>
+		<CDateNum type="time">859451961</CDateNum>
+		<MDate type="strtime">31/10/1997 15h29</MDate>
+		<MDateNum type="time">878308147</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">124</NumOrdre>
+		<Id type="num" key="1">17</Id>
+		<CodeObjet>GMC</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">MOT CLE</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">125</NumOrdre>
+		<Id type="num" key="1">13</Id>
+		<CodeObjet>GPH</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">PHOTOGRAPHIE</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">126</NumOrdre>
+		<Id type="num" key="1">8</Id>
+		<CodeObjet>GRE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">RE</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">127</NumOrdre>
+		<Id type="num" key="1">25511</Id>
+		<CodeObjet>GRE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">RE</NomObjet>
+		<NomConf>imp_re/ecr_fa</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">16/05/1997 17h34</CDate>
+		<CDateNum type="time">863796874</CDateNum>
+		<MDate type="strtime">31/10/1997 15h53</MDate>
+		<MDateNum type="time">878309590</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">128</NumOrdre>
+		<Id type="num" key="1">18588</Id>
+		<CodeObjet>GRR</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">COMPTE RENDU</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">09/09/1996 21h56</CDate>
+		<CDateNum type="time">842298961</CDateNum>
+		<MDate type="strtime">09/09/1996 21h56</MDate>
+		<MDateNum type="time">842298961</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">129</NumOrdre>
+		<Id type="num" key="1">43273</Id>
+		<CodeObjet>GRS</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">RESPONSABLE</NomObjet>
+		<NomConf>*>Export_xml.txt</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">11/04/2016 14h27</CDate>
+		<CDateNum type="time">1460377641</CDateNum>
+		<MDate type="strtime">11/04/2016 14h27</MDate>
+		<MDateNum type="time">1460377641</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">130</NumOrdre>
+		<Id type="num" key="1">43488</Id>
+		<CodeObjet>GRS</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">RESPONSABLE</NomObjet>
+		<NomConf>*>GRS_Export_xml.txt</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">11/04/2016 14h27</CDate>
+		<CDateNum type="time">1460377641</CDateNum>
+		<MDate type="strtime">05/10/2016 13h57</MDate>
+		<MDateNum type="time">1475668671</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">131</NumOrdre>
+		<Id type="num" key="1">14</Id>
+		<CodeObjet>GRS</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">RESPONSABLE</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">132</NumOrdre>
+		<Id type="num" key="1">37269</Id>
+		<CodeObjet>GRS</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">RESPONSABLE</NomObjet>
+		<NomConf>COMPLETE</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">27/04/2004 15h43</CDate>
+		<CDateNum type="time">1083073395</CDateNum>
+		<MDate type="strtime">27/04/2004 15h43</MDate>
+		<MDateNum type="time">1083073401</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">133</NumOrdre>
+		<Id type="num" key="1">32858</Id>
+		<CodeObjet>GRS</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">RESPONSABLE</NomObjet>
+		<NomConf>standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression>LISTE DES SIGNATAIRES RBE2</TitreImpression>
+		<NbLignesParPage>20</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">05/10/1994 19h27</CDate>
+		<CDateNum type="time">781381676</CDateNum>
+		<MDate type="strtime">19/03/1999 11h41</MDate>
+		<MDateNum type="time">921840101</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">134</NumOrdre>
+		<Id type="num" key="1">2</Id>
+		<CodeObjet>GST</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">CONF. SYSTEME</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>8</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">135</NumOrdre>
+		<Id type="num" key="1">43487</Id>
+		<CodeObjet>GVE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">VARIABLE D'ENVIRONNEMENT</NomObjet>
+		<NomConf>*>GVE_Export_xml.txt</NomConf>
+		<Type type="enum" var="GCA_TYPE">Courante</Type>
+		<TitreImpression/>
+		<NbLignesParPage>21</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">05/10/2016 16h36</CDate>
+		<CDateNum type="time">1475678172</CDateNum>
+		<MDate type="strtime">05/10/2016 13h54</MDate>
+		<MDateNum type="time">1475668460</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">136</NumOrdre>
+		<Id type="num" key="1">43487</Id>
+		<CodeObjet>GVE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">VARIABLE D'ENVIRONNEMENT</NomObjet>
+		<NomConf>*>GVE_Export_xml.txt</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>21</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">16/08/2016 14h41</CDate>
+		<CDateNum type="time">1471351303</CDateNum>
+		<MDate type="strtime">05/10/2016 13h54</MDate>
+		<MDateNum type="time">1475668460</MDateNum>
+	</Object>
+	<Object>
+		<NumOrdre type="num">137</NumOrdre>
+		<Id type="num" key="1">15</Id>
+		<CodeObjet>GVE</CodeObjet>
+		<NomObjet type="inherited" obj="GOO" attr="Nom">VARIABLE D'ENVIRONNEMENT</NomObjet>
+		<NomConf>*standard</NomConf>
+		<Type type="enum" var="GCA_TYPE">Prédéfinie</Type>
+		<TitreImpression/>
+		<NbLignesParPage>21</NbLignesParPage>
+		<NbLignesParObjet>1</NbLignesParObjet>
+		<Orientation type="enum" var="GCA_ORIENT">Paysage</Orientation>
+		<CDate type="strtime">13/01/1994 18h51</CDate>
+		<CDateNum type="time">758483502</CDateNum>
+		<MDate type="strtime">13/01/1994 18h51</MDate>
+		<MDateNum type="time">758483502</MDateNum>
+	</Object>
+</Objects_list>

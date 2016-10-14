@@ -1,5 +1,6 @@
 #include "optionsviewer.h"
 #include "datamanager.h"
+#include "dataviewer.h"
 #include "descriptivecard.h"
 #include "ui_optionsviewer.h"
 #include "model.h"
@@ -8,9 +9,14 @@
 #include <QSortFilterProxyModel>
 #include <QtGui>
 
-OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager, const QList<QMap<QString, QString> >& maps, QString selectedOption, QWidget *parent) : dataViewer(dataViewer), codeObject(codeObject), dataManager(dataManager), selectedOption(selectedOption),
+OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager,DataViewer *dataViewer, const QList<QMap<QString, QString> >& maps, QString selectedOption, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::OptionsViewer)
+    ui(new Ui::OptionsViewer),
+    codeObject(codeObject),
+    dataManager(dataManager),
+    dataViewer(dataViewer),
+    selectedOption(selectedOption)
+
 {
     ui->setupUi(this);
 
@@ -92,10 +98,21 @@ OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager, const
             currentConfigName = dataManager->getCurrentConfigNameGVE();
             ui->infoNomConf->setText("Nom de la configuration courante : \"" + currentConfigName + "\"  pour le type d'objet : Variable d'Environnement");
         }
+        else if(this->codeObject == "GDO")
+        {
+            currentConfigName = dataManager->getCurrentConfigNameGDO();
+            ui->infoNomConf->setText("Nom de la configuration courante : \"" + currentConfigName + "\"  pour le type d'objet : Documents");
+        }
         ui->instructionsLabel->setText("Selectionnez un attribut dans la liste et cliquez sur OK pour modifier ses caracteristiques");
     }
 
-    connect(this, SIGNAL(destroyed()), this->parent(), SLOT(close()));
+    connect(this, SIGNAL(destroyed()), this->parent(), SLOT(updateLayout()));
+
+    QPalette Pal(palette());
+    Pal.setColor(QPalette::Window, QColor(255,255,255,240));
+    this->setAutoFillBackground(true);
+    this->setPalette(Pal);
+    this->show();
 }
 
 OptionsViewer::~OptionsViewer()
@@ -151,6 +168,7 @@ void OptionsViewer::on_confirmButtonBox_accepted()
     {
         if(!currentConfigSelectedName.isNull())
         {
+
             if(codeObject == "GCA")
             {
                 dataManager->setCurrentConfigNameGCA(currentConfigSelectedName);
@@ -167,6 +185,15 @@ void OptionsViewer::on_confirmButtonBox_accepted()
             {
                 dataManager->setCurrentConfigNameGVE(currentConfigSelectedName);
             }
+            else if(codeObject == "GDO")
+            {
+                dataManager->setCurrentConfigNameGDO(currentConfigSelectedName);
+            }
+
+            dataManager->replaceDataOfMap("mapGCS",codeObject,currentConfigSelectedName,"NomConfStd");
+
+            dataViewer->updateLayout();
+
 
         }
 
@@ -228,3 +255,5 @@ void OptionsViewer::onDisplayDescriptiveCardCompleteButtonTriggered()
         descriptiveCard->show();
     }
 }
+
+

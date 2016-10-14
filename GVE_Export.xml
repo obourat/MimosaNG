@@ -1,0 +1,5173 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<Objects_list>
+	<Object>
+		<NumOrdre type="num">1</NumOrdre>
+		<Id type="num">500</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>USER</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">2</NumOrdre>
+		<Id type="num">501</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>LOGNAME</Nom>
+		<Valeur>$USER</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">3</NumOrdre>
+		<Id type="num">502</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PRINTER</Nom>
+		<Valeur>%s</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">4</NumOrdre>
+		<Id type="num">503</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>HOME</Nom>
+		<Valeur>%s</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">5</NumOrdre>
+		<Id type="num">504</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_DIR</Nom>
+		<Valeur>/ats</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">6</NumOrdre>
+		<Id type="num">505</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_VIEW</Nom>
+		<Valeur>Vue générale</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">7</NumOrdre>
+		<Id type="num">506</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEO_PRINTER</Nom>
+		<Valeur>$PRINTER</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">8</NumOrdre>
+		<Id type="num">507</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_PRINTER</Nom>
+		<Valeur>$GEO_PRINTER</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">9</NumOrdre>
+		<Id type="num">508</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_UPDATE_VERSION</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">10</NumOrdre>
+		<Id type="num">509</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>SYS_TIME_FMT</Nom>
+		<Valeur>real: %d.%d\tuser: %d.%d\tsys: %d.%d</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">11</NumOrdre>
+		<Id type="num">510</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>SYS_TIME_FMT_CHLD</Nom>
+		<Valeur>real: %d.%d\tuser: %d.%d\tsys: %d.%d\tchild:\tuser: %d.%d\tsys: %d.%d</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">12</NumOrdre>
+		<Id type="num">511</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEO_JETON</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">13</NumOrdre>
+		<Id type="num">512</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEO_ID</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">14</NumOrdre>
+		<Id type="num">513</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_SUT_SFX</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">15</NumOrdre>
+		<Id type="num">514</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>SYS_IGNORE_CASE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">16</NumOrdre>
+		<Id type="num">515</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>IMP_PRINT</Nom>
+		<Valeur>/usr/ucb/lpr -h %s</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">17</NumOrdre>
+		<Id type="num">516</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>IMP_REVERSE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">18</NumOrdre>
+		<Id type="num">517</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>IPR_PRINTER</Nom>
+		<Valeur>$ATS_PRINTER</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">19</NumOrdre>
+		<Id type="num">518</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>SYS_VIEW</Nom>
+		<Valeur>$OPENWINHOME/bin/pageview</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">20</NumOrdre>
+		<Id type="num">519</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>IMP_VIEW</Nom>
+		<Valeur>$SYS_VIEW -Wp 0 0 -dpi 72 -Ws 597 869 -w 8.26 -h 11.68 %s </Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">21</NumOrdre>
+		<Id type="num">520</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>IMP_VIEW_H</Nom>
+		<Valeur>$SYS_VIEW -Wp 0 0 -dpi 85 -right -Ws 994 741 -w 8.26 -h 11.68 %s </Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">22</NumOrdre>
+		<Id type="num">521</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_PAGEVIEW</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">23</NumOrdre>
+		<Id type="num">522</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_LEFTMARGIN</Nom>
+		<Valeur>10</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">24</NumOrdre>
+		<Id type="num">523</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_RIGHTMARGIN</Nom>
+		<Valeur>10</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">25</NumOrdre>
+		<Id type="num">524</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_TOPMARGIN</Nom>
+		<Valeur>20</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">26</NumOrdre>
+		<Id type="num">525</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_BOTMARGIN</Nom>
+		<Valeur>20</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">27</NumOrdre>
+		<Id type="num">526</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_LPP</Nom>
+		<Valeur>20</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">28</NumOrdre>
+		<Id type="num">527</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_LPO</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">29</NumOrdre>
+		<Id type="num">528</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_FP</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">30</NumOrdre>
+		<Id type="num">529</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_LP</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">31</NumOrdre>
+		<Id type="num">530</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_NP</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">32</NumOrdre>
+		<Id type="num">531</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_IFO</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">33</NumOrdre>
+		<Id type="num">532</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_NB_COPIES</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">34</NumOrdre>
+		<Id type="num">533</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_OPTION</Nom>
+		<Valeur>Titre:Num. Pages:Date:Heure:Sigle:Lignes:Grisé</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">35</NumOrdre>
+		<Id type="num">534</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_ATT_LINEHEIGHT</Nom>
+		<Valeur>8.8</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">36</NumOrdre>
+		<Id type="num">535</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_ATT_TFONT</Nom>
+		<Valeur>18</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">37</NumOrdre>
+		<Id type="num">536</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_ATT_BFONT</Nom>
+		<Valeur>16</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">38</NumOrdre>
+		<Id type="num">537</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_ATT_NFONT</Nom>
+		<Valeur>15</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">39</NumOrdre>
+		<Id type="num">538</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_SCALEFONT</Nom>
+		<Valeur>100</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">40</NumOrdre>
+		<Id type="num">539</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_BACKGROUND</Nom>
+		<Valeur>$ATS_LIB/ats_background.ps</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">41</NumOrdre>
+		<Id type="num">540</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_BACK_STR</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">42</NumOrdre>
+		<Id type="num">541</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_CTX</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">43</NumOrdre>
+		<Id type="num">542</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_LANDSCAPE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">44</NumOrdre>
+		<Id type="num">543</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_REVERSE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">45</NumOrdre>
+		<Id type="num">544</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_FORMAT</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">46</NumOrdre>
+		<Id type="num">545</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>PSC_CONF</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">47</NumOrdre>
+		<Id type="num">546</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GUT_VERROU</Nom>
+		<Valeur>Non:Oui</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">48</NumOrdre>
+		<Id type="num">547</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GVE_VERROU</Nom>
+		<Valeur>Non:Protégée:Verrouillée</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">49</NumOrdre>
+		<Id type="num">548</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_M_DIVERS1</Nom>
+		<Valeur>Avion</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">50</NumOrdre>
+		<Id type="num">549</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_DIVERS1</Nom>
+		<Valeur>Oui:Non:Indéfini</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">51</NumOrdre>
+		<Id type="num">550</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_M_ECO</Nom>
+		<Valeur>Coûts</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">52</NumOrdre>
+		<Id type="num">551</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_L_ECO_NUM1</Nom>
+		<Valeur>Coût de développement (KF)</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">53</NumOrdre>
+		<Id type="num">552</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_L_ECO_NUM2</Nom>
+		<Valeur>Coût d'industrialisation (KF)</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">54</NumOrdre>
+		<Id type="num">553</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_L_ECO_NUM3</Nom>
+		<Valeur>Coût de série (KF)</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">55</NumOrdre>
+		<Id type="num">554</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_L_ECO_NUM4</Nom>
+		<Valeur>Délais</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">56</NumOrdre>
+		<Id type="num">555</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_L_ECO_STR1</Nom>
+		<Valeur>Conditions économiques</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">57</NumOrdre>
+		<Id type="num">556</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_L_ECO_STR2</Nom>
+		<Valeur>Numéro de proposition</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">58</NumOrdre>
+		<Id type="num">557</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_L_ECO_STR3</Nom>
+		<Valeur>Liste de diffusion</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">59</NumOrdre>
+		<Id type="num">558</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_M_ECO_DE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">60</NumOrdre>
+		<Id type="num">559</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_L_ECO_STR1_DE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">61</NumOrdre>
+		<Id type="num">560</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_L_ECO_STR2_DE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">62</NumOrdre>
+		<Id type="num">561</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_L_ECO_STR3_DE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">63</NumOrdre>
+		<Id type="num">562</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_M_IMPACT</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">64</NumOrdre>
+		<Id type="num">563</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_JALONS</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">65</NumOrdre>
+		<Id type="num">564</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_M_CRITERES</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">66</NumOrdre>
+		<Id type="num">565</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_CRITERES</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">67</NumOrdre>
+		<Id type="num">566</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_INIT_CRITERES</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">68</NumOrdre>
+		<Id type="num">567</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_M_AFFAIRE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">69</NumOrdre>
+		<Id type="num">568</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_AFFAIRE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">70</NumOrdre>
+		<Id type="num">569</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_INIT_AFFAIRE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">71</NumOrdre>
+		<Id type="num">570</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_L_DATES</Nom>
+		<Valeur>Date d'émission:Date de diffusion:Date de décision:Date de notification:Date de livraison:Date de solde</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">72</NumOrdre>
+		<Id type="num">571</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_PATTERNS_REF</Nom>
+		<Valeur>^[0-9]\{8\} [0-9a-zA-Z]\{2,3\}$|^[0-9]\{8\} [0-9a-zA-Z]\{2,3\} [0-9a-zA-Z_]\{1,2\}$::::::::</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">73</NumOrdre>
+		<Id type="num">572</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GSD_PATTERN_SEP</Nom>
+		<Valeur>124</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">74</NumOrdre>
+		<Id type="num">573</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GDO</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">75</NumOrdre>
+		<Id type="num">574</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GCT</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">76</NumOrdre>
+		<Id type="num">575</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GAR</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">77</NumOrdre>
+		<Id type="num">576</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GST</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">78</NumOrdre>
+		<Id type="num">577</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GEP</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">79</NumOrdre>
+		<Id type="num">578</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GFE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">80</NumOrdre>
+		<Id type="num">579</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GFT</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">81</NumOrdre>
+		<Id type="num">580</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GAF</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">82</NumOrdre>
+		<Id type="num">581</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_FES</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">83</NumOrdre>
+		<Id type="num">582</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_FER</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">84</NumOrdre>
+		<Id type="num">583</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GRE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">85</NumOrdre>
+		<Id type="num">584</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GAP</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">86</NumOrdre>
+		<Id type="num">585</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GFM</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">87</NumOrdre>
+		<Id type="num">586</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GMC</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">88</NumOrdre>
+		<Id type="num">587</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GDR</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">89</NumOrdre>
+		<Id type="num">588</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GVE</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">90</NumOrdre>
+		<Id type="num">589</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GRS</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">91</NumOrdre>
+		<Id type="num">590</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GRR</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">92</NumOrdre>
+		<Id type="num">591</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GDS</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">93</NumOrdre>
+		<Id type="num">592</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GDS_GFT</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">94</NumOrdre>
+		<Id type="num">593</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GDS_GFE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">95</NumOrdre>
+		<Id type="num">594</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GDS_GDR</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">96</NumOrdre>
+		<Id type="num">595</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GDS_GAF</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">97</NumOrdre>
+		<Id type="num">596</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GDS_GRE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">98</NumOrdre>
+		<Id type="num">597</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GDS_GDE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">99</NumOrdre>
+		<Id type="num">598</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GDS_GFI</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">100</NumOrdre>
+		<Id type="num">599</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GST_GDO</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">101</NumOrdre>
+		<Id type="num">600</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GFE_PSCFIC</Nom>
+		<Valeur>$ATS_LIB/ats_gfe_pscfic</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">102</NumOrdre>
+		<Id type="num">601</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GFT_PSCFIC</Nom>
+		<Valeur>$ATS_LIB/ats_gft_pscfic</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">103</NumOrdre>
+		<Id type="num">602</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GAF_PSCFIC</Nom>
+		<Valeur>$ATS_LIB/ats_gaf_pscfic</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">104</NumOrdre>
+		<Id type="num">603</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GFE_OUT</Nom>
+		<Valeur>$ATS_TMP/ats_gfe.ps</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">105</NumOrdre>
+		<Id type="num">604</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GFT_OUT</Nom>
+		<Valeur>$ATS_TMP/ats_gft.ps</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">106</NumOrdre>
+		<Id type="num">605</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GAF_OUT</Nom>
+		<Valeur>$ATS_TMP/ats_gaf.ps</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">107</NumOrdre>
+		<Id type="num">606</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GDO_OUT</Nom>
+		<Valeur>$ATS_TMP/ats_gdo.ps</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">108</NumOrdre>
+		<Id type="num">607</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GCT_OUT</Nom>
+		<Valeur>$ATS_TMP/ats_gct.ps</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">109</NumOrdre>
+		<Id type="num">608</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GEP_OUT</Nom>
+		<Valeur>$ATS_TMP/ats_gep.ps</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">110</NumOrdre>
+		<Id type="num">609</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GAT_OUT</Nom>
+		<Valeur>$ATS_TMP/ats_gat.ps</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">111</NumOrdre>
+		<Id type="num">610</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GFE_PSCNBL</Nom>
+		<Valeur>20</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">112</NumOrdre>
+		<Id type="num">611</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GFT_PSCNBL</Nom>
+		<Valeur>20</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">113</NumOrdre>
+		<Id type="num">612</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GAF_PSCNBL</Nom>
+		<Valeur>20</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">114</NumOrdre>
+		<Id type="num">613</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GDO_PSCNBL</Nom>
+		<Valeur>20</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">115</NumOrdre>
+		<Id type="num">614</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GCT_PSCNBL</Nom>
+		<Valeur>20</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">116</NumOrdre>
+		<Id type="num">615</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GEP_PSCNBL</Nom>
+		<Valeur>20</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">117</NumOrdre>
+		<Id type="num">616</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GRE_PSCNBL</Nom>
+		<Valeur>20</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">118</NumOrdre>
+		<Id type="num">617</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GAP_PSCNBL</Nom>
+		<Valeur>20</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">119</NumOrdre>
+		<Id type="num">618</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GFM_PSCNBL</Nom>
+		<Valeur>20</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">120</NumOrdre>
+		<Id type="num">619</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GMC_PSCNBL</Nom>
+		<Valeur>20</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">121</NumOrdre>
+		<Id type="num">620</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>IPR_GEP_SCALE</Nom>
+		<Valeur>80</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">122</NumOrdre>
+		<Id type="num">621</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>IPR_GDO_SCALE</Nom>
+		<Valeur>80</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">123</NumOrdre>
+		<Id type="num">622</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>IPR_GFI_SCALE</Nom>
+		<Valeur>60</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">124</NumOrdre>
+		<Id type="num">623</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>IPR_LST_SCALE</Nom>
+		<Valeur>100</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">125</NumOrdre>
+		<Id type="num">624</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>IPR_BACK_STR</Nom>
+		<Valeur>   :PROVISOIRE:DUPLICATA:CONFIDENTIEL</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">126</NumOrdre>
+		<Id type="num">625</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GCA_DFLT_NAME</Nom>
+		<Valeur>€standard</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">127</NumOrdre>
+		<Id type="num">626</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAT_SEP_COL</Nom>
+		<Valeur>32</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">128</NumOrdre>
+		<Id type="num">627</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAT_FORMAT</Nom>
+		<Valeur>En ligne:Texte replié:Niveaux de gris:Codage interne:En colonne</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">129</NumOrdre>
+		<Id type="num">628</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAT_TRI</Nom>
+		<Valeur>Aucun:Croissant:Décroisant:Numérique croissant:Numérique décroissant</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">130</NumOrdre>
+		<Id type="num">629</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAT_OP_ENUM_GLOB</Nom>
+		<Valeur>Valoriser</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">131</NumOrdre>
+		<Id type="num">630</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAT_OP_TEXT_GLOB</Nom>
+		<Valeur>Valoriser</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">132</NumOrdre>
+		<Id type="num">631</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAT_OP_CHOICE_GLOB</Nom>
+		<Valeur>Valoriser:Ajouter:Retirer</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">133</NumOrdre>
+		<Id type="num">632</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAT_OBJ_NAME</Nom>
+		<Valeur>ATTRIBUT D'OBJET</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">134</NumOrdre>
+		<Id type="num">633</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAT_EXP_FORM</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">135</NumOrdre>
+		<Id type="num">634</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GRR_OBJ_NAME</Nom>
+		<Valeur>COMPTE RENDU</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">136</NumOrdre>
+		<Id type="num">635</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GLN_OBJ_NAME</Nom>
+		<Valeur>LIEN M/N</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">137</NumOrdre>
+		<Id type="num">636</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GCA_OBJ_NAME</Nom>
+		<Valeur>CONFIGURATION D'ATTRIBUTS</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">138</NumOrdre>
+		<Id type="num">637</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GVE_OBJ_NAME</Nom>
+		<Valeur>VARIABLE D'ENVIRONNEMENT</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">139</NumOrdre>
+		<Id type="num">638</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GMC_OBJ_NAME</Nom>
+		<Valeur>MOT CLE</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">140</NumOrdre>
+		<Id type="num">639</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAF_OBJ_NAME</Nom>
+		<Valeur>ANALYSE</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">141</NumOrdre>
+		<Id type="num">640</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_OBJ_NAME</Nom>
+		<Valeur>ARTICLE PROTOTYPE LIVRE</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">142</NumOrdre>
+		<Id type="num">641</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_OBJ_NAME</Nom>
+		<Valeur>ARTICLE DE CONFIGURATION</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">143</NumOrdre>
+		<Id type="num">642</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GCT_OBJ_NAME</Nom>
+		<Valeur>CONSTITUANT</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">144</NumOrdre>
+		<Id type="num">643</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDO_OBJ_NAME</Nom>
+		<Valeur>DOCUMENT</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">145</NumOrdre>
+		<Id type="num">644</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDR_OBJ_NAME</Nom>
+		<Valeur>NON CONFORMITE</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">146</NumOrdre>
+		<Id type="num">645</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_OBJ_NAME</Nom>
+		<Valeur>DEMANDE D'EVOLUTION</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">147</NumOrdre>
+		<Id type="num">646</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFE_OBJ_NAME</Nom>
+		<Valeur>FICHE D'EVOLUTION</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">148</NumOrdre>
+		<Id type="num">647</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFT_OBJ_NAME</Nom>
+		<Valeur>CONSTAT</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">149</NumOrdre>
+		<Id type="num">648</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GRE_OBJ_NAME</Nom>
+		<Valeur>RE</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">150</NumOrdre>
+		<Id type="num">649</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GRS_OBJ_NAME</Nom>
+		<Valeur>RESPONSABLE</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">151</NumOrdre>
+		<Id type="num">650</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GST_OBJ_NAME</Nom>
+		<Valeur>CONF. SYSTEME</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">152</NumOrdre>
+		<Id type="num">651</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_OPF_NOP_CLR</Nom>
+		<Valeur>Black</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">153</NumOrdre>
+		<Id type="num">652</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_OPF_SET_CLR</Nom>
+		<Valeur>Red</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">154</NumOrdre>
+		<Id type="num">653</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_FOOT_CNT</Nom>
+		<Valeur>16</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">155</NumOrdre>
+		<Id type="num">654</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IBA_X</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">156</NumOrdre>
+		<Id type="num">655</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IBA_Y</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">157</NumOrdre>
+		<Id type="num">656</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IDO_LX</Nom>
+		<Valeur>24:230</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">158</NumOrdre>
+		<Id type="num">657</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IDO_PX</Nom>
+		<Valeur>56:34</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">159</NumOrdre>
+		<Id type="num">658</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IDO_FX</Nom>
+		<Valeur>56:1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">160</NumOrdre>
+		<Id type="num">659</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IAT_LX</Nom>
+		<Valeur>350:70</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">161</NumOrdre>
+		<Id type="num">660</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IAT_PX</Nom>
+		<Valeur>100:400</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">162</NumOrdre>
+		<Id type="num">661</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IAT_FX</Nom>
+		<Valeur>100:100</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">163</NumOrdre>
+		<Id type="num">662</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GCA</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">164</NumOrdre>
+		<Id type="num">663</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_ICA_LX</Nom>
+		<Valeur>500:60</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">165</NumOrdre>
+		<Id type="num">664</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_ICA_PX</Nom>
+		<Valeur>56:34</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">166</NumOrdre>
+		<Id type="num">665</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_ICA_FX</Nom>
+		<Valeur>56:4</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">167</NumOrdre>
+		<Id type="num">666</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ICA_EXP_SUPPORT</Nom>
+		<Valeur>Fichier:Ecran</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">168</NumOrdre>
+		<Id type="num">667</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ICA_EXP_CMD</Nom>
+		<Valeur>:$OPENWINHOME/bin/textedit %s </Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">169</NumOrdre>
+		<Id type="num">668</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ICA_EXP_X</Nom>
+		<Valeur>1:204</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">170</NumOrdre>
+		<Id type="num">669</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ICA_IMP_X</Nom>
+		<Valeur>140:50</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">171</NumOrdre>
+		<Id type="num">670</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_ICT_LX</Nom>
+		<Valeur>1:194</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">172</NumOrdre>
+		<Id type="num">671</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_ICT_PX</Nom>
+		<Valeur>507:229</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">173</NumOrdre>
+		<Id type="num">672</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_ICT_FX</Nom>
+		<Valeur>410:229</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">174</NumOrdre>
+		<Id type="num">673</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IAR_LX</Nom>
+		<Valeur>101:250</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">175</NumOrdre>
+		<Id type="num">674</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IAR_PX</Nom>
+		<Valeur>410:300</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">176</NumOrdre>
+		<Id type="num">675</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IAR_FX</Nom>
+		<Valeur>420:140</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">177</NumOrdre>
+		<Id type="num">676</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IST_LX</Nom>
+		<Valeur>10:220</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">178</NumOrdre>
+		<Id type="num">677</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IST_PX</Nom>
+		<Valeur>508:151</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">179</NumOrdre>
+		<Id type="num">678</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IST_FX</Nom>
+		<Valeur>508:151</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">180</NumOrdre>
+		<Id type="num">679</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IFE_LX</Nom>
+		<Valeur>204:230</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">181</NumOrdre>
+		<Id type="num">680</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IFE_PX</Nom>
+		<Valeur>1:1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">182</NumOrdre>
+		<Id type="num">681</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IFE_FX</Nom>
+		<Valeur>1:24</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">183</NumOrdre>
+		<Id type="num">682</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IFT_LX</Nom>
+		<Valeur>204:230</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">184</NumOrdre>
+		<Id type="num">683</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IFT_PX</Nom>
+		<Valeur>1:1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">185</NumOrdre>
+		<Id type="num">684</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IFT_FX</Nom>
+		<Valeur>1:24</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">186</NumOrdre>
+		<Id type="num">685</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IAF_LX</Nom>
+		<Valeur>104:130</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">187</NumOrdre>
+		<Id type="num">686</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IAF_PX</Nom>
+		<Valeur>1:1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">188</NumOrdre>
+		<Id type="num">687</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IAF_FX</Nom>
+		<Valeur>1:10</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">189</NumOrdre>
+		<Id type="num">688</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IAP_LX</Nom>
+		<Valeur>51:151</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">190</NumOrdre>
+		<Id type="num">689</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IAP_PX</Nom>
+		<Valeur>400:151</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">191</NumOrdre>
+		<Id type="num">690</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IAP_FX</Nom>
+		<Valeur>500:151</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">192</NumOrdre>
+		<Id type="num">691</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IAP_SX</Nom>
+		<Valeur>20:20</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">193</NumOrdre>
+		<Id type="num">692</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IAP_FSX</Nom>
+		<Valeur>10:10</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">194</NumOrdre>
+		<Id type="num">693</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IFM_LX</Nom>
+		<Valeur>50:100</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">195</NumOrdre>
+		<Id type="num">694</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IFM_PX</Nom>
+		<Valeur>300:120</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">196</NumOrdre>
+		<Id type="num">695</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IFM_FX</Nom>
+		<Valeur>200:200</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">197</NumOrdre>
+		<Id type="num">696</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IRE_LX</Nom>
+		<Valeur>50:100</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">198</NumOrdre>
+		<Id type="num">697</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IRE_PX</Nom>
+		<Valeur>300:120</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">199</NumOrdre>
+		<Id type="num">698</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IRE_FX</Nom>
+		<Valeur>200:200</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">200</NumOrdre>
+		<Id type="num">699</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IPH_LX</Nom>
+		<Valeur>1:201</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">201</NumOrdre>
+		<Id type="num">700</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IPH_PX</Nom>
+		<Valeur>355:125</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">202</NumOrdre>
+		<Id type="num">701</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IPH_FX</Nom>
+		<Valeur>255:255</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">203</NumOrdre>
+		<Id type="num">702</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IMC_LX</Nom>
+		<Valeur>66:166</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">204</NumOrdre>
+		<Id type="num">703</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IMC_PX</Nom>
+		<Valeur>366:126</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">205</NumOrdre>
+		<Id type="num">704</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IMC_FX</Nom>
+		<Valeur>266:266</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">206</NumOrdre>
+		<Id type="num">705</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IVE_LX</Nom>
+		<Valeur>40:100</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">207</NumOrdre>
+		<Id type="num">706</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IVE_PX</Nom>
+		<Valeur>20:400</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">208</NumOrdre>
+		<Id type="num">707</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IVE_FX</Nom>
+		<Valeur>200:200</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">209</NumOrdre>
+		<Id type="num">708</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IRS_LX</Nom>
+		<Valeur>68:168</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">210</NumOrdre>
+		<Id type="num">709</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IRS_PX</Nom>
+		<Valeur>368:128</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">211</NumOrdre>
+		<Id type="num">710</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IRS_FX</Nom>
+		<Valeur>268:268</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">212</NumOrdre>
+		<Id type="num">711</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IDR_LX</Nom>
+		<Valeur>10:128</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">213</NumOrdre>
+		<Id type="num">712</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IDR_PX</Nom>
+		<Valeur>200:1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">214</NumOrdre>
+		<Id type="num">713</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IDR_FX</Nom>
+		<Valeur>220:8</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">215</NumOrdre>
+		<Id type="num">714</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IEP_LX</Nom>
+		<Valeur>220:170</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">216</NumOrdre>
+		<Id type="num">715</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IEP_PX</Nom>
+		<Valeur>20:1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">217</NumOrdre>
+		<Id type="num">716</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IEP_FX</Nom>
+		<Valeur>20:24</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">218</NumOrdre>
+		<Id type="num">717</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IEP_SX</Nom>
+		<Valeur>600:1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">219</NumOrdre>
+		<Id type="num">718</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IEP_DX</Nom>
+		<Valeur>1:1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">220</NumOrdre>
+		<Id type="num">719</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IEP_FDX</Nom>
+		<Valeur>25:15</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">221</NumOrdre>
+		<Id type="num">720</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IEP_FEX</Nom>
+		<Valeur>55:75</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">222</NumOrdre>
+		<Id type="num">721</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IRR_LX</Nom>
+		<Valeur>100:350</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">223</NumOrdre>
+		<Id type="num">722</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IRR_PX</Nom>
+		<Valeur>100:350</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">224</NumOrdre>
+		<Id type="num">723</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IPR_PX</Nom>
+		<Valeur>5:5</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">225</NumOrdre>
+		<Id type="num">724</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GRS_WARNING</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">226</NumOrdre>
+		<Id type="num">725</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GVE_CRYPT_VAR</Nom>
+		<Valeur>ATS_WPSWD:ATS_APSWD:ATS_RPSWD</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">227</NumOrdre>
+		<Id type="num">726</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GCT_RESP</Nom>
+		<Valeur>GDCS:GDCD:TH-CSF/RCM:D.E.:MATRA:TH-CSF/RAD:TH-CSF/TTD:HUREL-DUBOIS:AIA/CP:TH-CSF/SDC:AUTRE</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">228</NumOrdre>
+		<Id type="num">727</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GCT_TYPE</Nom>
+		<Valeur>Matériel:Logiciel:Mixte:Fonctionnel</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">229</NumOrdre>
+		<Id type="num">728</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GCT_M_CRITERES</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">230</NumOrdre>
+		<Id type="num">729</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GCT_CRITERES</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">231</NumOrdre>
+		<Id type="num">730</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GCT_M_AFFAIRE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">232</NumOrdre>
+		<Id type="num">731</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GCT_AFFAIRE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">233</NumOrdre>
+		<Id type="num">732</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GCT_INIT_AFFAIRE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">234</NumOrdre>
+		<Id type="num">733</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_TYPE</Nom>
+		<Valeur>DD:STBM</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">235</NumOrdre>
+		<Id type="num">734</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_ETAT</Nom>
+		<Valeur>Diffusée:En évaluation:En cours:Refusée:Différée:Traitée</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">236</NumOrdre>
+		<Id type="num">735</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_CARAC</Nom>
+		<Valeur>Performances:Maintenance:Sécurité:Fiabilité:Interchangeabilité</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">237</NumOrdre>
+		<Id type="num">736</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_M_MOTIF</Nom>
+		<Valeur>Motif</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">238</NumOrdre>
+		<Id type="num">737</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_MOTIF</Nom>
+		<Valeur>Electrique:Mécanique:Logiciel</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">239</NumOrdre>
+		<Id type="num">738</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_M_DEM</Nom>
+		<Valeur>Demandeur</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">240</NumOrdre>
+		<Id type="num">739</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_DOMAINE</Nom>
+		<Valeur>Interne:Officiel</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">241</NumOrdre>
+		<Id type="num">740</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_CRITERES</Nom>
+		<Valeur> </Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">242</NumOrdre>
+		<Id type="num">741</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_INIT_CRITERES</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">243</NumOrdre>
+		<Id type="num">742</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_RDO</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">244</NumOrdre>
+		<Id type="num">743</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_M_ECO</Nom>
+		<Valeur>Coûts</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">245</NumOrdre>
+		<Id type="num">744</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_L_ECO_NUM1</Nom>
+		<Valeur>Développement</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">246</NumOrdre>
+		<Id type="num">745</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_L_ECO_NUM2</Nom>
+		<Valeur>Industrialisation</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">247</NumOrdre>
+		<Id type="num">746</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_L_ECO_NUM3</Nom>
+		<Valeur>Série</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">248</NumOrdre>
+		<Id type="num">747</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_L_ECO_STR1</Nom>
+		<Valeur>Devis</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">249</NumOrdre>
+		<Id type="num">748</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_L_ECO_STR2</Nom>
+		<Valeur>Lot</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">250</NumOrdre>
+		<Id type="num">749</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_L_ECO_STR3</Nom>
+		<Valeur>Avenant</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">251</NumOrdre>
+		<Id type="num">750</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_M_IMPACT</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">252</NumOrdre>
+		<Id type="num">751</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GEP_JALONS</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">253</NumOrdre>
+		<Id type="num">752</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_M_CRITERES</Nom>
+		<Valeur>Critères</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">254</NumOrdre>
+		<Id type="num">753</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CRITERES</Nom>
+		<Valeur> </Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">255</NumOrdre>
+		<Id type="num">754</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_ETAT</Nom>
+		<Valeur>Nouveau:Repris:Modifié</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">256</NumOrdre>
+		<Id type="num">755</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_AUTO_APL</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">257</NumOrdre>
+		<Id type="num">756</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAF_ETAT</Nom>
+		<Valeur>A analyser:En cours d'analyse:Mise en veille:En action corrective:Rejetée:Soldée</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">258</NumOrdre>
+		<Id type="num">757</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAF_M_CRITERES</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">259</NumOrdre>
+		<Id type="num">758</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAF_CRITERES</Nom>
+		<Valeur> </Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">260</NumOrdre>
+		<Id type="num">759</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAF_INIT_CRITERES</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">261</NumOrdre>
+		<Id type="num">760</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAF_M_AFFAIRE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">262</NumOrdre>
+		<Id type="num">761</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAF_AFFAIRE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">263</NumOrdre>
+		<Id type="num">762</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAF_INIT_AFFAIRE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">264</NumOrdre>
+		<Id type="num">763</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAF_L_DATES</Nom>
+		<Valeur>Date d'émission:Date prévisionnelle</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">265</NumOrdre>
+		<Id type="num">764</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAF_M_IMPACT</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">266</NumOrdre>
+		<Id type="num">765</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAF_M_ECO</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">267</NumOrdre>
+		<Id type="num">766</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAF_L_ECO_STR1_DE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">268</NumOrdre>
+		<Id type="num">767</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAF_L_ECO_STR2_DE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">269</NumOrdre>
+		<Id type="num">768</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAF_L_ECO_STR3_DE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">270</NumOrdre>
+		<Id type="num">769</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GST_M_CRITERES</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">271</NumOrdre>
+		<Id type="num">770</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GST_CRITERES</Nom>
+		<Valeur> </Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">272</NumOrdre>
+		<Id type="num">771</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GST_INIT_CRITERES</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">273</NumOrdre>
+		<Id type="num">772</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GST_M_AFFAIRE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">274</NumOrdre>
+		<Id type="num">773</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GST_AFFAIRE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">275</NumOrdre>
+		<Id type="num">774</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GST_INIT_AFFAIRE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">276</NumOrdre>
+		<Id type="num">775</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFT_GRAVITE</Nom>
+		<Valeur>Bloquant:Majeure:Mineure</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">277</NumOrdre>
+		<Id type="num">776</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFT_SYMP</Nom>
+		<Valeur>Panne franche:Aléatoire/Fugitif:Mesures instables:Hors tolérance</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">278</NumOrdre>
+		<Id type="num">777</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFT_CIRC</Nom>
+		<Valeur>Fabrication:Essais unitaires:Essais sous-ens.:Acceptation:Intégration usine:Essais sol/banc:Essais en vol</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">279</NumOrdre>
+		<Id type="num">778</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFT_COND</Nom>
+		<Valeur>En T° ambiante:A chaud:A froid:En CEM:En vibration:En transitoire réseau</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">280</NumOrdre>
+		<Id type="num">779</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFT_ETAT</Nom>
+		<Valeur>En rédaction:Diffusé:En analyse:En action corrective:Pas de réponse:Mis en veille:Rejeté:Validé/Soldé</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">281</NumOrdre>
+		<Id type="num">780</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFT_SITE</Nom>
+		<Valeur>AUTRE:BTY:CAZ:CEB:CEV:DC:DI-RCM:DT-RCM:DP-RCM:IST:MATRA:PSC</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">282</NumOrdre>
+		<Id type="num">781</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFT_M_CRITERES</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">283</NumOrdre>
+		<Id type="num">782</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFT_CRITERES</Nom>
+		<Valeur> </Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">284</NumOrdre>
+		<Id type="num">783</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFT_INIT_CRITERES</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">285</NumOrdre>
+		<Id type="num">784</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFT_M_AFFAIRE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">286</NumOrdre>
+		<Id type="num">785</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFT_AFFAIRE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">287</NumOrdre>
+		<Id type="num">786</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFT_M_DOMAINE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">288</NumOrdre>
+		<Id type="num">787</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFT_DOMAINE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">289</NumOrdre>
+		<Id type="num">788</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFT_INIT_AFFAIRE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">290</NumOrdre>
+		<Id type="num">789</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFT_L_DATES</Nom>
+		<Valeur>Date d'émission:Date de diffusion:Date d'analyse:Date d'action corrective:Date de rejet:Date de validation</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">291</NumOrdre>
+		<Id type="num">790</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_SITE</Nom>
+		<Valeur>AUTRE:DP:DT:DI:PSC:CEB:BTY:IST:CZX:DA:DE:CELAR</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">292</NumOrdre>
+		<Id type="num">791</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_DE_LINK_TREE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">293</NumOrdre>
+		<Id type="num">792</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GRE_TYPE</Nom>
+		<Valeur>FE:DE:FIST</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">294</NumOrdre>
+		<Id type="num">793</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GRE_CRITERES</Nom>
+		<Valeur> </Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">295</NumOrdre>
+		<Id type="num">794</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GRE_RDO</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">296</NumOrdre>
+		<Id type="num">795</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDO_M_CRITERES</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">297</NumOrdre>
+		<Id type="num">796</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDO_CRITERES</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">298</NumOrdre>
+		<Id type="num">797</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDO_ORIGINE</Nom>
+		<Valeur>STTE:STPA:CELAR:CEV:CEAT:SIAR:DA:D.E.:MATRA:THOMSON:HUREL-DUBOIS:DCN:AUTRE</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">299</NumOrdre>
+		<Id type="num">798</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDO_ETAT</Nom>
+		<Valeur>A venir:En cours:Travail:Edité</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">300</NumOrdre>
+		<Id type="num">799</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_REF_FLTR_EDIT</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">301</NumOrdre>
+		<Id type="num">800</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDO_TYPE_REF</Nom>
+		<Valeur>0:1:1:1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">302</NumOrdre>
+		<Id type="num">801</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDR_TYPE</Nom>
+		<Valeur>Indéterminé:Réserve:Dérogation:Déviation</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">303</NumOrdre>
+		<Id type="num">802</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDR_DOMAINE</Nom>
+		<Valeur>Interne:Officiel</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">304</NumOrdre>
+		<Id type="num">803</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDR_LABEL_SGN</Nom>
+		<Valeur>Signataire 1:Signataire 2:Signataire 3:Signataire 4:Signataire 5:Signataire 6:Signataire 7:Signataire 8</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">305</NumOrdre>
+		<Id type="num">804</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDR_CLASSE</Nom>
+		<Valeur>Indéfini:Mineure:Majeure</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">306</NumOrdre>
+		<Id type="num">805</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDR_DUREE</Nom>
+		<Valeur>Indéfini:Définitive:Temporaire</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">307</NumOrdre>
+		<Id type="num">806</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDR_TYPE_DECIS</Nom>
+		<Valeur>En cours:Refusée:Acceptée:Annulée</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">308</NumOrdre>
+		<Id type="num">807</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDR_CARACT</Nom>
+		<Valeur>Sécurité:Fiabilité:Aspect:Fonctionnement:Maintenance:Interchangeabilité:Performance:Durée de vie</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">309</NumOrdre>
+		<Id type="num">808</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GRS_M_CRITERES</Nom>
+		<Valeur>Critères</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">310</NumOrdre>
+		<Id type="num">809</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GRS_CRIT</Nom>
+		<Valeur>Signataire</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">311</NumOrdre>
+		<Id type="num">810</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>IPR_GFE_CONF</Nom>
+		<Valeur>Fiche d'évolution:Fiche de modification</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">312</NumOrdre>
+		<Id type="num">811</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>IPR_YYY_CONF</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">313</NumOrdre>
+		<Id type="num">812</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GRR_NIVEAU</Nom>
+		<Valeur>ok:Titre:Info:Avertissement:Erreur grave:Erreur fatale:Erreur interne</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">314</NumOrdre>
+		<Id type="num">813</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_CNF_COMP_PROTO</Nom>
+		<Valeur>€COMP_PROTO</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">315</NumOrdre>
+		<Id type="num">814</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_CNF_COMP_DEP</Nom>
+		<Valeur>€CONF_DEP</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">316</NumOrdre>
+		<Id type="num">815</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_CNF_COMP_FIST</Nom>
+		<Valeur>€CONF_FIST</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">317</NumOrdre>
+		<Id type="num">816</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_CNF_COMP_DEROG</Nom>
+		<Valeur>€CONF_DEROG</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">318</NumOrdre>
+		<Id type="num">817</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_CNF_COMP_FE</Nom>
+		<Valeur>€CONF_FE</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">319</NumOrdre>
+		<Id type="num">818</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_CNF_COMP_CFT</Nom>
+		<Valeur>€CONF_CFT</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">320</NumOrdre>
+		<Id type="num">819</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_CNF_COMP_REEL</Nom>
+		<Valeur>€CONF_REELLE</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">321</NumOrdre>
+		<Id type="num">820</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_CNF_DELTA_PROTO</Nom>
+		<Valeur>€DELTA_PROTO</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">322</NumOrdre>
+		<Id type="num">821</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_CNF_DELTA_REEL</Nom>
+		<Valeur>€DELTA_REEL</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">323</NumOrdre>
+		<Id type="num">822</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_CNF_DIFF_PROTO</Nom>
+		<Valeur>€DIFF_PROTO</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">324</NumOrdre>
+		<Id type="num">823</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_CNF_DIFF_REEL</Nom>
+		<Valeur>€DIFF_REEL</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">325</NumOrdre>
+		<Id type="num">824</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_COMP_APP</Nom>
+		<Valeur>€COMP_APP</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">326</NumOrdre>
+		<Id type="num">825</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_COMP_REF</Nom>
+		<Valeur>€COMP_REF</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">327</NumOrdre>
+		<Id type="num">826</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_COMP_SYS</Nom>
+		<Valeur>€COMP_SYS</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">328</NumOrdre>
+		<Id type="num">827</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_DELTA_APP</Nom>
+		<Valeur>€DELTA_APP</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">329</NumOrdre>
+		<Id type="num">828</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_DELTA_REF</Nom>
+		<Valeur>€DELTA_REF</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">330</NumOrdre>
+		<Id type="num">829</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_DELTA_SYS</Nom>
+		<Valeur>€DELTA_SYS</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">331</NumOrdre>
+		<Id type="num">830</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_DIFF_APP</Nom>
+		<Valeur>€DIFF_APP</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">332</NumOrdre>
+		<Id type="num">831</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_DIFF_REF</Nom>
+		<Valeur>€DIFF_REF</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">333</NumOrdre>
+		<Id type="num">832</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_DIFF_SYS</Nom>
+		<Valeur>€DIFF_SYS</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">334</NumOrdre>
+		<Id type="num">833</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_CONF_REF_F</Nom>
+		<Valeur>€CONF_REF</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">335</NumOrdre>
+		<Id type="num">834</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_CONF_REF_D</Nom>
+		<Valeur>€CONF_REF</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">336</NumOrdre>
+		<Id type="num">835</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_CONF_REF_P</Nom>
+		<Valeur>€CONF_REF</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">337</NumOrdre>
+		<Id type="num">836</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_CONF_REF_FD</Nom>
+		<Valeur>€CONF_REF</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">338</NumOrdre>
+		<Id type="num">837</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_CONF_APP_F</Nom>
+		<Valeur>€CONF_APP</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">339</NumOrdre>
+		<Id type="num">838</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_CONF_APP_D</Nom>
+		<Valeur>€CONF_APP</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">340</NumOrdre>
+		<Id type="num">839</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_CONF_APP_P</Nom>
+		<Valeur>€CONF_APP_RP</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">341</NumOrdre>
+		<Id type="num">840</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAR_CNF_CONF_APP_FD</Nom>
+		<Valeur>€CONF_APP</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">342</NumOrdre>
+		<Id type="num">841</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_CNF_CONF_REEL_DR</Nom>
+		<Valeur>€CONF_REELLE_DR</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">343</NumOrdre>
+		<Id type="num">842</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_CNF_CONF_REEL_FT</Nom>
+		<Valeur>€CONF_REELLE_FT</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">344</NumOrdre>
+		<Id type="num">843</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_CNF_CONF_REEL_FE</Nom>
+		<Valeur>€CONF_REELLE_FE</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">345</NumOrdre>
+		<Id type="num">844</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GAP_CNF_CONF_REEL_DE</Nom>
+		<Valeur>€CONF_REELLE_DE</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">346</NumOrdre>
+		<Id type="num">845</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFI_OBJ_NAME</Nom>
+		<Valeur>FIST</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">347</NumOrdre>
+		<Id type="num">846</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GFI</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">348</NumOrdre>
+		<Id type="num">847</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IFI_LX</Nom>
+		<Valeur>5:5</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">349</NumOrdre>
+		<Id type="num">848</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IFI_PX</Nom>
+		<Valeur>40:60</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">350</NumOrdre>
+		<Id type="num">849</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IFI_FX</Nom>
+		<Valeur>85:115</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">351</NumOrdre>
+		<Id type="num">850</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFI_M_CRITERES</Nom>
+		<Valeur>Critères</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">352</NumOrdre>
+		<Id type="num">851</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFI_CRITERES</Nom>
+		<Valeur>Val1:Val2:Val3</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">353</NumOrdre>
+		<Id type="num">852</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFI_ETAT</Nom>
+		<Valeur>En rédaction:Diffusée:En cours:Abandonnée:Soldée</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">354</NumOrdre>
+		<Id type="num">853</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFI_TYPE</Nom>
+		<Valeur>Indéterminé:Evolution:Réparation:Evolution+Réparation</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">355</NumOrdre>
+		<Id type="num">854</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFI_L_SUIVI</Nom>
+		<Valeur>Suivi</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">356</NumOrdre>
+		<Id type="num">855</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFI_L_DATES</Nom>
+		<Valeur>Date de rédaction:Date de décision:Date d'intervention:Date de solde</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">357</NumOrdre>
+		<Id type="num">856</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFI_GAT_PSC</Nom>
+		<Valeur>$ATS_LIB/ats_gfi_util.ps</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">358</NumOrdre>
+		<Id type="num">857</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GFI_M_TXT1</Nom>
+		<Valeur>Nº OS</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">359</NumOrdre>
+		<Id type="num">858</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDS_OBJ_NAME</Nom>
+		<Valeur>DOSSIER</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">360</NumOrdre>
+		<Id type="num">859</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_GDS</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">361</NumOrdre>
+		<Id type="num">860</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IDS_LX</Nom>
+		<Valeur>5:25</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">362</NumOrdre>
+		<Id type="num">861</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IDS_PX</Nom>
+		<Valeur>50:70</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">363</NumOrdre>
+		<Id type="num">862</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IDS_FX</Nom>
+		<Valeur>10:95</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">364</NumOrdre>
+		<Id type="num">863</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IDS_SX</Nom>
+		<Valeur>130:320:465:195</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">365</NumOrdre>
+		<Id type="num">864</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_IDS_FSX</Nom>
+		<Valeur>35:30:409:256</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">366</NumOrdre>
+		<Id type="num">865</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDS_ETAT</Nom>
+		<Valeur>A venir:En cours:Abandonné:Fermé</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">367</NumOrdre>
+		<Id type="num">866</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDS_TYPE</Nom>
+		<Valeur>Indéterminé:Commission:Litige</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">368</NumOrdre>
+		<Id type="num">867</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDS_NATURE</Nom>
+		<Valeur>Electronique:Physique</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">369</NumOrdre>
+		<Id type="num">868</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDS_L_SUIVI</Nom>
+		<Valeur>Suivi</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">370</NumOrdre>
+		<Id type="num">869</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDS_L_DATES</Nom>
+		<Valeur>Date de constitution:Date de décision:Date de fermeture</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">371</NumOrdre>
+		<Id type="num">870</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDS_M_CRITERES</Nom>
+		<Valeur>Critères</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">372</NumOrdre>
+		<Id type="num">871</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDS_CRITERES</Nom>
+		<Valeur>Val1:Val2:Val3</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">373</NumOrdre>
+		<Id type="num">872</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDS_M_AFFAIRE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">374</NumOrdre>
+		<Id type="num">873</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDS_AFFAIRE</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">375</NumOrdre>
+		<Id type="num">874</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>GDS_INIT_AFFAIRE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">376</NumOrdre>
+		<Id type="num">875</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_LN_CURS</Nom>
+		<Valeur>10</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">377</NumOrdre>
+		<Id type="num">876</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>ATS_SEL_CURS</Nom>
+		<Valeur>12</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">378</NumOrdre>
+		<Id type="num">877</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>IBA_EXT_CMD</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">379</NumOrdre>
+		<Id type="num">878</Id>
+		<CDate type="strtime">26/10/1996 12h00</CDate>
+		<CDateNum type="time">846324000</CDateNum>
+		<MDate type="strtime">26/10/1996 12h00</MDate>
+		<MDateNum type="time">846324000</MDateNum>
+		<Nom>IBA_EXT_ITEM</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">380</NumOrdre>
+		<Id type="num">13520</Id>
+		<CDate type="strtime">09/11/1995 12h01</CDate>
+		<CDateNum type="time">815914899</CDateNum>
+		<MDate type="strtime">12/04/1996 10h36</MDate>
+		<MDateNum type="time">829298186</MDateNum>
+		<Nom>ATS_APSWD</Nom>
+		<Valeur>1W.pMudz.HU</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">381</NumOrdre>
+		<Id type="num">18708</Id>
+		<CDate type="strtime">20/09/1996 11h02</CDate>
+		<CDateNum type="time">843210151</CDateNum>
+		<MDate type="strtime">24/11/1999 13h53</MDate>
+		<MDateNum type="time">943447997</MDateNum>
+		<Nom>ATS_GAF_ACT</Nom>
+		<Valeur>CMDLcmdl</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">382</NumOrdre>
+		<Id type="num">18701</Id>
+		<CDate type="strtime">20/09/1996 11h00</CDate>
+		<CDateNum type="time">843210013</CDateNum>
+		<MDate type="strtime">11/06/1998 13h33</MDate>
+		<MDateNum type="time">897564827</MDateNum>
+		<Nom>ATS_GAP_ACT</Nom>
+		<Valeur>CMDLml</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">383</NumOrdre>
+		<Id type="num">24229</Id>
+		<CDate type="strtime">18/07/1997 13h17</CDate>
+		<CDateNum type="time">869224667</CDateNum>
+		<MDate type="strtime">18/07/1997 13h17</MDate>
+		<MDateNum type="time">869224667</MDateNum>
+		<Nom>ATS_GAP_GDO</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">384</NumOrdre>
+		<Id type="num">18700</Id>
+		<CDate type="strtime">20/09/1996 10h59</CDate>
+		<CDateNum type="time">843209977</CDateNum>
+		<MDate type="strtime">20/09/1996 10h59</MDate>
+		<MDateNum type="time">843209977</MDateNum>
+		<Nom>ATS_GAR_ACT</Nom>
+		<Valeur>CMDL</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">385</NumOrdre>
+		<Id type="num">20226</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>ATS_GAT_ACT</Nom>
+		<Valeur>mMD</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">386</NumOrdre>
+		<Id type="num">18702</Id>
+		<CDate type="strtime">20/09/1996 11h00</CDate>
+		<CDateNum type="time">843210027</CDateNum>
+		<MDate type="strtime">20/09/1996 11h00</MDate>
+		<MDateNum type="time">843210027</MDateNum>
+		<Nom>ATS_GCS_ACT</Nom>
+		<Valeur>CMDL</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">387</NumOrdre>
+		<Id type="num">18699</Id>
+		<CDate type="strtime">20/09/1996 10h59</CDate>
+		<CDateNum type="time">843209967</CDateNum>
+		<MDate type="strtime">20/09/1996 10h59</MDate>
+		<MDateNum type="time">843209967</MDateNum>
+		<Nom>ATS_GCT_ACT</Nom>
+		<Valeur>CMDL</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">388</NumOrdre>
+		<Id type="num">18703</Id>
+		<CDate type="strtime">20/09/1996 11h00</CDate>
+		<CDateNum type="time">843210036</CDateNum>
+		<MDate type="strtime">20/09/1996 11h00</MDate>
+		<MDateNum type="time">843210036</MDateNum>
+		<Nom>ATS_GDO_ACT</Nom>
+		<Valeur>CMDL</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">389</NumOrdre>
+		<Id type="num">18706</Id>
+		<CDate type="strtime">20/09/1996 11h01</CDate>
+		<CDateNum type="time">843210096</CDateNum>
+		<MDate type="strtime">20/09/1996 11h01</MDate>
+		<MDateNum type="time">843210096</MDateNum>
+		<Nom>ATS_GDR_ACT</Nom>
+		<Valeur>CMDL</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">390</NumOrdre>
+		<Id type="num">18709</Id>
+		<CDate type="strtime">20/09/1996 11h02</CDate>
+		<CDateNum type="time">843210163</CDateNum>
+		<MDate type="strtime">20/09/1996 11h02</MDate>
+		<MDateNum type="time">843210163</MDateNum>
+		<Nom>ATS_GEP_ACT</Nom>
+		<Valeur>CMDL</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">391</NumOrdre>
+		<Id type="num">18704</Id>
+		<CDate type="strtime">20/09/1996 11h00</CDate>
+		<CDateNum type="time">843210050</CDateNum>
+		<MDate type="strtime">20/09/1996 11h01</MDate>
+		<MDateNum type="time">843210076</MDateNum>
+		<Nom>ATS_GFE_ACT</Nom>
+		<Valeur>CMDLcm</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">392</NumOrdre>
+		<Id type="num">10744</Id>
+		<CDate type="strtime">10/11/1994 18h21</CDate>
+		<CDateNum type="time">784488072</CDateNum>
+		<MDate type="strtime">10/11/1994 18h21</MDate>
+		<MDateNum type="time">784488072</MDateNum>
+		<Nom>ATS_GFE_ATTR</Nom>
+		<Valeur>standard</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">393</NumOrdre>
+		<Id type="num">11622</Id>
+		<CDate type="strtime">10/11/1994 18h21</CDate>
+		<CDateNum type="time">784488072</CDateNum>
+		<MDate type="strtime">10/11/1994 18h21</MDate>
+		<MDateNum type="time">784488072</MDateNum>
+		<Nom>ATS_GFE_CNF</Nom>
+		<Valeur>standard</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">394</NumOrdre>
+		<Id type="num">18705</Id>
+		<CDate type="strtime">20/09/1996 11h01</CDate>
+		<CDateNum type="time">843210085</CDateNum>
+		<MDate type="strtime">15/03/1999 14h33</MDate>
+		<MDateNum type="time">921504794</MDateNum>
+		<Nom>ATS_GFT_ACT</Nom>
+		<Valeur>CMDLcmdl</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">395</NumOrdre>
+		<Id type="num">18711</Id>
+		<CDate type="strtime">20/09/1996 11h03</CDate>
+		<CDateNum type="time">843210204</CDateNum>
+		<MDate type="strtime">20/09/1996 11h03</MDate>
+		<MDateNum type="time">843210204</MDateNum>
+		<Nom>ATS_GPH_ACT</Nom>
+		<Valeur>CMDL</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">396</NumOrdre>
+		<Id type="num">18707</Id>
+		<CDate type="strtime">20/09/1996 11h01</CDate>
+		<CDateNum type="time">843210102</CDateNum>
+		<MDate type="strtime">20/09/1996 11h01</MDate>
+		<MDateNum type="time">843210102</MDateNum>
+		<Nom>ATS_GRE_ACT</Nom>
+		<Valeur>CMDL</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">397</NumOrdre>
+		<Id type="num">18710</Id>
+		<CDate type="strtime">20/09/1996 11h03</CDate>
+		<CDateNum type="time">843210183</CDateNum>
+		<MDate type="strtime">20/09/1996 11h03</MDate>
+		<MDateNum type="time">843210183</MDateNum>
+		<Nom>ATS_GRS_ACT</Nom>
+		<Valeur>CMDLc</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">398</NumOrdre>
+		<Id type="num">18712</Id>
+		<CDate type="strtime">20/09/1996 11h08</CDate>
+		<CDateNum type="time">843210495</CDateNum>
+		<MDate type="strtime">20/09/1996 11h08</MDate>
+		<MDateNum type="time">843210495</MDateNum>
+		<Nom>ATS_GST_ACT</Nom>
+		<Valeur>CMDL</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">399</NumOrdre>
+		<Id type="num">18698</Id>
+		<CDate type="strtime">20/09/1996 10h58</CDate>
+		<CDateNum type="time">843209928</CDateNum>
+		<MDate type="strtime">04/04/1997 15h21</MDate>
+		<MDateNum type="time">860160116</MDateNum>
+		<Nom>ATS_GVE_ACT</Nom>
+		<Valeur>CM</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">400</NumOrdre>
+		<Id type="num">22497</Id>
+		<CDate type="strtime">04/04/1997 15h14</CDate>
+		<CDateNum type="time">860159679</CDateNum>
+		<MDate type="strtime">13/05/1997 10h20</MDate>
+		<MDateNum type="time">863511633</MDateNum>
+		<Nom>ATS_NIVCTR_ARBAPL</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">401</NumOrdre>
+		<Id type="num">22498</Id>
+		<CDate type="strtime">04/04/1997 15h14</CDate>
+		<CDateNum type="time">860159692</CDateNum>
+		<MDate type="strtime">13/05/1997 10h20</MDate>
+		<MDateNum type="time">863511646</MDateNum>
+		<Nom>ATS_NIVCTR_ARBART</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">402</NumOrdre>
+		<Id type="num">13007</Id>
+		<CDate type="strtime">19/09/1995 19h56</CDate>
+		<CDateNum type="time">811533370</CDateNum>
+		<MDate type="strtime">19/09/1995 19h56</MDate>
+		<MDateNum type="time">811533370</MDateNum>
+		<Nom>ATS_NOM_AFFAIRE</Nom>
+		<Valeur>RBE2</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">403</NumOrdre>
+		<Id type="num">35074</Id>
+		<CDate type="strtime">15/09/2000 16h05</CDate>
+		<CDateNum type="time">969026712</CDateNum>
+		<MDate type="strtime">15/09/2000 16h06</MDate>
+		<MDateNum type="time">969026796</MDateNum>
+		<Nom>ATS_RDONLY</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">404</NumOrdre>
+		<Id type="num">18685</Id>
+		<CDate type="strtime">17/09/1996 17h24</CDate>
+		<CDateNum type="time">842973866</CDateNum>
+		<MDate type="strtime">17/09/1996 18h03</MDate>
+		<MDateNum type="time">842976192</MDateNum>
+		<Nom>ATS_TPS_SH</Nom>
+		<Valeur>ATS_NOM_AFFAIRE=RBE2 $ATS_LIB/ats_tps</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">405</NumOrdre>
+		<Id type="num">32</Id>
+		<CDate type="strtime">21/12/1993 13h50</CDate>
+		<CDateNum type="time">756478246</CDateNum>
+		<MDate type="strtime">25/10/1996 10h14</MDate>
+		<MDateNum type="time">846231271</MDateNum>
+		<Nom>ATS_WPSWD</Nom>
+		<Valeur>frB1OJR6Im6</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">406</NumOrdre>
+		<Id type="num">26189</Id>
+		<CDate type="strtime">09/02/1998 18h22</CDate>
+		<CDateNum type="time">887044966</CDateNum>
+		<MDate type="strtime">09/02/1998 18h22</MDate>
+		<MDateNum type="time">887044966</MDateNum>
+		<Nom>GAP_AUTO_METHO</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">407</NumOrdre>
+		<Id type="num">22484</Id>
+		<CDate type="strtime">04/04/1997 13h24</CDate>
+		<CDateNum type="time">860153058</CDateNum>
+		<MDate type="strtime">23/04/1997 10h38</MDate>
+		<MDateNum type="time">861784713</MDateNum>
+		<Nom>GAP_CNTRL_COMPO</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">408</NumOrdre>
+		<Id type="num">20227</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_DIVERS1</Nom>
+		<Valeur>Autre:GDCS:GDCD:TH-CSF/RCM:D.E.:MATRA:TH-CSF/RAD:TH-CSF/TTD:HUREL-DUBOIS:AIA/CP:TH-CSF/SDC</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">409</NumOrdre>
+		<Id type="num">20228</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_DIVERS2</Nom>
+		<Valeur>Autre:Accepté:Disponible:Prêt</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">410</NumOrdre>
+		<Id type="num">20229</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_DIVERS3</Nom>
+		<Valeur>Autre:Chez le client:Retour client:Stock état:Compte d'emploi:Mis à disposition</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">411</NumOrdre>
+		<Id type="num">20230</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">13/05/1997 10h49</MDate>
+		<MDateNum type="time">863513375</MDateNum>
+		<Nom>GAP_ETAT</Nom>
+		<Valeur>Autre:RAS:Panne:Rétrofit:Rechange:Rebut:Non Avionnable</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">412</NumOrdre>
+		<Id type="num">31284</Id>
+		<CDate type="strtime">05/06/1998 11h54</CDate>
+		<CDateNum type="time">897040473</CDateNum>
+		<MDate type="strtime">05/06/1998 11h54</MDate>
+		<MDateNum type="time">897040473</MDateNum>
+		<Nom>GAP_HERIT_CS</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">413</NumOrdre>
+		<Id type="num">20231</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_L_DATES</Nom>
+		<Valeur>Date lancement suivi:Date début panne:Date fin panne:Date transfert propriété:Date limite garantie</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">414</NumOrdre>
+		<Id type="num">20232</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_L_SUIVI</Nom>
+		<Valeur>Suivi</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">415</NumOrdre>
+		<Id type="num">20233</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_DIVERS1</Nom>
+		<Valeur>Propiétaire</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">416</NumOrdre>
+		<Id type="num">20234</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_DIVERS2</Nom>
+		<Valeur>Statut TH/CSF</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">417</NumOrdre>
+		<Id type="num">20235</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_DIVERS3</Nom>
+		<Valeur>Statut hors TH/CSF</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">418</NumOrdre>
+		<Id type="num">20236</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_LIBRE1</Nom>
+		<Valeur>Nº fiche suiveuse</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">419</NumOrdre>
+		<Id type="num">20245</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_LIBRE10</Nom>
+		<Valeur>V/R marquage</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">420</NumOrdre>
+		<Id type="num">20246</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_LIBRE11</Nom>
+		<Valeur>EC/RCL</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">421</NumOrdre>
+		<Id type="num">20247</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_LIBRE12</Nom>
+		<Valeur>Bloc Ident. client</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">422</NumOrdre>
+		<Id type="num">20248</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_LIBRE13</Nom>
+		<Valeur>Nº série client</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">423</NumOrdre>
+		<Id type="num">20249</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_LIBRE14</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">424</NumOrdre>
+		<Id type="num">20237</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_LIBRE2</Nom>
+		<Valeur>RCI</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">425</NumOrdre>
+		<Id type="num">20238</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_LIBRE3</Nom>
+		<Valeur>Ind. plan 001</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">426</NumOrdre>
+		<Id type="num">20239</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_LIBRE4</Nom>
+		<Valeur>Ind. plan 030</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">427</NumOrdre>
+		<Id type="num">20240</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_LIBRE5</Nom>
+		<Valeur>Ind. plan 040</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">428</NumOrdre>
+		<Id type="num">20241</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_LIBRE6</Nom>
+		<Valeur>Ind. plan 041</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">429</NumOrdre>
+		<Id type="num">20242</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_LIBRE7</Nom>
+		<Valeur>Ind. plan 050</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">430</NumOrdre>
+		<Id type="num">20243</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_LIBRE8</Nom>
+		<Valeur>Ind. plan 051</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">431</NumOrdre>
+		<Id type="num">20244</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GAP_M_LIBRE9</Nom>
+		<Valeur>Racine marquage</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">432</NumOrdre>
+		<Id type="num">22443</Id>
+		<CDate type="strtime">03/04/1997 09h30</CDate>
+		<CDateNum type="time">860052632</CDateNum>
+		<MDate type="strtime">03/04/1997 09h30</MDate>
+		<MDateNum type="time">860052642</MDateNum>
+		<Nom>GAT_NEW_OPTIONS</Nom>
+		<Valeur>2</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">433</NumOrdre>
+		<Id type="num">37440</Id>
+		<CDate type="strtime">28/09/2004 15h32</CDate>
+		<CDateNum type="time">1096378349</CDateNum>
+		<MDate type="strtime">08/01/2007 11h14</MDate>
+		<MDateNum type="time">1168251272</MDateNum>
+		<Nom>GDO_CLASSIF</Nom>
+		<Valeur>NC:CI:CS:RS:SD:CD:DR:CG:CDGR:CDSF:CIGR:CONF:CE</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">434</NumOrdre>
+		<Id type="num">20224</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GDO_DIVERS1</Nom>
+		<Valeur>Hors CDRL:Livrable:Consultable</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">435</NumOrdre>
+		<Id type="num">20225</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GDO_L_DATES</Nom>
+		<Valeur>Date:Date de validation:Date contractuelle</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">436</NumOrdre>
+		<Id type="num">20223</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GDO_M_DIVERS1</Nom>
+		<Valeur>Statut CDRL</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">437</NumOrdre>
+		<Id type="num">31385</Id>
+		<CDate type="strtime">25/06/1998 15h55</CDate>
+		<CDateNum type="time">898782912</CDateNum>
+		<MDate type="strtime">28/09/2004 14h56</MDate>
+		<MDateNum type="time">1096376182</MDateNum>
+		<Nom>GDO_REF</Nom>
+		<Valeur>THALES:D.E.:MATRA:ETAT:D.A.:AUTRE:SEC SPECIAL CN:SEC SPECIAL RM</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">438</NumOrdre>
+		<Id type="num">14242</Id>
+		<CDate type="strtime">14/12/1995 09h55</CDate>
+		<CDateNum type="time">818931358</CDateNum>
+		<MDate type="strtime">27/02/1997 14h43</MDate>
+		<MDateNum type="time">857050980</MDateNum>
+		<Nom>GDO_REFERENTIEL</Nom>
+		<Valeur>Autre:Référentiel fonctionnel:Référentiel développement:Référentiel production:Conception:Qualification:Fabrication/Contrôle/Essai:Soutien:Management</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">439</NumOrdre>
+		<Id type="num">37439</Id>
+		<CDate type="strtime">28/09/2004 15h31</CDate>
+		<CDateNum type="time">1096378284</CDateNum>
+		<MDate type="strtime">29/09/2004 16h51</MDate>
+		<MDateNum type="time">1096469482</MDateNum>
+		<Nom>GDO_TYPE</Nom>
+		<Valeur>Autre:STDM:CCTP:ST:ICD:SSS:STB.B1:STB.B2:STB.B3:STB.B5:PE:STI:CR:CRA:CRVS:Plan:PTVS:PVS:SSDD:CPA:PROP.:Marché:BdC:OdS:DJD:FM</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">440</NumOrdre>
+		<Id type="num">26182</Id>
+		<CDate type="strtime">09/02/1998 18h37</CDate>
+		<CDateNum type="time">887045867</CDateNum>
+		<MDate type="strtime">09/02/1998 18h37</MDate>
+		<MDateNum type="time">887045867</MDateNum>
+		<Nom>GEP_AUTO_APPLIC</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">441</NumOrdre>
+		<Id type="num">18589</Id>
+		<CDate type="strtime">09/09/1996 21h57</CDate>
+		<CDateNum type="time">842299050</CDateNum>
+		<MDate type="strtime">18/03/1997 09h51</MDate>
+		<MDateNum type="time">858675083</MDateNum>
+		<Nom>GEP_AUTO_EFFECT</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">442</NumOrdre>
+		<Id type="num">32256</Id>
+		<CDate type="strtime">02/12/1998 15h43</CDate>
+		<CDateNum type="time">912609810</CDateNum>
+		<MDate type="strtime">02/12/1998 15h43</MDate>
+		<MDateNum type="time">912609810</MDateNum>
+		<Nom>GEP_CLASSE</Nom>
+		<Valeur>Indéterminée:Sans FE client:Avec FE client</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">443</NumOrdre>
+		<Id type="num">20250</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GEP_CNTR_DATES</Nom>
+		<Valeur>!::::</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">444</NumOrdre>
+		<Id type="num">20251</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GEP_LABEL_SGN</Nom>
+		<Valeur>MO:EP:BE</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">445</NumOrdre>
+		<Id type="num">20252</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">18/03/1997 09h52</MDate>
+		<MDateNum type="time">858675155</MDateNum>
+		<Nom>GEP_L_DATES</Nom>
+		<Valeur>Date émission:Date visa MO:Date visa EP:Date visa BE:Date décision CCB:Date diffusion ECN:Date objectif MAJ PBL:Date MAJ Réelle PBL:Date signature RCA1:Date signature RCA2:Date signature RCA3:Date signature RCA4:Date signature RCA5</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">446</NumOrdre>
+		<Id type="num">20253</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>GEP_L_SUIVI</Nom>
+		<Valeur>Approbations et jalons</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">447</NumOrdre>
+		<Id type="num">22024</Id>
+		<CDate type="strtime">18/03/1997 09h50</CDate>
+		<CDateNum type="time">858675019</CDateNum>
+		<MDate type="strtime">18/03/1997 09h50</MDate>
+		<MDateNum type="time">858675048</MDateNum>
+		<Nom>GEP_M_CRITERES</Nom>
+		<Valeur>Mise à jour DD</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">448</NumOrdre>
+		<Id type="num">32255</Id>
+		<CDate type="strtime">02/12/1998 15h43</CDate>
+		<CDateNum type="time">912609810</CDateNum>
+		<MDate type="strtime">02/12/1998 15h43</MDate>
+		<MDateNum type="time">912609810</MDateNum>
+		<Nom>GEP_TYPE_PUBLIC</Nom>
+		<Valeur>0:0:1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">449</NumOrdre>
+		<Id type="num">37</Id>
+		<CDate type="strtime">21/12/1993 13h50</CDate>
+		<CDateNum type="time">756478246</CDateNum>
+		<MDate type="strtime">21/12/1993 13h52</MDate>
+		<MDateNum type="time">756478322</MDateNum>
+		<Nom>GFE_ACCORD_NEC</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">450</NumOrdre>
+		<Id type="num">34</Id>
+		<CDate type="strtime">21/12/1993 13h50</CDate>
+		<CDateNum type="time">756478246</CDateNum>
+		<MDate type="strtime">21/12/1993 13h52</MDate>
+		<MDateNum type="time">756478322</MDateNum>
+		<Nom>GFE_DECISION</Nom>
+		<Valeur>Non diffusée:En étude:Acceptée:Abandonnée:Refusée:Notifiée</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">451</NumOrdre>
+		<Id type="num">24230</Id>
+		<CDate type="strtime">18/07/1997 13h17</CDate>
+		<CDateNum type="time">869224667</CDateNum>
+		<MDate type="strtime">18/07/1997 13h17</MDate>
+		<MDateNum type="time">869224667</MDateNum>
+		<Nom>GFE_DECIS_FILLE</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">452</NumOrdre>
+		<Id type="num">18714</Id>
+		<CDate type="strtime">20/09/1996 11h12</CDate>
+		<CDateNum type="time">843210766</CDateNum>
+		<MDate type="strtime">20/09/1996 11h13</MDate>
+		<MDateNum type="time">843210835</MDateNum>
+		<Nom>GFE_RDO</Nom>
+		<Valeur>62</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">453</NumOrdre>
+		<Id type="num">36</Id>
+		<CDate type="strtime">21/12/1993 13h50</CDate>
+		<CDateNum type="time">756478246</CDateNum>
+		<MDate type="strtime">21/12/1993 13h52</MDate>
+		<MDateNum type="time">756478322</MDateNum>
+		<Nom>GFE_RESP_DECIS</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">454</NumOrdre>
+		<Id type="num">35</Id>
+		<CDate type="strtime">21/12/1993 13h50</CDate>
+		<CDateNum type="time">756478246</CDateNum>
+		<MDate type="strtime">21/12/1993 13h52</MDate>
+		<MDateNum type="time">756478322</MDateNum>
+		<Nom>GFE_TDOC_LIES</Nom>
+		<Valeur>CT:CDC:STDM:Autres</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">455</NumOrdre>
+		<Id type="num">26184</Id>
+		<CDate type="strtime">09/02/1998 18h37</CDate>
+		<CDateNum type="time">887045867</CDateNum>
+		<MDate type="strtime">09/02/1998 18h37</MDate>
+		<MDateNum type="time">887045867</MDateNum>
+		<Nom>GFI_AUTO_APPLIC</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">456</NumOrdre>
+		<Id type="num">26183</Id>
+		<CDate type="strtime">09/02/1998 18h37</CDate>
+		<CDateNum type="time">887045867</CDateNum>
+		<MDate type="strtime">09/02/1998 18h37</MDate>
+		<MDateNum type="time">887045867</MDateNum>
+		<Nom>GFI_AUTO_EFFECT</Nom>
+		<Valeur>1</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">457</NumOrdre>
+		<Id type="num">18713</Id>
+		<CDate type="strtime">20/09/1996 11h12</CDate>
+		<CDateNum type="time">843210756</CDateNum>
+		<MDate type="strtime">15/03/1999 14h32</MDate>
+		<MDateNum type="time">921504752</MDateNum>
+		<Nom>GFT_RDO</Nom>
+		<Valeur>0</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">458</NumOrdre>
+		<Id type="num">20473</Id>
+		<CDate type="strtime">03/02/1997 14h19</CDate>
+		<CDateNum type="time">854975972</CDateNum>
+		<MDate type="strtime">16/05/1997 18h00</MDate>
+		<MDateNum type="time">863798419</MDateNum>
+		<Nom>GRE_ETAT</Nom>
+		<Valeur>En cours:Livré:Soldé:Appliqué:Non appliqué:Incoherent</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">459</NumOrdre>
+		<Id type="num">36115</Id>
+		<CDate type="strtime">11/02/2002 18h16</CDate>
+		<CDateNum type="time">1013447809</CDateNum>
+		<MDate type="strtime">11/02/2002 18h16</MDate>
+		<MDateNum type="time">1013447809</MDateNum>
+		<Nom>GRS_M_TXT1</Nom>
+		<Valeur>Num. portable</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">460</NumOrdre>
+		<Id type="num">36116</Id>
+		<CDate type="strtime">11/02/2002 18h17</CDate>
+		<CDateNum type="time">1013447874</CDateNum>
+		<MDate type="strtime">11/02/2002 18h17</MDate>
+		<MDateNum type="time">1013447874</MDateNum>
+		<Nom>GRS_M_TXT2</Nom>
+		<Valeur>Fax</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">461</NumOrdre>
+		<Id type="num">36117</Id>
+		<CDate type="strtime">11/02/2002 18h18</CDate>
+		<CDateNum type="time">1013447922</CDateNum>
+		<MDate type="strtime">11/02/2002 18h18</MDate>
+		<MDateNum type="time">1013447922</MDateNum>
+		<Nom>GRS_M_TXT3</Nom>
+		<Valeur>Titre</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">462</NumOrdre>
+		<Id type="num">21981</Id>
+		<CDate type="strtime">17/03/1997 18h32</CDate>
+		<CDateNum type="time">858619928</CDateNum>
+		<MDate type="strtime">17/03/1997 18h32</MDate>
+		<MDateNum type="time">858619928</MDateNum>
+		<Nom>ICA_IMP_CMD</Nom>
+		<Valeur>:$ATS_LOCAL/bin/ats_get_marius %s</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">463</NumOrdre>
+		<Id type="num">21982</Id>
+		<CDate type="strtime">17/03/1997 18h32</CDate>
+		<CDateNum type="time">858619946</CDateNum>
+		<MDate type="strtime">17/03/1997 18h32</MDate>
+		<MDateNum type="time">858619946</MDateNum>
+		<Nom>ICA_IMP_SUPPORT</Nom>
+		<Valeur>Fichier:VMS/MARIUS</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">464</NumOrdre>
+		<Id type="num">38</Id>
+		<CDate type="strtime">21/12/1993 13h50</CDate>
+		<CDateNum type="time">756478246</CDateNum>
+		<MDate type="strtime">21/12/1993 13h52</MDate>
+		<MDateNum type="time">756478322</MDateNum>
+		<Nom>IFE_LABEL_INC</Nom>
+		<Valeur>Performances:Interchangeabilité:Interface avion:Moyens de développement:Fiabilité:Maintenance:Sécurité:Soutien logistique:documentation:Industrialisation:Série</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">465</NumOrdre>
+		<Id type="num">39</Id>
+		<CDate type="strtime">21/12/1993 13h50</CDate>
+		<CDateNum type="time">756478246</CDateNum>
+		<MDate type="strtime">21/12/1993 13h52</MDate>
+		<MDateNum type="time">756478322</MDateNum>
+		<Nom>IFE_LABEL_PROTO</Nom>
+		<Valeur>P01:P02:P03:P04:P05:P06:P07:P08:P09:P10:P11:P12:Série</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">466</NumOrdre>
+		<Id type="num">33</Id>
+		<CDate type="strtime">21/12/1993 13h50</CDate>
+		<CDateNum type="time">756478246</CDateNum>
+		<MDate type="strtime">10/11/1994 17h22</MDate>
+		<MDateNum type="time">784484571</MDateNum>
+		<Nom>IFE_LABEL_SGN</Nom>
+		<Valeur>REDACTEUR:MO:EQUIPEMENTIER:DA:AUTRE SIGNATAIRE:AUTRE SIGNATAIRE:AUTRE SIGNATAIRE</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">467</NumOrdre>
+		<Id type="num">20254</Id>
+		<CDate type="strtime">24/12/1996 11h36</CDate>
+		<CDateNum type="time">851423760</CDateNum>
+		<MDate type="strtime">24/12/1996 11h36</MDate>
+		<MDateNum type="time">851423760</MDateNum>
+		<Nom>IPR_GAP_SCALE</Nom>
+		<Valeur>75</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">468</NumOrdre>
+		<Id type="num">7438</Id>
+		<CDate type="strtime">05/04/1995 17h45</CDate>
+		<CDateNum type="time">797096705</CDateNum>
+		<MDate type="strtime">05/04/1995 19h05</MDate>
+		<MDateNum type="time">797101510</MDateNum>
+		<Nom>PSC_VISA_NON</Nom>
+		<Valeur/>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">469</NumOrdre>
+		<Id type="num">7437</Id>
+		<CDate type="strtime">05/04/1995 17h44</CDate>
+		<CDateNum type="time">797096670</CDateNum>
+		<MDate type="strtime">05/04/1995 19h04</MDate>
+		<MDateNum type="time">797101494</MDateNum>
+		<Nom>PSC_VISA_OUI</Nom>
+		<Valeur>.</Valeur>
+		<Commentaire/>
+	</Object>
+	<Object>
+		<NumOrdre type="num">470</NumOrdre>
+		<Id type="num">33945</Id>
+		<CDate type="strtime">20/12/1999 12h16</CDate>
+		<CDateNum type="time">945688615</CDateNum>
+		<MDate type="strtime">20/12/1999 12h16</MDate>
+		<MDateNum type="time">945688615</MDateNum>
+		<Nom>SYS_FORMDATE</Nom>
+		<Valeur>%d / %m / %Y</Valeur>
+		<Commentaire/>
+	</Object>
+</Objects_list>
