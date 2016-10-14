@@ -1,9 +1,12 @@
 #include "filereader.h"
 #include "datamanager.h"
 #include <QFile>
+#include <QDate>
 
 //Constructeur
-FileReader::FileReader(DataManager *dataManager, const QString &fileName):dataManager(dataManager), fileName(fileName)
+FileReader::FileReader(DataManager *dataManager, const QString &fileName):
+    dataManager(dataManager),
+    fileName(fileName)
 {
 
 }
@@ -68,6 +71,11 @@ void FileReader::handlesBlock(const QString &keyBlock, const QString &mapName)
     // Lecture d'un block
     QString baliseName;
     QString baliseData;
+    QDate initialDate;
+    QDate date;
+    QString dateString;
+    int nameInt;
+    int days;
     QString key;
     QString type;
     QMap<QString, QString> mapTemp;
@@ -118,6 +126,16 @@ void FileReader::handlesBlock(const QString &keyBlock, const QString &mapName)
             baliseData = reader.readElementText();
             if(!type.isEmpty())
             {
+                //Cas particulier pour la conversion de la date
+                if(type == "time")
+                {
+                    initialDate = QDate::fromString("01011970","ddMMyyyy");
+                    nameInt = baliseData.toInt();
+                    days = nameInt/86400;
+                    date = initialDate.addDays(days);
+                    dateString = date.toString();
+                    baliseData = dateString;
+                }
                 mapTemp.insert(baliseName, type);
             }
             else if(type.isEmpty())

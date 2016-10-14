@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Objects_list>
+	<Object>
+		<NumOrdre>1</NumOrdre>
+		<CodeObjet>GVE</CodeObjet>
+		<ActionsParDefaut>LE</ActionsParDefaut>
+		<ActionsEnModif>LECMD</ActionsEnModif>
+		<ActionsEnAdmin>LECMDI</ActionsEnAdmin>
+		<NomObjet>Variables d'environnement</NomObjet>
+		<NomConfStd>*standard</NomConfStd>
+		<NomConfXML>*>GVE_Export_xml.txt</NomConfXML>
+		<NomFichierXML>GVE_Export.xml</NomFichierXML>
+	</Object>
+	<Object>
+		<NumOrdre>2</NumOrdre>
+		<CodeObjet>GCA</CodeObjet>
+		<ActionsParDefaut>LCE</ActionsParDefaut>
+		<ActionsEnModif>LECMD</ActionsEnModif>
+		<ActionsEnAdmin>LECMDI</ActionsEnAdmin>
+		<NomObjet>Configurations d'attributs</NomObjet>
+		<NomConfStd>*standard</NomConfStd>
+		<NomConfXML>*>GCA_Export_xml.txt</NomConfXML>
+		<NomFichierXML>GCA_Export.xml</NomFichierXML>
+	</Object>
+	<Object>
+		<NumOrdre>3</NumOrdre>
+		<CodeObjet>GAT</CodeObjet>
+		<ActionsParDefaut>LE</ActionsParDefaut>
+		<ActionsEnModif>LEM</ActionsEnModif>
+		<ActionsEnAdmin>LECMDI</ActionsEnAdmin>
+		<NomObjet>Attributs</NomObjet>
+		<NomConfStd>*standard</NomConfStd>
+		<NomConfXML>*>GAT_Export_xml.txt</NomConfXML>
+		<NomFichierXML>GAT_Export.xml</NomFichierXML>
+	</Object>
+	<Object>
+		<NumOrdre>4</NumOrdre>
+		<CodeObjet>GRS</CodeObjet>
+		<ActionsParDefaut>LE</ActionsParDefaut>
+		<ActionsEnModif>LECMD</ActionsEnModif>
+		<ActionsEnAdmin>LECMDI</ActionsEnAdmin>
+		<NomObjet>Responsables</NomObjet>
+		<NomConfStd>*standard</NomConfStd>
+		<NomConfXML>*>GRS_Export_xml.txt</NomConfXML>
+		<NomFichierXML>GRS_Export.xml</NomFichierXML>
+	</Object>
+	<Object>
+		<NumOrdre>5</NumOrdre>
+		<CodeObjet>GDO</CodeObjet>
+		<ActionsParDefaut>LE</ActionsParDefaut>
+		<ActionsEnModif>LECMD</ActionsEnModif>
+		<ActionsEnAdmin>LECMDI</ActionsEnAdmin>
+		<NomObjet>Documents</NomObjet>
+		<NomConfStd>*standard</NomConfStd>
+		<NomConfXML>*>GDO_Export_xml.txt</NomConfXML>
+		<NomFichierXML>GDO_Export.xml</NomFichierXML>
+	</Object>
+</Objects_list>
