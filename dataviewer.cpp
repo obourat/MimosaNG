@@ -4,13 +4,14 @@
 #include "datamanager.h"
 #include "optionsviewer.h"
 #include "filereader.h"
+#include "descriptivecard.h"
+#include "searchcard.h"
 
 #include <QSortFilterProxyModel>
 #include <QtGui>
 
 //Constructeur
-DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent) : dataManager(dataManager),
-    QDialog(parent),
+DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent) :dataManager(dataManager), QDialog(parent),
     ui(new Ui::DataViewer)
 {
     //On instancie la fenêtre
@@ -25,8 +26,12 @@ DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QStrin
 
     //On associe les données du model au proxyModel
     proxyModel->setSourceModel(myModel);
+
     //On associe la vue au modèle contenu dans le proxyModel
     ui->tableView->setModel(proxyModel);
+
+    //On autorise les colonnes a être déplacées
+    ui->tableView->horizontalHeader()->setMovable(true);
 
     //On ajuste la taille des colonnes au contenu
     ui->tableView->resizeColumnsToContents();
@@ -39,6 +44,12 @@ DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QStrin
     connect(ui->tableView, SIGNAL(customContextMenuRequested(QPoint)),this, SLOT(customMenuRequested(QPoint)));
 
     QString currentConfigName;
+
+    QAbstractItemModel* tableModel = ui->tableView->model();
+    columnCount = tableModel->columnCount();
+    rowCount = tableModel->rowCount();
+    ui->tableView->setColumnHidden(--columnCount, true);
+
 
     //On met à jour le nom de la fenêtre en fonction du code objet, et le nom de la configuration courante dans le label associé
     if(this->codeObject == "GCA")
@@ -72,8 +83,19 @@ DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QStrin
         //ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
     }
 
+    QString rows = QString::number(rowCount);
+
+    ui->infoNbObject->setText("Nombre d'objets: "+rows);
+
+    rowsDisplayed = rowCount;
+
+    //Permet de minimiser la fenêtre
+    Qt::WindowFlags flags = Qt::Window | Qt::WindowSystemMenuHint| Qt::WindowMinimizeButtonHint| Qt::WindowCloseButtonHint;
+    this->setWindowFlags(flags);
 
 }
+
+
 
 //Destructeur
 DataViewer::~DataViewer()
@@ -83,6 +105,8 @@ DataViewer::~DataViewer()
 
 void DataViewer::customMenuRequested(QPoint pos)
 {
+    keysList.clear();
+
     QModelIndex index = ui->tableView->indexAt(pos);
 #if 0
     //On compte le nombre de lignes sélectionnées
@@ -114,15 +138,38 @@ void DataViewer::customMenuRequested(QPoint pos)
         keysList.append(key);
     }
 
-    QMenu *menu = new QMenu(this);
-    QAction *changeCurrentConfig = new QAction("Voir les configurations d'attribut du type d'objet", this);
-    QAction *changeCurrentConfigAttributes = new QAction("Lister les attributs de la configuration courante", this);
+    QMenu* menu = new QMenu(this);
+    QAction* changeCurrentConfig = new QAction("Voir les configurations d'attribut du type d'objet", this);
+    QAction* changeCurrentConfigAttributes = new QAction("Lister les attributs de la configuration courante", this);
+    QMenu* selection = menu->addMenu("Selectionner");
+    QAction* subList = selection->addAction("Sous-Liste");
+    QAction* total = selection->addAction("Totalite");
+    QMenu* manually = selection->addMenu("Manuellement");
+    QAction* validateSelection = manually->addAction("Valider la selection");
+    QAction* hideSelection = manually->addAction("Cacher la selection");
+    QAction* resetSelection = menu->addAction("Rafraichir");
+
     menu->addAction(changeCurrentConfig);
     menu->addAction(changeCurrentConfigAttributes);
+
+    if(keysList.length() == 1)
+    {
+        QMenu *displayDescriptiveCardMenu = menu->addMenu("Afficher la fiche descriptive de l'objet selectionne");
+        QAction* displayDescriptiveCardComplete = displayDescriptiveCardMenu->addAction("Fiche complete");
+        QAction* displayDescriptiveCardCurrent = displayDescriptiveCardMenu->addAction("Fiche de la configuration courante");
+        connect(displayDescriptiveCardCurrent, SIGNAL(triggered()), this, SLOT(onDisplayDescriptiveCardButtonTriggered()));
+        connect(displayDescriptiveCardComplete, SIGNAL(triggered()), this, SLOT(onDisplayDescriptiveCardCompleteButtonTriggered()));
+    }
+
     menu->popup(ui->tableView->viewport()->mapToGlobal(pos));
 
     connect(changeCurrentConfig, SIGNAL(triggered()), this, SLOT(onChangeCurrentConfigButtonTriggered()));
     connect(changeCurrentConfigAttributes, SIGNAL(triggered()), this, SLOT(onChangeCurrentConfigAttributesButtonTriggered()));
+    connect(validateSelection, SIGNAL(triggered()), this, SLOT(onValidateSelectionButtonTriggered()));
+    connect(hideSelection, SIGNAL(triggered()), this, SLOT(onHideSelectionButtonTriggered()));
+    connect(resetSelection, SIGNAL(triggered()), this, SLOT(onResetSelectionButtonTriggered()));
+    connect(total, SIGNAL(triggered()), this, SLOT(onTotalSelectionButtonTriggered()));
+    connect(subList, SIGNAL(triggered()), this, SLOT(onSubListButtonTriggered()));
 
 }
 
@@ -140,5 +187,124 @@ void DataViewer::onChangeCurrentConfigAttributesButtonTriggered()
     //On instancie une vue optionsViewer en rentrant les valeurs données par le dataManager en utilisant les méthodes spécifiques aux options
     optionsViewerCurrentConfigAttributes = new OptionsViewer(codeObject, dataManager, dataManager->getSmallMapsFromMapNameOptions("mapGAT","GAT", codeObject),"attributes", this);
     optionsViewerCurrentConfigAttributes->exec();
+}
+
+void DataViewer::onDisplayDescriptiveCardButtonTriggered()
+{
+    //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
+    descriptiveCard = new DescriptiveCard(dataManager, codeObject, keysList[0],"current",this);
+    descriptiveCard->show();
+
+}
+
+void DataViewer::onDisplayDescriptiveCardCompleteButtonTriggered()
+{
+    //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
+    descriptiveCard = new DescriptiveCard(dataManager, codeObject, keysList[0],"complete",this);
+    descriptiveCard->show();
+}
+
+void DataViewer::onValidateSelectionButtonTriggered()
+{
+    QString testedKey;
+    for(int k=0; k!= rowCount; ++k)
+    {
+        for(int l=0; l !=keysList.count(); ++l)
+        {
+            testedKey = ui->tableView->model()->data(ui->tableView->model()->index(k,columnCount)).toString();
+            if( testedKey == keysList[l])
+            {
+                ui->tableView->showRow(k);
+                break;
+            }
+            else
+            {
+                ui->tableView->hideRow(k);
+            }
+
+        }
+    }
+    QString rows = QString::number(keysList.count());
+    ui->infoNbObject->setText("Nombre d'objets: "+rows);
+}
+
+void DataViewer::onHideSelectionButtonTriggered()
+{
+    QString testedKey;
+    for(int k=0; k!= rowCount; ++k)
+    {
+        for(int l=0; l !=keysList.count(); ++l)
+        {
+            testedKey = ui->tableView->model()->data(ui->tableView->model()->index(k,columnCount)).toString();
+            if( testedKey == keysList[l])
+            {
+                ui->tableView->hideRow(k);
+                break;
+            }
+            else
+            {
+                ui->tableView->showRow(k);
+            }
+
+        }
+    }
+    rowsDisplayed = rowsDisplayed - keysList.count();
+    QString rows = QString::number(rowsDisplayed);
+    ui->infoNbObject->setText("Nombre d'objets: "+rows);
+}
+
+void DataViewer::onResetSelectionButtonTriggered()
+{
+    for(int k=0; k!= rowCount; ++k)
+    {
+        ui->tableView->showRow(k);
+    }
+
+    QString rows = QString::number(rowCount);
+    ui->infoNbObject->setText("Nombre d'objets: "+rows);
+}
+
+void DataViewer::onTotalSelectionButtonTriggered()
+{
+    ui->tableView->selectAll();
+}
+
+void DataViewer::onSubListButtonTriggered()
+{
+    searchCard = new SearchCard(dataManager, codeObject, keysList[0],this);
+    searchCard->exec();
+#warning manque le connecteur a la validation
+    //connect(searchCard, SIGNAL(accepted()), this, SLOT(getSearchResults()));
+
+    QList<QString> searchResults = searchCard->getSearchResults();
+
+    QString testedKey;
+    for(int k=0; k!= rowCount; ++k)
+    {
+        for(int l=0; l !=searchResults.count(); ++l)
+        {
+            testedKey = ui->tableView->model()->data(ui->tableView->model()->index(k,columnCount)).toString();
+            if( testedKey == searchResults[l])
+            {
+                ui->tableView->showRow(k);
+                break;
+            }
+            else
+            {
+                ui->tableView->hideRow(k);
+            }
+
+        }
+    }
+
+    QString rows = QString::number(keysList.count());
+    ui->infoNbObject->setText("Nombre d'objets: "+rows);
+
+}
+
+
+void DataViewer::getSearchResults()
+{
+    QList<QString> searchResults = searchCard->getSearchResults();
 }
 

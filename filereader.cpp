@@ -69,11 +69,20 @@ void FileReader::handlesBlock(const QString &keyBlock, const QString &mapName)
     QString baliseName;
     QString baliseData;
     QString key;
+    QString type;
     QMap<QString, QString> mapTemp;
 
     while(reader.readNextStartElement())
     {
         baliseName = reader.name().toString();
+        foreach(const QXmlStreamAttribute &attr, reader.attributes())
+        {
+            if (attr.name().toString() == QLatin1String("type"))
+            {
+                type = attr.value().toString();
+            }
+        }
+
         if(baliseName.isEmpty())
         {
             reader.skipCurrentElement();
@@ -90,13 +99,34 @@ void FileReader::handlesBlock(const QString &keyBlock, const QString &mapName)
             else
             {
                 key = keyData;
-                mapTemp.insert(baliseName, keyData);
+                if(!type.isEmpty())
+                {
+                    mapTemp.insert(baliseName, type);
+                }
+                else if(type.isEmpty())
+                {
+                    type = "string";
+                    mapTemp.insertMulti(baliseName, type);
+
+                }
+                mapTemp.insertMulti(baliseName, keyData);
+                type.clear();
             }
         }
         else
         {
             baliseData = reader.readElementText();
-            mapTemp.insert(baliseName, baliseData);
+            if(!type.isEmpty())
+            {
+                mapTemp.insert(baliseName, type);
+            }
+            else if(type.isEmpty())
+            {
+                type = "string";
+                mapTemp.insert(baliseName, type);
+            }
+            mapTemp.insertMulti(baliseName, baliseData);
+            type.clear();
         }
     }
     if(!key.isEmpty())

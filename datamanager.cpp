@@ -221,6 +221,30 @@ const QStringList DataManager::getAttributesOfCurrentConfig(const QString &objec
     return keys;
 }
 
+QStringList DataManager::getAttributesOfCurrentConfigNames(QStringList attributesKeyList)
+{
+    QString key;
+    QString codeObj;
+    QString numeroInterne;
+    QString infoInterne;
+    QString codeTitle;
+    QString title;
+    QStringList attributesNames;
+    for(int i=0;i!=attributesKeyList.length();++i)
+    {
+        key = attributesKeyList[i];
+        codeObj = mapGAT[key]["CodeObj"];
+        numeroInterne = mapGAT[key]["NumeroInterne"];
+        infoInterne = mapGAT[key]["InfoInterne"];
+
+        codeTitle = codeObj % numeroInterne % infoInterne;
+        title = mapConcordance[codeTitle];
+
+        attributesNames.append(title);
+    }
+    return attributesNames;
+}
+
 const QStringList DataManager::getAttributesOfExportConfig(const QString &objectType)
 {
     //On définit une liste de clés keys nous permettant de lister les clés des confs de l'objet objectType
@@ -294,11 +318,14 @@ const QList<QMap<QString, QString> > DataManager::getSmallMapsFromMapName(const 
 {
     //On définit une liste de maps<clé, valeur>
     QList<QMap<QString, QString> > maps;
+    QList<QMap<QString, QString> > mapsFinal;
+    QMap<QString, QString> mapTemp;
     //On définit une map selectedMap qui sera égale à la map sélectionnée
     const QMap<QString, QMap<QString, QString> >* selectedMap;
     //retourne la map correspondante au nom rentré par l'utilisateur (si ce nom est valide)
     selectedMap = getMapFromName(mapName);
-
+    //représente le nom de la clé dans chaque sous map de selectedMap, on différenciera les cas ci besoin
+    QString keyName = "Id";
     //Si la map est nulle
     if(selectedMap == NULL)
     {
@@ -313,8 +340,32 @@ const QList<QMap<QString, QString> > DataManager::getSmallMapsFromMapName(const 
         //On ajoute dans la liste maps les valeurs correpsondantes au contenu de la clé (la sous map)
         maps << selectedMap->value(iterator.key());
     }
+#warning fix this
+#if 0
+    for(int i=0; i<maps.length();++i)
+    {
+        mapTemp.clear();
+        QMap<QString, QString> elementOfMaps = maps[i];
+
+        QList<QString> valuesList = elementOfMaps.values();
+        QList<QString> keysList = elementOfMaps.keys();
+        for(int k=0; k != valuesList.length(); ++k)
+        {
+            valuesList.removeAt(k);
+            keysList.removeAt(k);
+        }
+        for(int l=0; l != valuesList.length(); ++l)
+        {
+            mapTemp.insert(keysList[l],valuesList[l]);
+        }
+        mapsFinal << mapTemp;
+
+
+    }
+#endif
+#warning fix this
     //On sélectionne dans maps les attributs que l'on veut afficher et on retourne le résultat
-    return selectAttributesOfSmallMapsList(maps, codeObject);
+    return selectAttributesOfSmallMapsList(maps, codeObject, keyName);
 
 }
 
@@ -328,6 +379,7 @@ const QList<QMap<QString, QString> > DataManager::getSmallMapsFromMapNameOptions
     QString currentConfigName;
     //retourne la map correspondante au nom rentré par l'utilisateur (si ce nom est valide)
     selectedMap = getMapFromName(mapName);
+    QString keyName = "Id";
 
     //Si la map est nulle
     if(selectedMap == NULL)
@@ -386,11 +438,11 @@ const QList<QMap<QString, QString> > DataManager::getSmallMapsFromMapNameOptions
 
     }
     //On sélectionne dans maps les attributs que l'on veut afficher et on retourne le résultat
-    return selectAttributesOfSmallMapsListOptions(maps, codeObject);
+    return selectAttributesOfSmallMapsListOptions(maps, codeObject, keyName);
 }
 
 
-const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsList(const QList<QMap<QString, QString> > maps, const QString codeObject)
+const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsList(const QList<QMap<QString, QString> > maps, const QString codeObject, const QString keyName)
 {
     QList<QMap<QString, QString> > mapsSelectedForCurrentConfig;
     QStringList attributesOfCurrentConfig = getAttributesOfCurrentConfig(codeObject);
@@ -438,7 +490,7 @@ const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsLis
                 mapTempOfSelectedAttributes.insert(nomAttributeDisplayed, valueAttributeSelected);
 
             }
-            //mapTempOfSelectedAttributes.insert("key", iteratorAttribute );
+            mapTempOfSelectedAttributes.insert("key", valueOfSmallMapSelected[keyName] );
 
         }
         //On stocke dans la nouvelle map tous les attributs de la configuration courante
@@ -449,7 +501,7 @@ const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsLis
 }
 
 
-const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsListOptions(const QList<QMap<QString, QString> > maps, const QString codeObject)
+const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsListOptions(const QList<QMap<QString, QString> > maps, const QString codeObject, const QString keyName)
 {
     QList<QMap<QString, QString> > mapsSelectedForCurrentConfig;
     QStringList attributesOfCurrentConfig = getAttributesOfExportConfig(codeObject);
@@ -549,6 +601,7 @@ const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsLis
 
 
         }
+        mapTempOfSelectedAttributes.insert("key", valueOfSmallMapSelected[keyName] );
         //On stocke dans la nouvelle map tous les attributs de la configuration courante
         mapsSelectedForCurrentConfig << mapTempOfSelectedAttributes;
     }
