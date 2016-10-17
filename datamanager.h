@@ -14,6 +14,8 @@ public:
     ~DataManager();
     // Permet d'insérer des données dans la map qui a pour nom mapName, qui a pour clé key, et on met la valeur map
     void insertDataToMap(const QString& mapName, const QString& key, const QMap<QString, QString>& map);
+    //Fonction qui remplace les données d'une clé
+    void replaceDataOfMap(const QString& mapName, const QString& key, const QString& valueToAdd, const QString smallKeyNameToReplace);
     //Fonction qui retourne la liste des clés pertinentes en fonction des critères de l'objet objectType (retourne les attributs de la configuration courante)
     const QStringList getAttributesOfCurrentConfig(const QString& objectType);
     //Fonction qui retourne le nom de des attributs de la configuration courante
@@ -34,6 +36,8 @@ public:
     const QString getCurrentConfigId(const QString currentConfigName, const QString mapName, const QString codeObject);
     //Prend en paramètre mapName et vérifie s'il il s'agit bien d'un nom de map, si oui, retourne la map correspondante, sinon, ne renvoie rien
     const QMap<QString, QMap<QString, QString> >* getMapFromName(const QString& mapName) const;
+    //Retourne pamConcordance
+    const QMap<QString, QString>* getMapConcordance() const;
     //Insère dans mapConcordance les valeurs pour chaque objet
     void setDataOfMapConcordance();
 
@@ -51,6 +55,9 @@ public:
     QString getCurrentConfigNameGVE() const;
     void setCurrentConfigNameGVE(const QString &value);
 
+    QString getCurrentConfigNameGDO() const;
+    void setCurrentConfigNameGDO(const QString &value);
+
 private:
 
 
@@ -60,6 +67,8 @@ private:
     QMap<QString, QMap<QString, QString> > mapGAT;
     QMap<QString, QMap<QString, QString> > mapGRS;
     QMap<QString, QMap<QString, QString> > mapGCS;
+    QMap<QString, QMap<QString, QString> > mapGDO;
+
     //Map qui possède comme clé un triplé codeObjet, numéroInterne, InfoInterne permettant d'accéder à la valeur de la balise de titre des attributs
     QMap<QString, QString> mapConcordance;
 
@@ -68,6 +77,7 @@ private:
     QString currentConfigNameGAT;
     QString currentConfigNameGRS;
     QString currentConfigNameGVE;
+    QString currentConfigNameGDO;
 };
 
 #endif // DATAMANAGER_H

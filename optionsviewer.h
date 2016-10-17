@@ -20,7 +20,7 @@ class OptionsViewer : public QDialog
     Q_OBJECT
 
 public:
-    explicit OptionsViewer(QString codeObject, DataManager *dataManager ,const QList<QMap<QString, QString> >& maps,QString selectedOption, QWidget *parent = 0);
+    explicit OptionsViewer(QString codeObject, DataManager *dataManager , DataViewer *dataViewer,const QList<QMap<QString, QString> >& maps,QString selectedOption, QWidget *parent = 0);
     ~OptionsViewer();
 public slots:
     void customMenuRequested(QPoint pos);
@@ -34,16 +34,17 @@ private slots:
     void onDisplayDescriptiveCardButtonTriggered();
     void onDisplayDescriptiveCardCompleteButtonTriggered();
 
+
 private:
     Ui::OptionsViewer *ui;
 
     Model *myOptionsModel;
     QSortFilterProxyModel *proxyOptionsModel;
+    QString codeObject;
     DataManager *dataManager;
     DataViewer *dataViewer;
     DescriptiveCard *descriptiveCard;
 
-    QString codeObject;
     QString currentConfigSelectedName;
     QString selectedOption;
     //Liste de clés associée aux objets sélectionnés

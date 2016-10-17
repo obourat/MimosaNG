@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include <QtGui/QWidget>
+#include <QSettings>
+#include <QModelIndex>
 
 namespace Ui {
 class DataViewer;
@@ -23,12 +25,14 @@ class DataViewer : public QDialog
 public:
     //Constructeur
     explicit DataViewer(DataManager *dataManager, const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent = 0);
+    void updateLayout();
     //Destructeur
     ~DataViewer();
 
 public slots:
     //Slot pour le menu
     void customMenuRequested(QPoint pos);
+    void customHeaderMenuRequested(QPoint pos);
 
 private slots:
     //Slots pour les bouttons du menu
@@ -42,6 +46,8 @@ private slots:
     void onTotalSelectionButtonTriggered();
     void onSubListButtonTriggered();
     void getSearchResults();
+    void onItemDoubleClicked();
+    void setColumnHidden();
 
 private:
     //User Interface
@@ -64,6 +70,8 @@ private:
     int rowCount;
     int columnCount;
     int rowsDisplayed;
+    QSettings mySetting;
+    int index;
 };
 
 #endif // DATAVIEWER_H

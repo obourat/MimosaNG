@@ -23,11 +23,15 @@ public:
     QList<QString> getSearchResults() const;
     void setSearchResults(const QList<QString> &value);
 
+    int getConfirmSearch() const;
+    void setConfirmSearch(int value);
+
 private slots:
     void on_buttonBox_accepted();
 
+
 private:
-    void setNewWidget(QString type, QString name);
+    void setNewWidget(QString type, QString name, QString nameAttributeSelected);
     QList<QString> searchMatches(const QMap<QString, QMap<QString, QString> >& map, const QMap<QString, QString >& mapSearch);
 
 private:
@@ -40,6 +44,7 @@ private:
     QMap<QString, QString> mapOfSearch;
     const QMap<QString, QMap<QString, QString> >* selectedMap;
     QList<QString> searchResults;
+    int confirmSearch;
 };
 
 #endif // SEARCHCARD_H
