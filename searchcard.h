@@ -30,8 +30,10 @@ private slots:
     void on_buttonBox_accepted();
 
 
+    void on_buttonBox_rejected();
+
 private:
-    void setNewWidget(QString type, QString name, QString nameAttributeSelected);
+    void setNewWidget(QString type, QString var, QString name, QString nameAttributeSelected);
     QList<QString> searchMatches(const QMap<QString, QMap<QString, QString> >& map, const QMap<QString, QString >& mapSearch);
 
 private:
@@ -42,6 +44,7 @@ private:
     QString key;
     QString valueOfEditedLine;
     QMap<QString, QString> mapOfSearch;
+    const QMap<QString, QMap<QString, QString> >* mapGVE;
     const QMap<QString, QMap<QString, QString> >* selectedMap;
     QList<QString> searchResults;
     int confirmSearch;
