@@ -20,7 +20,7 @@ public:
     ~DescriptiveCard();
 
 private:
-    void setNewWidget(QString type, QString name, QString value);
+    void setNewWidget(QString type, QString name, QString value, QString nameAttributeSelected);
 private:
     Ui::DescriptiveCard *ui;
 

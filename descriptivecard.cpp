@@ -10,10 +10,13 @@
 #include <QSlider>
 #include <QRadioButton>
 #include <QPushButton>
+#include <QDate>
 
-DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, QString key, QString selection, QWidget *parent) : dataManager(dataManager),
+DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, QString key, QString selection, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::DescriptiveCard)
+    ui(new Ui::DescriptiveCard),
+    dataManager(dataManager)
+
 {
     ui->setupUi(this);
 
@@ -24,12 +27,14 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, Q
     QString value;
     QString name;
     QStringList attributesOfCurrentConfig;
+    QStringList attributesOfExportConfig;
     QStringList attributeNamesOfCurrentConfig;
 
     if(codeObject == "GAT")
     {
         this->setWindowTitle("Fiche descriptive d'Attribut");
         selectedMap = dataManager->getMapFromName("mapGAT");
+        attributesOfExportConfig = dataManager->getAttributesOfExportConfig("GAT");
 
         if(selection == "current")
         {
@@ -46,6 +51,7 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, Q
     {
         this->setWindowTitle("Fiche descriptive de Configuration d'Attribut");
         selectedMap = dataManager->getMapFromName("mapGCA");
+        attributesOfExportConfig = dataManager->getAttributesOfExportConfig("GCA");
 
         if(selection == "current")
         {
@@ -62,6 +68,7 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, Q
     {
         this->setWindowTitle("Fiche descriptive de Responsable");
         selectedMap = dataManager->getMapFromName("mapGRS");
+        attributesOfExportConfig = dataManager->getAttributesOfExportConfig("GRS");
 
         if(selection == "current")
         {
@@ -78,10 +85,11 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, Q
     {
         this->setWindowTitle("Fiche descriptive de Variable d'Environnement");
         selectedMap = dataManager->getMapFromName("mapGVE");
+        attributesOfExportConfig = dataManager->getAttributesOfExportConfig("GVE");
 
         if(selection == "current")
         {
-            ui->label->setText("Fiche de variable d'environnement' pour la configuration courante: "+dataManager->getCurrentConfigNameGAT());
+            ui->label->setText("Fiche de variable d'environnement pour la configuration courante: "+dataManager->getCurrentConfigNameGAT());
         }
         else if(selection == "complete")
         {
@@ -90,40 +98,84 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, Q
 
         attributesOfCurrentConfig = dataManager->getAttributesOfCurrentConfig("GVE");
     }
+    else if(codeObject == "GDO")
+    {
+        this->setWindowTitle("Fiche descriptive de Document");
+        selectedMap = dataManager->getMapFromName("mapGDO");
+        attributesOfExportConfig = dataManager->getAttributesOfExportConfig("GDO");
+
+        if(selection == "current")
+        {
+            ui->label->setText("Fiche de document pour la configuration courante: "+dataManager->getCurrentConfigNameGDO());
+        }
+        else if(selection == "complete")
+        {
+            ui->label->setText("Fiche complete de document");
+        }
+
+        attributesOfCurrentConfig = dataManager->getAttributesOfCurrentConfig("GDO");
+    }
+
 
     mapsOfKey = selectedMap->value(key);
 
     attributeNamesOfCurrentConfig = dataManager->getAttributesOfCurrentConfigNames(attributesOfCurrentConfig);
-
+    QString testName;
+    QString nameAttributeSelected;
+    const QMap<QString, QMap<QString, QString> > mapGAT = *dataManager->getMapFromName("mapGAT");
+    QStringList list;
+    QString baliseName;
 
     for(iterator = mapsOfKey.begin(); iterator != mapsOfKey.end(); ++iterator)
     {
-        value = iterator.value();
         name = iterator.key();
+        value = iterator.value();
         ++iterator;
         type = iterator.value();
-
-        if(selection == "current")
+        for(int i=0; i!=attributesOfExportConfig.length();i++)
         {
-            for(int i=0; i!=attributeNamesOfCurrentConfig.length();++i)
+            testName = attributesOfExportConfig[i];
+            baliseName = mapGAT[testName]["Titre"];
+            list = baliseName.split(" ");
+            baliseName = list[0];
+
+            if(baliseName == name)
             {
-                if(attributeNamesOfCurrentConfig[i]==name)
+                if(selection == "current")
                 {
-                    setNewWidget(type, name, value);
+                    for(int j=0; j!=attributeNamesOfCurrentConfig.length();++j)
+                    {
+                        if(attributeNamesOfCurrentConfig[j]==name)
+                        {
+                            nameAttributeSelected = mapGAT[testName]["NomAttribut"];
+                            setNewWidget(type, name, value, nameAttributeSelected);
+                            break;
+                        }
+                    }
+                }
+                else if(selection == "complete")
+                {
+                    nameAttributeSelected = mapGAT[testName]["NomAttribut"];
+                    setNewWidget(type, name, value, nameAttributeSelected);
+                    break;
                 }
 
             }
-        }
-        else if(selection == "complete")
-        {
-            setNewWidget(type, name, value);
+
         }
 
-
+        //++iterator;
 
     }
 
+
     ui->instructionsLabel->setText("Modifiez les attributs editables voulus et cliquez sur OK pour valider les modifications");
+
+    QPalette Pal(palette());
+    Pal.setColor(QPalette::Window, QColor(255,255,255,240));
+    this->setAutoFillBackground(true);
+    this->setPalette(Pal);
+    this->show();
 }
 
 
@@ -134,7 +186,7 @@ DescriptiveCard::~DescriptiveCard()
 }
 
 
-void DescriptiveCard::setNewWidget(QString type, QString name, QString value)
+void DescriptiveCard::setNewWidget(QString type, QString name, QString value, QString nameAttributeSelected)
 {
     if(type == "string")
     {
@@ -142,7 +194,8 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString value)
         QLabel *label = new QLabel;
         lineEdit->setText(value);
         //lineEdit->setGraphicsEffect();
-        label->setText(name);
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
         ui->verticalLayout->addWidget(label);
         ui->verticalLayout->addWidget(lineEdit);
         lineEdit->setStyleSheet("background-color: hsv(120, 20, 255)");
@@ -154,7 +207,8 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString value)
         QLabel *label = new QLabel;
         lineEdit->setText(value);
         lineEdit->setReadOnly(true);
-        label->setText(name);
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
         lineEdit->setStyleSheet("background-color: hsv(0, 20, 255)");
         ui->verticalLayout->addWidget(label);
         ui->verticalLayout->addWidget(lineEdit);
@@ -164,7 +218,8 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString value)
         int valueInt = value.toInt();
         QSpinBox *spinBox = new QSpinBox;
         QLabel *label = new QLabel;
-        label->setText(name);
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
         spinBox->setValue(valueInt);
         spinBox->setStyleSheet("background-color: hsv(120, 20, 255)");
         ui->verticalLayout->addWidget(label);
@@ -176,7 +231,8 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString value)
         QLabel *label = new QLabel;
         lineEdit->setText(value);
         lineEdit->setReadOnly(true);
-        label->setText(name);
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
         lineEdit->setStyleSheet("background-color: hsv(0, 20, 255)");
         ui->verticalLayout->addWidget(label);
         ui->verticalLayout->addWidget(lineEdit);
@@ -187,7 +243,21 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString value)
         QLabel *label = new QLabel;
         lineEdit->setText(value);
         lineEdit->setReadOnly(true);
-        label->setText(name);
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
+        lineEdit->setStyleSheet("background-color: hsv(0, 20, 255)");
+        ui->verticalLayout->addWidget(label);
+        ui->verticalLayout->addWidget(lineEdit);
+    }
+
+    else if(type == "time")
+    {
+        QLineEdit *lineEdit = new QLineEdit;
+        QLabel *label = new QLabel;
+        lineEdit->setText(value);
+        lineEdit->setReadOnly(true);
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
         lineEdit->setStyleSheet("background-color: hsv(0, 20, 255)");
         ui->verticalLayout->addWidget(label);
         ui->verticalLayout->addWidget(lineEdit);
@@ -213,7 +283,8 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString value)
         {
             pushButton2->setChecked(true);
         }
-        label->setText(name);
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
 
         connect(pushButton1,SIGNAL(released()),pushButton2,SLOT(toggle()));
         connect(pushButton2,SIGNAL(released()),pushButton1,SLOT(toggle()));
@@ -233,7 +304,8 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString value)
         {
             comboBox->setCurrentIndex(index);
         }
-        label->setText(name);
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
         comboBox->setStyleSheet("background-color: hsv(120, 20, 255)");
         ui->verticalLayout->addWidget(label);
         ui->verticalLayout->addWidget(comboBox);
@@ -249,7 +321,8 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString value)
         {
             comboBox->setCurrentIndex(index);
         }
-        label->setText(name);
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
         comboBox->setStyleSheet("background-color: hsv(120, 20, 255)");
         ui->verticalLayout->addWidget(label);
         ui->verticalLayout->addWidget(comboBox);
@@ -265,7 +338,8 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString value)
         {
             comboBox->setCurrentIndex(index);
         }
-        label->setText(name);
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
         comboBox->setStyleSheet("background-color: hsv(120, 20, 255)");
         ui->verticalLayout->addWidget(label);
         ui->verticalLayout->addWidget(comboBox);
@@ -275,7 +349,8 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString value)
         QTextEdit *textEdit = new QTextEdit;
         QLabel *label = new QLabel;
         textEdit->setText(value);
-        label->setText(name);
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
         textEdit->setStyleSheet("background-color: hsv(120, 20, 255)");
         ui->verticalLayout->addWidget(label);
         ui->verticalLayout->addWidget(textEdit);
@@ -289,12 +364,25 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString value)
         QLabel *label = new QLabel;
         connect(slider,SIGNAL(valueChanged(int)), spinBox,SLOT(setValue(int)));
         connect(spinBox, SIGNAL(valueChanged(int)), slider, SLOT(setValue(int)));
-        label->setText(name);
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
         spinBox->setValue(valueInt);
         spinBox->setStyleSheet("background-color: hsv(120, 20, 255)");
         ui->verticalLayout->addWidget(label);
         ui->verticalLayout->addWidget(spinBox);
         ui->verticalLayout->addWidget(slider);
+    }
+    else
+    {
+        QLineEdit *lineEdit = new QLineEdit;
+        QLabel *label = new QLabel;
+        lineEdit->setText(value);
+        lineEdit->setReadOnly(true);
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
+        ui->verticalLayout->addWidget(label);
+        ui->verticalLayout->addWidget(lineEdit);
+
     }
 
 }

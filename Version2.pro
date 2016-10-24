@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 QMAKE_CXXFLAGS_WARN_ON += -Wno-reoder
@@ -21,7 +22,8 @@ SOURCES += main.cpp\
     dataviewer.cpp \
     optionsviewer.cpp \
     descriptivecard.cpp \
-    searchcard.cpp
+    searchcard.cpp \
+    filewriter.cpp
 
 HEADERS  += mainwindow.h \
     filereader.h \
@@ -30,7 +32,8 @@ HEADERS  += mainwindow.h \
     dataviewer.h \
     optionsviewer.h \
     descriptivecard.h \
-    searchcard.h
+    searchcard.h \
+    filewriter.h
 
 FORMS    += mainwindow.ui \
     dataviewer.ui \

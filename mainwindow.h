@@ -11,6 +11,7 @@ class MainWindow;
 class DataViewer;
 class DataManager;
 class FileReader;
+class FileWriter;
 
 class MainWindow : public QMainWindow
 {
@@ -35,6 +36,8 @@ private slots:
 
     void on_officialsButton_released();
 
+    void on_documentsButton_released();
+
 private:
     //User Interface
     Ui::MainWindow *ui;
@@ -42,6 +45,7 @@ private:
     DataViewer *dataViewer;
     DataManager *dataManager;
     FileReader *fileReader;
+    FileWriter *fileWriter;
 
 
 
