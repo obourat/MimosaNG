@@ -14,6 +14,8 @@ public:
     ~DataManager();
     // Permet d'insérer des données dans la map qui a pour nom mapName, qui a pour clé key, et on met la valeur map
     void insertDataToMap(const QString& mapName, const QString& key, const QMap<QString, QString>& map);
+    //Permet d'effacer la clé de la map selectionnée
+    void eraseDataOfMap(const QString& mapName, const QString& key);
     //Fonction qui remplace les données d'une clé
     void replaceDataOfMap(const QString& mapName, const QString& key, const QString& valueToAdd, const QString smallKeyNameToReplace);
     //Fonction qui retourne la liste des clés pertinentes en fonction des critères de l'objet objectType (retourne les attributs de la configuration courante)
@@ -40,6 +42,10 @@ public:
     const QMap<QString, QString>* getMapConcordance() const;
     //Insère dans mapConcordance les valeurs pour chaque objet
     void setDataOfMapConcordance();
+    //Ajoute un id a modifier dans le XML
+    void addKeyToMapChangeList(QString mapName, QString id);
+    //Ajoute un id a ajouter dans le XML
+    void addKeyToMapAddList(QString mapName, QString id);
 
 
     //getters et setters des noms de configurations courantes pour les différents objets
@@ -58,6 +64,15 @@ public:
     QString getCurrentConfigNameGDO() const;
     void setCurrentConfigNameGDO(const QString &value);
 
+    QMap<QString, QString> getMapChangeList() const;
+    void setMapChangeList(const QMap<QString, QString> &value);
+
+    QMap<QString, QString> getMapAddList() const;
+    void setMapAddList(const QMap<QString, QString> &value);
+
+    QMap<QString, QString> getMapEraseList() const;
+    void setMapEraseList(const QMap<QString, QString> &value);
+
 private:
 
 
@@ -71,6 +86,13 @@ private:
 
     //Map qui possède comme clé un triplé codeObjet, numéroInterne, InfoInterne permettant d'accéder à la valeur de la balise de titre des attributs
     QMap<QString, QString> mapConcordance;
+
+    //Map qui content les nouvelles clés a mettre a jour dans le XML en fonction du type d'objet
+    QMap<QString, QString> mapChangeList;
+    //Map qui contient les nouvelles clés à ajouter dans le XML en fonction du type d'objet
+    QMap<QString, QString> mapAddList;
+    //Map qui contient les nouvelles clés à supprimer dans le XML en fonction du type d'objet
+    QMap<QString, QString> mapEraseList;
 
     //On définit l'attribut correpondant au nom de la configuration courante
     QString currentConfigNameGCA;

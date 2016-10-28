@@ -3,9 +3,11 @@
 using namespace std;
 
 #include <QMessageBox>
+#include <QStringBuilder>
 #include <QFile>
 #include <QDomDocument>
 #include <QMessageBox>
+#include <QMap>
 
 
 FileWriter::FileWriter(DataManager *dataManager):
@@ -15,25 +17,29 @@ dataManager(dataManager)
 
 void FileWriter::modifyFiles(const QString mapName)
 {
-    QDomDocument dom("Filegenerated");
-    QFile file("GCS_Export.xml");
 
-    if(!file.open(QIODevice::ReadOnly))
-    {
-        file.close();
-        return;
-    }
+    mapChangeList = dataManager->getMapChangeList();
 
-    if(!dom.setContent(&file)) {
-        file.close();
-        return;
-    }
-
-    file.close();
-
-    QDomNode docElem = dom.documentElement().firstChild();
     if(mapName == "mapGCS")
     {
+        QDomDocument dom("Filegenerated");
+        QFile file("GCS_Export.xml");
+
+        if(!file.open(QIODevice::ReadOnly))
+        {
+            file.close();
+            return;
+        }
+
+        if(!dom.setContent(&file)) {
+            file.close();
+            return;
+        }
+
+        file.close();
+
+        QDomNode docElem = dom.documentElement().firstChild();
+
         QString keyName = "CodeObjet";
         const QMap <QString, QMap<QString, QString> > *mapGCS = dataManager->getMapFromName("mapGCS");
         QDomNode n;
@@ -87,5 +93,263 @@ void FileWriter::modifyFiles(const QString mapName)
 
     }
 
+    else
+    {
+        QDomDocument dom("Filegenerated");
+        QStringList nameObjectDec = mapName.split("p");
+        QString nameObject = nameObjectDec[1];
+        QFile file(nameObject % "_Export.xml");
+        QString keyName;
+
+        if(!file.open(QIODevice::ReadOnly))
+        {
+            file.close();
+            return;
+        }
+
+        if(!dom.setContent(&file)) {
+            file.close();
+            return;
+        }
+
+        file.close();
+
+        QDomNode docElem = dom.documentElement().firstChild();
+        if(mapName == "mapGDO")
+        {
+            keyName = "NumOrdre";
+        }
+        else
+        {
+            keyName = "Id";
+        }
+        const QMap <QString, QMap<QString, QString> > *mapGDO = dataManager->getMapFromName(mapName);
+        QDomNode n;
+        QDomElement e;
+        QString baliseName;
+        QString baliseValue;
+        QString newValue;
+        QMap< QString, QString> smallMap;
+
+        QStringList currentMapChangeList = mapChangeList.values(mapName);
+        QString mapToChange;
+
+
+        while(!docElem.isNull())
+        {
+            n= docElem.firstChild();
+            while(!n.isNull())
+            {
+               e = n.toElement();
+               baliseName = e.tagName();
+               baliseValue = e.text();
+               if(baliseName == keyName)
+               {
+                   for(int j=0; j<currentMapChangeList.length(); ++j)
+                   {
+                       mapToChange = currentMapChangeList[j];
+                       if(mapToChange == baliseValue)
+                       {
+                           n = docElem.firstChild();
+                           smallMap = mapGDO->value(baliseValue);
+                           while(!n.isNull())
+                           {
+                               e=n.toElement();
+                               baliseName = e.tagName();
+                               baliseValue = e.text();
+                               newValue = smallMap[baliseName];
+                               if(newValue != baliseValue)
+                               {
+                                   if(baliseValue != "")
+                                   {
+                                        e.firstChild().setNodeValue(newValue);
+                                   }
+                                   else
+                                   {
+                                       QDomElement newElement = dom.createElement(baliseName);
+                                       newElement.appendChild(dom.createTextNode(newValue));
+                                       e.parentNode().replaceChild(newElement,e);
+                                   }
+                               }
+                               n = n.nextSibling();
+                           }
+
+                           //currentMapChangeList.erase();
+                           docElem = docElem.nextSibling();
+                           break;
+                       }
+                   }
+                   //docElem = docElem.nextSibling();
+                   break;
+               }
+               else
+               {
+                   n = n.nextSibling();
+               }
+            }
+            docElem = docElem.nextSibling();
+
+        }
+
+        file.open(QIODevice::WriteOnly);
+        file.write(dom.toByteArray());
+        file.close();
+    }
+
+}
+
+void FileWriter::addToFiles(const QString mapName)
+{
+    mapAddList = dataManager->getMapAddList();
+
+    const QMap<QString, QMap<QString, QString> > *selectedMap = dataManager->getMapFromName(mapName);
+
+    QDomDocument dom("Filegenerated");
+    QStringList nameObjectDec = mapName.split("p");
+    QString nameObject = nameObjectDec[1];
+    QFile file(nameObject % "_Export.xml");
+    QString keyName;
+
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        file.close();
+        return;
+    }
+
+    if(!dom.setContent(&file)) {
+        file.close();
+        return;
+    }
+
+    file.close();
+
+    QStringList listToadd = mapAddList.values(mapName);
+    QStringList smallMapListKeys;
+    QStringList smallMapListValues;
+    QString smallMapKey;
+    QString smallMapValue;
+    QString type;
+    QString var;
+    QString keyToAdd;
+    QMap<QString, QString> smallMap;
+
+    for(int i=0; i<listToadd.count(); ++i)
+    {
+        keyToAdd = listToadd[i];
+        smallMap = selectedMap->value(keyToAdd);
+        smallMapListKeys = smallMap.keys();
+        smallMapListValues = smallMap.values();
+        QDomElement newObject = dom.createElement(QString("Object"));
+        QDomElement newElem;
+        QDomText newElemText;
+        for(int j=0; j<smallMapListKeys.length(); ++j)
+        {
+            smallMapKey = smallMapListKeys[j];
+            smallMapValue = smallMapListValues[j];
+            ++j;
+            type = smallMapListValues[j];
+            ++j;
+            var = smallMapListValues[j];
+
+            newElem = dom.createElement(QString(smallMapKey));
+            if(var == "-"&& type != "string")
+            {
+               newElem.setAttribute("type", type);
+            }
+            else if(var != "-" && type == "string")
+            {
+                newElem.setAttribute("var", var);
+            }
+            else if(var != "-" && type != "string")
+            {
+                newElem.setAttribute("type", type);
+                newElem.setAttribute("var", var);
+            }
+            newElemText = dom.createTextNode(QString(smallMapValue));
+            newElem.appendChild(newElemText);
+            newObject.appendChild(newElem);
+        }
+        dom.documentElement().appendChild(newObject);
+
+    }
+
+    file.open(QIODevice::WriteOnly);
+    file.write(dom.toByteArray());
+    file.close();
+}
+
+void FileWriter::eraseOfFiles(const QString mapName)
+{
+    mapEraseList = dataManager->getMapEraseList();
+
+    QDomDocument dom("Filegenerated");
+    QStringList nameObjectDec = mapName.split("p");
+    QString nameObject = nameObjectDec[1];
+    QFile file(nameObject % "_Export.xml");
+
+    if(!file.open(QIODevice::ReadOnly))
+    {
+        file.close();
+        return;
+    }
+
+    if(!dom.setContent(&file)) {
+        file.close();
+        return;
+    }
+
+    file.close();
+
+
+    QStringList listToErase = mapEraseList.values(mapName);
+
+    QDomNode docElem = dom.documentElement().firstChild();
+    QString keyName;
+    if(mapName == "mapGDO")
+    {
+        keyName = "NumOrdre";
+    }
+    else
+    {
+        keyName = "Id";
+    }
+
+    QDomNode n;
+    QDomElement e;
+    QString baliseName;
+    QString baliseValue;
+
+
+    while(!docElem.isNull())
+    {
+        n= docElem.firstChild();
+        while(!n.isNull())
+        {
+           e = n.toElement();
+           baliseName = e.tagName();
+           baliseValue = e.text();
+           if(baliseName == keyName)
+           {
+               for(int i=0; i< listToErase.count(); ++i)
+               {
+                   if(baliseValue == listToErase[i])
+                   {
+                       dom.documentElement().removeChild(docElem);
+                       break;
+                   }
+               }
+               docElem = docElem.nextSibling();
+               break;
+           }
+           else
+           {
+            n = n.nextSibling();
+           }
+        }
+    }
+
+    file.open(QIODevice::WriteOnly);
+    file.write(dom.toByteArray());
+    file.close();
 }
 

@@ -1,24 +1,32 @@
 #include "descriptivecard.h"
 #include "ui_descriptivecard.h"
 #include "datamanager.h"
+#include "dataviewer.h"
 
+#include <QStringBuilder>
 #include <QLineEdit>
 #include <QLabel>
 #include <QSpinBox>
 #include <QComboBox>
+#include <QCheckBox>
 #include <QTextEdit>
 #include <QSlider>
 #include <QRadioButton>
 #include <QPushButton>
 #include <QDate>
+#include <QActionGroup>
+#include <QAction>
 
-DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, QString key, QString selection, QWidget *parent) :
+DescriptiveCard::DescriptiveCard(DataManager *dataManager, DataViewer *dataViewer, QString codeObject, QString key, QString selection, QString choice, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DescriptiveCard),
-    dataManager(dataManager)
-
+    dataManager(dataManager),
+    choice(choice)
 {
     ui->setupUi(this);
+
+    this->codeObject = codeObject;
+    this->dataViewer = dataViewer;
 
     const QMap<QString, QMap<QString, QString> >* selectedMap;
     QMap<QString,QString> mapsOfKey;
@@ -26,9 +34,12 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, Q
     QString type;
     QString value;
     QString name;
+    QString var;
     QStringList attributesOfCurrentConfig;
     QStringList attributesOfExportConfig;
     QStringList attributeNamesOfCurrentConfig;
+
+    mapGVE = dataManager->getMapFromName("mapGVE");
 
     if(codeObject == "GAT")
     {
@@ -42,7 +53,14 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, Q
         }
         else if(selection == "complete")
         {
-            ui->label->setText("Fiche complete d'attribut");
+            if(choice == "create" || choice == "copy")
+            {
+                ui->label->setText("Fiche de creation d'attribut");
+            }
+            else
+            {
+                ui->label->setText("Fiche complete d'attribut");
+            }
         }
 
         attributesOfCurrentConfig = dataManager->getAttributesOfCurrentConfig("GAT");
@@ -59,7 +77,14 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, Q
         }
         else if(selection == "complete")
         {
-            ui->label->setText("Fiche complete de configuration d'attributs");
+            if(choice == "create" || choice == "copy")
+            {
+                ui->label->setText("Fiche de creation de configuration d'attribut");
+            }
+            else
+            {
+                ui->label->setText("Fiche complete de configuration d'attributs");
+            }
         }
 
         attributesOfCurrentConfig = dataManager->getAttributesOfCurrentConfig("GCA");
@@ -76,7 +101,14 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, Q
         }
         else if(selection == "complete")
         {
-            ui->label->setText("Fiche complete de responsable");
+            if(choice == "create" || choice == "copy")
+            {
+                ui->label->setText("Fiche de creation de responsable");
+            }
+            else
+            {
+                ui->label->setText("Fiche complete de responsable");
+            }
         }
 
         attributesOfCurrentConfig = dataManager->getAttributesOfCurrentConfig("GRS");
@@ -93,7 +125,14 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, Q
         }
         else if(selection == "complete")
         {
-            ui->label->setText("Fiche complete de variable d'environnement");
+            if(choice == "create" || choice == "copy")
+            {
+                ui->label->setText("Fiche de creation de variable d'environnement");
+            }
+            else
+            {
+                ui->label->setText("Fiche complete de variable d'environnement");
+            }
         }
 
         attributesOfCurrentConfig = dataManager->getAttributesOfCurrentConfig("GVE");
@@ -110,12 +149,44 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, Q
         }
         else if(selection == "complete")
         {
-            ui->label->setText("Fiche complete de document");
+            if(choice == "create" || choice == "copy")
+            {
+                ui->label->setText("Fiche de creation de document");
+            }
+            else
+            {
+                ui->label->setText("Fiche complete de document");
+            }
         }
 
         attributesOfCurrentConfig = dataManager->getAttributesOfCurrentConfig("GDO");
     }
 
+    if(choice == "create" || choice == "copy")
+    {
+        QMap<QString, QMap<QString, QString> >::Iterator iterator;
+        QString newKey;
+        QString currentKey;
+        int currentKeyInt;
+        int currentMaxKey = 0;
+        QList<QString> keysList = selectedMap->keys();
+        for(int i=0; i<keysList.count(); ++i)
+        {
+            currentKey = keysList[i];
+            currentKeyInt = currentKey.toInt();
+            if(currentKeyInt > currentMaxKey)
+            {
+                currentMaxKey = currentKeyInt;
+            }
+        }
+        currentMaxKey++;
+        QString currentMaxKeyString = QString::number(currentMaxKey);
+        this->currentMaxKey = currentMaxKeyString;
+        int maxNumOdre = keysList.count();
+        maxNumOdre++;
+        QString maxNumOrdreString = QString::number(maxNumOdre);
+        this->currentMaxNumOrdre = maxNumOrdreString;
+    }
 
     mapsOfKey = selectedMap->value(key);
 
@@ -129,9 +200,58 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, Q
     for(iterator = mapsOfKey.begin(); iterator != mapsOfKey.end(); ++iterator)
     {
         name = iterator.key();
-        value = iterator.value();
+        if(choice == "create" || choice =="copy")
+        {
+            if(codeObject == "GDO")
+            {
+                if(name == "NumOrdre")
+                {
+                    value = currentMaxKey;
+                }
+                else
+                {
+                    if(choice == "create")
+                    {
+                        value = "";
+                    }
+                    else
+                    {
+                        value = iterator.value();
+                    }
+                }
+            }
+            else
+            {
+                if(name == "Id")
+                {
+                    value = currentMaxKey;
+                }
+                else if(name == "NumOrdre")
+                {
+                    value = currentMaxNumOrdre;
+                }
+                else
+                {
+                    if(choice == "create")
+                    {
+                        value = "";
+                    }
+                    else
+                    {
+                        value = iterator.value();
+                    }
+                }
+            }
+        }
+        else
+        {
+            value = iterator.value();
+        }
+
         ++iterator;
         type = iterator.value();
+        ++iterator;
+        var = iterator.value();
         for(int i=0; i!=attributesOfExportConfig.length();i++)
         {
             testName = attributesOfExportConfig[i];
@@ -148,7 +268,7 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, Q
                         if(attributeNamesOfCurrentConfig[j]==name)
                         {
                             nameAttributeSelected = mapGAT[testName]["NomAttribut"];
-                            setNewWidget(type, name, value, nameAttributeSelected);
+                            setNewWidget(type, name, var, value, nameAttributeSelected);
                             break;
                         }
                     }
@@ -156,7 +276,7 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, Q
                 else if(selection == "complete")
                 {
                     nameAttributeSelected = mapGAT[testName]["NomAttribut"];
-                    setNewWidget(type, name, value, nameAttributeSelected);
+                    setNewWidget(type, name, var, value, nameAttributeSelected);
                     break;
                 }
 
@@ -164,18 +284,23 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, QString codeObject, Q
 
         }
 
-        //++iterator;
-
     }
 
-
-    ui->instructionsLabel->setText("Modifiez les attributs editables voulus et cliquez sur OK pour valider les modifications");
+    if(choice == "create" || choice =="copy")
+    {
+        ui->instructionsLabel->setText("Saisissez les champs voulus et cliquez sur OK pour creer un nouvel objet");
+    }
+    else
+    {
+       ui->instructionsLabel->setText("Modifiez les attributs editables voulus et cliquez sur OK pour valider les modifications");
+    }
 
     QPalette Pal(palette());
     Pal.setColor(QPalette::Window, QColor(255,255,255,240));
     this->setAutoFillBackground(true);
     this->setPalette(Pal);
     this->show();
+
 }
 
 
@@ -186,205 +311,359 @@ DescriptiveCard::~DescriptiveCard()
 }
 
 
-void DescriptiveCard::setNewWidget(QString type, QString name, QString value, QString nameAttributeSelected)
+void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QString value, QString nameAttributeSelected)
 {
     if(type == "string")
     {
         QLineEdit *lineEdit = new QLineEdit;
         QLabel *label = new QLabel;
-        lineEdit->setText(value);
-        //lineEdit->setGraphicsEffect();
+        QGridLayout *gLayout2 = new QGridLayout;
         label->setText(nameAttributeSelected);
         label->setAccessibleName(name);
-        ui->verticalLayout->addWidget(label);
-        ui->verticalLayout->addWidget(lineEdit);
-        lineEdit->setStyleSheet("background-color: hsv(120, 20, 255)");
-
-    }
-    else if(type == "stringF")
-    {
-        QLineEdit *lineEdit = new QLineEdit;
-        QLabel *label = new QLabel;
         lineEdit->setText(value);
-        lineEdit->setReadOnly(true);
-        label->setText(nameAttributeSelected);
-        label->setAccessibleName(name);
-        lineEdit->setStyleSheet("background-color: hsv(0, 20, 255)");
-        ui->verticalLayout->addWidget(label);
-        ui->verticalLayout->addWidget(lineEdit);
+        QFont font = label->font();
+        font.setBold(true);
+        label->setFont(font);
+        QHBoxLayout *hLayout = new QHBoxLayout;
+        hLayout->addWidget(label);
+        gLayout2->addWidget(lineEdit);
+        ui->verticalLayout->addLayout(hLayout);
+        ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
     }
-    else if(type == "int")
+    else if(type == "num")
     {
-        int valueInt = value.toInt();
         QSpinBox *spinBox = new QSpinBox;
+        spinBox->setMaximum(100000);
         QLabel *label = new QLabel;
+        QGridLayout *gLayout2 = new QGridLayout;
         label->setText(nameAttributeSelected);
         label->setAccessibleName(name);
+        if(name=="Id" || name == "NumOrdre")
+        {
+            spinBox->setEnabled(false);
+        }
+        int valueInt = value.toInt();
         spinBox->setValue(valueInt);
-        spinBox->setStyleSheet("background-color: hsv(120, 20, 255)");
-        ui->verticalLayout->addWidget(label);
-        ui->verticalLayout->addWidget(spinBox);
+        QFont font = label->font();
+        font.setBold(true);
+        label->setFont(font);
+        spinBox->setSpecialValueText(tr("-"));
+        QHBoxLayout *hLayout = new QHBoxLayout;
+        hLayout->addWidget(label);
+        gLayout2->addWidget(spinBox);
+        ui->verticalLayout->addLayout(hLayout);
+        ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
     }
-    else if(type == "intF")
+    else if(type == "enum")
+    {
+        QLabel *label = new QLabel;
+        QGridLayout *gLayout2 = new QGridLayout;
+        QButtonGroup *exclusiveGroup = new QButtonGroup;
+        QString valueVE;
+        int row = 0;
+        if(var != "-")
+        {
+            QStringList list;
+            QMap<QString, QMap<QString, QString> >::ConstIterator iteratorGVE;
+            for(iteratorGVE = mapGVE->begin(); iteratorGVE != mapGVE->end(); ++iteratorGVE)
+            {
+                if(iteratorGVE.value()["Nom"] == var)
+                {
+                    valueVE = iteratorGVE.value()["Valeur"];
+                    list = valueVE.split(":");
+                    int column = 0;
+                    for(int i=0; i < list.length(); ++i)
+                    {
+                        QRadioButton *radioButton = new QRadioButton(this);
+                        radioButton->setText(list[i]);
+                        radioButton->setAutoExclusive(true);
+                        if(list[i] == value)
+                        {
+                            radioButton->setChecked(true);
+                        }
+                        if(column <= 3)
+                        {
+                            exclusiveGroup->addButton(radioButton);
+                            gLayout2->addWidget(radioButton,row,column,1,1,Qt::AlignLeft);
+                            ++column;
+                        }
+                        else
+                        {
+                            exclusiveGroup->addButton(radioButton);
+                            ++row;
+                            column =0;
+                            gLayout2->addWidget(radioButton,row,column,1,1,Qt::AlignLeft);
+                            ++column;
+                        }
+                    }
+                }
+            }
+        }
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
+        QFont font = label->font();
+        font.setBold(true);
+        label->setFont(font);
+        QHBoxLayout *hLayout = new QHBoxLayout;
+        hLayout->addWidget(label);
+        gLayout2->setVerticalSpacing(0);
+        ui->verticalLayout->addLayout(hLayout);
+        exclusiveGroup->setExclusive(true);
+        ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
+    }
+    else if(type == "strdate")
     {
         QLineEdit *lineEdit = new QLineEdit;
         QLabel *label = new QLabel;
-        lineEdit->setText(value);
-        lineEdit->setReadOnly(true);
+        QGridLayout *gLayout2 = new QGridLayout;
         label->setText(nameAttributeSelected);
         label->setAccessibleName(name);
-        lineEdit->setStyleSheet("background-color: hsv(0, 20, 255)");
-        ui->verticalLayout->addWidget(label);
-        ui->verticalLayout->addWidget(lineEdit);
-    }
-    else if(type == "date")
-    {
-        QLineEdit *lineEdit = new QLineEdit;
-        QLabel *label = new QLabel;
         lineEdit->setText(value);
-        lineEdit->setReadOnly(true);
-        label->setText(nameAttributeSelected);
-        label->setAccessibleName(name);
-        lineEdit->setStyleSheet("background-color: hsv(0, 20, 255)");
-        ui->verticalLayout->addWidget(label);
-        ui->verticalLayout->addWidget(lineEdit);
-    }
+        QFont font = label->font();
+        font.setBold(true);
+        label->setFont(font);
+        QHBoxLayout *hLayout = new QHBoxLayout;
+        hLayout->addWidget(label);
+        gLayout2->addWidget(lineEdit);
+        ui->verticalLayout->addLayout(hLayout);
+        ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
 
+    }
+    else if(type == "strtime")
+    {
+        QLineEdit *lineEdit = new QLineEdit;
+        QLabel *label = new QLabel;
+        QGridLayout *gLayout2 = new QGridLayout;
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
+        lineEdit->setText(value);
+        QFont font = label->font();
+        font.setBold(true);
+        label->setFont(font);
+        QHBoxLayout *hLayout = new QHBoxLayout;
+        hLayout->addWidget(label);
+        gLayout2->addWidget(lineEdit);
+        ui->verticalLayout->addLayout(hLayout);
+        ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
+
+    }
     else if(type == "time")
     {
         QLineEdit *lineEdit = new QLineEdit;
         QLabel *label = new QLabel;
+        QGridLayout *gLayout2 = new QGridLayout;
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
         lineEdit->setText(value);
-        lineEdit->setReadOnly(true);
-        label->setText(nameAttributeSelected);
-        label->setAccessibleName(name);
-        lineEdit->setStyleSheet("background-color: hsv(0, 20, 255)");
-        ui->verticalLayout->addWidget(label);
-        ui->verticalLayout->addWidget(lineEdit);
+        QFont font = label->font();
+        font.setBold(true);
+        label->setFont(font);
+        QHBoxLayout *hLayout = new QHBoxLayout;
+        hLayout->addWidget(label);
+        gLayout2->addWidget(lineEdit);
+        ui->verticalLayout->addLayout(hLayout);
+        ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
     }
-    else if(type == "indic")
-    {
-        QHBoxLayout *layout = new QHBoxLayout;
-        QPushButton *pushButton1 = new QPushButton;
-        pushButton1->setCheckable(true);
-        QPushButton *pushButton2 = new QPushButton;
-        pushButton2->setCheckable(true);
-        pushButton1->setText("Oui");
-        pushButton2->setText("Non");
-        QLabel *label = new QLabel;
-        layout->addWidget(pushButton1);
-        layout->addWidget(pushButton2);
-
-        if(pushButton1->text() == value)
-        {
-            pushButton1->setChecked(true);
-        }
-        else if(pushButton2->text() == value)
-        {
-            pushButton2->setChecked(true);
-        }
-        label->setText(nameAttributeSelected);
-        label->setAccessibleName(name);
-
-        connect(pushButton1,SIGNAL(released()),pushButton2,SLOT(toggle()));
-        connect(pushButton2,SIGNAL(released()),pushButton1,SLOT(toggle()));
-
-        ui->verticalLayout->addWidget(label);
-        ui->verticalLayout->addWidget(pushButton1);
-        ui->verticalLayout->addWidget(pushButton2);
-    }
-    else if(type == "cadrage")
+    else if(type == "bool")
     {
         QComboBox *comboBox = new QComboBox;
         QLabel *label = new QLabel;
-        QStringList list = QStringList() << tr("Gauche") <<tr("Droite") <<tr("Centre");
+        QGridLayout *gLayout2 = new QGridLayout;
+        QStringList list = QStringList() <<tr("Oui") <<tr("Non");
         comboBox->addItems(list);
-        int index = comboBox->findText(value);
-        if(index >=0)
-        {
-            comboBox->setCurrentIndex(index);
-        }
         label->setText(nameAttributeSelected);
         label->setAccessibleName(name);
-        comboBox->setStyleSheet("background-color: hsv(120, 20, 255)");
-        ui->verticalLayout->addWidget(label);
-        ui->verticalLayout->addWidget(comboBox);
-    }
-    else if(type == "format")
-    {
-        QComboBox *comboBox = new QComboBox;
-        QLabel *label = new QLabel;
-        QStringList list = QStringList() << tr("L") <<tr("C");
-        comboBox->addItems(list);
-        int index = comboBox->findText(value);
-        if(index >=0)
+        for(int i=0; i<list.length();++i)
         {
-            comboBox->setCurrentIndex(index);
+            if (list[i] == value)
+            {
+                comboBox->setCurrentIndex(i);
+            }
         }
-        label->setText(nameAttributeSelected);
-        label->setAccessibleName(name);
-        comboBox->setStyleSheet("background-color: hsv(120, 20, 255)");
-        ui->verticalLayout->addWidget(label);
-        ui->verticalLayout->addWidget(comboBox);
+        QFont font = label->font();
+        font.setBold(true);
+        label->setFont(font);
+        QHBoxLayout *hLayout = new QHBoxLayout;
+        hLayout->addWidget(label);
+        gLayout2->addWidget(comboBox);
+        ui->verticalLayout->addLayout(hLayout);
+        ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
+
     }
-    else if(type == "orient")
-    {
-        QComboBox *comboBox = new QComboBox;
-        QLabel *label = new QLabel;
-        QStringList list = QStringList() << tr("Paysage") <<tr("Portrait");
-        comboBox->addItems(list);
-        int index = comboBox->findText(value);
-        if(index >=0)
-        {
-            comboBox->setCurrentIndex(index);
-        }
-        label->setText(nameAttributeSelected);
-        label->setAccessibleName(name);
-        comboBox->setStyleSheet("background-color: hsv(120, 20, 255)");
-        ui->verticalLayout->addWidget(label);
-        ui->verticalLayout->addWidget(comboBox);
-    }
-    else if(type == "comment")
+    else if(type == "strlong")
     {
         QTextEdit *textEdit = new QTextEdit;
         QLabel *label = new QLabel;
+        QGridLayout *gLayout2 = new QGridLayout;
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
         textEdit->setText(value);
-        label->setText(nameAttributeSelected);
-        label->setAccessibleName(name);
-        textEdit->setStyleSheet("background-color: hsv(120, 20, 255)");
-        ui->verticalLayout->addWidget(label);
-        ui->verticalLayout->addWidget(textEdit);
-    }
-    else if(type == "largeur")
-    {
-        int valueInt = value.toInt();
-        QSpinBox *spinBox = new QSpinBox;
-        QSlider *slider = new QSlider;
-        slider->setOrientation(Qt::Horizontal);
-        QLabel *label = new QLabel;
-        connect(slider,SIGNAL(valueChanged(int)), spinBox,SLOT(setValue(int)));
-        connect(spinBox, SIGNAL(valueChanged(int)), slider, SLOT(setValue(int)));
-        label->setText(nameAttributeSelected);
-        label->setAccessibleName(name);
-        spinBox->setValue(valueInt);
-        spinBox->setStyleSheet("background-color: hsv(120, 20, 255)");
-        ui->verticalLayout->addWidget(label);
-        ui->verticalLayout->addWidget(spinBox);
-        ui->verticalLayout->addWidget(slider);
+        QFont font = label->font();
+        font.setBold(true);
+        label->setFont(font);
+        QHBoxLayout *hLayout = new QHBoxLayout;
+        hLayout->addWidget(label);
+        gLayout2->addWidget(textEdit);
+        ui->verticalLayout->addLayout(hLayout);
+        ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
     }
     else
     {
         QLineEdit *lineEdit = new QLineEdit;
         QLabel *label = new QLabel;
-        lineEdit->setText(value);
-        lineEdit->setReadOnly(true);
+        QGridLayout *gLayout2 = new QGridLayout;
         label->setText(nameAttributeSelected);
         label->setAccessibleName(name);
-        ui->verticalLayout->addWidget(label);
-        ui->verticalLayout->addWidget(lineEdit);
+        lineEdit->setText(value);
+        QFont font = label->font();
+        font.setBold(true);
+        label->setFont(font);
+        QHBoxLayout *hLayout = new QHBoxLayout;
+        hLayout->addWidget(label);
+        gLayout2->addWidget(lineEdit);
+        ui->verticalLayout->addLayout(hLayout);
+        ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
 
     }
 
 }
 
 
+
+void DescriptiveCard::on_buttonBox_accepted()
+{
+    QString mapName = "map" % codeObject;
+    const QMap<QString, QMap<QString, QString> > *mapSelected = dataManager->getMapFromName(mapName);
+    QStringList keysList = dataViewer->getKeysList();
+    QString id = keysList[0];
+    QString keyName;
+    QMap<QString, QString> mapTemp;
+
+    if(codeObject == "GDO")
+    {
+        keyName = "NumOrdre";
+    }
+
+    else
+    {
+        keyName = "Id";
+    }
+
+    int lineCount = ui->verticalLayout->count();
+    QString valueOfLineEdit = "";
+    QString title;
+    int count = (lineCount-1);
+    QLayoutItem* nameLayout;
+    QLayoutItem* titleEdit;
+    QLabel* pLabel;
+    QLayoutItem* pLine;
+    QLayoutItem* pLineWidget;
+    QString widgetType;
+
+    QMap <QString, QString> mapOfSelectedId = mapSelected->value(id);
+
+    int iteratorParameters = 0;
+
+    for(int i=0; i<=count;++i)
+    {
+        nameLayout = ui->verticalLayout->itemAt(i);
+        titleEdit = nameLayout->layout()->itemAt(0);
+
+        pLabel = (QLabel*)titleEdit->widget();
+        title = pLabel->accessibleName();
+        ++i;
+        pLine = ui->verticalLayout->itemAt(i);
+        pLineWidget = pLine->layout()->itemAt(0);
+        if(pLine->layout()->count() != 0)
+        {
+            widgetType = pLineWidget->widget()->metaObject()->className();
+        }
+
+        if(widgetType == "QLineEdit")
+        {
+            QLineEdit* pLineEdit = (QLineEdit*)pLineWidget->widget();
+            valueOfLineEdit = pLineEdit->text();
+        }
+        else if(widgetType == "QSpinBox")
+        {
+            QSpinBox* pLineEdit = (QSpinBox*)pLineWidget->widget();
+            if(pLineEdit->text() == "-")
+            {
+                valueOfLineEdit = "";
+            }
+            else
+            {
+                valueOfLineEdit = pLineEdit->text();
+            }
+        }
+        else if(widgetType == "QComboBox")
+        {
+            QComboBox* pLineEdit = (QComboBox*)pLineWidget->widget();
+            valueOfLineEdit = pLineEdit->currentText();
+        }
+        else if(widgetType == "QTextEdit")
+        {
+            QTextEdit* pLineEdit = (QTextEdit*)pLineWidget->widget();
+            valueOfLineEdit = pLineEdit->toPlainText();
+        }
+
+        else if(widgetType == "QRadioButton")
+        {
+            int numberOfWidgets = pLine->layout()->count();
+            for(int j=0; j<numberOfWidgets; ++j)
+            {
+                pLineWidget = pLine->layout()->itemAt(j);
+                QRadioButton* pLineEdit = (QRadioButton*)pLineWidget->widget();
+                if(pLineEdit->isChecked())
+                {
+                    valueOfLineEdit = pLineEdit->text();
+                }
+            }
+        }
+
+        QString valueMap = mapOfSelectedId[title];
+        if(choice == "create" || choice == "copy")
+        {
+            mapTemp.insert(title, parameters[iteratorParameters]);
+            ++iteratorParameters;
+            mapTemp.insertMulti(title,parameters[iteratorParameters]);
+            ++iteratorParameters;
+            mapTemp.insertMulti(title, valueOfLineEdit);
+        }
+        else
+        {
+            if(valueMap != valueOfLineEdit)
+            {
+                dataManager->replaceDataOfMap(mapName,id, valueOfLineEdit,title);
+                dataManager->addKeyToMapChangeList(mapName, id);
+            }
+        }
+    }
+
+    if(choice == "create" || choice == "copy")
+    {
+        dataManager->insertDataToMap(mapName, currentMaxKey, mapTemp);
+        dataManager->addKeyToMapAddList(mapName, currentMaxKey);
+    }
+
+    dataViewer->updateLayout();
+
+}

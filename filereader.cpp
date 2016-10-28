@@ -2,6 +2,7 @@
 #include "datamanager.h"
 #include <QFile>
 #include <QDate>
+#include <QStringBuilder>
 
 //Constructeur
 FileReader::FileReader(DataManager *dataManager, const QString &fileName):
@@ -76,8 +77,16 @@ void FileReader::handlesBlock(const QString &keyBlock, const QString &mapName)
     QString dateString;
     int nameInt;
     int days;
+    int day;
+    int month;
+    int year;
+    QString dayStr;
+    QString monthStr;
+    QString yearStr;
+    QString dateFormed;
     QString key;
     QString type;
+    QString var;
     QMap<QString, QString> mapTemp;
 
     while(reader.readNextStartElement())
@@ -88,6 +97,10 @@ void FileReader::handlesBlock(const QString &keyBlock, const QString &mapName)
             if (attr.name().toString() == QLatin1String("type"))
             {
                 type = attr.value().toString();
+            }
+            if (attr.name().toString() == QLatin1String("var"))
+            {
+                var = attr.value().toString();
             }
         }
 
@@ -107,9 +120,18 @@ void FileReader::handlesBlock(const QString &keyBlock, const QString &mapName)
             else
             {
                 key = keyData;
+                if(!var.isEmpty())
+                {
+                    mapTemp.insert(baliseName, var);
+                }
+                else if(var.isEmpty())
+                {
+                    var="-";
+                    mapTemp.insertMulti(baliseName, var);
+                }
                 if(!type.isEmpty())
                 {
-                    mapTemp.insert(baliseName, type);
+                    mapTemp.insertMulti(baliseName, type);
                 }
                 else if(type.isEmpty())
                 {
@@ -124,6 +146,17 @@ void FileReader::handlesBlock(const QString &keyBlock, const QString &mapName)
         else
         {
             baliseData = reader.readElementText();
+
+            if(!var.isEmpty())
+            {
+                mapTemp.insert(baliseName, var);
+            }
+            else if(var.isEmpty())
+            {
+                var="-";
+                mapTemp.insert(baliseName, var);
+            }
+
             if(!type.isEmpty())
             {
                 //Cas particulier pour la conversion de la date
@@ -133,18 +166,40 @@ void FileReader::handlesBlock(const QString &keyBlock, const QString &mapName)
                     nameInt = baliseData.toInt();
                     days = nameInt/86400;
                     date = initialDate.addDays(days);
-                    dateString = date.toString();
-                    baliseData = dateString;
+                    //dateString = date.toString();
+                    //baliseData = dateString;
+                    day = date.day();
+                    month = date.month();
+                    year = date.year();
+                    dayStr = QString::number(day);
+                    monthStr = QString::number(month);
+                    yearStr = QString::number(year);
+
+                    if(dayStr.length() == 1)
+                    {
+                        dayStr = "0" % dayStr;
+                    }
+                    if(monthStr.length() == 1)
+                    {
+                        monthStr = "0" % monthStr;
+                    }
+                    dateFormed = dayStr % "/" % monthStr % "/" % yearStr;
+                    baliseData = dateFormed;
+
+
                 }
-                mapTemp.insert(baliseName, type);
+                mapTemp.insertMulti(baliseName, type);
             }
+
             else if(type.isEmpty())
             {
                 type = "string";
-                mapTemp.insert(baliseName, type);
+                mapTemp.insertMulti(baliseName, type);
             }
+
             mapTemp.insertMulti(baliseName, baliseData);
             type.clear();
+            var.clear();
         }
     }
     if(!key.isEmpty())

@@ -61,7 +61,75 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     //delete dataViewer;
+
+    QMap<QString, QString> changeList = dataManager->getMapChangeList();
+    QMap<QString, QString> addList = dataManager->getMapAddList();
+    QMap<QString, QString> eraseList = dataManager->getMapEraseList();
+    if(!changeList.values("mapGDO").isEmpty())
+    {
+        fileWriter->modifyFiles("mapGDO");
+    }
+    if(!changeList.values("mapGCA").isEmpty())
+    {
+        fileWriter->modifyFiles("mapGCA");
+    }
+    if(!changeList.values("mapGAT").isEmpty())
+    {
+        fileWriter->modifyFiles("mapGAT");
+    }
+    if(!changeList.values("mapGVE").isEmpty())
+    {
+        fileWriter->modifyFiles("mapGVE");
+    }
+    if(!changeList.values("mapGRS").isEmpty())
+    {
+        fileWriter->modifyFiles("mapGRS");
+    }
+
+    if(!addList.values("mapGDO").isEmpty())
+    {
+        fileWriter->addToFiles("mapGDO");
+    }
+    if(!addList.values("mapGCA").isEmpty())
+    {
+        fileWriter->addToFiles("mapGCA");
+    }
+    if(!addList.values("mapGAT").isEmpty())
+    {
+        fileWriter->addToFiles("mapGAT");
+    }
+    if(!addList.values("mapGVE").isEmpty())
+    {
+        fileWriter->addToFiles("mapGVE");
+    }
+    if(!addList.values("mapGRS").isEmpty())
+    {
+        fileWriter->addToFiles("mapGRS");
+    }
+
+    if(!eraseList.values("mapGDO").isEmpty())
+    {
+        fileWriter->eraseOfFiles("mapGDO");
+    }
+    if(!eraseList.values("mapGCA").isEmpty())
+    {
+        fileWriter->eraseOfFiles("mapGCA");
+    }
+    if(!eraseList.values("mapGAT").isEmpty())
+    {
+        fileWriter->eraseOfFiles("mapGAT");
+    }
+    if(!eraseList.values("mapGVE").isEmpty())
+    {
+        fileWriter->eraseOfFiles("mapGVE");
+    }
+    if(!eraseList.values("mapGRS").isEmpty())
+    {
+        fileWriter->eraseOfFiles("mapGRS");
+    }
+
     fileWriter->modifyFiles("mapGCS");
+
     delete dataManager;
     delete fileReader;
     delete ui;
