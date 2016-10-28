@@ -5,6 +5,7 @@
 #include <QtGui/QWidget>
 #include <QSettings>
 #include <QModelIndex>
+#include <QMap>
 
 namespace Ui {
 class DataViewer;
@@ -29,6 +30,18 @@ public:
     //Destructeur
     ~DataViewer();
 
+    QStringList getKeysList() const;
+    void setKeysList(const QStringList &value);
+
+    int getIndicFirstSearch() const;
+    void setIndicFirstSearch(int value);
+
+    QList<QString> getResultList() const;
+    void setResultList(const QList<QString> &value);
+
+    QString getIndicSearch() const;
+    void setIndicSearch(const QString &value);
+
 public slots:
     //Slot pour le menu
     void customMenuRequested(QPoint pos);
@@ -44,9 +57,12 @@ private slots:
     void onHideSelectionButtonTriggered();
     void onResetSelectionButtonTriggered();
     void onTotalSelectionButtonTriggered();
-    void onSubListButtonTriggered();
-    void getSearchResults();
+    void onSubListRestrainButtonTriggered();
+    void onSubListAddButtonTriggered();
     void onItemDoubleClicked();
+    void onCreateNewButtonTrigerred();
+    void onCreateCopyButtonTrigerred();
+    void onEraseButtonTriggered();
     void setColumnHidden();
 
 private:
@@ -67,11 +83,15 @@ private:
     QString codeObject;
     //Liste de clés associée aux objets sélectionnés
     QStringList keysList;
+    QMap<QString, QString> keyRowMap;
     int rowCount;
     int columnCount;
     int rowsDisplayed;
     QSettings mySetting;
     int index;
+    int indicFirstSearch;
+    QString indicSearch;
+    QList<QString> resultList;
 };
 
 #endif // DATAVIEWER_H

@@ -229,13 +229,13 @@ void OptionsViewer::onDisplayDescriptiveCardButtonTriggered()
     if(selectedOption == "configurations")
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
-        descriptiveCard = new DescriptiveCard(dataManager, "GCA", keysList[0],"current",this);
+        descriptiveCard = new DescriptiveCard(dataManager, dataViewer, "GCA", keysList[0],"current", "modify",this);
         descriptiveCard->show();
     }
     else if(selectedOption == "attributes")
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
-        descriptiveCard = new DescriptiveCard(dataManager, "GAT", keysList[0],"current",this);
+        descriptiveCard = new DescriptiveCard(dataManager, dataViewer, "GAT", keysList[0],"current", "modify",this);
         descriptiveCard->show();
     }
 }
@@ -245,13 +245,13 @@ void OptionsViewer::onDisplayDescriptiveCardCompleteButtonTriggered()
     if(selectedOption == "configurations")
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
-        descriptiveCard = new DescriptiveCard(dataManager, "GCA", keysList[0],"complete",this);
+        descriptiveCard = new DescriptiveCard(dataManager, dataViewer, "GCA", keysList[0],"complete","modify",this);
         descriptiveCard->show();
     }
     else if(selectedOption == "attributes")
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
-        descriptiveCard = new DescriptiveCard(dataManager, "GAT", keysList[0],"complete",this);
+        descriptiveCard = new DescriptiveCard(dataManager, dataViewer,"GAT", keysList[0],"complete","modify",this);
         descriptiveCard->show();
     }
 }
