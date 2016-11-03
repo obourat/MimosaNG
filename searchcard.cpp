@@ -1,6 +1,7 @@
  #include "searchcard.h"
 #include "ui_searchcard.h"
 #include "datamanager.h"
+#include "dataviewer.h"
 
 #include <QLineEdit>
 #include <QLabel>
@@ -14,10 +15,11 @@
 #include <QProgressDialog>
 #include <QCheckBox>
 
-SearchCard::SearchCard(DataManager *dataManager, QString codeObject, QString key, QWidget *parent) :
+SearchCard::SearchCard(DataManager *dataManager,DataViewer *dataViewer, QString codeObject, QString key, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SearchCard),
     dataManager(dataManager),
+    dataViewer(dataViewer),
     codeObject(codeObject),
     key(key)
 
@@ -144,6 +146,7 @@ void SearchCard::setNewWidget(QString type,QString var, QString name, QString na
     else if(type == "num")
     {
         QSpinBox *spinBox = new QSpinBox;
+        spinBox->setMaximum(100000);
         QLabel *label = new QLabel;
         QGridLayout *gLayout2 = new QGridLayout;
         label->setText(nameAttributeSelected);
@@ -360,6 +363,7 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
     QStringList currentMapSearchValues;
     QStringList valuesOfCurrentMapSearchValues;
     QString fileValue;
+    QList<QString> resultList;
     int iteratorSearchListKeys = 0;
     int iteratorListKeys = 0;
     //Créations de listes contenant les clés des elements recherchés et des objets a traiter
@@ -367,7 +371,6 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
     int sizeToIterate = mapSearchListKeys.size();
     QList<QString> mapListKeys = map.keys();
     int mapListKeysSize = mapListKeys.size();
-    QList<QString> resultList;
     QString currentMapValue;
     QStringList valuesOfMapKey;
     QProgressDialog progress("Recherche de resultats...", "Annuler", 0, mapListKeysSize, this);
@@ -749,7 +752,7 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
 
     }
     progress.setValue(mapListKeysSize);
-
+    dataViewer->setResultList(resultList);
     return resultList;
 }
 int SearchCard::getConfirmSearch() const
@@ -872,13 +875,45 @@ void SearchCard::on_buttonBox_accepted()
 
     }
 
-    QMap<QString, QString> testMap = mapOfSearch;
-    searchResults = searchMatches(*selectedMap,mapOfSearch);
+    int indicFirstSearch = dataViewer->getIndicFirstSearch();
+    if(indicFirstSearch == 1)
+    {
+        searchResults = searchMatches(*selectedMap,mapOfSearch);
+        dataViewer->setIndicFirstSearch(0);
+    }
+    else
+    {
+        QString indicSearch = dataViewer->getIndicSearch();
+        if(indicSearch == "restrain")
+        {
+            QList<QString>resultList = dataViewer->getResultList();
+            int lengthResultList = resultList.length();
+            QMap<QString, QMap<QString, QString> > selectedSmallerMap;
+            QString currentKey;
+            for(int i=0; i<lengthResultList; ++i)
+            {
+                currentKey = resultList[i];
+                selectedSmallerMap.insert(currentKey,selectedMap->value(currentKey));
+            }
+
+            searchResults = searchMatches(selectedSmallerMap,mapOfSearch);
+        }
+        else if(indicSearch == "add")
+        {
+            QList<QString>resultList = dataViewer->getResultList();
+            QMap<QString, QMap<QString, QString> >* selectedMapRestrained = const_cast<QMap<QString, QMap<QString, QString> >*>(selectedMap);
+//            for(int i=0; i<resultList.count(); ++i)
+//            {
+//                selectedMapRestrained->remove(resultList[i]);
+//            }
+            QMap<QString, QMap<QString, QString> >* selectedMapRestrainedFinal = selectedMapRestrained;
+            QList<QString> searchResultsAdded = searchMatches(*selectedMapRestrainedFinal, mapOfSearch);
+            QList<QString> newSearchResults = resultList + searchResultsAdded;
+            searchResults = newSearchResults;
+
+        }
+    }
     confirmSearch = 1;
-
-    //emit accepted();
-
-
 }
 
 //Fonction qui retourne la valeur d'une balise de nom "searchName" dans la clé "key", dans la map "map"
