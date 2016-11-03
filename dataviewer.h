@@ -27,11 +27,25 @@ public:
     //Constructeur
     explicit DataViewer(DataManager *dataManager, const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent = 0);
     void updateLayout();
+    void updateKeyRowMap();
     //Destructeur
     ~DataViewer();
 
+    //Getters et Setters
     QStringList getKeysList() const;
     void setKeysList(const QStringList &value);
+
+    int getIndicFirstSearch() const;
+    void setIndicFirstSearch(int value);
+
+    QList<QString> getResultList() const;
+    void setResultList(const QList<QString> &value);
+
+    QString getIndicSearch() const;
+    void setIndicSearch(const QString &value);
+
+    QList<QString> getDisplayedRowsBeforeUpdate() const;
+    void setDisplayedRowsBeforeUpdate(const QList<QString> &value);
 
 public slots:
     //Slot pour le menu
@@ -48,15 +62,19 @@ private slots:
     void onHideSelectionButtonTriggered();
     void onResetSelectionButtonTriggered();
     void onTotalSelectionButtonTriggered();
-    void onSubListButtonTriggered();
+    void onSubListRestrainButtonTriggered();
+    void onSubListAddButtonTriggered();
     void onItemDoubleClicked();
+    void onCreateNewButtonTrigerred();
+    void onCreateCopyButtonTrigerred();
+    void onEraseButtonTriggered();
     void setColumnHidden();
 
 private:
     //User Interface
     Ui::DataViewer *ui;
 
-    //On définit les objets dont on a besoin pour l'affichage, et pour la visualisation des options
+    //Définition des objets dont on a besoin pour l'affichage, et pour la visualisation des options
     Model *myModel;
     QSortFilterProxyModel *proxyModel;
     OptionsViewer *optionsViewerCurrentConfig;
@@ -70,12 +88,24 @@ private:
     QString codeObject;
     //Liste de clés associée aux objets sélectionnés
     QStringList keysList;
+    //Map associé à la clé selectionnée pour une ligne
     QMap<QString, QString> keyRowMap;
+    //Compteurs de lignes et colonnes
     int rowCount;
     int columnCount;
     int rowsDisplayed;
+    //Settings
     QSettings mySetting;
+    //Indicateurs de recherche
     int index;
+    int indicFirstSearch;
+    QString indicSearch;
+    //Liste des resultats de recherche trouvés dans searchCard.cpp
+    QList<QString> resultList;
+    //Liste des clés affichés avant la création d'un nouveau doc dansla cas d'une recherche
+    QList<QString> displayedRowsBeforeUpdate;
+    //Choix de l'objet à ajouter, renseigné lors du clic sur le menu
+    QString choiceAddObject;
 };
 
 #endif // DATAVIEWER_H

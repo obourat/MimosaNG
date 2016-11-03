@@ -5,6 +5,7 @@
 #include "datamanager.h"
 #include "dataviewer.h"
 #include "filewriter.h"
+#include "passwordform.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -55,6 +56,12 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setPalette(Pal);
     this->show();
 
+    dataManager->setIndicFirstCreate(1);
+    dataManager->setIncrementCreation(1);
+
+    dataManager->setAccessLevel(0);
+    ui->consultationButton->setChecked(true);
+
 }
 
 //Destructeur
@@ -63,6 +70,8 @@ MainWindow::~MainWindow()
     //delete dataViewer;
 
     QMap<QString, QString> changeList = dataManager->getMapChangeList();
+    QMap<QString, QString> addList = dataManager->getMapAddList();
+    QMap<QString, QString> eraseList = dataManager->getMapEraseList();
     if(!changeList.values("mapGDO").isEmpty())
     {
         fileWriter->modifyFiles("mapGDO");
@@ -82,6 +91,88 @@ MainWindow::~MainWindow()
     if(!changeList.values("mapGRS").isEmpty())
     {
         fileWriter->modifyFiles("mapGRS");
+    }
+
+    if(!addList.values("mapGDO").isEmpty())
+    {
+        if(!eraseList.values("mapGDO").isEmpty())
+        {
+            fileWriter->compareCurrentMaps("mapGDO");
+            addList = dataManager->getMapAddList();
+        }
+        if(!addList.values("mapGDO").isEmpty())
+        {
+            fileWriter->addToFiles("mapGDO");
+        }
+    }
+    if(!addList.values("mapGCA").isEmpty())
+    {
+        if(!eraseList.values("mapGCA").isEmpty())
+        {
+            fileWriter->compareCurrentMaps("mapGCA");
+            addList = dataManager->getMapAddList();
+        }
+        if(!addList.values("mapGCA").isEmpty())
+        {
+            fileWriter->addToFiles("mapGCA");
+        }
+    }
+    if(!addList.values("mapGAT").isEmpty())
+    {
+        if(!eraseList.values("mapGAT").isEmpty())
+        {
+            fileWriter->compareCurrentMaps("mapGAT");
+            addList = dataManager->getMapAddList();
+        }
+        if(!addList.values("mapGAT").isEmpty())
+        {
+            fileWriter->addToFiles("mapGAT");
+        }
+    }
+    if(!addList.values("mapGVE").isEmpty())
+    {
+        if(!eraseList.values("mapGVE").isEmpty())
+        {
+            fileWriter->compareCurrentMaps("mapGVE");
+            addList = dataManager->getMapAddList();
+        }
+        if(!addList.values("mapGVE").isEmpty())
+        {
+            fileWriter->addToFiles("mapGVE");
+        }
+    }
+    if(!addList.values("mapGRS").isEmpty())
+    {
+        if(!eraseList.values("mapGRS").isEmpty())
+        {
+            fileWriter->compareCurrentMaps("mapGRS");
+            addList = dataManager->getMapAddList();
+        }
+        if(!addList.values("mapGRS").isEmpty())
+        {
+            fileWriter->addToFiles("mapGRS");
+        }
+    }
+
+    if(!eraseList.values("mapGDO").isEmpty())
+    {
+        fileWriter->eraseOfFiles("mapGDO");
+    }
+    if(!eraseList.values("mapGCA").isEmpty())
+    {
+        fileWriter->eraseOfFiles("mapGCA");
+    }
+    if(!eraseList.values("mapGAT").isEmpty())
+    {
+        fileWriter->eraseOfFiles("mapGAT");
+    }
+    if(!eraseList.values("mapGVE").isEmpty())
+    {
+        fileWriter->eraseOfFiles("mapGVE");
+    }
+    if(!eraseList.values("mapGRS").isEmpty())
+    {
+        fileWriter->eraseOfFiles("mapGRS");
     }
 
     fileWriter->modifyFiles("mapGCS");
@@ -136,4 +227,26 @@ void MainWindow::on_documentsButton_released()
     dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGDO", "GDO"), "GDO", this);
     dataViewer->setAttribute(Qt::WA_DeleteOnClose);
     dataViewer->show();
+}
+
+void MainWindow::on_consultationButton_released()
+{
+    dataManager->setAccessLevel(0);
+}
+
+void MainWindow::on_modificationButton_released()
+{
+    passwordForm = new PasswordForm(dataManager,1, this);
+    passwordForm->setAttribute(Qt::WA_DeleteOnClose);
+    passwordForm->exec();
+    dataManager->setAccessLevel(1);
+}
+
+
+void MainWindow::on_adminButton_released()
+{
+    passwordForm = new PasswordForm(dataManager,2, this);
+    passwordForm->setAttribute(Qt::WA_DeleteOnClose);
+    passwordForm->exec();
+    dataManager->setAccessLevel(2);
 }

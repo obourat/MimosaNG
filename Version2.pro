@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     optionsviewer.cpp \
     descriptivecard.cpp \
     searchcard.cpp \
-    filewriter.cpp
+    filewriter.cpp \
+    passwordform.cpp
 
 HEADERS  += mainwindow.h \
     filereader.h \
@@ -33,10 +34,12 @@ HEADERS  += mainwindow.h \
     optionsviewer.h \
     descriptivecard.h \
     searchcard.h \
-    filewriter.h
+    filewriter.h \
+    passwordform.h
 
 FORMS    += mainwindow.ui \
     dataviewer.ui \
     optionsviewer.ui \
     descriptivecard.ui \
-    searchcard.ui
+    searchcard.ui \
+    passwordform.ui

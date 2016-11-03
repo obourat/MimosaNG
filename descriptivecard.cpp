@@ -17,11 +17,11 @@
 #include <QActionGroup>
 #include <QAction>
 
-DescriptiveCard::DescriptiveCard(DataManager *dataManager, DataViewer *dataViewer, QString codeObject, QString key, QString selection, QWidget *parent) :
+DescriptiveCard::DescriptiveCard(DataManager *dataManager, DataViewer *dataViewer, QString codeObject, QString key, QString selection, QString choice, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DescriptiveCard),
-    dataManager(dataManager)
-
+    dataManager(dataManager),
+    choice(choice)
 {
     ui->setupUi(this);
 
@@ -53,7 +53,14 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, DataViewer *dataViewe
         }
         else if(selection == "complete")
         {
-            ui->label->setText("Fiche complete d'attribut");
+            if(choice == "create" || choice == "copy")
+            {
+                ui->label->setText("Fiche de creation d'attribut");
+            }
+            else
+            {
+                ui->label->setText("Fiche complete d'attribut");
+            }
         }
 
         attributesOfCurrentConfig = dataManager->getAttributesOfCurrentConfig("GAT");
@@ -70,7 +77,14 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, DataViewer *dataViewe
         }
         else if(selection == "complete")
         {
-            ui->label->setText("Fiche complete de configuration d'attributs");
+            if(choice == "create" || choice == "copy")
+            {
+                ui->label->setText("Fiche de creation de configuration d'attribut");
+            }
+            else
+            {
+                ui->label->setText("Fiche complete de configuration d'attributs");
+            }
         }
 
         attributesOfCurrentConfig = dataManager->getAttributesOfCurrentConfig("GCA");
@@ -87,7 +101,14 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, DataViewer *dataViewe
         }
         else if(selection == "complete")
         {
-            ui->label->setText("Fiche complete de responsable");
+            if(choice == "create" || choice == "copy")
+            {
+                ui->label->setText("Fiche de creation de responsable");
+            }
+            else
+            {
+                ui->label->setText("Fiche complete de responsable");
+            }
         }
 
         attributesOfCurrentConfig = dataManager->getAttributesOfCurrentConfig("GRS");
@@ -104,7 +125,14 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, DataViewer *dataViewe
         }
         else if(selection == "complete")
         {
-            ui->label->setText("Fiche complete de variable d'environnement");
+            if(choice == "create" || choice == "copy")
+            {
+                ui->label->setText("Fiche de creation de variable d'environnement");
+            }
+            else
+            {
+                ui->label->setText("Fiche complete de variable d'environnement");
+            }
         }
 
         attributesOfCurrentConfig = dataManager->getAttributesOfCurrentConfig("GVE");
@@ -121,11 +149,52 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, DataViewer *dataViewe
         }
         else if(selection == "complete")
         {
-            ui->label->setText("Fiche complete de document");
+            if(choice == "create" || choice == "copy")
+            {
+                ui->label->setText("Fiche de creation de document");
+            }
+            else
+            {
+                ui->label->setText("Fiche complete de document");
+            }
         }
 
         attributesOfCurrentConfig = dataManager->getAttributesOfCurrentConfig("GDO");
     }
+
+    indicFirstCreate = dataManager->getIndicFirstCreate();
+    incrementCreation = dataManager->getIncrementCreation();
+
+    if(choice == "create" || choice == "copy")
+    {
+            QString currentKey;
+            int currentKeyInt;
+            int currentMaxKey = 0;
+            QList<QString> keysList = selectedMap->keys();
+
+            for(int i=0; i<keysList.count(); ++i)
+            {
+                currentKey = keysList[i];
+                currentKeyInt = currentKey.toInt();
+                if(currentKeyInt > currentMaxKey)
+                {
+                    currentMaxKey = currentKeyInt;
+                }
+            }
+            currentMaxKey++;
+            if(indicFirstCreate != 1)
+            {
+                currentMaxKey = currentMaxKey + incrementCreation;
+            }
+            QString currentMaxKeyString = QString::number(currentMaxKey);
+            this->currentMaxKey = currentMaxKeyString;
+            int maxNumOdre = keysList.count();
+            maxNumOdre++;
+            QString maxNumOrdreString = QString::number(maxNumOdre);
+            this->currentMaxNumOrdre = maxNumOrdreString;
+     }
+
+
 
 
     mapsOfKey = selectedMap->value(key);
@@ -140,7 +209,54 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, DataViewer *dataViewe
     for(iterator = mapsOfKey.begin(); iterator != mapsOfKey.end(); ++iterator)
     {
         name = iterator.key();
-        value = iterator.value();
+        if(choice == "create" || choice =="copy")
+        {
+            if(codeObject == "GDO")
+            {
+                if(name == "NumOrdre")
+                {
+                    value = currentMaxKey;
+                }
+                else
+                {
+                    if(choice == "create")
+                    {
+                        value = "";
+                    }
+                    else
+                    {
+                        value = iterator.value();
+                    }
+                }
+            }
+            else
+            {
+                if(name == "Id")
+                {
+                    value = currentMaxKey;
+                }
+                else if(name == "NumOrdre")
+                {
+                    value = currentMaxNumOrdre;
+                }
+                else
+                {
+                    if(choice == "create")
+                    {
+                        value = "";
+                    }
+                    else
+                    {
+                        value = iterator.value();
+                    }
+                }
+            }
+        }
+        else
+        {
+            value = iterator.value();
+        }
+
         ++iterator;
         type = iterator.value();
         ++iterator;
@@ -179,14 +295,21 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, DataViewer *dataViewe
 
     }
 
-
-    ui->instructionsLabel->setText("Modifiez les attributs editables voulus et cliquez sur OK pour valider les modifications");
+    if(choice == "create" || choice =="copy")
+    {
+        ui->instructionsLabel->setText("Saisissez les champs voulus et cliquez sur OK pour creer un nouvel objet");
+    }
+    else
+    {
+       ui->instructionsLabel->setText("Modifiez les attributs editables voulus et cliquez sur OK pour valider les modifications");
+    }
 
     QPalette Pal(palette());
     Pal.setColor(QPalette::Window, QColor(255,255,255,240));
     this->setAutoFillBackground(true);
     this->setPalette(Pal);
     this->show();
+
 }
 
 
@@ -215,14 +338,21 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
         gLayout2->addWidget(lineEdit);
         ui->verticalLayout->addLayout(hLayout);
         ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
     }
     else if(type == "num")
     {
         QSpinBox *spinBox = new QSpinBox;
+        spinBox->setMaximum(100000);
         QLabel *label = new QLabel;
         QGridLayout *gLayout2 = new QGridLayout;
         label->setText(nameAttributeSelected);
         label->setAccessibleName(name);
+        if(name=="Id" || name == "NumOrdre")
+        {
+            spinBox->setEnabled(false);
+        }
         int valueInt = value.toInt();
         spinBox->setValue(valueInt);
         QFont font = label->font();
@@ -234,6 +364,8 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
         gLayout2->addWidget(spinBox);
         ui->verticalLayout->addLayout(hLayout);
         ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
     }
     else if(type == "enum")
     {
@@ -291,6 +423,8 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
         ui->verticalLayout->addLayout(hLayout);
         exclusiveGroup->setExclusive(true);
         ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
     }
     else if(type == "strdate")
     {
@@ -308,6 +442,8 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
         gLayout2->addWidget(lineEdit);
         ui->verticalLayout->addLayout(hLayout);
         ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
 
     }
     else if(type == "strtime")
@@ -326,6 +462,8 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
         gLayout2->addWidget(lineEdit);
         ui->verticalLayout->addLayout(hLayout);
         ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
 
     }
     else if(type == "time")
@@ -344,6 +482,8 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
         gLayout2->addWidget(lineEdit);
         ui->verticalLayout->addLayout(hLayout);
         ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
     }
     else if(type == "bool")
     {
@@ -369,17 +509,29 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
         gLayout2->addWidget(comboBox);
         ui->verticalLayout->addLayout(hLayout);
         ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
 
     }
-//    else if(type == "comment")
-//    {
-//        QTextEdit *textEdit = new QTextEdit;
-//        QLabel *label = new QLabel;
-//        label->setText(nameAttributeSelected);
-//        label->setAccessibleName(name);
-//        ui->verticalLayout->addWidget(label);
-//        ui->verticalLayout->addWidget(textEdit);
-//    }
+    else if(type == "strlong")
+    {
+        QTextEdit *textEdit = new QTextEdit;
+        QLabel *label = new QLabel;
+        QGridLayout *gLayout2 = new QGridLayout;
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
+        textEdit->setText(value);
+        QFont font = label->font();
+        font.setBold(true);
+        label->setFont(font);
+        QHBoxLayout *hLayout = new QHBoxLayout;
+        hLayout->addWidget(label);
+        gLayout2->addWidget(textEdit);
+        ui->verticalLayout->addLayout(hLayout);
+        ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
+    }
     else
     {
         QLineEdit *lineEdit = new QLineEdit;
@@ -396,6 +548,8 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
         gLayout2->addWidget(lineEdit);
         ui->verticalLayout->addLayout(hLayout);
         ui->verticalLayout->addLayout(gLayout2);
+        parameters.append(var);
+        parameters.append(type);
 
     }
 
@@ -410,6 +564,7 @@ void DescriptiveCard::on_buttonBox_accepted()
     QStringList keysList = dataViewer->getKeysList();
     QString id = keysList[0];
     QString keyName;
+    QMap<QString, QString> mapTemp;
 
     if(codeObject == "GDO")
     {
@@ -433,6 +588,8 @@ void DescriptiveCard::on_buttonBox_accepted()
     QString widgetType;
 
     QMap <QString, QString> mapOfSelectedId = mapSelected->value(id);
+
+    int iteratorParameters = 0;
 
     for(int i=0; i<=count;++i)
     {
@@ -492,13 +649,37 @@ void DescriptiveCard::on_buttonBox_accepted()
         }
 
         QString valueMap = mapOfSelectedId[title];
-
-        if(valueMap != valueOfLineEdit)
+        if(choice == "create" || choice == "copy")
         {
-            //On change la valeur dans la map
-            dataManager->replaceDataOfMap(mapName,id, valueOfLineEdit,title);
-            dataManager->addKeyToMapChangeList(mapName, id);
+            mapTemp.insert(title, parameters[iteratorParameters]);
+            ++iteratorParameters;
+            mapTemp.insertMulti(title,parameters[iteratorParameters]);
+            ++iteratorParameters;
+            mapTemp.insertMulti(title, valueOfLineEdit);
+        }
+        else
+        {
+            if(valueMap != valueOfLineEdit)
+            {
+                dataManager->replaceDataOfMap(mapName,id, valueOfLineEdit,title);
+                dataManager->addKeyToMapChangeList(mapName, id);
+            }
         }
     }
+
+    if(choice == "create" || choice == "copy")
+    {
+        dataManager->insertDataToMap(mapName, currentMaxKey, mapTemp);
+        dataManager->addKeyToMapAddList(mapName, currentMaxKey);
+
+        if(indicFirstCreate == 1)
+        {
+           dataManager->setIndicFirstCreate(0);
+        }
+        dataManager->setIncrementCreation(incrementCreation+50);
+        dataManager->setIdOfLastCreatedObject(currentMaxKey);
+    }
+
+    dataViewer->updateLayout();
 
 }

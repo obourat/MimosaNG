@@ -26,7 +26,9 @@ private:
 private:
     //On définit les objets dont on a besoin pour lire le fichier et transmettre les données au datamanager
     DataManager *dataManager;
+    //Nom du fichier lu
     QString fileName;
+    //Définition du parser XML
     QXmlStreamReader reader;
 
 };

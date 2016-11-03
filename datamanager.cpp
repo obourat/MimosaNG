@@ -86,6 +86,116 @@ void DataManager::insertDataToMap(const QString &mapName, const QString &key, co
 
 }
 
+void DataManager::eraseDataOfMap(const QString &mapName, const QString &key)
+{
+    if(mapName == "mapGDO")
+    {
+        QMap<QString, QMap<QString, QString> >::Iterator iterator;
+        QMap<QString, QMap<QString, QString> >::Iterator iteratorToErase;
+        for(iterator = mapGDO.begin(); iterator != mapGDO.end(); ++iterator)
+        {
+            QString keyIterator = iterator.key();
+            if(keyIterator == key)
+            {
+                if(mapEraseList.values(mapName).isEmpty())
+                {
+                    mapEraseList.insert(mapName, key);
+                }
+                else
+                {
+                    mapEraseList.insertMulti(mapName, key);
+                }
+                mapGDO.erase(iterator);
+                break;
+            }
+        }
+    }
+
+    else if(mapName == "mapGAT")
+    {
+        QMap<QString, QMap<QString, QString> >::Iterator iterator;
+        for(iterator = mapGAT.begin(); iterator != mapGAT.end(); ++iterator)
+        {
+            if(iterator.key() == key)
+            {
+                if(mapEraseList.values(mapName).isEmpty())
+                {
+                    mapEraseList.insert(mapName, key);
+                }
+                else
+                {
+                    mapEraseList.insertMulti(mapName, key);
+                }
+                mapGAT.erase(iterator);
+                break;
+            }
+        }
+    }
+
+    else if(mapName == "mapGCA")
+    {
+        QMap<QString, QMap<QString, QString> >::Iterator iterator;
+        for(iterator = mapGCA.begin(); iterator != mapGCA.end(); ++iterator)
+        {
+            if(iterator.key() == key)
+            {
+                if(mapEraseList.values(mapName).isEmpty())
+                {
+                    mapEraseList.insert(mapName, key);
+                }
+                else
+                {
+                    mapEraseList.insertMulti(mapName, key);
+                }
+                mapGCA.erase(iterator);
+                break;
+            }
+        }
+    }
+
+    else if(mapName == "mapGVE")
+    {
+        QMap<QString, QMap<QString, QString> >::Iterator iterator;
+        for(iterator = mapGVE.begin(); iterator != mapGVE.end(); ++iterator)
+        {
+            if(iterator.key() == key)
+            {
+                if(mapEraseList.values(mapName).isEmpty())
+                {
+                    mapEraseList.insert(mapName, key);
+                }
+                else
+                {
+                    mapEraseList.insertMulti(mapName, key);
+                }
+                mapGVE.erase(iterator);
+                break;
+            }
+        }
+    }
+
+    else if(mapName == "mapGRS")
+    {
+        QMap<QString, QMap<QString, QString> >::Iterator iterator;
+        for(iterator = mapGRS.begin(); iterator != mapGRS.end(); ++iterator)
+        {
+            if(iterator.key() == key)
+            {
+                if(mapEraseList.values(mapName).isEmpty())
+                {
+                    mapEraseList.insert(mapName, key);
+                }
+                else
+                {
+                    mapEraseList.insertMulti(mapName, key);
+                }
+                mapGRS.erase(iterator);
+                break;
+            }
+        }
+    }
+}
+
 void DataManager::replaceDataOfMap(const QString &mapName, const QString &key, const QString &valueToAdd, const QString smallKeyNameToReplace)
 {
     // Si la clef est vide
@@ -112,9 +222,9 @@ void DataManager::replaceDataOfMap(const QString &mapName, const QString &key, c
 
             mapGCA[key].remove(smallKeyNameToReplace);
         }
-        mapGDO[key].insert(smallKeyNameToReplace, var);
-        mapGDO[key].insertMulti(smallKeyNameToReplace,type);
-        mapGDO[key].insertMulti(smallKeyNameToReplace,valueToAdd);
+        mapGCA[key].insert(smallKeyNameToReplace, var);
+        mapGCA[key].insertMulti(smallKeyNameToReplace,type);
+        mapGCA[key].insertMulti(smallKeyNameToReplace,valueToAdd);
     }
     // Choix de la map par rapport au nom donné
     else if(mapName == "mapGAT")
@@ -128,9 +238,9 @@ void DataManager::replaceDataOfMap(const QString &mapName, const QString &key, c
 
             mapGAT[key].remove(smallKeyNameToReplace);
         }
-        mapGDO[key].insert(smallKeyNameToReplace, var);
-        mapGDO[key].insertMulti(smallKeyNameToReplace,type);
-        mapGDO[key].insertMulti(smallKeyNameToReplace,valueToAdd);
+        mapGAT[key].insert(smallKeyNameToReplace, var);
+        mapGAT[key].insertMulti(smallKeyNameToReplace,type);
+        mapGAT[key].insertMulti(smallKeyNameToReplace,valueToAdd);
     }
     // Choix de la map par rapport au nom donné
     else if(mapName == "mapGVE")
@@ -144,9 +254,9 @@ void DataManager::replaceDataOfMap(const QString &mapName, const QString &key, c
 
             mapGVE[key].remove(smallKeyNameToReplace);
         }
-        mapGDO[key].insert(smallKeyNameToReplace, var);
-        mapGDO[key].insertMulti(smallKeyNameToReplace,type);
-        mapGDO[key].insertMulti(smallKeyNameToReplace,valueToAdd);
+        mapGVE[key].insert(smallKeyNameToReplace, var);
+        mapGVE[key].insertMulti(smallKeyNameToReplace,type);
+        mapGVE[key].insertMulti(smallKeyNameToReplace,valueToAdd);
     }
     // Choix de la map par rapport au nom donné
     else if(mapName == "mapGCS")
@@ -174,9 +284,9 @@ void DataManager::replaceDataOfMap(const QString &mapName, const QString &key, c
 
             mapGRS[key].remove(smallKeyNameToReplace);
         }
-        mapGDO[key].insert(smallKeyNameToReplace, var);
-        mapGDO[key].insertMulti(smallKeyNameToReplace,type);
-        mapGDO[key].insertMulti(smallKeyNameToReplace,valueToAdd);
+        mapGRS[key].insert(smallKeyNameToReplace, var);
+        mapGRS[key].insertMulti(smallKeyNameToReplace,type);
+        mapGRS[key].insertMulti(smallKeyNameToReplace,valueToAdd);
     }
     // Choix de la map par rapport au nom donné
     else if(mapName == "mapGDO")
@@ -270,6 +380,66 @@ void DataManager::setMapChangeList(const QMap<QString, QString> &value)
 {
     mapChangeList = value;
 }
+QMap<QString, QString> DataManager::getMapAddList()
+{
+    return mapAddList;
+}
+
+void DataManager::setMapAddList(QMap<QString, QString> &value)
+{
+    mapAddList = value;
+}
+QMap<QString, QString> DataManager::getMapEraseList()
+{
+    return mapEraseList;
+}
+
+void DataManager::setMapEraseList(QMap<QString, QString> &value)
+{
+    mapEraseList = value;
+}
+int DataManager::getIndicFirstCreate() const
+{
+    return indicFirstCreate;
+}
+
+void DataManager::setIndicFirstCreate(int value)
+{
+    indicFirstCreate = value;
+}
+int DataManager::getIncrementCreation() const
+{
+    return incrementCreation;
+}
+
+void DataManager::setIncrementCreation(int value)
+{
+    incrementCreation = value;
+}
+QString DataManager::getIdOfLastCreatedObject() const
+{
+    return idOfLastCreatedObject;
+}
+
+void DataManager::setIdOfLastCreatedObject(const QString &value)
+{
+    idOfLastCreatedObject = value;
+}
+int DataManager::getAccessLevel() const
+{
+    return accessLevel;
+}
+
+void DataManager::setAccessLevel(int value)
+{
+    accessLevel = value;
+}
+
+
+
+
+
+
 
 
 
@@ -955,4 +1125,19 @@ void DataManager::addKeyToMapChangeList(QString mapName, QString id)
     }
 
 }
+
+void DataManager::addKeyToMapAddList(QString mapName, QString id)
+{
+    QString testValue = mapAddList.value(mapName);
+    if(testValue.isNull())
+    {
+        mapAddList.insert(mapName, id);
+    }
+
+    else
+    {
+        mapAddList.insertMulti(mapName, id);
+    }
+}
+
 
