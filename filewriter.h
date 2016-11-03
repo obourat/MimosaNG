@@ -2,6 +2,7 @@
 #define FILEWRITER_H
 
 #include <QString>
+#include <QMap>
 
 
 class DataManager;
@@ -18,6 +19,7 @@ public:
 
 private:
     DataManager *dataManager;
+    QMap<QString, QString> mapChangeList;
 };
 
 #endif // FILEWRITER_H

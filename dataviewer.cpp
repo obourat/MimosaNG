@@ -140,6 +140,20 @@ DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QStrin
 
     rowsDisplayed = rowCount;
 
+    //Insertion du couple clé, numéro de ligne pour chaque ligne dans la map keyRowMap
+    int rowCountNumber = rowCount;
+    int columnCountValue = columnCount;
+    columnCountValue--;
+    QString key;
+    QString rowNumber;
+    keyRowMap.clear();
+    for(int i=0; i!= rowCountNumber; ++i)
+    {
+        key = ui->tableView->model()->data(ui->tableView->model()->index(i,columnCountValue)).toString();
+        rowNumber = QString::number(i);
+        keyRowMap.insert(key,rowNumber);
+    }
+
     //Permet de minimiser la fenêtre
     Qt::WindowFlags flags = Qt::Window | Qt::WindowSystemMenuHint| Qt::WindowMinimizeButtonHint| Qt::WindowCloseButtonHint;
     this->setWindowFlags(flags);
@@ -350,7 +364,7 @@ void DataViewer::onChangeCurrentConfigAttributesButtonTriggered()
 void DataViewer::onDisplayDescriptiveCardButtonTriggered()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
-    descriptiveCard = new DescriptiveCard(dataManager, codeObject, keysList[0],"current",this);
+    descriptiveCard = new DescriptiveCard(dataManager, this,codeObject, keysList[0],"current",this);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
     descriptiveCard->show();
 
@@ -359,7 +373,7 @@ void DataViewer::onDisplayDescriptiveCardButtonTriggered()
 void DataViewer::onDisplayDescriptiveCardCompleteButtonTriggered()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
-    descriptiveCard = new DescriptiveCard(dataManager, codeObject, keysList[0],"complete",this);
+    descriptiveCard = new DescriptiveCard(dataManager, this, codeObject, keysList[0],"complete",this);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
     descriptiveCard->show();
 }
@@ -442,20 +456,53 @@ void DataViewer::onSubListButtonTriggered()
 {
     searchCard = new SearchCard(dataManager, codeObject, keysList[0],this);
     searchCard->exec();
-#warning manque le connecteur a la validation
-    //connect(searchCard, SIGNAL(accepted()), this, SLOT(getSearchResults()));
 
     QList<QString> searchResults = searchCard->getSearchResults();
     int newRowCount = 0;
     QString testedKey;
+    QString rowValue;
+    int rowValueInt;
     int columnCountValue = columnCount;
     columnCountValue--;
     int rowCountValue = rowCount;
-    QProgressDialog progress("Affichage des resultats", "Annuler", 0, searchResults.count(), this);
-    progress.setWindowModality(Qt::WindowModal);
 
-#warning processus lent
 
+    //Affiche les lignes de résultat obtenus lors de la recherche
+    int confirmsearch = searchCard->getConfirmSearch();
+
+    if(confirmsearch == 1)
+    {
+        QProgressDialog progress("Affichage des resultats", "Annuler", 0, searchResults.count(), this);
+        progress.setWindowModality(Qt::WindowModal);
+
+        for(int j=0; j!= rowCountValue; ++j)
+        {
+            ui->tableView->hideRow(j);
+        }
+
+        if(!searchResults.isEmpty())
+        {
+            for(int i=0; i != searchResults.count(); ++i )
+            {
+                progress.setValue(i);
+                if(progress.wasCanceled())
+                {
+                    break;
+                }
+
+                testedKey = searchResults[i];
+                rowValue = keyRowMap.value(testedKey);
+                rowValueInt = rowValue.toInt();
+                ui->tableView->showRow(rowValueInt);
+                ++newRowCount;
+            }
+        }
+
+        progress.setValue(searchResults.count());
+    }
+
+
+#if 0
     for(int k=0; k!= rowCountValue; ++k)
     {
         progress.setValue(k);
@@ -482,37 +529,7 @@ void DataViewer::onSubListButtonTriggered()
     }
     progress.setValue(rowCountValue);
 
-
-#if 0
-    for(int j=0; j!= rowCountValue; ++j)
-    {
-        ui->tableView->hideRow(j);
-    }
-
-    for(int l=0; l!= searchResults.count(); ++l)
-    {
-        progress.setValue(l);
-        if(progress.wasCanceled())
-        {
-            break;
-        }
-
-        for(int k=0; k!= rowCountValue; ++k)
-        {
-            testedKey = ui->tableView->model()->data(ui->tableView->model()->index(k,columnCountValue)).toString();
-            if(testedKey == searchResults[l])
-            {
-                ui->tableView->showRow(k);
-                ++newRowCount;
-                break;
-            }
-        }
-    }
-    progress.setValue(searchResults.count());
-
 #endif
-
-    int confirmsearch = searchCard->getConfirmSearch();
 
     if(newRowCount == 0 && confirmsearch == 1)
     {
@@ -528,11 +545,6 @@ void DataViewer::onSubListButtonTriggered()
 }
 
 
-void DataViewer::getSearchResults()
-{
-    QList<QString> searchResults = searchCard->getSearchResults();
-}
-
 void DataViewer::onItemDoubleClicked()
 {
     keysList.clear();
@@ -544,7 +556,7 @@ void DataViewer::onItemDoubleClicked()
     key = selectedIndexes[columnCountValue].data(0).toString();
     keysList.append(key);
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
-    descriptiveCard = new DescriptiveCard(dataManager, codeObject, keysList[0],"complete",this);
+    descriptiveCard = new DescriptiveCard(dataManager,this, codeObject, keysList[0],"complete",this);
     descriptiveCard->show();
 }
 
@@ -552,6 +564,16 @@ void DataViewer::setColumnHidden()
 {
     ui->tableView->setColumnHidden(index,true);
 }
+QStringList DataViewer::getKeysList() const
+{
+    return keysList;
+}
+
+void DataViewer::setKeysList(const QStringList &value)
+{
+    keysList = value;
+}
+
 
 
 

@@ -61,7 +61,31 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     //delete dataViewer;
+
+    QMap<QString, QString> changeList = dataManager->getMapChangeList();
+    if(!changeList.values("mapGDO").isEmpty())
+    {
+        fileWriter->modifyFiles("mapGDO");
+    }
+    if(!changeList.values("mapGCA").isEmpty())
+    {
+        fileWriter->modifyFiles("mapGCA");
+    }
+    if(!changeList.values("mapGAT").isEmpty())
+    {
+        fileWriter->modifyFiles("mapGAT");
+    }
+    if(!changeList.values("mapGVE").isEmpty())
+    {
+        fileWriter->modifyFiles("mapGVE");
+    }
+    if(!changeList.values("mapGRS").isEmpty())
+    {
+        fileWriter->modifyFiles("mapGRS");
+    }
+
     fileWriter->modifyFiles("mapGCS");
+
     delete dataManager;
     delete fileReader;
     delete ui;

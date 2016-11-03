@@ -5,6 +5,7 @@
 #include <QtGui/QWidget>
 #include <QSettings>
 #include <QModelIndex>
+#include <QMap>
 
 namespace Ui {
 class DataViewer;
@@ -29,6 +30,9 @@ public:
     //Destructeur
     ~DataViewer();
 
+    QStringList getKeysList() const;
+    void setKeysList(const QStringList &value);
+
 public slots:
     //Slot pour le menu
     void customMenuRequested(QPoint pos);
@@ -45,7 +49,6 @@ private slots:
     void onResetSelectionButtonTriggered();
     void onTotalSelectionButtonTriggered();
     void onSubListButtonTriggered();
-    void getSearchResults();
     void onItemDoubleClicked();
     void setColumnHidden();
 
@@ -67,6 +70,7 @@ private:
     QString codeObject;
     //Liste de clés associée aux objets sélectionnés
     QStringList keysList;
+    QMap<QString, QString> keyRowMap;
     int rowCount;
     int columnCount;
     int rowsDisplayed;

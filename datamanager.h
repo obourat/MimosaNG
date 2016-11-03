@@ -40,6 +40,8 @@ public:
     const QMap<QString, QString>* getMapConcordance() const;
     //Insère dans mapConcordance les valeurs pour chaque objet
     void setDataOfMapConcordance();
+    //Ajoute un id a modifier dans le XML
+    void addKeyToMapChangeList(QString mapName, QString id);
 
 
     //getters et setters des noms de configurations courantes pour les différents objets
@@ -58,6 +60,9 @@ public:
     QString getCurrentConfigNameGDO() const;
     void setCurrentConfigNameGDO(const QString &value);
 
+    QMap<QString, QString> getMapChangeList() const;
+    void setMapChangeList(const QMap<QString, QString> &value);
+
 private:
 
 
@@ -71,6 +76,9 @@ private:
 
     //Map qui possède comme clé un triplé codeObjet, numéroInterne, InfoInterne permettant d'accéder à la valeur de la balise de titre des attributs
     QMap<QString, QString> mapConcordance;
+
+    //Map qui content les les nouvelles clés a mettre a jour dans la XML en fonction du type d'objet
+    QMap<QString, QString> mapChangeList;
 
     //On définit l'attribut correpondant au nom de la configuration courante
     QString currentConfigNameGCA;
