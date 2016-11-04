@@ -168,6 +168,8 @@ void OptionsViewer::on_confirmButtonBox_accepted()
     {
         if(!currentConfigSelectedName.isNull())
         {
+            dataManager->setIndicRestoreState(0);
+            //dataViewer->setIndicFirstSearch(1);
 
             if(codeObject == "GCA")
             {

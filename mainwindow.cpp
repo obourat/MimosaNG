@@ -62,6 +62,8 @@ MainWindow::MainWindow(QWidget *parent) :
     dataManager->setAccessLevel(0);
     ui->consultationButton->setChecked(true);
 
+    dataManager->setIndicRestoreState(1);
+
 }
 
 //Destructeur
@@ -239,7 +241,6 @@ void MainWindow::on_modificationButton_released()
     passwordForm = new PasswordForm(dataManager,1, this);
     passwordForm->setAttribute(Qt::WA_DeleteOnClose);
     passwordForm->exec();
-    dataManager->setAccessLevel(1);
 }
 
 
@@ -248,5 +249,4 @@ void MainWindow::on_adminButton_released()
     passwordForm = new PasswordForm(dataManager,2, this);
     passwordForm->setAttribute(Qt::WA_DeleteOnClose);
     passwordForm->exec();
-    dataManager->setAccessLevel(2);
 }

@@ -434,6 +434,16 @@ void DataManager::setAccessLevel(int value)
 {
     accessLevel = value;
 }
+int DataManager::getIndicRestoreState() const
+{
+    return indicRestoreState;
+}
+
+void DataManager::setIndicRestoreState(int value)
+{
+    indicRestoreState = value;
+}
+
 
 
 
@@ -800,6 +810,7 @@ const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsLis
     QString infoInterne;
     QString keyOfmapConcordance;
     QProgressDialog progress("Chargement des donnees...", "Annuler", 0, maps.length());
+    progress.setWindowTitle("Chargement");
     progress.setWindowModality(Qt::WindowModal);
     progress.show();
 
