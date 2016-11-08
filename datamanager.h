@@ -84,6 +84,9 @@ public:
     int getAccessLevel() const;
     void setAccessLevel(int value);
 
+    int getIndicRestoreState() const;
+    void setIndicRestoreState(int value);
+
 private:
 
 
@@ -120,6 +123,8 @@ private:
     QString idOfLastCreatedObject;
     //Indicateur des autorisations utilisateur
     int accessLevel;
+    //Indicateur de restauration de l'état actuel de la configuration d'affiche dans dataViewer
+    int indicRestoreState;
 };
 
 #endif // DATAMANAGER_H

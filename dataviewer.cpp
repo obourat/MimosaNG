@@ -176,11 +176,17 @@ void DataViewer::updateLayout()
     int columnOfKey;
     QString columnName;
     int rows = rowCount;
+    int indicRestoreState = dataManager->getIndicRestoreState();
     displayedRowsBeforeUpdate.clear();
 
     //On cherche le numéro de colonne correspondant à la clé
     for(int i=0; i!= columnIteratorMax; ++i)
     {
+        if(indicRestoreState == 0)
+        {
+           ui->tableView->setColumnHidden(i, false);
+        }
+
         columnName = ui->tableView->model()->headerData(i,Qt::Horizontal).toString();
         if(columnName == "key")
         {
@@ -188,6 +194,8 @@ void DataViewer::updateLayout()
             break;
         }
     }
+    dataManager->setIndicRestoreState(1);
+
     //On ajoute à la liste displayedRowsBeforeUpdate les clés des lignes affichés avant la mise à jour lors de la création d'un nouvel objet
     for(int a=0; a<=rows;++a)
     {
@@ -252,6 +260,7 @@ void DataViewer::updateLayout()
     QAbstractItemModel* tableModel = ui->tableView->model();
     rowCount = tableModel->rowCount();
     columnCount = ui->tableView->model()->columnCount();
+    columnIteratorMax = columnCount;
 
     //On met à jour la map des clés/lignes car il y a eu des modifications (ajout, suppression)
     updateKeyRowMap();
@@ -259,15 +268,23 @@ void DataViewer::updateLayout()
     QString rowsStr = QString::number(rowCount);
     ui->infoNbObject->setText("Nombre d'objets: "+rowsStr);
 
-    //On cache les lignes précédemment cachés en affichant la nouvelle
-    for(int i=0; i<=rowCount; ++i)
+    //On cache les lignes précédemment cachés en affichant la nouvelle, dans le cas ou on a effectué une recherche
+    if(indicFirstSearch == 0)
     {
-        ui->tableView->showRow(i);
-        testedKey = ui->tableView->model()->data(ui->tableView->model()->index(i,columnOfKey)).toString();
-        if( !displayedRowsBeforeUpdate.contains(testedKey))
+        for(int i=0; i<=rowCount; ++i)
         {
-            ui->tableView->hideRow(i);
+            ui->tableView->showRow(i);
+            testedKey = ui->tableView->model()->data(ui->tableView->model()->index(i,columnOfKey)).toString();
+            if( !displayedRowsBeforeUpdate.contains(testedKey))
+            {
+                ui->tableView->hideRow(i);
+            }
         }
+    }
+
+    else
+    {
+
     }
 
     //On chache la dernière colonne
@@ -697,6 +714,7 @@ void DataViewer::onCreateNewButtonTrigerred()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, this, codeObject, keysList[0],"complete","create",this);
+    descriptiveCard->setWindowFlags(Qt::Dialog);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
     //descriptiveCard->setWindowModality(Qt::ApplicationModal);
     descriptiveCard->exec();
@@ -706,21 +724,34 @@ void DataViewer::onCreateCopyButtonTrigerred()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, this, codeObject, keysList[0],"complete","copy",this);
+    descriptiveCard->setWindowFlags(Qt::Dialog);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
     choiceAddObject = "copy";
-    //descriptiveCard->setWindowModality(Qt::WindowModal);
     descriptiveCard->exec();
 }
 
 void DataViewer::onEraseButtonTriggered()
 {
-    for(int i=0; i < keysList.count(); ++i)
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Attention");
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setText("<b>Vous etes sur le point de supprimer un ou plusieurs objets.</b>");
+    msgBox.setInformativeText("=> Supprimer definitivement le/les element(s) selectionne(s) ?");
+    msgBox.setStandardButtons(QMessageBox::Apply | QMessageBox::Cancel);
+    int ret = msgBox.exec();
+
+    switch(ret)
     {
-        dataManager->eraseDataOfMap("map"%codeObject,keysList[i]);
+    case QMessageBox::Apply:
+        for(int i=0; i < keysList.count(); ++i)
+        {
+            dataManager->eraseDataOfMap("map"%codeObject,keysList[i]);
+        }
+        updateLayout();
+        break;
+    case QMessageBox::Cancel:
+        break;
     }
-
-    updateLayout();
-
 }
 
 void DataViewer::setColumnHidden()

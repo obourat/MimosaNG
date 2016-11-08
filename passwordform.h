@@ -2,6 +2,7 @@
 #define PASSWORDFORM_H
 
 #include <QDialog>
+#include <QLineEdit>
 
 namespace Ui {
 class PasswordForm;
@@ -17,11 +18,15 @@ public:
     explicit PasswordForm(DataManager *dataManager, int levelRequested, QWidget *parent = 0);
     ~PasswordForm();
 
+private slots:
+    void on_buttonBox_accepted();
+
 private:
     Ui::PasswordForm *ui;
 
     DataManager *dataManager;
     int levelRequested;
+    QLineEdit *password;
 };
 
 #endif // PASSWORDFORM_H
