@@ -443,6 +443,46 @@ void DataManager::setIndicRestoreState(int value)
 {
     indicRestoreState = value;
 }
+QStringList DataManager::getCopiedKeys() const
+{
+    return copiedKeys;
+}
+
+void DataManager::setCopiedKeys(const QStringList &value)
+{
+    copiedKeys = value;
+}
+QString DataManager::getCodeObjectOfCopiedKeys() const
+{
+    return codeObjectOfCopiedKeys;
+}
+
+void DataManager::setCodeObjectOfCopiedKeys(const QString &value)
+{
+    codeObjectOfCopiedKeys = value;
+}
+int DataManager::getNumOrdreMax() const
+{
+    return NumOrdreMax;
+}
+
+void DataManager::setNumOrdreMax(int value)
+{
+    NumOrdreMax = value;
+}
+
+int DataManager::getNumOrdreMax() const
+{
+    return NumOrdreMax;
+}
+
+void DataManager::setNumOrdreMax(int value)
+{
+    NumOrdreMax = value;
+}
+
+
+
 
 
 
@@ -1148,6 +1188,94 @@ void DataManager::addKeyToMapAddList(QString mapName, QString id)
     else
     {
         mapAddList.insertMulti(mapName, id);
+    }
+}
+
+void DataManager::pasteAttribute(QString idCurrentConfig)
+{
+    QMap<QString, QString >::Iterator iteratorId;
+
+    QString currentKey;
+    int currentKeyInt;
+    int currentMaxKey = 0;
+    QList<QString> keysList = mapGAT.keys();
+
+    //On cherche l'id maximal des attributs
+    for(int i=0; i<keysList.count(); ++i)
+    {
+        currentKey = keysList[i];
+        currentKeyInt = currentKey.toInt();
+        if(currentKeyInt > currentMaxKey)
+        {
+            currentMaxKey = currentKeyInt;
+        }
+    }
+    currentMaxKey++;
+
+    QMap<QString, QString> mapTemp;
+    QStringList tempValues;
+    int tempValuesCount;
+    QString key;
+    QString currentMaxKeyStr = QString::number(currentMaxKey);
+
+    for(int i=0; i<copiedKeys.length(); ++i)
+    {
+        QString currentKeyToCopy = copiedKeys[i];
+        if(mapGAT.contains(currentKeyToCopy))
+        {
+            QMap<QString, QString> mapId = mapGAT[currentKeyToCopy];
+            for(iteratorId = mapId.begin(); iteratorId != mapId.end(); ++iteratorId)
+            {
+                key = iteratorId.key();
+                if(key != "Id" && key != "IdCnfAtt" && key != "CodeObj")
+                {
+                    tempValues = mapId.values(key);
+                    tempValuesCount = tempValues.count();
+                    --tempValuesCount;
+                    for(int j = tempValuesCount; j >=0;--j)
+                    {
+                        if(mapTemp.values(key).isEmpty())
+                        {
+                            mapTemp.insert(key, tempValues[j]);
+                        }
+                        else
+                        {
+                            mapTemp.insertMulti(key, tempValues[j]);
+                        }
+                    }
+                }
+                else if(key == "Id")
+                {
+                    mapTemp.insert("Id", "-");
+                    mapTemp.insertMulti("Id", "string");
+                    mapTemp.insertMulti("Id", currentMaxKeyStr);
+                }
+                else if(key == "IdCnfAtt")
+                {
+                    mapTemp.insert("IdCnfAtt", "-");
+                    mapTemp.insertMulti("IdCnfAtt", "string");
+                    mapTemp.insertMulti("IdCnfAtt", idCurrentConfig);
+                }
+                else if(key == "CodeObj")
+                {
+                    mapTemp.insert("CodeObj", "-");
+                    mapTemp.insertMulti("CodeObj", "string");
+                    mapTemp.insertMulti("CodeObj", codeObjectOfCopiedKeys);
+                }
+                else if(key == "Rang")
+                {
+                    ++numOrdreMax;
+                    mapTemp.insert("Rang", "-");
+                    mapTemp.insertMulti("Rang", "string");
+                    mapTemp.insertMulti("Rang", numOrdreMax);
+                }
+                ++iteratorId;
+                ++iteratorId;
+            }
+            mapGAT.insert(currentMaxKeyStr, mapTemp);
+            currentMaxKey++;
+            mapTemp.clear();
+        }
     }
 }
 

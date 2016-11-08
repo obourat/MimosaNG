@@ -798,6 +798,7 @@ void SearchCard::on_buttonBox_accepted()
     QLayoutItem* pLineWidget;
     QString widgetType;
 
+    //Pour toutes les lignes de la fiche de recherche, on remplit mapOfSearch si le champ traité est rempli
     for(int i=0; i<=count;++i)
     {
         nameLayout = ui->verticalLayout->itemAt(i);
@@ -874,16 +875,19 @@ void SearchCard::on_buttonBox_accepted()
         valueOfLineEdit = "";
 
     }
-
+    //On cherche l'indicateur de première recherche
     int indicFirstSearch = dataViewer->getIndicFirstSearch();
+    //Si il s'agit de la première recherche, on cherche les résultats et on les transmets à la vue
     if(indicFirstSearch == 1)
     {
         searchResults = searchMatches(*selectedMap,mapOfSearch);
         dataViewer->setIndicFirstSearch(0);
     }
+    //Si une recherche a déja été effectuée, on met a jour searchResult avec les nouveaux résultats
     else
     {
         QString indicSearch = dataViewer->getIndicSearch();
+        //Cas où l'on restreint la liste, on effectue la recherche sur le résultat précédent
         if(indicSearch == "restrain")
         {
             QList<QString>resultList = dataViewer->getResultList();
@@ -898,6 +902,7 @@ void SearchCard::on_buttonBox_accepted()
 
             searchResults = searchMatches(selectedSmallerMap,mapOfSearch);
         }
+        //Cas où l'on étend la liste, on effectue la recherhce sur la liste des clés non affichées
         else if(indicSearch == "add")
         {
             QList<QString>resultList = dataViewer->getResultList();
@@ -913,6 +918,7 @@ void SearchCard::on_buttonBox_accepted()
 
         }
     }
+    //On confirme qu'une recherche à été effectuée dans tous les cas
     confirmSearch = 1;
 }
 

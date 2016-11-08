@@ -104,7 +104,23 @@ OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager,DataVi
             ui->infoNomConf->setText("Nom de la configuration courante : \"" + currentConfigName + "\"  pour le type d'objet : Documents");
         }
         ui->instructionsLabel->setText("Selectionnez un attribut dans la liste et cliquez sur OK pour modifier ses caracteristiques");
+
     }
+  #if 0
+    int columnIteratorMax = columnCount;
+    QString columnName;
+    int columnNumOrdre;
+
+    for(int j=0; j!= columnIteratorMax; ++j)
+    {
+        columnName = ui->optionsView->model()->headerData(j,Qt::Horizontal).toString();
+        if(columnName == "Numéro d'ordre")
+        {
+            columnNumOrdre = j;
+            break;
+        }
+    }
+  #endif
 
     connect(this, SIGNAL(destroyed()), this->parent(), SLOT(updateLayout()));
 
@@ -113,6 +129,25 @@ OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager,DataVi
     this->setAutoFillBackground(true);
     this->setPalette(Pal);
     this->show();
+}
+
+void OptionsViewer::updateLayout()
+{
+    const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapNameOptions("mapGAT","GAT", codeObject);
+    Model *newModel = new Model(maps);
+    proxyOptionsModel->setSourceModel(newModel);
+    ui->optionsView->setModel(proxyOptionsModel);
+    int columnCount = ui->optionsView->model()->columnCount();
+    QString columnName;
+
+    for(int i=0; i<columnCount; ++i)
+    {
+        columnName = ui->optionsView->model()->headerData(i,Qt::Horizontal).toString();
+        if(columnName != "Indicateur d'affichage" && columnName != "Indicateur d'impression" && columnName != "Indicateur de tri" && columnName != "Nom d'attribut" && columnName != "Rang")
+        {
+            ui->optionsView->setColumnHidden(i, true);
+        }
+    }
 }
 
 OptionsViewer::~OptionsViewer()
@@ -159,6 +194,14 @@ void OptionsViewer::customMenuRequested(QPoint pos)
     connect(displayDescriptiveCardCurrent, SIGNAL(triggered()), this, SLOT(onDisplayDescriptiveCardButtonTriggered()));
     connect(displayDescriptiveCardComplete, SIGNAL(triggered()), this, SLOT(onDisplayDescriptiveCardCompleteButtonTriggered()));
 
+    if(selectedOption == "attributes")
+    {
+        QAction* copy = menu->addAction("Copier");
+        connect(copy, SIGNAL(triggered()), this, SLOT(onCopyButtonTriggered()));
+        QAction* paste = menu->addAction("Coller");
+        connect(paste, SIGNAL(triggered()), this, SLOT(onPasteButtonTriggered()));
+    }
+
     menu->popup(ui->optionsView->viewport()->mapToGlobal(pos));
 }
 
@@ -169,7 +212,6 @@ void OptionsViewer::on_confirmButtonBox_accepted()
         if(!currentConfigSelectedName.isNull())
         {
             dataManager->setIndicRestoreState(0);
-            //dataViewer->setIndicFirstSearch(1);
 
             if(codeObject == "GCA")
             {
@@ -255,6 +297,29 @@ void OptionsViewer::onDisplayDescriptiveCardCompleteButtonTriggered()
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
         descriptiveCard = new DescriptiveCard(dataManager, dataViewer,"GAT", keysList[0],"complete","modify",this);
         descriptiveCard->show();
+    }
+}
+
+void OptionsViewer::onCopyButtonTriggered()
+{
+    dataManager->setCopiedKeys(keysList);
+    dataManager->setCodeObjectOfCopiedKeys(codeObject);
+}
+
+void OptionsViewer::onPasteButtonTriggered()
+{
+    QString copiedValuesObj = dataManager->getCodeObjectOfCopiedKeys();
+    if (copiedValuesObj == "GAT")
+    {
+        QString currentConfigName = dataManager->getCurrentConfigNameGAT();
+        idCurrentConfig = dataManager->getCurrentConfigId(currentConfigName,"mapGCA", codeObject);
+        dataManager->setNumOrdreMax(ui->optionsView->model()->rowCount());
+        dataManager->pasteAttribute(idCurrentConfig);
+        updateLayout();
+    }
+    else
+    {
+         QMessageBox::warning(this, "Erreur", "Vous ne pouvez pas copier ici le ou les element(s) dans le presse-papier");
     }
 }
 

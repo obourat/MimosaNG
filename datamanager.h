@@ -46,6 +46,8 @@ public:
     void addKeyToMapChangeList(QString mapName, QString id);
     //Ajoute un id a ajouter dans le XML
     void addKeyToMapAddList(QString mapName, QString id);
+    //Ajoute à la map l'attribut collé à une configuration
+    void pasteAttribute(QString idCurrentConfig);
 
     //Getters et Setters
     QString getCurrentConfigNameGCA() const;
@@ -87,6 +89,15 @@ public:
     int getIndicRestoreState() const;
     void setIndicRestoreState(int value);
 
+    QStringList getCopiedKeys() const;
+    void setCopiedKeys(const QStringList &value);
+
+    QString getCodeObjectOfCopiedKeys() const;
+    void setCodeObjectOfCopiedKeys(const QString &value);
+
+    int getNumOrdreMax() const;
+    void setNumOrdreMax(int value);
+
 private:
 
 
@@ -125,6 +136,11 @@ private:
     int accessLevel;
     //Indicateur de restauration de l'état actuel de la configuration d'affiche dans dataViewer
     int indicRestoreState;
-};
+    //Liste des clés copiées
+    QStringList copiedKeys;
+    //CodeObjet des clés copiées
+    QString codeObjectOfCopiedKeys;
+    //Numéro d'ordre max des attributs affichés dans optionsViewer (sert dans le cas d'ajout d'un attribut)
+    int NumOrdreMax;
 
 #endif // DATAMANAGER_H

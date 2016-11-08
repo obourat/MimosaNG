@@ -678,6 +678,15 @@ void DescriptiveCard::on_buttonBox_accepted()
         }
         dataManager->setIncrementCreation(incrementCreation+50);
         dataManager->setIdOfLastCreatedObject(currentMaxKey);
+
+        if(choice == "create")
+        {
+            dataViewer->setChoiceAddObject("new");
+        }
+        else if (choice == "copy")
+        {
+            dataViewer->setChoiceAddObject("copy");
+        }
     }
 
     dataViewer->updateLayout();
