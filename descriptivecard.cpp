@@ -21,6 +21,7 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, DataViewer *dataViewe
     QDialog(parent),
     ui(new Ui::DescriptiveCard),
     dataManager(dataManager),
+    key(key),
     choice(choice)
 {
     ui->setupUi(this);
@@ -561,8 +562,7 @@ void DescriptiveCard::on_buttonBox_accepted()
 {
     QString mapName = "map" % codeObject;
     const QMap<QString, QMap<QString, QString> > *mapSelected = dataManager->getMapFromName(mapName);
-    QStringList keysList = dataViewer->getKeysList();
-    QString id = keysList[0];
+    QString id = key;
     QString keyName;
     QMap<QString, QString> mapTemp;
 
@@ -678,8 +678,18 @@ void DescriptiveCard::on_buttonBox_accepted()
         }
         dataManager->setIncrementCreation(incrementCreation+50);
         dataManager->setIdOfLastCreatedObject(currentMaxKey);
+
+        if(choice == "create")
+        {
+            dataViewer->setChoiceAddObject("new");
+        }
+        else if (choice == "copy")
+        {
+            dataViewer->setChoiceAddObject("copy");
+        }
     }
 
     dataViewer->updateLayout();
+
 
 }

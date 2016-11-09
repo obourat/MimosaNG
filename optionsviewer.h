@@ -22,6 +22,7 @@ class OptionsViewer : public QDialog
 public:
     //Constructeur
     explicit OptionsViewer(QString codeObject, DataManager *dataManager , DataViewer *dataViewer,const QList<QMap<QString, QString> >& maps,QString selectedOption, QWidget *parent = 0);
+    void updateLayout();
     //Destructeur
     ~OptionsViewer();
 public slots:
@@ -36,6 +37,9 @@ private slots:
     //Slots pour les options
     void onDisplayDescriptiveCardButtonTriggered();
     void onDisplayDescriptiveCardCompleteButtonTriggered();
+    void onCopyButtonTriggered();
+    void onPasteButtonTriggered();
+    void onItemDoubleClicked();
 
 
 private:
@@ -54,6 +58,8 @@ private:
     QString selectedOption;
     //Liste de clés associée aux objets sélectionnés
     QStringList keysList;
+    //Id de la configuration courante
+    QString idCurrentConfig;
 
 };
 

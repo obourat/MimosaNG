@@ -47,6 +47,9 @@ public:
     QList<QString> getDisplayedRowsBeforeUpdate() const;
     void setDisplayedRowsBeforeUpdate(const QList<QString> &value);
 
+    QString getChoiceAddObject() const;
+    void setChoiceAddObject(const QString &value);
+
 public slots:
     //Slot pour le menu
     void customMenuRequested(QPoint pos);
@@ -69,6 +72,8 @@ private slots:
     void onCreateCopyButtonTrigerred();
     void onEraseButtonTriggered();
     void setColumnHidden();
+    void onSortContent();
+    void onCopyButtonTrigerred();
 
 private:
     //User Interface
