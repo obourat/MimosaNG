@@ -2,6 +2,7 @@
 
 #include <QStringBuilder>
 #include <QProgressDialog>
+#include <QMessageBox>
 
 //Constructeur
 DataManager::DataManager()
@@ -443,15 +444,25 @@ void DataManager::setIndicRestoreState(int value)
 {
     indicRestoreState = value;
 }
+QStringList DataManager::getCopiedKeys() const
+{
+    return copiedKeys;
+}
 
+void DataManager::setCopiedKeys(const QStringList &value)
+{
+    copiedKeys = value;
+}
 
+int DataManager::getNumOrdreMax() const
+{
+    return numOrdreMax;
+}
 
-
-
-
-
-
-
+void DataManager::setNumOrdreMax(int value)
+{
+    numOrdreMax = value;
+}
 
 QString DataManager::getCurrentConfigNameGRS() const
 {
@@ -1149,6 +1160,144 @@ void DataManager::addKeyToMapAddList(QString mapName, QString id)
     {
         mapAddList.insertMulti(mapName, id);
     }
+}
+
+void DataManager::pasteAttribute(QString idCurrentConfig, QString codeObjectPaste)
+{
+    QMap<QString, QString >::Iterator iteratorId;
+
+    QString currentKey;
+    int currentKeyInt;
+    int currentMaxKey = 0;
+    QList<QString> keysList = mapGAT.keys();
+
+    //On cherche l'id maximal des attributs
+    for(int i=0; i<keysList.count(); ++i)
+    {
+        currentKey = keysList[i];
+        currentKeyInt = currentKey.toInt();
+        if(currentKeyInt > currentMaxKey)
+        {
+            currentMaxKey = currentKeyInt;
+        }
+    }
+    currentMaxKey++;
+
+    QMap<QString, QString> mapTemp;
+    QStringList tempValues;
+    QStringList noCopiedValues;
+    int tempValuesCount;
+    QString key;
+    QString currentMaxKeyStr = QString::number(currentMaxKey);
+    QString numOrdreMaxStr;
+    QString noCopiedValueName;
+    QString info;
+
+    //Pour toutes les clés à copier
+    for(int i=0; i<copiedKeys.length(); ++i)
+    {
+        QString currentKeyToCopy = copiedKeys[i];
+        //Si mapGAT contient la clé à copier
+        if(mapGAT.contains(currentKeyToCopy))
+        {
+            //Si le code objet de la clé à copier correspond au code objet du tableau affiché (les objets doivent être de même type), on insert dans la map
+            if(mapGAT[currentKeyToCopy].value("CodeObj") == codeObjectPaste)
+            {
+                QMap<QString, QString> mapId = mapGAT[currentKeyToCopy];
+                for(iteratorId = mapId.begin(); iteratorId != mapId.end(); ++iteratorId)
+                {
+                    key = iteratorId.key();
+                    if(key != "Id" && key != "IdCnfAtt" && key != "CodeObj" && key != "Rang")
+                    {
+                        tempValues = mapId.values(key);
+                        tempValuesCount = tempValues.count();
+                        --tempValuesCount;
+                        for(int j = tempValuesCount; j >=0;--j)
+                        {
+                            if(mapTemp.values(key).isEmpty())
+                            {
+                                mapTemp.insert(key, tempValues[j]);
+                            }
+                            else
+                            {
+                                mapTemp.insertMulti(key, tempValues[j]);
+                            }
+                        }
+                    }
+                    else if(key == "Id")
+                    {
+                        mapTemp.insert("Id", "-");
+                        mapTemp.insertMulti("Id", "string");
+                        mapTemp.insertMulti("Id", currentMaxKeyStr);
+                    }
+                    else if(key == "IdCnfAtt")
+                    {
+                        mapTemp.insert("IdCnfAtt", "-");
+                        mapTemp.insertMulti("IdCnfAtt", "string");
+                        mapTemp.insertMulti("IdCnfAtt", idCurrentConfig);
+                    }
+                    else if(key == "CodeObj")
+                    {
+                        mapTemp.insert("CodeObj", "-");
+                        mapTemp.insertMulti("CodeObj", "string");
+                        mapTemp.insertMulti("CodeObj", codeObjectPaste);
+                    }
+                    else if(key == "Rang")
+                    {
+                        ++numOrdreMax;
+                        mapTemp.insert("Rang", "-");
+                        mapTemp.insertMulti("Rang", "string");
+                        numOrdreMaxStr = QString::number(numOrdreMax);
+                        mapTemp.insertMulti("Rang", numOrdreMaxStr);
+                    }
+                    ++iteratorId;
+                    ++iteratorId;
+                }
+                mapGAT.insert(currentMaxKeyStr, mapTemp);
+                QString mapName = "map"%codeObjectPaste;
+
+                if(mapAddList[mapName].isEmpty())
+                {
+                    mapAddList.insert(mapName, currentMaxKeyStr);
+                }
+                else
+                {
+                    mapAddList.insertMulti(mapName, currentMaxKeyStr);
+                }
+                currentMaxKey++;
+                currentMaxKeyStr = QString::number(currentMaxKey);
+
+                mapTemp.clear();
+            }
+            //Sinon, on ajoute la clé à la liste des objets non copiés
+            else
+            {
+                noCopiedValues.append(currentKeyToCopy);
+            }
+        }
+        else
+        {
+            QMessageBox msgBox;
+            msgBox.setWindowTitle("Erreur");
+            msgBox.setIcon(QMessageBox::Warning);
+            msgBox.setText("<b>Impossible de coller un element present dans le presse-papier</b>");
+            msgBox.setInformativeText("Seuls des attributs valides peuvent etre copies ici");
+            msgBox.exec();
+        }
+    }
+    //On indique a l'utilisateur tous les attributs que l'on a pas pu copier
+    for(int j=0; j<noCopiedValues.count();++j)
+    {
+        noCopiedValueName = mapGAT[noCopiedValues[j]].value("NomAttribut");
+        info = "L'attribut a copier " + noCopiedValueName + " n'est pas valide.";
+        QMessageBox msgBox;
+        msgBox.setWindowTitle("Erreur");
+        msgBox.setIcon(QMessageBox::Information);
+        msgBox.setText(info);
+        msgBox.setInformativeText("Selectionnez un autre attribut de meme nom dont le type concorde");
+        msgBox.exec();
+    }
+    noCopiedValues.clear();
 }
 
 

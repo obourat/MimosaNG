@@ -51,6 +51,8 @@ private:
     int indicFirstCreate;
     //Entier d'incrementation de clé et d'identifiant
     int incrementCreation;
+    //Clé de la fiche descriptive
+    QString key;
 };
 
 #endif // DESCRIPTIVECARD_H
