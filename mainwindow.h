@@ -3,16 +3,15 @@
 
 #include <QMainWindow>
 
-namespace Ui {
-class MainWindow;
-}
-
-//On inclut les classes qui intéragissent avec MainWindow
 class DataViewer;
 class DataManager;
 class FileReader;
 class FileWriter;
 class PasswordForm;
+
+namespace Ui {
+class MainWindow;
+}
 
 class MainWindow : public QMainWindow
 {
@@ -23,7 +22,13 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     //Destructeur
     ~MainWindow();
+    //Emet le signal de mise à jour des layout de dataViewer pour mettre a jour les layout des optionsViewer
+    void updateLayoutsOptions();
+    void updateLayoutsViewers();
 
+signals:
+    void signalUpdateLayoutsViewers();
+    void signalUpdateLayoutsOptions();
 
 private slots:
     //Slots du clic sur les différents boutons de la MainWindow

@@ -20,8 +20,6 @@ Model::Model(const QList<QMap<QString, QString> > &smallMapsFromMapName)
         QList<QStandardItem*> itemsToInclude;
         for (int j = 0; j < valuesOfSmallMaps.count(); ++j)
         {
-            // Ici il faut selectionner les valeurs qu'il faut afficher selon la cfg d'attributs
-
             QStandardItem *item;
             item = new QStandardItem(valuesOfSmallMaps[j]);
 
@@ -76,6 +74,52 @@ Model::Model(const QList<QMap<QString, QString> > &smallMapsFromMapName)
 
     model->setHorizontalHeaderLabels(keys);
 #endif
+}
+
+void Model::updateModel(const QList<QMap<QString, QString> > &smallMapsFromMapName, QStringList keysToTreat, QString choiceAddObject)
+{
+    for (int i = 0; i < keysToTreat.count(); ++i)
+    {
+        // recuperation des valeurs de la qmap courante (pour chaque clé i on récupère les valeurs dans values)
+        QList<QString> valuesOfSmallMaps;
+        QString valueOfKey;
+        valueOfKey = smallMapsFromMapName[i].value("key");
+        if(keysToTreat.contains(valueOfKey))
+        {
+            valuesOfSmallMaps = smallMapsFromMapName[i].values();
+
+            // On définit une QList items qui prend les items à inclure dans le model (en fonction de la configuration d'attributs)
+            QList<QStandardItem*> itemsToInclude;
+            for (int j = 0; j < valuesOfSmallMaps.count(); ++j)
+            {
+                QStandardItem *item;
+                item = new QStandardItem(valuesOfSmallMaps[j]);
+
+                itemsToInclude << item;
+            }
+            if(choiceAddObject == "copy" || choiceAddObject == "new")
+            {
+                // Ajout de la liste d'elements au modele
+                model->appendRow(itemsToInclude);
+            }
+            else if(choiceAddObject == "suppr")
+            {
+                model->removeRow()
+            }
+        }
+    }
+
+    // Mise a jour des en tetes (on cherche le nombre de colonnes maximum pour les objets, ce qui correspond au nombre de clés pour chaque objet)
+    QList<QString> keys;
+    for(int k=0; k< smallMapsFromMapName.count(); ++ k)
+    {
+        if(smallMapsFromMapName[k].keys().count() > keys.count())
+        {
+            keys = smallMapsFromMapName[k].keys();
+        }
+    }
+    //On remplit l'en tête avec le nom ds clés comme noms de colonnes
+    model->setHorizontalHeaderLabels(keys);
 }
 
 //Destructeur
