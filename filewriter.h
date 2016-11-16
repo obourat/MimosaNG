@@ -4,7 +4,6 @@
 #include <QString>
 #include <QMap>
 
-
 class DataManager;
 
 class FileWriter

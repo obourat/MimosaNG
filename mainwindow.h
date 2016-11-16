@@ -3,16 +3,15 @@
 
 #include <QMainWindow>
 
-namespace Ui {
-class MainWindow;
-}
-
-//On inclut les classes qui intéragissent avec MainWindow
 class DataViewer;
 class DataManager;
 class FileReader;
 class FileWriter;
 class PasswordForm;
+
+namespace Ui {
+class MainWindow;
+}
 
 class MainWindow : public QMainWindow
 {
@@ -23,7 +22,21 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     //Destructeur
     ~MainWindow();
+    //Emet le signal de mise à jour des layout de dataViewer pour mettre a jour les layout des optionsViewer
+    void updateLayoutsOptions();
+    void updateLayoutsViewers();
+    //Reset kesToTreat après la mise à jour du modele
+    void resetKeysToTreat();
 
+    QStringList getKeysToTreat() const;
+    void setKeysToTreat(const QString &value);
+
+    QString getChoiceAddObject() const;
+    void setChoiceAddObject(const QString &value);
+
+signals:
+    void signalUpdateLayoutsViewers();
+    void signalUpdateLayoutsOptions();
 
 private slots:
     //Slots du clic sur les différents boutons de la MainWindow
@@ -49,6 +62,9 @@ private:
     FileReader *fileReader;
     FileWriter *fileWriter;
     PasswordForm *passwordForm;
+    QStringList keysToTreat;
+    //Choix de l'objet à ajouter, renseigné lors du clic sur le menu
+    QString choiceAddObject;
 
 
 
