@@ -20,8 +20,6 @@ Model::Model(const QList<QMap<QString, QString> > &smallMapsFromMapName)
         QList<QStandardItem*> itemsToInclude;
         for (int j = 0; j < valuesOfSmallMaps.count(); ++j)
         {
-            // Ici il faut selectionner les valeurs qu'il faut afficher selon la cfg d'attributs
-
             QStandardItem *item;
             item = new QStandardItem(valuesOfSmallMaps[j]);
 
@@ -76,6 +74,100 @@ Model::Model(const QList<QMap<QString, QString> > &smallMapsFromMapName)
 
     model->setHorizontalHeaderLabels(keys);
 #endif
+}
+
+void Model::updateModelRows(const QList<QMap<QString, QString> > &smallMapsFromMapName, QStringList keysToTreat, QString choiceAddObject, int columnOfKey)
+{
+    for (int i = 0; i < smallMapsFromMapName.count(); ++i)
+    {
+        if(choiceAddObject == "copy" || choiceAddObject == "new")
+        {
+            // recuperation des valeurs de la qmap courante (pour chaque clé i on récupère les valeurs dans values)
+            QList<QString> valuesOfSmallMaps;
+            QString valueOfKey;
+            valueOfKey = smallMapsFromMapName[i].value("key");
+            if(keysToTreat.contains(valueOfKey))
+            {
+                valuesOfSmallMaps = smallMapsFromMapName[i].values();
+
+                // On définit une QList items qui prend les items à inclure dans le model (en fonction de la configuration d'attributs)
+                QList<QStandardItem*> itemsToInclude;
+                for (int j = 0; j < valuesOfSmallMaps.count(); ++j)
+                {
+                    QStandardItem *item;
+                    item = new QStandardItem(valuesOfSmallMaps[j]);
+
+                    itemsToInclude << item;
+                }
+                // Ajout de la liste d'elements au modele
+                int rowToAdd;
+                rowToAdd = model->rowCount();
+                beginInsertRows(QModelIndex(),rowToAdd,rowToAdd);
+                model->appendRow(itemsToInclude);
+                endInsertRows();
+            }
+        }
+    }
+    if(choiceAddObject == "suppr")
+    {
+        for(int j=0; j<keysToTreat.count();++j)
+        {
+            QList<QStandardItem*> items = model->findItems(keysToTreat[j],Qt::MatchExactly,columnOfKey);
+            int rowToRemove;
+            for(int i=0; i<items.count();++i)
+            {
+                rowToRemove = items[i]->row();
+                beginRemoveRows(QModelIndex(),rowToRemove,rowToRemove);
+                model->removeRow(rowToRemove,QModelIndex());
+                endRemoveRows();
+            }
+        }
+    }
+    else if(choiceAddObject == "modify")
+    {
+        for(int j=0; j<keysToTreat.count();++j)
+        {
+            for(int k=0; k<smallMapsFromMapName.count();++k)
+            {
+                if(smallMapsFromMapName[k].value("key")== keysToTreat[j])
+                {
+                    // recuperation des valeurs de la qmap courante (pour chaque clé i on récupère les valeurs dans values)
+                    QList<QString> valuesOfSmallMaps;
+                    valuesOfSmallMaps = smallMapsFromMapName[k].values();
+
+                    // On définit une QList items qui prend les items à inclure dans le model (en fonction de la configuration d'attributs)
+                    QList<QStandardItem*> itemsToInclude;
+                    for (int l = 0; l < valuesOfSmallMaps.count(); ++l)
+                    {
+                        QStandardItem *item;
+                        item = new QStandardItem(valuesOfSmallMaps[l]);
+
+                        itemsToInclude << item;
+                    }
+
+                    QList<QStandardItem*> items = model->findItems(keysToTreat[j],Qt::MatchExactly,columnOfKey);
+                    int rowToModify;
+                    QModelIndex indexToModify;
+                    for(int i=0; i<items.count();++i)
+                    {
+                        rowToModify = items[i]->index().row();
+                        indexToModify = items[i]->index();
+                        for(int c=0;c<valuesOfSmallMaps.count();++c)
+                        {
+                            model->item(rowToModify,c)->setData(itemsToInclude[c]->text(),Qt::DisplayRole);
+                        }
+                        dataChanged(indexToModify,indexToModify);
+                    }
+                    break;
+                }
+            }
+        }
+    }
+}
+
+void Model::updateModelColumns(const QList<QMap<QString, QString> > &smallMapsFromMapName, QStringList keysToTreat)
+{
+
 }
 
 //Destructeur

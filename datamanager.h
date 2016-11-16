@@ -46,6 +46,8 @@ public:
     void addKeyToMapChangeList(QString mapName, QString id);
     //Ajoute un id a ajouter dans le XML
     void addKeyToMapAddList(QString mapName, QString id);
+    //Ajoute un Id a supprimer dans le XML
+    void addKeyToMapEraseList(QString mapName, QString id);
     //Ajoute à la map l'attribut collé à une configuration
     void pasteAttribute(QString idCurrentConfig, QString codeObjectPaste);
 
@@ -95,9 +97,11 @@ public:
     int getNumOrdreMax() const;
     void setNumOrdreMax(int value);
 
+
+    QStringList getIdOfLastSupprObjects() const;
+    void setIdOfLastSupprObjects(const QStringList &value);
+
 private:
-
-
     //On définit les différentes maps des objets
     QMap<QString, QMap<QString, QString> > mapGVE;
     QMap<QString, QMap<QString, QString> > mapGCA;
@@ -129,6 +133,8 @@ private:
     int incrementCreation;
     //Identifiant du dernier élément crée pour l'afficher lorsqu'il est crée après une recherche
     QString idOfLastCreatedObject;
+    //Identifiant des derniers éléments supprimés pour les éliminer de la liste d'éléments à afficher lors d'une recherche
+    QStringList idOfLastSupprObjects;
     //Indicateur des autorisations utilisateur
     int accessLevel;
     //Indicateur de restauration de l'état actuel de la configuration d'affiche dans dataViewer

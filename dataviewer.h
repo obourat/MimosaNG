@@ -7,10 +7,6 @@
 #include <QModelIndex>
 #include <QMap>
 
-namespace Ui {
-class DataViewer;
-}
-
 class QSortFilterProxyModel;
 class Model;
 class OptionsViewer;
@@ -18,6 +14,11 @@ class DataManager;
 class FileReader;
 class DescriptiveCard;
 class SearchCard;
+class MainWindow;
+
+namespace Ui {
+class DataViewer;
+}
 
 class DataViewer : public QDialog
 {
@@ -25,8 +26,10 @@ class DataViewer : public QDialog
 
 public:
     //Constructeur
-    explicit DataViewer(DataManager *dataManager, const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent = 0);
+    explicit DataViewer(DataManager *dataManager, MainWindow *mainWindow ,const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent = 0);
+    //Fonction mettant à jour le modèle en supprimant en fonction des données ajoutées ou supprimées
     void updateLayout();
+    //Fonction mettant a jour la map d'association clé/ligne
     void updateKeyRowMap();
     //Destructeur
     ~DataViewer();
@@ -49,6 +52,7 @@ public:
 
     QString getChoiceAddObject() const;
     void setChoiceAddObject(const QString &value);
+
 
 public slots:
     //Slot pour le menu
@@ -74,6 +78,7 @@ private slots:
     void setColumnHidden();
     void onSortContent();
     void onCopyButtonTrigerred();
+    void slotUpdateLayout();
 
 private:
     //User Interface
@@ -85,6 +90,7 @@ private:
     OptionsViewer *optionsViewerCurrentConfig;
     OptionsViewer *optionsViewerCurrentConfigAttributes;
     DataManager *dataManager;
+    MainWindow *mainWindow;
     FileReader *fileReaderOptions;
     DescriptiveCard *descriptiveCard;
     SearchCard *searchCard;
@@ -109,8 +115,6 @@ private:
     QList<QString> resultList;
     //Liste des clés affichés avant la création d'un nouveau doc dansla cas d'une recherche
     QList<QString> displayedRowsBeforeUpdate;
-    //Choix de l'objet à ajouter, renseigné lors du clic sur le menu
-    QString choiceAddObject;
 };
 
 #endif // DATAVIEWER_H
