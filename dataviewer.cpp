@@ -6,24 +6,26 @@
 #include "filereader.h"
 #include "descriptivecard.h"
 #include "searchcard.h"
+#include "mainwindow.h"
 
 #include <QSortFilterProxyModel>
 #include <QtGui>
 #include <QMessageBox>
 #include <QProgressBar>
+#include <QString>
 
 //Constructeur
-DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent) :
+DataViewer::DataViewer(DataManager *dataManager, MainWindow *mainWindow, const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DataViewer),
     dataManager(dataManager),
+    mainWindow(mainWindow),
+    codeObject(codeObject),
     mySetting(new QSettings("dataviewer.cpp", QSettings::IniFormat))
 
 {
     //On instancie la fenêtre
     ui->setupUi(this);
-
-    this->codeObject = codeObject;
 
     //On définit un modèle qui contient toutes les clés récupérées
     myModel = new Model(maps);
@@ -32,6 +34,7 @@ DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QStrin
 
     //On associe les données du model au proxyModel
     proxyModel->setSourceModel(myModel);
+    proxyModel->setDynamicSortFilter(true);
 
     //On associe la vue au modèle contenu dans le proxyModel
     ui->tableView->setModel(proxyModel);
@@ -82,8 +85,6 @@ DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QStrin
     ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tableView, SIGNAL(customContextMenuRequested(QPoint)),this, SLOT(customMenuRequested(QPoint)));
     connect(ui->tableView, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(onItemDoubleClicked()));
-
-    QString currentConfigName;
 
     QAbstractItemModel* tableModel = ui->tableView->model();
     columnCount = tableModel->columnCount();
@@ -142,18 +143,7 @@ DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QStrin
     rowsDisplayed = rowCount;
 
     //Insertion du couple clé, numéro de ligne pour chaque ligne dans la map keyRowMap
-    int rowCountNumber = rowCount;
-    int columnCountValue = columnCount;
-    columnCountValue--;
-    QString key;
-    QString rowNumber;
-    keyRowMap.clear();
-    for(int i=0; i!= rowCountNumber; ++i)
-    {
-        key = ui->tableView->model()->data(ui->tableView->model()->index(i,columnCountValue)).toString();
-        rowNumber = QString::number(i);
-        keyRowMap.insert(key,rowNumber);
-    }
+    updateKeyRowMap();
 
     //Permet de minimiser la fenêtre
     Qt::WindowFlags flags = Qt::Window | Qt::WindowSystemMenuHint| Qt::WindowMinimizeButtonHint| Qt::WindowCloseButtonHint;
@@ -169,13 +159,23 @@ DataViewer::DataViewer(DataManager *dataManager,const QList<QMap<QString, QStrin
     indicFirstSearch = 1;
 
     //On initialise le choix d'ajout d'objet à none
-    choiceAddObject = "none";
+    mainWindow->setChoiceAddObject("none");
+
+    //Quand le signal update est emis dans mainWindow, on update le modele
+    connect(mainWindow, SIGNAL(signalUpdateLayoutsViewers()), this, SLOT(slotUpdateLayout()));
+
+    //Quand le signal removeColumn est emis dans mainWindow, on update le modele
+    connect(mainWindow, SIGNAL(signalRemoveColumn()), this, SLOT(slotRemoveColumn()));
+
 }
 
 void DataViewer::updateLayout()
 {
     QString currentConfigName;
     QString idLastKeyAdded = dataManager->getIdOfLastCreatedObject();
+    QStringList idLastSupprObjects = dataManager->getIdOfLastSupprObjects();
+    QStringList keysToTreat = mainWindow->getKeysToTreat();
+    QString choiceAddObject = mainWindow->getChoiceAddObject();
     QString testedKey;
     int columnIteratorMax = columnCount;
     int columnOfKey;
@@ -204,7 +204,6 @@ void DataViewer::updateLayout()
             break;
         }
     }
-
     //On ajoute à la liste displayedRowsBeforeUpdate les clés des lignes affichées avant la mise à jour lors de la création d'un nouvel objet (Utile dans recherche + changement de configuration)
     for(int a=0; a<rows;++a)
     {
@@ -220,57 +219,53 @@ void DataViewer::updateLayout()
     {
         displayedRowsBeforeUpdate.append(idLastKeyAdded);
     }
+    //On supprime les clés des clés à afficher dans le cas ou on en a supprimé une ou plusieurs
+    if(choiceAddObject == "suppr")
+    {
+        for(int i=0; i< idLastSupprObjects.count();++i)
+        {
+            displayedRowsBeforeUpdate.removeAll(idLastSupprObjects[i]);
+        }
+    }
 
     //Mise à jour du modèle de données
     if(codeObject == "GCA")
     {
         const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGCA", "GCA");
-        Model *newModel = new Model(maps);
-        proxyModel->setSourceModel(newModel);
-        ui->tableView->setModel(proxyModel);
+        myModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
         currentConfigName = dataManager->getCurrentConfigNameGCA();
         ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);        
     }
     else if(codeObject == "GAT")
     {
         const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGAT", "GAT");
-        Model *newModel = new Model(maps);
-        proxyModel->setSourceModel(newModel);
-        ui->tableView->setModel(proxyModel);
+        myModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
         currentConfigName = dataManager->getCurrentConfigNameGAT();
         ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
     }
     else if(codeObject == "GRS")
     {
         const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGRS", "GRS");
-        Model *newModel = new Model(maps);
-        proxyModel->setSourceModel(newModel);
-        ui->tableView->setModel(proxyModel);
+        myModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
         currentConfigName = dataManager->getCurrentConfigNameGRS();
         ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
     }
     else if(codeObject == "GDO")
     {
         const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGDO", "GDO");
-        Model *newModel = new Model(maps);
-        proxyModel->setSourceModel(newModel);
-        ui->tableView->setModel(proxyModel);
+        myModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
         currentConfigName = dataManager->getCurrentConfigNameGDO();
         ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
     }
     else if(codeObject == "GVE")
     {
         const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGVE", "GVE");
-        Model *newModel = new Model(maps);
-        proxyModel->setSourceModel(newModel);
-        ui->tableView->setModel(proxyModel);
+        myModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
         currentConfigName = dataManager->getCurrentConfigNameGVE();
         ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
     }
-
-    //On remet à jour le modèle, ainsi que les compteurs de lignes et colonnes
-    QAbstractItemModel* tableModel = ui->tableView->model();
-    rowCount = tableModel->rowCount();
+    //On remet à jour les compteurs de lignes et colonnes
+    rowCount = ui->tableView->model()->rowCount();
     columnCount = ui->tableView->model()->columnCount();
     columnIteratorMax = columnCount;
     rows = rowCount;
@@ -289,26 +284,22 @@ void DataViewer::updateLayout()
             ui->tableView->hideRow(i);
         }
 
-        for(int j=0; j<displayedRowsBeforeUpdate.count(); ++j)
+        QStringList displayedRows = displayedRowsBeforeUpdate;
+        for(int j=0; j<displayedRows.count(); ++j)
         {
-            QString row = keyRowMap[displayedRowsBeforeUpdate[j]];
+            QString row = keyRowMap[displayedRows[j]];
             int rowInt = row.toInt();
             ui->tableView->showRow(rowInt);
         }
 
-        rowsStr = QString::number(displayedRowsBeforeUpdate.count());
+        rowsStr = QString::number(displayedRows.count());
         ui->infoNbObject->setText("Nombre d'objets: "+rowsStr);
     }
 
-    else
-    {
-
-    }
 
     //On chache la dernière colonne
     for(int i=0; i!= columnIteratorMax; ++i)
     {
-        ui->tableView->setColumnHidden(i, false);
         columnName = ui->tableView->model()->headerData(i,Qt::Horizontal).toString();
         if(columnName == "key")
         {
@@ -317,9 +308,6 @@ void DataViewer::updateLayout()
             break;
         }
     }
-
-    //On reset choiceAddObjet car on a ajouté la nouvelle clé à la liste quand il y en avait une
-    choiceAddObject = "none";
 }
 
 void DataViewer::updateKeyRowMap()
@@ -489,24 +477,24 @@ void DataViewer::customHeaderMenuRequested(QPoint pos)
 void DataViewer::onChangeCurrentConfigButtonTriggered()
 {
     //On instancie une vue optionsViewer en rentrant les valeurs données par le dataManager en utilisant les méthodes spécifiques aux options
-    optionsViewerCurrentConfig = new OptionsViewer(codeObject, dataManager,this,dataManager->getSmallMapsFromMapNameOptions("mapGCA", "GCA",codeObject),"configurations", this);
+    optionsViewerCurrentConfig = new OptionsViewer(codeObject, dataManager, mainWindow, this,dataManager->getSmallMapsFromMapNameOptions("mapGCA", "GCA",codeObject),"configurations", this);
     optionsViewerCurrentConfig->setAttribute(Qt::WA_DeleteOnClose);
-    optionsViewerCurrentConfig->exec();
+    optionsViewerCurrentConfig->show();
 
 }
 
 void DataViewer::onChangeCurrentConfigAttributesButtonTriggered()
 {
     //On instancie une vue optionsViewer en rentrant les valeurs données par le dataManager en utilisant les méthodes spécifiques aux options
-    optionsViewerCurrentConfigAttributes = new OptionsViewer(codeObject, dataManager,this, dataManager->getSmallMapsFromMapNameOptions("mapGAT","GAT", codeObject),"attributes", this);
+    optionsViewerCurrentConfigAttributes = new OptionsViewer(codeObject, dataManager, mainWindow, this, dataManager->getSmallMapsFromMapNameOptions("mapGAT","GAT", codeObject),"attributes", this);
     optionsViewerCurrentConfigAttributes->setAttribute(Qt::WA_DeleteOnClose);
-    optionsViewerCurrentConfigAttributes->exec();
+    optionsViewerCurrentConfigAttributes->show();
 }
 
 void DataViewer::onDisplayDescriptiveCardButtonTriggered()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
-    descriptiveCard = new DescriptiveCard(dataManager, this,codeObject, keysList[0],"current","modify",this);
+    descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"current","modify",this);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
     descriptiveCard->show();
 
@@ -515,7 +503,7 @@ void DataViewer::onDisplayDescriptiveCardButtonTriggered()
 void DataViewer::onDisplayDescriptiveCardCompleteButtonTriggered()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
-    descriptiveCard = new DescriptiveCard(dataManager, this, codeObject, keysList[0],"complete","modify",this);
+    descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"complete","modify",this);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
     descriptiveCard->show();
 }
@@ -575,7 +563,6 @@ void DataViewer::onHideSelectionButtonTriggered()
 void DataViewer::onResetSelectionButtonTriggered()
 {
     int rowCountValue = rowCount;
-
     for(int k=0; k!= rowCountValue; ++k)
     {
         ui->tableView->showRow(k);
@@ -587,6 +574,7 @@ void DataViewer::onResetSelectionButtonTriggered()
     indicFirstSearch = 1;
 
     resultList.clear();
+    //updateLayout();
 }
 
 void DataViewer::onTotalSelectionButtonTriggered()
@@ -643,7 +631,6 @@ void DataViewer::onSubListRestrainButtonTriggered()
                 ++newRowCount;
             }
         }
-
         progress.setValue(searchResults.count());
     }
 
@@ -736,26 +723,26 @@ void DataViewer::onItemDoubleClicked()
     key = selectedIndexes[columnCountValue].data(0).toString();
     keysList.append(key);
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
-    descriptiveCard = new DescriptiveCard(dataManager,this, codeObject, keysList[0],"complete","modify",this);
+    descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"complete","modify",this);
     descriptiveCard->show();
 }
 
 void DataViewer::onCreateNewButtonTrigerred()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
-    descriptiveCard = new DescriptiveCard(dataManager, this, codeObject, keysList[0],"complete","create",this);
+    descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"complete","create",this);
     descriptiveCard->setWindowFlags(Qt::Dialog);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
-    descriptiveCard->exec();
+    descriptiveCard->show();
 }
 
 void DataViewer::onCreateCopyButtonTrigerred()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
-    descriptiveCard = new DescriptiveCard(dataManager, this, codeObject, keysList[0],"complete","copy",this);
+    descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"complete","copy",this);
     descriptiveCard->setWindowFlags(Qt::Dialog);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
-    descriptiveCard->exec();
+    descriptiveCard->show();
 }
 
 void DataViewer::onEraseButtonTriggered()
@@ -774,17 +761,46 @@ void DataViewer::onEraseButtonTriggered()
         for(int i=0; i < keysList.count(); ++i)
         {
             dataManager->eraseDataOfMap("map"%codeObject,keysList[i]);
+            dataManager->addKeyToMapEraseList(codeObject, keysList[i]);
+            mainWindow->setKeysToTreat(keysList[i]);
         }
-        updateLayout();
-        break;
-    case QMessageBox::Cancel:
-        break;
+        dataManager->setIdOfLastSupprObjects(keysList);
+        mainWindow->setChoiceAddObject("suppr");
+        mainWindow->updateLayoutsViewers();
+        mainWindow->updateLayoutsOptions();
+        mainWindow->resetKeysToTreat();
+        mainWindow->setChoiceAddObject("none");
     }
 }
 
 void DataViewer::setColumnHidden()
 {
-    ui->tableView->setColumnHidden(index,true);
+    //On met à jour la map en changeant indicAffichage
+    QString columnName = ui->tableView->model()->headerData(index, Qt::Horizontal).toString();
+    const QList<QMap <QString, QString> > list = dataManager->getSmallMapsFromMapNameOptions("mapGAT","GAT", codeObject);
+    QMap<QString, QString> test;
+    QString keyTested;
+    const QMap <QString, QMap <QString, QString> > *mapGAT = dataManager->getMapFromName("mapGAT");
+    for(int a=0; a<list.count();++a)
+    {
+        keyTested = list[a].value("key");
+        test = mapGAT->value(keyTested);
+        if(test.value("NomAttribut") == columnName)
+        {
+            dataManager->replaceDataOfMap("mapGAT", keyTested, "Non", "IndicAffichage");
+            dataManager->addKeyToMapChangeList("mapGAT",keyTested);
+            mainWindow->setKeysToTreat(keyTested);
+        }
+    }
+    mainWindow->setChoiceAddObject("modify");
+    mainWindow->updateLayoutsViewers();
+    mainWindow->updateLayoutsOptions();
+    mainWindow->setChoiceAddObject("none");
+    mainWindow->removeColumn(codeObject, currentConfigName, index);
+
+//    //On masque la colonne
+//    ui->tableView->setColumnHidden(index,true);
+
 }
 
 void DataViewer::onSortContent()
@@ -797,14 +813,49 @@ void DataViewer::onCopyButtonTrigerred()
     dataManager->setCopiedKeys(keysList);
 }
 
-QString DataViewer::getChoiceAddObject() const
+void DataViewer::slotUpdateLayout()
 {
-    return choiceAddObject;
+    updateLayout();
 }
 
-void DataViewer::setChoiceAddObject(const QString &value)
+void DataViewer::slotRemoveColumn()
 {
-    choiceAddObject = value;
+    int signalRemoveColumn = dataManager->getSignalRemoveColumn();
+    //Si on a changé l'indicateur d'affichage d'une fiche descriptive, signalRemoveColumn = 1 et on cherche la colonne a enlever
+    if(signalRemoveColumn == 1)
+    {
+        searchColumnToRemoveIndex();
+        dataManager->setSignalRemoveColumn(0);
+    }
+    QString columnToRemoveCodeObject = mainWindow->getColumnToRemoveCodeObject();
+    QString columnToRemoveConfigName = mainWindow->getColumnToRemoveConfigName();
+    if(columnToRemoveCodeObject == codeObject && columnToRemoveConfigName == currentConfigName)
+    {
+        int columnToRemoveIndex = mainWindow->getColumnToRemoveIndex();
+        myModel->removeModelColumn(columnToRemoveIndex);
+    }
+}
+
+void DataViewer::searchColumnToRemoveIndex()
+{
+    //On transmet a mainWindow les données obtenues dans dataManager
+    QString columToRemoveCodeObj = dataManager->getColumnToRemoveCodeObject();
+    QString columnToRemoveConfigName = dataManager->getColumnToRemoveConfigName();
+    mainWindow->setColumnToRemoveCodeObject(columToRemoveCodeObj);
+    mainWindow->setColumnToRemoveConfigName(columnToRemoveConfigName);
+    QString columnToRemoveName = dataManager->getColumnToRemoveName();
+    QString columnName;
+
+    //On cherche l'index de la colonne a supprimer dans la vue
+    for(int i=0; i<ui->tableView->model()->columnCount();++i)
+    {
+        columnName = ui->tableView->model()->headerData(i, Qt::Horizontal).toString();
+        if(columnName == columnToRemoveName)
+        {
+            mainWindow->setColumnToRemoveIndex(i);
+            break;
+        }
+    }
 }
 
 QList<QString> DataViewer::getDisplayedRowsBeforeUpdate() const

@@ -92,7 +92,6 @@ void DataManager::eraseDataOfMap(const QString &mapName, const QString &key)
     if(mapName == "mapGDO")
     {
         QMap<QString, QMap<QString, QString> >::Iterator iterator;
-        QMap<QString, QMap<QString, QString> >::Iterator iteratorToErase;
         for(iterator = mapGDO.begin(); iterator != mapGDO.end(); ++iterator)
         {
             QString keyIterator = iterator.key();
@@ -242,6 +241,18 @@ void DataManager::replaceDataOfMap(const QString &mapName, const QString &key, c
         mapGAT[key].insert(smallKeyNameToReplace, var);
         mapGAT[key].insertMulti(smallKeyNameToReplace,type);
         mapGAT[key].insertMulti(smallKeyNameToReplace,valueToAdd);
+
+        //Si on a changé l'indicAffichage, on met a jour le modele de données
+        if(smallKeyNameToReplace == "IndicAffichage")
+        {
+            if( valueToAdd == "Non")
+            {
+                columnToRemoveCodeObject = "GAT";
+                columnToRemoveConfigName = getCurrentConfigNameGAT();
+                columnToRemoveName = mapGAT[key].value("NomAttribut");
+                signalRemoveColumn = 1;
+            }
+        }
     }
     // Choix de la map par rapport au nom donné
     else if(mapName == "mapGVE")
@@ -463,6 +474,56 @@ void DataManager::setNumOrdreMax(int value)
 {
     numOrdreMax = value;
 }
+QStringList DataManager::getIdOfLastSupprObjects() const
+{
+    return idOfLastSupprObjects;
+}
+
+void DataManager::setIdOfLastSupprObjects(const QStringList &value)
+{
+    idOfLastSupprObjects = value;
+}
+QString DataManager::getColumnToRemoveCodeObject() const
+{
+    return columnToRemoveCodeObject;
+}
+
+void DataManager::setColumnToRemoveCodeObject(const QString &value)
+{
+    columnToRemoveCodeObject = value;
+}
+QString DataManager::getColumnToRemoveConfigName() const
+{
+    return columnToRemoveConfigName;
+}
+
+void DataManager::setColumnToRemoveConfigName(const QString &value)
+{
+    columnToRemoveConfigName = value;
+}
+QString DataManager::getColumnToRemoveName() const
+{
+    return columnToRemoveName;
+}
+
+void DataManager::setColumnToRemoveName(const QString &value)
+{
+    columnToRemoveName = value;
+}
+int DataManager::getSignalRemoveColumn() const
+{
+    return signalRemoveColumn;
+}
+
+void DataManager::setSignalRemoveColumn(int value)
+{
+    signalRemoveColumn = value;
+}
+
+
+
+
+
 
 QString DataManager::getCurrentConfigNameGRS() const
 {
@@ -699,7 +760,7 @@ const QList<QMap<QString, QString> > DataManager::getSmallMapsFromMapName(const 
     //Tant que l'iterateur n'a pas parcouru toutes les clés de la map sélectionnée
     for (iterator= selectedMap->begin(); iterator != selectedMap->end(); ++iterator)
     {
-        //On ajoute dans la liste maps les valeurs correpsondantes au contenu de la clé (la sous map)
+        //On ajoute dans la liste maps les valeurs correspondantes au contenu de la clé (la sous map)
         maps << selectedMap->value(iterator.key());
     }
 #warning fix this
@@ -856,7 +917,7 @@ const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsLis
 
                 //On cherche la valeur dans mapConcordance
                 nomAttributeSelected = mapConcordance[keyOfmapConcordance];
-                //On sélectionne le l'élément à traiter dans la petite map
+                //On sélectionne l'élément à traiter dans la petite map
                 valueOfSmallMapSelected = maps.at(j);
                 //On va chercher la valeur dans l'élément de la petite map à la balise nomAttributeSelected
                 valueAttributeSelected = valueOfSmallMapSelected[nomAttributeSelected];
@@ -933,11 +994,6 @@ const QList<QMap<QString, QString> > DataManager::selectAttributesOfSmallMapsLis
             {
                 attributesOfCurrentConfigOptions.append(iteratorAttribute);
             }
-            if(mapGAT[iteratorAttribute]["Titre"] == "Rang")
-            {
-                attributesOfCurrentConfigOptions.append(iteratorAttribute);
-            }
-
         }
 
 
@@ -1155,10 +1211,22 @@ void DataManager::addKeyToMapAddList(QString mapName, QString id)
     {
         mapAddList.insert(mapName, id);
     }
-
     else
     {
         mapAddList.insertMulti(mapName, id);
+    }
+}
+
+void DataManager::addKeyToMapEraseList(QString mapName, QString id)
+{
+    QString testValue = mapEraseList.value(mapName);
+    if(testValue.isNull())
+    {
+        mapEraseList.insert(mapName, id);
+    }
+    else
+    {
+        mapEraseList.insertMulti(mapName, id);
     }
 }
 
@@ -1299,5 +1367,6 @@ void DataManager::pasteAttribute(QString idCurrentConfig, QString codeObjectPast
     }
     noCopiedValues.clear();
 }
+
 
 

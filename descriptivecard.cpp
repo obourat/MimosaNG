@@ -1,6 +1,7 @@
 #include "descriptivecard.h"
 #include "ui_descriptivecard.h"
 #include "datamanager.h"
+#include "mainwindow.h"
 #include "dataviewer.h"
 
 #include <QStringBuilder>
@@ -17,10 +18,11 @@
 #include <QActionGroup>
 #include <QAction>
 
-DescriptiveCard::DescriptiveCard(DataManager *dataManager, DataViewer *dataViewer, QString codeObject, QString key, QString selection, QString choice, QWidget *parent) :
+DescriptiveCard::DescriptiveCard(DataManager *dataManager, MainWindow *mainWindow, DataViewer *dataViewer, QString codeObject, QString key, QString selection, QString choice, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DescriptiveCard),
     dataManager(dataManager),
+    mainWindow(mainWindow),
     key(key),
     choice(choice)
 {
@@ -304,6 +306,9 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, DataViewer *dataViewe
     {
        ui->instructionsLabel->setText("Modifiez les attributs editables voulus et cliquez sur OK pour valider les modifications");
     }
+
+    //Permet d'enlever la croix de fermeture de la fiche descritive (génère des bugs)
+    this->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint| Qt::WindowSystemMenuHint);
 
     QPalette Pal(palette());
     Pal.setColor(QPalette::Window, QColor(255,255,255,240));
@@ -681,15 +686,28 @@ void DescriptiveCard::on_buttonBox_accepted()
 
         if(choice == "create")
         {
-            dataViewer->setChoiceAddObject("new");
+            mainWindow->setChoiceAddObject("new");
         }
         else if (choice == "copy")
         {
-            dataViewer->setChoiceAddObject("copy");
+            mainWindow->setChoiceAddObject("copy");
         }
     }
 
-    dataViewer->updateLayout();
+    else if(choice == "modify")
+    {
+        mainWindow->setChoiceAddObject("modify");
+    }
 
-
+    mainWindow->setKeysToTreat(key);
+    mainWindow->updateLayoutsViewers();
+    mainWindow->updateLayoutsOptions();
+    mainWindow->resetKeysToTreat();
+    mainWindow->setChoiceAddObject("none");
+    if(codeObject == "GAT")
+    {
+        //On emet le signal qui conduit au slot de changement des colonnes
+        mainWindow->triggerSignalRemoveColumn();
+    }
 }
+
