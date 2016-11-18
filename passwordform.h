@@ -4,11 +4,11 @@
 #include <QDialog>
 #include <QLineEdit>
 
+class DataManager;
+
 namespace Ui {
 class PasswordForm;
 }
-
-class DataManager;
 
 class PasswordForm : public QDialog
 {

@@ -9,6 +9,7 @@
 
 class DataManager;
 class DataViewer;
+class MainWindow;
 
 namespace Ui {
 class DescriptiveCard;
@@ -20,7 +21,7 @@ class DescriptiveCard : public QDialog
 
 public:
     //Constructeur
-    explicit DescriptiveCard(DataManager *dataManager, DataViewer *dataViewer, QString codeObject, QString key,QString selection,QString choice ,QWidget *parent = 0);
+    explicit DescriptiveCard(DataManager *dataManager, MainWindow *mainWindow, DataViewer *dataViewer, QString codeObject, QString key,QString selection,QString choice ,QWidget *parent = 0);
     //Destructeur
     ~DescriptiveCard();
 
@@ -36,11 +37,15 @@ private:
     Ui::DescriptiveCard *ui;
     //Définition des objets dont on a besoin pour la gestion des données et de l'affichage
     DataManager *dataManager;
+    MainWindow *mainWindow;
     DataViewer *dataViewer;
     //Définition de mapGVE par copie de dataManager
     const QMap<QString, QMap<QString, QString> >* mapGVE;
     //Indicateur du type d'objet et du choix d'affichage
     QString codeObject;
+    //Clé de la fiche descriptive
+    QString key;
+    //
     QString choice;
     //Indicateur des clés et numOrdre max pour le cas d'une création
     QString currentMaxKey;
@@ -51,8 +56,6 @@ private:
     int indicFirstCreate;
     //Entier d'incrementation de clé et d'identifiant
     int incrementCreation;
-    //Clé de la fiche descriptive
-    QString key;
 };
 
 #endif // DESCRIPTIVECARD_H
