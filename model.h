@@ -10,6 +10,9 @@ class Model : public QAbstractTableModel
 public:
     // Constructeur
     explicit Model(const QList<QMap<QString, QString> > &smallMapsFromMapName);
+    void updateModelRows(const QList<QMap<QString, QString> > &smallMapsFromMapName, QStringList keysToTreat, QString choiceAddObject, int columnOfKey);
+    void removeModelColumn(int columnToRemoveIndex);
+    void addModelColumn(const QList<QMap<QString, QString> > &smallMapsFromMapName, int columnToAddIndex, QStringList keysToTreat);
     // Destructeur
     ~Model();
 
