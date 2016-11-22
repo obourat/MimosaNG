@@ -1,5 +1,6 @@
 #include "optionsviewer.h"
 #include "datamanager.h"
+#include "mainwindow.h"
 #include "dataviewer.h"
 #include "descriptivecard.h"
 #include "ui_optionsviewer.h"
@@ -9,11 +10,12 @@
 #include <QSortFilterProxyModel>
 #include <QtGui>
 
-OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager,DataViewer *dataViewer, const QList<QMap<QString, QString> >& maps, QString selectedOption, QWidget *parent) :
+OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager,MainWindow *mainWindow, DataViewer *dataViewer, const QList<QMap<QString, QString> >& maps, QString selectedOption, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::OptionsViewer),
     codeObject(codeObject),
     dataManager(dataManager),
+    mainWindow(mainWindow),
     dataViewer(dataViewer),
     selectedOption(selectedOption)
 
@@ -48,7 +50,6 @@ OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager,DataVi
     ui->optionsView->setColumnHidden(--columnCount, true);
 
     QString rows = QString::number(rowCount);
-
     ui->infoNbObject->setText("Nombre d'objets: "+rows);
 
     if(this->selectedOption == "configurations")
@@ -125,21 +126,38 @@ OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager,DataVi
 
     connect(this, SIGNAL(destroyed()), this->parent(), SLOT(updateLayout()));
 
-    QPalette Pal(palette());
-    Pal.setColor(QPalette::Window, QColor(255,255,255,240));
-    this->setAutoFillBackground(true);
-    this->setPalette(Pal);
-    this->show();
+    QPalette pal(palette());
+    QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
+    gradient.setColorAt(0, QColor(255,255,255,255));
+    gradient.setColorAt(1, QColor(245,255,255,255));
+    pal.setBrush(QPalette::Background, QBrush(gradient));
+    this->setPalette(pal);
+
+    connect(mainWindow, SIGNAL(signalUpdateLayoutsOptions()), this, SLOT(slotUpdateLayout()));
 }
 
 void OptionsViewer::updateLayout()
 {
     const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapNameOptions("mapGAT","GAT", codeObject);
-    Model *newModel = new Model(maps);
-    proxyOptionsModel->setSourceModel(newModel);
-    ui->optionsView->setModel(proxyOptionsModel);
+    QStringList keysToTreat = mainWindow->getKeysToTreat();
+    QString choiceAddObject = mainWindow->getChoiceAddObject();
     int columnCount = ui->optionsView->model()->columnCount();
+
+    int columnIteratorMax = columnCount;
+    int columnOfKey;
     QString columnName;
+
+    for(int j=0; j!= columnIteratorMax; ++j)
+    {
+        columnName = ui->optionsView->model()->headerData(j,Qt::Horizontal).toString();
+        if(columnName == "key")
+        {
+            columnOfKey = j;
+            break;
+        }
+    }
+
+    myOptionsModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
 
     for(int i=0; i<columnCount; ++i)
     {
@@ -149,6 +167,10 @@ void OptionsViewer::updateLayout()
             ui->optionsView->setColumnHidden(i, true);
         }
     }
+
+    int rowCount = ui->optionsView->model()->rowCount();
+    QString rows = QString::number(rowCount);
+    ui->infoNbObject->setText("Nombre d'objets: "+rows);
 }
 
 OptionsViewer::~OptionsViewer()
@@ -215,6 +237,10 @@ void OptionsViewer::customMenuRequested(QPoint pos)
         connect(copy, SIGNAL(triggered()), this, SLOT(onCopyButtonTriggered()));
         QAction* paste = menu->addAction("Coller");
         connect(paste, SIGNAL(triggered()), this, SLOT(onPasteButtonTriggered()));
+        if(dataManager->getAccessLevel() < 1)
+        {
+            paste->setEnabled(false);
+        }
     }
 
     menu->popup(ui->optionsView->viewport()->mapToGlobal(pos));
@@ -251,8 +277,7 @@ void OptionsViewer::on_confirmButtonBox_accepted()
 
             dataManager->replaceDataOfMap("mapGCS",codeObject,currentConfigSelectedName,"NomConfStd");
 
-            dataViewer->updateLayout();
-
+            dataViewer->resetModel();
 
         }
 
@@ -264,7 +289,6 @@ void OptionsViewer::on_confirmButtonBox_accepted()
 
         //descriptiveCard = new DescriptiveCard(keysList[0],this);
         //descriptiveCard->exec();
-        dataViewer->updateLayout();
     }
 
     this->~OptionsViewer();
@@ -289,13 +313,13 @@ void OptionsViewer::onDisplayDescriptiveCardButtonTriggered()
     if(selectedOption == "configurations")
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
-        descriptiveCard = new DescriptiveCard(dataManager, dataViewer, "GCA", keysList[0],"current", "modify",this);
+        descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer, "GCA", keysList[0],"current", "modify",this);
         descriptiveCard->show();
     }
     else if(selectedOption == "attributes")
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
-        descriptiveCard = new DescriptiveCard(dataManager, dataViewer, "GAT", keysList[0],"current", "modify",this);
+        descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer, "GAT", keysList[0],"current", "modify",this);
         descriptiveCard->exec();
         updateLayout();
     }
@@ -306,13 +330,13 @@ void OptionsViewer::onDisplayDescriptiveCardCompleteButtonTriggered()
     if(selectedOption == "configurations")
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
-        descriptiveCard = new DescriptiveCard(dataManager, dataViewer, "GCA", keysList[0],"complete","modify",this);
+        descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer, "GCA", keysList[0],"complete","modify",this);
         descriptiveCard->show();
     }
     else if(selectedOption == "attributes")
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
-        descriptiveCard = new DescriptiveCard(dataManager, dataViewer,"GAT", keysList[0],"complete","modify",this);
+        descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer,"GAT", keysList[0],"complete","modify",this);
         descriptiveCard->exec();
         updateLayout();
     }
@@ -352,7 +376,19 @@ void OptionsViewer::onPasteButtonTriggered()
     }
     dataManager->setNumOrdreMax(ui->optionsView->model()->rowCount());
     dataManager->pasteAttribute(idCurrentConfig, codeObject);
-    updateLayout();
+    for(int i=0; i<keysList.count();++i)
+    {
+        mainWindow->setKeysToTreat(keysList[i]);
+    }
+
+    mainWindow->setChoiceAddObject("copy");
+    mainWindow->updateLayoutsOptions();
+    mainWindow->updateLayoutsViewers();
+    mainWindow->setChoiceAddObject("none");
+
+    //On emet le signal qui conduit au slot de changement des colonnes
+    mainWindow->triggerSignalChangeColumn();
+    mainWindow->resetKeysToTreat();
 }
 
 void OptionsViewer::onItemDoubleClicked()
@@ -380,16 +416,19 @@ void OptionsViewer::onItemDoubleClicked()
     if(selectedOption == "configurations")
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
-        descriptiveCard = new DescriptiveCard(dataManager, dataViewer, "GCA", keysList[0],"complete","modify",this);
+        descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer, "GCA", keysList[0],"complete","modify",this);
         descriptiveCard->show();
     }
     else if(selectedOption == "attributes")
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
-        descriptiveCard = new DescriptiveCard(dataManager, dataViewer,"GAT", keysList[0],"complete","modify",this);
-        descriptiveCard->exec();
-        updateLayout();
+        descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer,"GAT", keysList[0],"complete","modify",this);
+        descriptiveCard->show();
     }
 }
 
+void OptionsViewer::slotUpdateLayout()
+{
+    updateLayout();
+}
 

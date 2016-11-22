@@ -10,6 +10,10 @@ class Model : public QAbstractTableModel
 public:
     // Constructeur
     explicit Model(const QList<QMap<QString, QString> > &smallMapsFromMapName);
+    void updateModelRows(const QList<QMap<QString, QString> > &smallMapsFromMapName, QStringList keysToTreat, QString choiceAddObject, int columnOfKey);
+    void removeModelColumn(int columnToRemoveIndex);
+    void addModelColumn(const QMap<QString, QMap<QString, QString> > *map, int columnToAddIndex, int columnOfKey, QString nameOfAttrToAdd, QString nameOfColumnToAdd);
+    void resetModel(const QList<QMap<QString, QString> > &smallMapsFromMapName);
     // Destructeur
     ~Model();
 
@@ -28,8 +32,9 @@ public:
 #endif
 
 private:
-    //QList<QMap<QString, QString> > listOfMaps;
     QStandardItemModel *model;
+    //Permet de stocker le nom des colonnes du header pour les réutiliser dans le cas d'ajout d'une colonne
+    QList<QString> headerLabels;
 };
 
 

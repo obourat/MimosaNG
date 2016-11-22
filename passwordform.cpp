@@ -27,6 +27,13 @@ PasswordForm::PasswordForm(DataManager *dataManager, int levelRequested,QWidget 
         ui->label->setText("Saisir le mot de passe pour passer en mode administration");
     }
 
+    QPalette pal(palette());
+    QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
+    gradient.setColorAt(0, QColor(255,255,255,255));
+    gradient.setColorAt(1, QColor(245,255,255,255));
+    pal.setBrush(QPalette::Background, QBrush(gradient));
+    this->setPalette(pal);
+
 }
 
 PasswordForm::~PasswordForm()
