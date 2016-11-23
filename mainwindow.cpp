@@ -7,6 +7,10 @@
 #include "filewriter.h"
 #include "passwordform.h"
 
+#include <QMessageBox>
+#include <QDesktopWidget>
+#include <QLinearGradient>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -50,11 +54,16 @@ MainWindow::MainWindow(QWidget *parent) :
     standardConfigName = dataManager->getStandardConfigName("GDO");
     dataManager->setCurrentConfigNameGDO(standardConfigName);
 
-    QPalette Pal(palette());
-    Pal.setColor(QPalette::Window, QColor(255,255,255,240));
-    this->setAutoFillBackground(true);
-    this->setPalette(Pal);
-    this->show();
+    QPalette pal(palette());
+    QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
+    gradient.setColorAt(0, QColor(255,255,255,255));
+    gradient.setColorAt(1, QColor(245,255,255,255));
+    pal.setBrush(QPalette::Background, QBrush(gradient));
+    this->setPalette(pal);
+
+
+    //Centre la fenêtre principale sur l'écran
+    this->move(QApplication::desktop()->screen()->rect().center() - this->rect().center());
 
     dataManager->setIndicFirstCreate(1);
     dataManager->setIncrementCreation(1);
@@ -184,11 +193,39 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::updateLayoutsOptions()
+{
+    emit this->signalUpdateLayoutsOptions();
+}
+
+void MainWindow::updateLayoutsViewers()
+{
+    emit this->signalUpdateLayoutsViewers();
+}
+
+void MainWindow::removeColumn(QString codeObject, QString currentConfigName, int index)
+{
+    columnToTreatCodeObject = codeObject;
+    columnToTreatConfigName = currentConfigName;
+    columnToRemoveIndex = index;
+    emit this->signalChangeColumn();
+}
+
+void MainWindow::triggerSignalChangeColumn()
+{
+    emit this->signalChangeColumn();
+}
+
+void MainWindow::resetKeysToTreat()
+{
+    keysToTreat.clear();
+}
+
 
 void MainWindow::on_environmentalVariablesButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
-    dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGVE", "GVE"),"GVE", this);
+    dataViewer = new DataViewer(dataManager, this, dataManager->getSmallMapsFromMapName("mapGVE", "GVE"),"GVE", this);
     dataViewer->setAttribute(Qt::WA_DeleteOnClose);
     dataViewer->show();
 
@@ -197,7 +234,7 @@ void MainWindow::on_environmentalVariablesButton_released()
 void MainWindow::on_attributesConfigurationsButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
-    dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGCA", "GCA"), "GCA",  this);
+    dataViewer = new DataViewer(dataManager, this, dataManager->getSmallMapsFromMapName("mapGCA", "GCA"), "GCA",  this);
     dataViewer->setAttribute(Qt::WA_DeleteOnClose);
     dataViewer->show();
 }
@@ -205,7 +242,7 @@ void MainWindow::on_attributesConfigurationsButton_released()
 void MainWindow::on_attributesButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
-    dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGAT", "GAT"), "GAT", this);
+    dataViewer = new DataViewer(dataManager, this, dataManager->getSmallMapsFromMapName("mapGAT", "GAT"), "GAT", this);
     dataViewer->setAttribute(Qt::WA_DeleteOnClose);
     dataViewer->show();
 }
@@ -218,7 +255,7 @@ void MainWindow::on_caseSelectionButton_released()
 void MainWindow::on_officialsButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
-    dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGRS", "GRS"), "GRS", this);
+    dataViewer = new DataViewer(dataManager, this, dataManager->getSmallMapsFromMapName("mapGRS", "GRS"), "GRS", this);
     dataViewer->setAttribute(Qt::WA_DeleteOnClose);
     dataViewer->show();
 }
@@ -226,27 +263,99 @@ void MainWindow::on_officialsButton_released()
 void MainWindow::on_documentsButton_released()
 {
     //On instancie une vue dataViewer en rentrant les valeurs données par le dataManager
-    dataViewer = new DataViewer(dataManager, dataManager->getSmallMapsFromMapName("mapGDO", "GDO"), "GDO", this);
+    dataViewer = new DataViewer(dataManager, this, dataManager->getSmallMapsFromMapName("mapGDO", "GDO"), "GDO", this);
     dataViewer->setAttribute(Qt::WA_DeleteOnClose);
     dataViewer->show();
 }
 
 void MainWindow::on_consultationButton_released()
 {
-    dataManager->setAccessLevel(0);
+    if(dataManager->getAccessLevel() != 0)
+    {
+        dataManager->setAccessLevel(0);
+    }
+    else
+    {
+        QMessageBox::information(this, "Information", "L'atelier est deja en mode consultation");
+    }
 }
 
 void MainWindow::on_modificationButton_released()
 {
-    passwordForm = new PasswordForm(dataManager,1, this);
-    passwordForm->setAttribute(Qt::WA_DeleteOnClose);
-    passwordForm->exec();
+    if(dataManager->getAccessLevel() != 1)
+    {
+        passwordForm = new PasswordForm(dataManager,1, this);
+        passwordForm->setAttribute(Qt::WA_DeleteOnClose);
+        passwordForm->exec();
+    }
+    else
+    {
+        QMessageBox::information(this, "Information", "L'atelier est deja en mode modification");
+    }
 }
 
 
 void MainWindow::on_adminButton_released()
 {
-    passwordForm = new PasswordForm(dataManager,2, this);
-    passwordForm->setAttribute(Qt::WA_DeleteOnClose);
-    passwordForm->exec();
+    if(dataManager->getAccessLevel() != 2)
+    {
+        passwordForm = new PasswordForm(dataManager,2, this);
+        passwordForm->setAttribute(Qt::WA_DeleteOnClose);
+        passwordForm->exec();
+    }
+    else
+    {
+        QMessageBox::information(this, "Information", "L'atelier est deja en mode administration");
+    }
 }
+int MainWindow::getColumnToRemoveIndex() const
+{
+    return columnToRemoveIndex;
+}
+
+void MainWindow::setColumnToRemoveIndex(int value)
+{
+    columnToRemoveIndex = value;
+}
+
+QString MainWindow::getColumnToTreatConfigName() const
+{
+    return columnToTreatConfigName;
+}
+
+void MainWindow::setColumnToTreatConfigName(const QString &value)
+{
+    columnToTreatConfigName = value;
+}
+
+QString MainWindow::getColumnToTreatCodeObject() const
+{
+    return columnToTreatCodeObject;
+}
+
+void MainWindow::setColumnToTreatCodeObject(const QString &value)
+{
+    columnToTreatCodeObject = value;
+}
+
+
+QString MainWindow::getChoiceAddObject() const
+{
+    return choiceAddObject;
+}
+
+void MainWindow::setChoiceAddObject(const QString &value)
+{
+    choiceAddObject = value;
+}
+
+QStringList MainWindow::getKeysToTreat() const
+{
+    return keysToTreat;
+}
+
+void MainWindow::setKeysToTreat(const QString &value)
+{
+    keysToTreat.append(value);
+}
+

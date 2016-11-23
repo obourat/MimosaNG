@@ -20,8 +20,6 @@ Model::Model(const QList<QMap<QString, QString> > &smallMapsFromMapName)
         QList<QStandardItem*> itemsToInclude;
         for (int j = 0; j < valuesOfSmallMaps.count(); ++j)
         {
-            // Ici il faut selectionner les valeurs qu'il faut afficher selon la cfg d'attributs
-
             QStandardItem *item;
             item = new QStandardItem(valuesOfSmallMaps[j]);
 
@@ -41,7 +39,13 @@ Model::Model(const QList<QMap<QString, QString> > &smallMapsFromMapName)
         }
     }
     //On remplit l'en tête avec le nom ds clés comme noms de colonnes
+    int nbColumnsToInsert = keys.count();
+    --nbColumnsToInsert;
+    beginInsertColumns(QModelIndex(),0,nbColumnsToInsert);
     model->setHorizontalHeaderLabels(keys);
+    endInsertColumns();
+    headerLabels = keys;
+
 #else
     model = new QStandardItemModel(this);
 
@@ -77,6 +81,189 @@ Model::Model(const QList<QMap<QString, QString> > &smallMapsFromMapName)
     model->setHorizontalHeaderLabels(keys);
 #endif
 }
+
+void Model::updateModelRows(const QList<QMap<QString, QString> > &smallMapsFromMapName, QStringList keysToTreat, QString choiceAddObject, int columnOfKey)
+{
+    if(choiceAddObject == "copy" || choiceAddObject == "new")
+    {
+        for (int i = 0; i < smallMapsFromMapName.count(); ++i)
+        {
+            // recuperation des valeurs de la qmap courante (pour chaque clé i on récupère les valeurs dans values)
+            QList<QString> valuesOfSmallMaps;
+            QString valueOfKey;
+            valueOfKey = smallMapsFromMapName[i].value("key");
+            if(keysToTreat.contains(valueOfKey))
+            {
+                valuesOfSmallMaps = smallMapsFromMapName[i].values();
+
+                // On définit une QList items qui prend les items à inclure dans le model (en fonction de la configuration d'attributs)
+                QList<QStandardItem*> itemsToInclude;
+                for (int j = 0; j < valuesOfSmallMaps.count(); ++j)
+                {
+                    QStandardItem *item;
+                    item = new QStandardItem(valuesOfSmallMaps[j]);
+
+                    itemsToInclude << item;
+                }
+                // Ajout de la liste d'elements au modele
+                int rowToAdd;
+                rowToAdd = model->rowCount();
+                beginInsertRows(QModelIndex(),rowToAdd,rowToAdd);
+                model->appendRow(itemsToInclude);
+                endInsertRows();
+            }
+        }
+    }
+    else if(choiceAddObject == "suppr")
+    {
+        for(int j=0; j<keysToTreat.count();++j)
+        {
+            QList<QStandardItem*> items = model->findItems(keysToTreat[j],Qt::MatchExactly,columnOfKey);
+            int rowToRemove;
+            for(int i=0; i<items.count();++i)
+            {
+                rowToRemove = items[i]->row();
+                beginRemoveRows(QModelIndex(),rowToRemove,rowToRemove);
+                model->removeRow(rowToRemove,QModelIndex());
+                endRemoveRows();
+            }
+        }
+    }
+    else if(choiceAddObject == "modify")
+    {
+        for(int j=0; j<keysToTreat.count();++j)
+        {
+            for(int k=0; k<smallMapsFromMapName.count();++k)
+            {
+                if(smallMapsFromMapName[k].value("key")== keysToTreat[j])
+                {
+                    // recuperation des valeurs de la qmap courante (pour chaque clé i on récupère les valeurs dans values)
+                    QList<QString> valuesOfSmallMaps;
+                    valuesOfSmallMaps = smallMapsFromMapName[k].values();
+
+                    // On définit une QList items qui prend les items à inclure dans le model (en fonction de la configuration d'attributs)
+                    QList<QStandardItem*> itemsToInclude;
+                    for (int l = 0; l < valuesOfSmallMaps.count(); ++l)
+                    {
+                        QStandardItem *item;
+                        item = new QStandardItem(valuesOfSmallMaps[l]);
+
+                        itemsToInclude << item;
+                    }
+
+                    QList<QStandardItem*> items = model->findItems(keysToTreat[j],Qt::MatchExactly,columnOfKey);
+                    int rowToModify;
+                    QModelIndex indexToModify;
+                    for(int i=0; i<items.count();++i)
+                    {
+                        rowToModify = items[i]->index().row();
+                        indexToModify = items[i]->index();
+                        //On modifie chaque cellule de la ligne
+                        for(int c=0;c<valuesOfSmallMaps.count();++c)
+                        {
+                            QString test = itemsToInclude[c]->text();
+                            model->item(rowToModify,c)->setData(itemsToInclude[c]->text(),Qt::DisplayRole);
+                        }
+                        dataChanged(indexToModify,indexToModify);
+                    }
+                    break;
+                }
+            }
+        }
+
+    }
+}
+
+void Model::removeModelColumn(int columnToRemoveIndex)
+{
+    beginRemoveColumns(QModelIndex(),columnToRemoveIndex,columnToRemoveIndex);
+    model->removeColumn(columnToRemoveIndex, QModelIndex());
+    headerLabels.removeAt(columnToRemoveIndex);
+    endRemoveColumns();
+}
+
+void Model::addModelColumn(const QMap<QString, QMap<QString, QString> > *map, int columnToAddIndex, int columnOfKey, QString nameOfAttrToAdd, QString nameOfColumnToAdd)
+{
+    beginInsertColumns(QModelIndex(),columnToAddIndex,columnToAddIndex);
+    model->insertColumn(columnToAddIndex,QModelIndex());
+    headerLabels.append(nameOfColumnToAdd);
+    model->setHorizontalHeaderLabels(headerLabels);
+    endInsertColumns();
+    QString keyOfLine;
+    QString dataToAdd;
+    QMap<QString, QString> currentTestedMap;
+    QMap<QString, QMap<QString, QString> >::ConstIterator iterator;
+
+    for(int i=0; i<model->rowCount();++i)
+    {
+        keyOfLine = model->data(model->index(i,columnOfKey)).toString();
+        iterator = map->find(keyOfLine);
+        currentTestedMap = map->value(iterator.key());
+        dataToAdd = currentTestedMap[nameOfAttrToAdd];
+        model->setData(model->index(i,columnToAddIndex),dataToAdd,Qt::DisplayRole);
+    }
+    //updateModelRows(smallMapsFromMapName,);
+}
+
+void Model::resetModel(const QList<QMap<QString, QString> > &smallMapsFromMapName)
+{
+
+    //On reinitialise le modele
+    beginResetModel();
+    model->clear();
+    endResetModel();
+
+    //On supprime les colonnes existantes
+    beginRemoveColumns(QModelIndex(),0,model->columnCount());
+    removeColumns(0,model->columnCount(QModelIndex()),QModelIndex());
+    endRemoveColumns();
+
+    //On ajoute les nouvelles colonnes
+    int nbColumnsToInsert = smallMapsFromMapName[0].keys().count();
+    --nbColumnsToInsert;
+    beginInsertColumns(QModelIndex(),0,nbColumnsToInsert);
+    // Mise a jour des en tetes (on cherche le nombre de colonnes maximum pour les objets, ce qui correspond au nombre de clés pour chaque objet)
+    QList<QString> keys;
+    for(int k=0; k< smallMapsFromMapName.count(); ++ k)
+    {
+        if(smallMapsFromMapName[k].keys().count() > keys.count())
+        {
+            keys = smallMapsFromMapName[k].keys();
+        }
+    }
+    //On remplit l'en tête avec le nom ds clés comme noms de colonnes
+    model->setHorizontalHeaderLabels(keys);
+    endInsertColumns();
+
+    headerLabels = keys;
+
+    //On insere les nouvelles données
+    int nbRowsToInsert = smallMapsFromMapName.count();
+    --nbRowsToInsert;
+    beginInsertRows(QModelIndex(),0,nbRowsToInsert);
+    for (int i = 0; i < smallMapsFromMapName.count(); ++i)
+    {
+        // recuperation des valeurs de la qmap courante (pour chaque clé i on récupère les valeurs dans values)
+        QList<QString> valuesOfSmallMaps;
+        valuesOfSmallMaps = smallMapsFromMapName[i].values();
+
+        // On définit une QList items qui prend les items à inclure dans le model (en fonction de la configuration d'attributs)
+        QList<QStandardItem*> itemsToInclude;
+        for (int j = 0; j < valuesOfSmallMaps.count(); ++j)
+        {
+            QStandardItem *item;
+            item = new QStandardItem(valuesOfSmallMaps[j]);
+
+            itemsToInclude << item;
+        }
+        // Ajout de la liste d'elements au modele
+
+        model->appendRow(itemsToInclude);
+    }
+    endInsertRows();
+
+}
+
 
 //Destructeur
 Model::~Model()

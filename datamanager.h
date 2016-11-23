@@ -46,6 +46,8 @@ public:
     void addKeyToMapChangeList(QString mapName, QString id);
     //Ajoute un id a ajouter dans le XML
     void addKeyToMapAddList(QString mapName, QString id);
+    //Ajoute un Id a supprimer dans le XML
+    void addKeyToMapEraseList(QString mapName, QString id);
     //Ajoute à la map l'attribut collé à une configuration
     void pasteAttribute(QString idCurrentConfig, QString codeObjectPaste);
 
@@ -95,9 +97,23 @@ public:
     int getNumOrdreMax() const;
     void setNumOrdreMax(int value);
 
+
+    QStringList getIdOfLastSupprObjects() const;
+    void setIdOfLastSupprObjects(const QStringList &value);
+
+    QString getColumnToTreatCodeObject() const;
+    void setColumnToTreatCodeObject(const QString &value);
+
+    QString getColumnToTreatConfigName() const;
+    void setColumnToTreatConfigName(const QString &value);
+
+    QString getColumnToTreatName() const;
+    void setColumnToTreatName(const QString &value);
+
+    int getSignalChangeColumn() const;
+    void setSignalChangeColumn(int value);
+
 private:
-
-
     //On définit les différentes maps des objets
     QMap<QString, QMap<QString, QString> > mapGVE;
     QMap<QString, QMap<QString, QString> > mapGCA;
@@ -129,6 +145,8 @@ private:
     int incrementCreation;
     //Identifiant du dernier élément crée pour l'afficher lorsqu'il est crée après une recherche
     QString idOfLastCreatedObject;
+    //Identifiant des derniers éléments supprimés pour les éliminer de la liste d'éléments à afficher lors d'une recherche
+    QStringList idOfLastSupprObjects;
     //Indicateur des autorisations utilisateur
     int accessLevel;
     //Indicateur de restauration de l'état actuel de la configuration d'affiche dans dataViewer
@@ -139,6 +157,14 @@ private:
     QString codeObjectOfCopiedKeys;
     //Numéro d'ordre max des attributs affichés dans optionsViewer (sert dans le cas d'ajout d'un attribut)
     int numOrdreMax;
+    //Code object de la colonne a supprimer des modeles de données
+    QString columnToTreatCodeObject;
+    //Nom de la configuration de la colonne a supprimer des modeles de données
+    QString columnToTreatConfigName;
+    //Nom de balise de l'attribut a supprimer du modele
+    QString columnToTreatName;
+    //Signal pour enlever une colonne quand on a mis sur Non indicAffichage dans une fiche descriptive d'attribut
+    int signalChangeColumn;
 
 };
 #endif // DATAMANAGER_H
