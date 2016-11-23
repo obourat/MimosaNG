@@ -5,15 +5,16 @@
 #include <QtGui/QWidget>
 #include <QModelIndex>
 
-namespace Ui {
-class OptionsViewer;
-}
-
 class QSortFilterProxyModel;
 class Model;
 class DataManager;
 class DataViewer;
 class DescriptiveCard;
+class MainWindow;
+
+namespace Ui {
+class OptionsViewer;
+}
 
 class OptionsViewer : public QDialog
 {
@@ -21,7 +22,7 @@ class OptionsViewer : public QDialog
 
 public:
     //Constructeur
-    explicit OptionsViewer(QString codeObject, DataManager *dataManager , DataViewer *dataViewer,const QList<QMap<QString, QString> >& maps,QString selectedOption, QWidget *parent = 0);
+    explicit OptionsViewer(QString codeObject, DataManager *dataManager, MainWindow *mainWindow, DataViewer *dataViewer,const QList<QMap<QString, QString> >& maps,QString selectedOption, QWidget *parent = 0);
     void updateLayout();
     //Destructeur
     ~OptionsViewer();
@@ -40,6 +41,7 @@ private slots:
     void onCopyButtonTriggered();
     void onPasteButtonTriggered();
     void onItemDoubleClicked();
+    void slotUpdateLayout();
 
 
 private:
@@ -50,6 +52,7 @@ private:
     QSortFilterProxyModel *proxyOptionsModel;
     QString codeObject;
     DataManager *dataManager;
+    MainWindow *mainWindow;
     DataViewer *dataViewer;
     DescriptiveCard *descriptiveCard;
     //Nom de la configuration courante

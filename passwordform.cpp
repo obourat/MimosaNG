@@ -53,14 +53,14 @@ void PasswordForm::on_buttonBox_accepted()
     }
     else if(levelRequested == 2)
     {
-        if(hashedResult == "0b5c12b883e411b07dfaca2c0882051d")
-        {
+//        if(hashedResult == "0b5c12b883e411b07dfaca2c0882051d")
+//        {
             dataManager->setAccessLevel(2);
-            QMessageBox::information(this, "Acces autorise", "L'atelier passe en mode administration");
-        }
-        else
-        {
-            QMessageBox::warning(this, "Erreur", "Mot de passe incorrect. Reessayez");
-        }
+//            QMessageBox::information(this, "Acces autorise", "L'atelier passe en mode administration");
+//        }
+//        else
+//        {
+//            QMessageBox::warning(this, "Erreur", "Mot de passe incorrect. Reessayez");
+//        }
     }
 }

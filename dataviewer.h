@@ -7,10 +7,6 @@
 #include <QModelIndex>
 #include <QMap>
 
-namespace Ui {
-class DataViewer;
-}
-
 class QSortFilterProxyModel;
 class Model;
 class OptionsViewer;
@@ -18,6 +14,11 @@ class DataManager;
 class FileReader;
 class DescriptiveCard;
 class SearchCard;
+class MainWindow;
+
+namespace Ui {
+class DataViewer;
+}
 
 class DataViewer : public QDialog
 {
@@ -25,7 +26,7 @@ class DataViewer : public QDialog
 
 public:
     //Constructeur
-    explicit DataViewer(DataManager *dataManager, const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent = 0);
+    explicit DataViewer(DataManager *dataManager, MainWindow *mainWindow ,const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent = 0);
     void updateLayout();
     void updateKeyRowMap();
     //Destructeur
@@ -49,6 +50,9 @@ public:
 
     QString getChoiceAddObject() const;
     void setChoiceAddObject(const QString &value);
+
+    QStringList getKeysToTreat() const;
+    void setKeysToTreat(const QString &value);
 
 public slots:
     //Slot pour le menu
@@ -74,6 +78,7 @@ private slots:
     void setColumnHidden();
     void onSortContent();
     void onCopyButtonTrigerred();
+    void slotUpdateLayout();
 
 private:
     //User Interface
@@ -85,6 +90,7 @@ private:
     OptionsViewer *optionsViewerCurrentConfig;
     OptionsViewer *optionsViewerCurrentConfigAttributes;
     DataManager *dataManager;
+    MainWindow *mainWindow;
     FileReader *fileReaderOptions;
     DescriptiveCard *descriptiveCard;
     SearchCard *searchCard;
@@ -93,6 +99,8 @@ private:
     QString codeObject;
     //Liste de clés associée aux objets sélectionnés
     QStringList keysList;
+    //Liste des clés à mettrea a jour dans le modèle
+    QStringList keysToTreat;
     //Map associé à la clé selectionnée pour une ligne
     QMap<QString, QString> keyRowMap;
     //Compteurs de lignes et colonnes
