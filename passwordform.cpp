@@ -27,6 +27,13 @@ PasswordForm::PasswordForm(DataManager *dataManager, int levelRequested,QWidget 
         ui->label->setText("Saisir le mot de passe pour passer en mode administration");
     }
 
+    QPalette pal(palette());
+    QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
+    gradient.setColorAt(0, QColor(255,255,255,255));
+    gradient.setColorAt(1, QColor(245,255,255,255));
+    pal.setBrush(QPalette::Background, QBrush(gradient));
+    this->setPalette(pal);
+
 }
 
 PasswordForm::~PasswordForm()
@@ -53,14 +60,14 @@ void PasswordForm::on_buttonBox_accepted()
     }
     else if(levelRequested == 2)
     {
-//        if(hashedResult == "0b5c12b883e411b07dfaca2c0882051d")
-//        {
+        if(hashedResult == "0b5c12b883e411b07dfaca2c0882051d")
+        {
             dataManager->setAccessLevel(2);
-//            QMessageBox::information(this, "Acces autorise", "L'atelier passe en mode administration");
-//        }
-//        else
-//        {
-//            QMessageBox::warning(this, "Erreur", "Mot de passe incorrect. Reessayez");
-//        }
+            QMessageBox::information(this, "Acces autorise", "L'atelier passe en mode administration");
+        }
+        else
+        {
+            QMessageBox::warning(this, "Erreur", "Mot de passe incorrect. Reessayez");
+        }
     }
 }

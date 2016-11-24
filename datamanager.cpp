@@ -241,6 +241,23 @@ void DataManager::replaceDataOfMap(const QString &mapName, const QString &key, c
         mapGAT[key].insert(smallKeyNameToReplace, var);
         mapGAT[key].insertMulti(smallKeyNameToReplace,type);
         mapGAT[key].insertMulti(smallKeyNameToReplace,valueToAdd);
+
+        //Si on a changé l'indicAffichage, on met a jour le modele de données
+        if(smallKeyNameToReplace == "IndicAffichage")
+        {
+
+            columnToTreatCodeObject = mapGAT[key].value("CodeObj");
+            columnToTreatConfigName = getCurrentConfigNameGAT();
+            columnToTreatName = mapGAT[key].value("NomAttribut");
+            if( valueToAdd == "Non")
+            {
+                signalChangeColumn = 1;
+            }
+            else if (valueToAdd == "Oui")
+            {
+                signalChangeColumn = 2;
+            }
+        }
     }
     // Choix de la map par rapport au nom donné
     else if(mapName == "mapGVE")
@@ -471,6 +488,49 @@ void DataManager::setIdOfLastSupprObjects(const QStringList &value)
 {
     idOfLastSupprObjects = value;
 }
+
+QString DataManager::getColumnToTreatCodeObject() const
+{
+    return columnToTreatCodeObject;
+}
+
+void DataManager::setColumnToTreatCodeObject(const QString &value)
+{
+    columnToTreatCodeObject = value;
+}
+
+QString DataManager::getColumnToTreatConfigName() const
+{
+    return columnToTreatConfigName;
+}
+
+void DataManager::setColumnToTreatConfigName(const QString &value)
+{
+    columnToTreatConfigName = value;
+}
+
+QString DataManager::getColumnToTreatName() const
+{
+    return columnToTreatName;
+}
+
+void DataManager::setColumnToTreatName(const QString &value)
+{
+    columnToTreatName = value;
+}
+int DataManager::getSignalChangeColumn() const
+{
+    return signalChangeColumn;
+}
+
+void DataManager::setSignalChangeColumn(int value)
+{
+    signalChangeColumn = value;
+}
+
+
+
+
 
 
 QString DataManager::getCurrentConfigNameGRS() const

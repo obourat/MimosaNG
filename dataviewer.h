@@ -15,6 +15,8 @@ class FileReader;
 class DescriptiveCard;
 class SearchCard;
 class MainWindow;
+class ExportForm;
+class PrintForm;
 
 namespace Ui {
 class DataViewer;
@@ -27,8 +29,14 @@ class DataViewer : public QDialog
 public:
     //Constructeur
     explicit DataViewer(DataManager *dataManager, MainWindow *mainWindow ,const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent = 0);
+    //Fonction mettant à jour le modèle en supprimant en fonction des données ajoutées ou supprimées
     void updateLayout();
+    //Fonction mettant a jour la map d'association clé/ligne
     void updateKeyRowMap();
+    //Fonction permettant de recherhce l'index de la colonne a supprimer
+    void searchColumnToRemoveIndex();
+    //Fonction qui initialise la reinitialisation du modèle
+    void resetModel();
     //Destructeur
     ~DataViewer();
 
@@ -51,8 +59,6 @@ public:
     QString getChoiceAddObject() const;
     void setChoiceAddObject(const QString &value);
 
-    QStringList getKeysToTreat() const;
-    void setKeysToTreat(const QString &value);
 
 public slots:
     //Slot pour le menu
@@ -78,7 +84,10 @@ private slots:
     void setColumnHidden();
     void onSortContent();
     void onCopyButtonTrigerred();
+    void onExportButtonTrigerred();
+    void onPrintButtonTrigerred();
     void slotUpdateLayout();
+    void slotChangeColumn();
 
 private:
     //User Interface
@@ -94,13 +103,15 @@ private:
     FileReader *fileReaderOptions;
     DescriptiveCard *descriptiveCard;
     SearchCard *searchCard;
+    ExportForm *exportForm;
+    PrintForm *printForm;
 
     //Code Objet associé au type de données affichées
     QString codeObject;
+    //Nom de la configuration courante
+    QString currentConfigName;
     //Liste de clés associée aux objets sélectionnés
     QStringList keysList;
-    //Liste des clés à mettrea a jour dans le modèle
-    QStringList keysToTreat;
     //Map associé à la clé selectionnée pour une ligne
     QMap<QString, QString> keyRowMap;
     //Compteurs de lignes et colonnes
@@ -117,8 +128,6 @@ private:
     QList<QString> resultList;
     //Liste des clés affichés avant la création d'un nouveau doc dansla cas d'une recherche
     QList<QString> displayedRowsBeforeUpdate;
-    //Choix de l'objet à ajouter, renseigné lors du clic sur le menu
-    QString choiceAddObject;
 };
 
 #endif // DATAVIEWER_H

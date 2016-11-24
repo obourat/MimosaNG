@@ -101,6 +101,18 @@ public:
     QStringList getIdOfLastSupprObjects() const;
     void setIdOfLastSupprObjects(const QStringList &value);
 
+    QString getColumnToTreatCodeObject() const;
+    void setColumnToTreatCodeObject(const QString &value);
+
+    QString getColumnToTreatConfigName() const;
+    void setColumnToTreatConfigName(const QString &value);
+
+    QString getColumnToTreatName() const;
+    void setColumnToTreatName(const QString &value);
+
+    int getSignalChangeColumn() const;
+    void setSignalChangeColumn(int value);
+
 private:
     //On définit les différentes maps des objets
     QMap<QString, QMap<QString, QString> > mapGVE;
@@ -145,6 +157,14 @@ private:
     QString codeObjectOfCopiedKeys;
     //Numéro d'ordre max des attributs affichés dans optionsViewer (sert dans le cas d'ajout d'un attribut)
     int numOrdreMax;
+    //Code object de la colonne a supprimer des modeles de données
+    QString columnToTreatCodeObject;
+    //Nom de la configuration de la colonne a supprimer des modeles de données
+    QString columnToTreatConfigName;
+    //Nom de balise de l'attribut a supprimer du modele
+    QString columnToTreatName;
+    //Signal pour enlever une colonne quand on a mis sur Non indicAffichage dans une fiche descriptive d'attribut
+    int signalChangeColumn;
 
 };
 #endif // DATAMANAGER_H

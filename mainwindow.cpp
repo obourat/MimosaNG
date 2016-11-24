@@ -9,6 +9,7 @@
 
 #include <QMessageBox>
 #include <QDesktopWidget>
+#include <QLinearGradient>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -53,11 +54,13 @@ MainWindow::MainWindow(QWidget *parent) :
     standardConfigName = dataManager->getStandardConfigName("GDO");
     dataManager->setCurrentConfigNameGDO(standardConfigName);
 
-    QPalette Pal(palette());
-    Pal.setColor(QPalette::Window, QColor(255,255,255,240));
-    this->setAutoFillBackground(true);
-    this->setPalette(Pal);
-    this->show();
+    QPalette pal(palette());
+    QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
+    gradient.setColorAt(0, QColor(255,255,255,255));
+    gradient.setColorAt(1, QColor(245,255,255,255));
+    pal.setBrush(QPalette::Background, QBrush(gradient));
+    this->setPalette(pal);
+
 
     //Centre la fenêtre principale sur l'écran
     this->move(QApplication::desktop()->screen()->rect().center() - this->rect().center());
@@ -200,6 +203,24 @@ void MainWindow::updateLayoutsViewers()
     emit this->signalUpdateLayoutsViewers();
 }
 
+void MainWindow::removeColumn(QString codeObject, QString currentConfigName, int index)
+{
+    columnToTreatCodeObject = codeObject;
+    columnToTreatConfigName = currentConfigName;
+    columnToRemoveIndex = index;
+    emit this->signalChangeColumn();
+}
+
+void MainWindow::triggerSignalChangeColumn()
+{
+    emit this->signalChangeColumn();
+}
+
+void MainWindow::resetKeysToTreat()
+{
+    keysToTreat.clear();
+}
+
 
 void MainWindow::on_environmentalVariablesButton_released()
 {
@@ -287,3 +308,54 @@ void MainWindow::on_adminButton_released()
         QMessageBox::information(this, "Information", "L'atelier est deja en mode administration");
     }
 }
+int MainWindow::getColumnToRemoveIndex() const
+{
+    return columnToRemoveIndex;
+}
+
+void MainWindow::setColumnToRemoveIndex(int value)
+{
+    columnToRemoveIndex = value;
+}
+
+QString MainWindow::getColumnToTreatConfigName() const
+{
+    return columnToTreatConfigName;
+}
+
+void MainWindow::setColumnToTreatConfigName(const QString &value)
+{
+    columnToTreatConfigName = value;
+}
+
+QString MainWindow::getColumnToTreatCodeObject() const
+{
+    return columnToTreatCodeObject;
+}
+
+void MainWindow::setColumnToTreatCodeObject(const QString &value)
+{
+    columnToTreatCodeObject = value;
+}
+
+
+QString MainWindow::getChoiceAddObject() const
+{
+    return choiceAddObject;
+}
+
+void MainWindow::setChoiceAddObject(const QString &value)
+{
+    choiceAddObject = value;
+}
+
+QStringList MainWindow::getKeysToTreat() const
+{
+    return keysToTreat;
+}
+
+void MainWindow::setKeysToTreat(const QString &value)
+{
+    keysToTreat.append(value);
+}
+

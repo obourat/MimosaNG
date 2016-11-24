@@ -26,6 +26,7 @@ public:
     void updateLayout();
     //Destructeur
     ~OptionsViewer();
+
 public slots:
     //Slot du menu
     void customMenuRequested(QPoint pos);

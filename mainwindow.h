@@ -25,10 +25,32 @@ public:
     //Emet le signal de mise à jour des layout de dataViewer pour mettre a jour les layout des optionsViewer
     void updateLayoutsOptions();
     void updateLayoutsViewers();
+    void removeColumn(QString codeObject, QString currentConfigName, int index);
+    void setColumnChangeIndic(QString choice, int index);
+    //Permet a d'autres classes (descriptiveCard) d'emettre le signal de suppression de la colonne
+    void triggerSignalChangeColumn();
+    //Reset kesToTreat après la mise à jour du modele
+    void resetKeysToTreat();
+
+    QStringList getKeysToTreat() const;
+    void setKeysToTreat(const QString &value);
+
+    QString getChoiceAddObject() const;
+    void setChoiceAddObject(const QString &value);
+
+    QString getColumnToTreatCodeObject() const;
+    void setColumnToTreatCodeObject(const QString &value);
+
+    QString getColumnToTreatConfigName() const;
+    void setColumnToTreatConfigName(const QString &value);
+
+    int getColumnToRemoveIndex() const;
+    void setColumnToRemoveIndex(int value);
 
 signals:
     void signalUpdateLayoutsViewers();
     void signalUpdateLayoutsOptions();
+    void signalChangeColumn();
 
 private slots:
     //Slots du clic sur les différents boutons de la MainWindow
@@ -54,6 +76,16 @@ private:
     FileReader *fileReader;
     FileWriter *fileWriter;
     PasswordForm *passwordForm;
+    QStringList keysToTreat;
+    //Choix de l'objet à ajouter, renseigné lors du clic sur le menu
+    QString choiceAddObject;
+    //Code object de la colonne a traiter dans les modeles de données
+    QString columnToTreatCodeObject;
+    //Nom de la configuration de la colonne a traiter dans les modeles de données
+    QString columnToTreatConfigName;
+    //Numéro de colonne de l'index a supprimer des modeles de données
+    int columnToRemoveIndex;
+
 
 
 

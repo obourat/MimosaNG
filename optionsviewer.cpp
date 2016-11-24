@@ -126,11 +126,12 @@ OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager,MainWi
 
     connect(this, SIGNAL(destroyed()), this->parent(), SLOT(updateLayout()));
 
-    QPalette Pal(palette());
-    Pal.setColor(QPalette::Window, QColor(255,255,255,240));
-    this->setAutoFillBackground(true);
-    this->setPalette(Pal);
-    this->show();
+    QPalette pal(palette());
+    QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
+    gradient.setColorAt(0, QColor(255,255,255,255));
+    gradient.setColorAt(1, QColor(245,255,255,255));
+    pal.setBrush(QPalette::Background, QBrush(gradient));
+    this->setPalette(pal);
 
     connect(mainWindow, SIGNAL(signalUpdateLayoutsOptions()), this, SLOT(slotUpdateLayout()));
 }
@@ -138,11 +139,25 @@ OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager,MainWi
 void OptionsViewer::updateLayout()
 {
     const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapNameOptions("mapGAT","GAT", codeObject);
-    Model *newModel = new Model(maps);
-    proxyOptionsModel->setSourceModel(newModel);
-    ui->optionsView->setModel(proxyOptionsModel);
+    QStringList keysToTreat = mainWindow->getKeysToTreat();
+    QString choiceAddObject = mainWindow->getChoiceAddObject();
     int columnCount = ui->optionsView->model()->columnCount();
+
+    int columnIteratorMax = columnCount;
+    int columnOfKey;
     QString columnName;
+
+    for(int j=0; j!= columnIteratorMax; ++j)
+    {
+        columnName = ui->optionsView->model()->headerData(j,Qt::Horizontal).toString();
+        if(columnName == "key")
+        {
+            columnOfKey = j;
+            break;
+        }
+    }
+
+    myOptionsModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
 
     for(int i=0; i<columnCount; ++i)
     {
@@ -156,7 +171,6 @@ void OptionsViewer::updateLayout()
     int rowCount = ui->optionsView->model()->rowCount();
     QString rows = QString::number(rowCount);
     ui->infoNbObject->setText("Nombre d'objets: "+rows);
-
 }
 
 OptionsViewer::~OptionsViewer()
@@ -223,6 +237,10 @@ void OptionsViewer::customMenuRequested(QPoint pos)
         connect(copy, SIGNAL(triggered()), this, SLOT(onCopyButtonTriggered()));
         QAction* paste = menu->addAction("Coller");
         connect(paste, SIGNAL(triggered()), this, SLOT(onPasteButtonTriggered()));
+        if(dataManager->getAccessLevel() < 1)
+        {
+            paste->setEnabled(false);
+        }
     }
 
     menu->popup(ui->optionsView->viewport()->mapToGlobal(pos));
@@ -259,9 +277,7 @@ void OptionsViewer::on_confirmButtonBox_accepted()
 
             dataManager->replaceDataOfMap("mapGCS",codeObject,currentConfigSelectedName,"NomConfStd");
 
-            mainWindow->updateLayoutsOptions();
-            mainWindow->updateLayoutsViewers();
-
+            dataViewer->resetModel();
 
         }
 
@@ -360,9 +376,19 @@ void OptionsViewer::onPasteButtonTriggered()
     }
     dataManager->setNumOrdreMax(ui->optionsView->model()->rowCount());
     dataManager->pasteAttribute(idCurrentConfig, codeObject);
+    for(int i=0; i<keysList.count();++i)
+    {
+        mainWindow->setKeysToTreat(keysList[i]);
+    }
 
+    mainWindow->setChoiceAddObject("copy");
     mainWindow->updateLayoutsOptions();
     mainWindow->updateLayoutsViewers();
+    mainWindow->setChoiceAddObject("none");
+
+    //On emet le signal qui conduit au slot de changement des colonnes
+    mainWindow->triggerSignalChangeColumn();
+    mainWindow->resetKeysToTreat();
 }
 
 void OptionsViewer::onItemDoubleClicked()
@@ -405,5 +431,4 @@ void OptionsViewer::slotUpdateLayout()
 {
     updateLayout();
 }
-
 

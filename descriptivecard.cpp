@@ -310,11 +310,12 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, MainWindow *mainWindo
     //Permet d'enlever la croix de fermeture de la fiche descritive (génère des bugs)
     this->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint| Qt::WindowSystemMenuHint);
 
-    QPalette Pal(palette());
-    Pal.setColor(QPalette::Window, QColor(255,255,255,240));
-    this->setAutoFillBackground(true);
-    this->setPalette(Pal);
-    this->show();
+    QPalette pal(palette());
+    QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
+    gradient.setColorAt(0, QColor(255,255,255,255));
+    gradient.setColorAt(1, QColor(245,255,255,255));
+    pal.setBrush(QPalette::Background, QBrush(gradient));
+    this->setPalette(pal);
 
 }
 
@@ -686,16 +687,28 @@ void DescriptiveCard::on_buttonBox_accepted()
 
         if(choice == "create")
         {
-            dataViewer->setChoiceAddObject("new");
+            mainWindow->setChoiceAddObject("new");
         }
         else if (choice == "copy")
         {
-            dataViewer->setChoiceAddObject("copy");
+            mainWindow->setChoiceAddObject("copy");
         }
     }
-    dataViewer->setKeysToTreat(currentMaxKey);
+
+    else if(choice == "modify")
+    {
+        mainWindow->setChoiceAddObject("modify");
+    }
+
+    mainWindow->setKeysToTreat(key);
     mainWindow->updateLayoutsViewers();
     mainWindow->updateLayoutsOptions();
-
+    mainWindow->setChoiceAddObject("none");
+    if(codeObject == "GAT")
+    {
+        //On emet le signal qui conduit au slot de changement des colonnes
+        mainWindow->triggerSignalChangeColumn();
+    }
+    mainWindow->resetKeysToTreat();
 }
 
