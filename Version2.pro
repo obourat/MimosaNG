@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     filewriter.cpp \
     passwordform.cpp \
     exportform.cpp \
-    printform.cpp
+    printform.cpp \
+    importform.cpp
 
 HEADERS  += mainwindow.h \
     filereader.h \
@@ -39,7 +40,8 @@ HEADERS  += mainwindow.h \
     filewriter.h \
     passwordform.h \
     exportform.h \
-    printform.h
+    printform.h \
+    importform.h
 
 FORMS    += mainwindow.ui \
     dataviewer.ui \
@@ -48,4 +50,5 @@ FORMS    += mainwindow.ui \
     searchcard.ui \
     passwordform.ui \
     exportform.ui \
-    printform.ui
+    printform.ui \
+    importform.ui

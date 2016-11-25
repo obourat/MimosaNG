@@ -9,6 +9,7 @@
 #include "mainwindow.h"
 #include "exportform.h"
 #include "printform.h"
+#include "importform.h"
 
 #include <QSortFilterProxyModel>
 #include <QtGui>
@@ -425,11 +426,12 @@ void DataViewer::customMenuRequested(QPoint pos)
     QAction* erase = menu->addAction("Supprimer");
     QAction* exportation = menu->addAction("Exporter");
     QAction* print = menu->addAction("Imprimer");
+    QAction* importation = menu->addAction("Importer");
 
     if(codeObject == "GAT")
     {
         QAction* copy = menu->addAction("Copier");
-        connect(copy, SIGNAL(triggered()), this, SLOT(onCopyButtonTrigerred()));
+        connect(copy, SIGNAL(triggered()), this, SLOT(onCopyButtonTriggered()));
         if(accessLevel <1)
         {
             copy->setEnabled(false);
@@ -446,7 +448,7 @@ void DataViewer::customMenuRequested(QPoint pos)
         QAction* createCopy = create->addAction("Par copie");
         connect(displayDescriptiveCardCurrent, SIGNAL(triggered()), this, SLOT(onDisplayDescriptiveCardButtonTriggered()));
         connect(displayDescriptiveCardComplete, SIGNAL(triggered()), this, SLOT(onDisplayDescriptiveCardCompleteButtonTriggered()));
-        connect(createCopy, SIGNAL(triggered()), this, SLOT(onCreateCopyButtonTrigerred()));
+        connect(createCopy, SIGNAL(triggered()), this, SLOT(onCreateCopyButtonTriggered()));
     }
 
     if(accessLevel <2)
@@ -467,10 +469,11 @@ void DataViewer::customMenuRequested(QPoint pos)
     connect(total, SIGNAL(triggered()), this, SLOT(onTotalSelectionButtonTriggered()));
     connect(restrain, SIGNAL(triggered()), this, SLOT(onSubListRestrainButtonTriggered()));
     connect(add, SIGNAL(triggered()), this, SLOT(onSubListAddButtonTriggered()));
-    connect(createNew, SIGNAL(triggered()), this, SLOT(onCreateNewButtonTrigerred()));
+    connect(createNew, SIGNAL(triggered()), this, SLOT(onCreateNewButtonTriggered()));
     connect(erase, SIGNAL(triggered()), this, SLOT(onEraseButtonTriggered()));
-    connect(exportation, SIGNAL(triggered()), this, SLOT(onExportButtonTrigerred()));
-    connect(print, SIGNAL(triggered()), this, SLOT(onPrintButtonTrigerred()));
+    connect(exportation, SIGNAL(triggered()), this, SLOT(onExportButtonTriggered()));
+    connect(print, SIGNAL(triggered()), this, SLOT(onPrintButtonTriggered()));
+    connect(importation, SIGNAL(triggered()), this, SLOT(onImportButtonTriggered()));
 
 }
 
@@ -754,7 +757,7 @@ void DataViewer::onItemDoubleClicked()
     descriptiveCard->show();
 }
 
-void DataViewer::onCreateNewButtonTrigerred()
+void DataViewer::onCreateNewButtonTriggered()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"complete","create",this);
@@ -763,7 +766,7 @@ void DataViewer::onCreateNewButtonTrigerred()
     descriptiveCard->show();
 }
 
-void DataViewer::onCreateCopyButtonTrigerred()
+void DataViewer::onCreateCopyButtonTriggered()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"complete","copy",this);
@@ -834,18 +837,24 @@ void DataViewer::onSortContent()
     updateKeyRowMap();
 }
 
-void DataViewer::onCopyButtonTrigerred()
+void DataViewer::onImportButtonTriggered()
+{
+    importForm = new ImportForm(dataManager, codeObject, this);
+    importForm->exec();
+}
+
+void DataViewer::onCopyButtonTriggered()
 {
     dataManager->setCopiedKeys(keysList);
 }
 
-void DataViewer::onExportButtonTrigerred()
+void DataViewer::onExportButtonTriggered()
 {;
     exportForm = new ExportForm(dataManager, keysList, codeObject, this);
     exportForm->exec();
 }
 
-void DataViewer::onPrintButtonTrigerred()
+void DataViewer::onPrintButtonTriggered()
 {
     printForm = new PrintForm(ui->tableView,this);
     printForm->exec();
