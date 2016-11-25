@@ -7,6 +7,7 @@
 #include <QFileDialog>
 #include <QTextStream>
 #include <QStringBuilder>
+#include <QMessageBox>
 
 ExportForm::ExportForm(DataManager *dataManager, QStringList keysList, QString codeObjet, QWidget *parent) :
     QDialog(parent),
@@ -72,6 +73,7 @@ void ExportForm::on_confirmButtonBox_accepted()
     QString infoInterne;
     QString keyMapConcordance;
     QString baliseName;
+    int indicFirstValue = 1;
 
     for(iterator = mapGAT->begin(); iterator != mapGAT->end();++iterator)
     {
@@ -87,7 +89,7 @@ void ExportForm::on_confirmButtonBox_accepted()
             for(int i=0; i<keysList.count();++i)
             {
                 currentTestedMap = mapSelected->value(keysList[i]);
-                if(i==0)
+                if(indicFirstValue == 1)
                 {
                     listOfValueNames.insert(QString::number(i),currentTestedMap.value(baliseName));
                 }
@@ -95,16 +97,146 @@ void ExportForm::on_confirmButtonBox_accepted()
                 {
                     listOfValueNames.insertMulti(QString::number(i),currentTestedMap.value(baliseName));
                 }
-                //listOfValueNames[i].append(currentTestedMap.value(baliseName));
             }
+            indicFirstValue = 0;
         }
     }
 
     QFile file(fileName);
-    if(file.open(QIODevice::ReadWrite))
+    //Cas ou on efface le fichier et réecrit
+    if(concatenationChoice == "Non")
     {
-        QTextStream stream(&file);
-        //stream << fileContent;
+        if(file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
+        {
+            QTextStream stream(&file);
+
+            int maxWidth =0 ;
+            QList<int> widthList;
+            int numberOfValues = listOfValueNames.values(QString::number(0)).count();
+
+            //On prérentre les largeurs de colonnes minimales à la largeur de leur titre
+            int attributeIndex = attributeNames.count() -1;
+            for(int ml =0; ml<attributeNames.count();++ml)
+            {
+                widthList.append(attributeNames[attributeIndex-ml].length());
+            }
+
+            //Boucle qui cherche les longueurs maximales de chaque section
+            for(int j=0; j<listOfValueNames.count();++j)
+            {
+                valueNames = listOfValueNames.values(QString::number(j));
+                for(int k=0; k<valueNames.count();++k)
+                {
+                    maxWidth = valueNames[k].length();
+                    if(maxWidth > widthList[k])
+                    {
+                        widthList.replace(k, maxWidth);
+                    }
+                }
+            }
+
+            //Boucle qui remplace les longueurs vides par un espacement minimal
+            --numberOfValues;
+            for(int l=0; l<widthList.count();++l)
+            {
+                if(widthList[l] == 0)
+                {
+                    widthList.replace(l,attributeNames[numberOfValues-l].length());
+                }
+            }
+
+            //On ecrit dans le fichier
+            stream.setFieldAlignment(QTextStream::AlignLeft);
+            int attributesCount = attributeNames.count();
+            -- attributesCount;
+            stream.setFieldAlignment(QTextStream::AlignLeft);
+            for(int i= attributesCount; i>=0;--i)
+            {
+                stream.setFieldWidth(widthList[attributesCount - i] +1);
+                stream << attributeNames[i];
+            }
+            stream.setFieldWidth(0);
+            stream << endl;
+            for(int j=0; j<listOfValueNames.count();++j)
+            {
+                valueNames = listOfValueNames.values(QString::number(j));
+                for(int k=0; k<valueNames.count();++k)
+                {
+                    stream.setFieldWidth(widthList[k]+1);
+                    stream << valueNames[k];
+                }
+                stream.setFieldWidth(0);
+                stream << endl;
+            }
+        }
+    }
+
+    //Cas ou on ajoute en fin de fichier
+    else if(concatenationChoice == "Oui")
+    {
+        if(file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append))
+        {
+            QTextStream stream(&file);
+
+            int maxWidth =0 ;
+            QList<int> widthList;
+            int numberOfValues = listOfValueNames.values(QString::number(0)).count();
+
+            //On prérentre les largeurs de colonnes minimales à la largeur de leur titre
+            int attributeIndex = attributeNames.count() -1;
+            for(int ml =0; ml<attributeNames.count();++ml)
+            {
+                widthList.append(attributeNames[attributeIndex-ml].length());
+            }
+
+            //Boucle qui cherche les longueurs maximales de chaque section
+            for(int j=0; j<listOfValueNames.count();++j)
+            {
+                valueNames = listOfValueNames.values(QString::number(j));
+                for(int k=0; k<valueNames.count();++k)
+                {
+                    maxWidth = valueNames[k].length();
+                    if(maxWidth > widthList[k])
+                    {
+                        widthList.replace(k, maxWidth);
+                    }
+                }
+            }
+
+            //Boucle qui remplace les longueurs vides par un espacement minimal
+            --numberOfValues;
+            for(int l=0; l<widthList.count();++l)
+            {
+                if(widthList[l] == 0)
+                {
+                    widthList.replace(l,attributeNames[numberOfValues-l].length());
+                }
+            }
+
+            //On ecrit dans le fichier
+            stream.setFieldAlignment(QTextStream::AlignLeft);
+            int attributesCount = attributeNames.count();
+            -- attributesCount;
+            stream.setFieldAlignment(QTextStream::AlignLeft);
+            for(int i= attributesCount; i>=0;--i)
+            {
+                stream.setFieldWidth(widthList[attributesCount - i] +1);
+                stream << attributeNames[i];
+            }
+            stream.setFieldWidth(0);
+            stream << endl;
+            for(int j=0; j<listOfValueNames.count();++j)
+            {
+                valueNames = listOfValueNames.values(QString::number(j));
+                for(int k=0; k<valueNames.count();++k)
+                {
+                    stream.setFieldWidth(widthList[k]+1);
+                    stream << valueNames[k];
+                }
+                stream.setFieldWidth(0);
+                stream << endl;
+            }
+        }
     }
 }
 

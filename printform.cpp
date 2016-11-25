@@ -1,14 +1,17 @@
 #include "printform.h"
 #include "ui_printform.h"
+#include "model.h"
 
 #include <QFile>
 #include <QTextStream>
 #include <QDir>
 #include <QStringBuilder>
+#include <QTableView>
 
-PrintForm::PrintForm(QWidget *parent) :
+PrintForm::PrintForm(QTableView * view, QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::PrintForm)
+    ui(new Ui::PrintForm),
+    view(view)
 {
     ui->setupUi(this);
     this->setWindowTitle("Options d'impression");
@@ -30,7 +33,7 @@ PrintForm::~PrintForm()
     delete ui;
 }
 
-void PrintForm::on_buttonBox_accepted()
+void PrintForm::makePrintConfigFile()
 {
     QString title = ui->titleLineEdit->text();
     QString pages = ui->pageNbCheckBox->text();
@@ -71,7 +74,7 @@ void PrintForm::on_buttonBox_accepted()
     QString directory = QDir::currentPath();
     directory = directory % "/printConfig.txt";
     QFile file(directory);
-    if(file.open(QIODevice::ReadWrite))
+    if(file.open(QIODevice::WriteOnly | QIODevice::Truncate))
     {
         QTextStream stream(&file);
         stream << title << endl;
@@ -86,4 +89,66 @@ void PrintForm::on_buttonBox_accepted()
         }
         file.close();
     }
+}
+
+void PrintForm::makePrintDataFile()
+{
+    QString textData;
+    int keyColumn;
+    int rows = view->model()->rowCount(QModelIndex());
+    int columns = view->model()->columnCount(QModelIndex());
+
+    for(int c=0; c<columns;++c)
+    {
+        //On cherche le numéro de colonne de la clé, pour l'enlever du fichier d'impression
+        if(view->model()->headerData(c,Qt::Horizontal, 0).toString() == "key")
+        {
+            keyColumn = c;
+        }
+        if(view->model()->headerData(c,Qt::Horizontal, 0).toString() != "key")
+        {
+            textData+=view->model()->headerData(c,Qt::Horizontal, 0).toString();
+            if(c < columns-1)
+            {
+                textData += "/";
+            }
+        }
+    }
+    textData += "\n";
+
+    for (int i = 0; i < rows; i++)
+    {
+        if(view->isRowHidden(i) == false)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if(j != keyColumn)
+                {
+                    textData += view->model()->data(view->model()->index(i,j),0).toString();
+                    if(j < columns-1)
+                    {
+                        textData += "/";
+                    }
+                }
+            }
+            textData += "\n";             // (optional: for new line segmentation)
+        }
+    }
+
+    QString directory = QDir::currentPath();
+    directory = directory % "/printData.txt";
+    QFile file(directory);
+    if(file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+
+        QTextStream out(&file);
+        out << textData;
+
+        file.close();
+    }
+}
+
+void PrintForm::on_buttonBox_accepted()
+{
+    makePrintConfigFile();
+    makePrintDataFile();
 }

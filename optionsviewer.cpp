@@ -314,12 +314,16 @@ void OptionsViewer::onDisplayDescriptiveCardButtonTriggered()
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
         descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer, "GCA", keysList[0],"current", "modify",this);
+        descriptiveCard->setWindowFlags(Qt::Dialog);
+        descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
         descriptiveCard->show();
     }
     else if(selectedOption == "attributes")
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
         descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer, "GAT", keysList[0],"current", "modify",this);
+        descriptiveCard->setWindowFlags(Qt::Dialog);
+        descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
         descriptiveCard->exec();
         updateLayout();
     }
@@ -331,12 +335,16 @@ void OptionsViewer::onDisplayDescriptiveCardCompleteButtonTriggered()
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
         descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer, "GCA", keysList[0],"complete","modify",this);
+        descriptiveCard->setWindowFlags(Qt::Dialog);
+        descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
         descriptiveCard->show();
     }
     else if(selectedOption == "attributes")
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
         descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer,"GAT", keysList[0],"complete","modify",this);
+        descriptiveCard->setWindowFlags(Qt::Dialog);
+        descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
         descriptiveCard->exec();
         updateLayout();
     }

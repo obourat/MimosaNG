@@ -73,6 +73,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     dataManager->setIndicRestoreState(1);
 
+
+    //Les features non disponibles actuellement sont grisées
+    ui->foldersButton->setEnabled(false);
 }
 
 //Destructeur
