@@ -749,6 +749,8 @@ void DataViewer::onItemDoubleClicked()
     keysList.append(key);
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"complete","modify",this);
+    descriptiveCard->setWindowFlags(Qt::Dialog);
+    descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
     descriptiveCard->show();
 }
 
@@ -845,7 +847,7 @@ void DataViewer::onExportButtonTrigerred()
 
 void DataViewer::onPrintButtonTrigerred()
 {
-    printForm = new PrintForm(this);
+    printForm = new PrintForm(ui->tableView,this);
     printForm->exec();
 }
 

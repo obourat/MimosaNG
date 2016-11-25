@@ -23,7 +23,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>Nom du fichier :</string>
+      <string>Nom du fichier(.txt) :</string>
      </property>
     </widget>
    </item>

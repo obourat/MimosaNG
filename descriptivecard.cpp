@@ -304,11 +304,17 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, MainWindow *mainWindo
     }
     else
     {
-       ui->instructionsLabel->setText("Modifiez les attributs editables voulus et cliquez sur OK pour valider les modifications");
+       ui->instructionsLabel->setText("Modifiez les attributs editables voulus et cliquez sur OK pour valider les modifications \n(Mode modification et administration uniquement)");
     }
 
     //Permet d'enlever la croix de fermeture de la fiche descritive (génère des bugs)
     this->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint| Qt::WindowSystemMenuHint);
+
+    //Si l'utilisateur ne possède pas le niveau d'autorisation il ne peut pas valider les modifications
+    if(dataManager->getAccessLevel() < 1)
+    {
+        ui->buttonBox->setEnabled(false);
+    }
 
     QPalette pal(palette());
     QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
@@ -316,7 +322,6 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, MainWindow *mainWindo
     gradient.setColorAt(1, QColor(245,255,255,255));
     pal.setBrush(QPalette::Background, QBrush(gradient));
     this->setPalette(pal);
-
 }
 
 
