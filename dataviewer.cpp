@@ -9,6 +9,7 @@
 #include "mainwindow.h"
 #include "exportform.h"
 #include "printform.h"
+#include "importform.h"
 
 #include <QSortFilterProxyModel>
 #include <QtGui>
@@ -349,23 +350,27 @@ DataViewer::~DataViewer()
     QByteArray myArray = ui->tableView->horizontalHeader()->saveState();
     if(codeObject == "GCA")
     {
+        myArray.clear();
         mySetting.setValue("columnConfigGCA", myArray);
     }
     else if(codeObject == "GAT")
     {
+        myArray.clear();
         mySetting.setValue("columnConfigGAT", myArray);
     }
     else if(codeObject == "GVE")
     {
+        myArray.clear();
         mySetting.setValue("columnConfigGVE", myArray);
     }
     else if(codeObject == "GDO")
     {
-        //myArray.clear();
+        myArray.clear();
         mySetting.setValue("columnConfigGDO", myArray);
     }
     if(codeObject == "GRS")
     {
+        myArray.clear();
         mySetting.setValue("columnConfigGRS", myArray);
     }
     delete ui;
@@ -425,11 +430,12 @@ void DataViewer::customMenuRequested(QPoint pos)
     QAction* erase = menu->addAction("Supprimer");
     QAction* exportation = menu->addAction("Exporter");
     QAction* print = menu->addAction("Imprimer");
+    QAction* importation = menu->addAction("Importer");
 
     if(codeObject == "GAT")
     {
         QAction* copy = menu->addAction("Copier");
-        connect(copy, SIGNAL(triggered()), this, SLOT(onCopyButtonTrigerred()));
+        connect(copy, SIGNAL(triggered()), this, SLOT(onCopyButtonTriggered()));
         if(accessLevel <1)
         {
             copy->setEnabled(false);
@@ -446,7 +452,7 @@ void DataViewer::customMenuRequested(QPoint pos)
         QAction* createCopy = create->addAction("Par copie");
         connect(displayDescriptiveCardCurrent, SIGNAL(triggered()), this, SLOT(onDisplayDescriptiveCardButtonTriggered()));
         connect(displayDescriptiveCardComplete, SIGNAL(triggered()), this, SLOT(onDisplayDescriptiveCardCompleteButtonTriggered()));
-        connect(createCopy, SIGNAL(triggered()), this, SLOT(onCreateCopyButtonTrigerred()));
+        connect(createCopy, SIGNAL(triggered()), this, SLOT(onCreateCopyButtonTriggered()));
     }
 
     if(accessLevel <2)
@@ -467,10 +473,11 @@ void DataViewer::customMenuRequested(QPoint pos)
     connect(total, SIGNAL(triggered()), this, SLOT(onTotalSelectionButtonTriggered()));
     connect(restrain, SIGNAL(triggered()), this, SLOT(onSubListRestrainButtonTriggered()));
     connect(add, SIGNAL(triggered()), this, SLOT(onSubListAddButtonTriggered()));
-    connect(createNew, SIGNAL(triggered()), this, SLOT(onCreateNewButtonTrigerred()));
+    connect(createNew, SIGNAL(triggered()), this, SLOT(onCreateNewButtonTriggered()));
     connect(erase, SIGNAL(triggered()), this, SLOT(onEraseButtonTriggered()));
-    connect(exportation, SIGNAL(triggered()), this, SLOT(onExportButtonTrigerred()));
-    connect(print, SIGNAL(triggered()), this, SLOT(onPrintButtonTrigerred()));
+    connect(exportation, SIGNAL(triggered()), this, SLOT(onExportButtonTriggered()));
+    connect(print, SIGNAL(triggered()), this, SLOT(onPrintButtonTriggered()));
+    connect(importation, SIGNAL(triggered()), this, SLOT(onImportButtonTriggered()));
 
 }
 
@@ -754,7 +761,7 @@ void DataViewer::onItemDoubleClicked()
     descriptiveCard->show();
 }
 
-void DataViewer::onCreateNewButtonTrigerred()
+void DataViewer::onCreateNewButtonTriggered()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"complete","create",this);
@@ -763,7 +770,7 @@ void DataViewer::onCreateNewButtonTrigerred()
     descriptiveCard->show();
 }
 
-void DataViewer::onCreateCopyButtonTrigerred()
+void DataViewer::onCreateCopyButtonTriggered()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"complete","copy",this);
@@ -785,6 +792,24 @@ void DataViewer::onEraseButtonTriggered()
     switch(ret)
     {
     case QMessageBox::Apply:
+        //Cas ou on supprime un/des attribut(s), on doit mettre a jour les colonnes
+        if(codeObject == "GAT")
+        {
+            for(int j=0; j<keysList.count();++j)
+            {
+                QString nameToDel = dataManager->findValueOfMap("mapGAT", keysList[j], "NomAttribut");
+                QString codeObjWhereDel = dataManager->findValueOfMap("mapGAT", keysList[j], "CodeObj");
+                dataManager->setColumnToTreatName(nameToDel);
+                dataManager->setColumnToTreatCodeObject(codeObjWhereDel);
+                QString idConfAttr = dataManager->findValueOfMap("mapGAT", keysList[j], "IdCnfAtt");
+                QString nomConfWhereDel = dataManager->findValueOfMap("mapGCA", idConfAttr, "NomConf");
+                dataManager->setColumnToTreatConfigName(nomConfWhereDel);
+                searchColumnToRemoveIndex();
+                dataManager->setSignalChangeColumn(1);
+                mainWindow->triggerSignalChangeColumn();
+            }
+        }
+
         for(int i=0; i < keysList.count(); ++i)
         {
             dataManager->eraseDataOfMap("map"%codeObject,keysList[i]);
@@ -819,6 +844,7 @@ void DataViewer::setColumnHidden()
             mainWindow->setKeysToTreat(keyTested);
         }
     }
+
     mainWindow->setChoiceAddObject("modify");
     mainWindow->updateLayoutsViewers();
     mainWindow->updateLayoutsOptions();
@@ -834,18 +860,24 @@ void DataViewer::onSortContent()
     updateKeyRowMap();
 }
 
-void DataViewer::onCopyButtonTrigerred()
+void DataViewer::onImportButtonTriggered()
+{
+    importForm = new ImportForm(dataManager, codeObject, this);
+    importForm->exec();
+}
+
+void DataViewer::onCopyButtonTriggered()
 {
     dataManager->setCopiedKeys(keysList);
 }
 
-void DataViewer::onExportButtonTrigerred()
+void DataViewer::onExportButtonTriggered()
 {;
     exportForm = new ExportForm(dataManager, keysList, codeObject, this);
     exportForm->exec();
 }
 
-void DataViewer::onPrintButtonTrigerred()
+void DataViewer::onPrintButtonTriggered()
 {
     printForm = new PrintForm(ui->tableView,this);
     printForm->exec();
@@ -862,21 +894,20 @@ void DataViewer::slotChangeColumn()
     QString columnToTreatCodeObject = dataManager->getColumnToTreatCodeObject();
     QString columnToTreatConfigName = dataManager->getColumnToTreatConfigName();
 
-    //Si on a changé l'indicateur d'affichage à "Non" d'une fiche descriptive, signalChangeColumn = 1 et on cherche la colonne a enlever
+    //Si on a changé l'indicateur d'affichage à "Non" d'une fiche descriptive, ou que l'on supprime un attribut, signalChangeColumn = 1 et on cherche la colonne a enlever
     if(signalChangeColumn == 1)
     {
         searchColumnToRemoveIndex();
-        dataManager->setSignalChangeColumn(0);
         if(columnToTreatCodeObject == codeObject && columnToTreatConfigName == currentConfigName)
         {
             int columnToRemoveIndex = mainWindow->getColumnToRemoveIndex();
             myModel->removeModelColumn(columnToRemoveIndex);
         }
+        dataManager->setSignalChangeColumn(0);
     }
     //Si on a changé l'indicateur d'affichage a "Oui" d'une fiche descriptive, signalChangeColumn = 2 et on ajoute la colonne a la suite des autres
     else if(signalChangeColumn == 2)
     {
-        dataManager->setSignalChangeColumn(0);
         if(columnToTreatCodeObject == codeObject && columnToTreatConfigName == currentConfigName)
         {
             int columnToAddIndex = ui->tableView->model()->columnCount();
@@ -912,8 +943,29 @@ void DataViewer::slotChangeColumn()
 
             myModel->addModelColumn(map,columnToAddIndex, columnOfKey, nameOfAttrToAdd, nameOfColumnToAdd);
         }
+        dataManager->setSignalChangeColumn(0);
     }
 }
+QString DataViewer::getCodeObject() const
+{
+    return codeObject;
+}
+
+void DataViewer::setCodeObject(const QString &value)
+{
+    codeObject = value;
+}
+
+QString DataViewer::getCurrentConfigName() const
+{
+    return currentConfigName;
+}
+
+void DataViewer::setCurrentConfigName(const QString &value)
+{
+    currentConfigName = value;
+}
+
 
 void DataViewer::searchColumnToRemoveIndex()
 {
