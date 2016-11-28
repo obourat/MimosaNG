@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include <QDesktopWidget>
 #include <QLinearGradient>
+#include <QFileDialog>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -252,7 +253,25 @@ void MainWindow::on_attributesButton_released()
 
 void MainWindow::on_caseSelectionButton_released()
 {
-
+    QFileDialog *dialog = new QFileDialog(this);
+    dialog->setWindowTitle("Selectionnez le dossier ou se trouvent les fichiers");
+    dialog->setFileMode(QFileDialog::Directory);
+    dialog->setOption(QFileDialog::ShowDirsOnly);
+    if(dialog->exec())
+    {
+        QStringList directoryNames = dialog->selectedFiles();
+        QString directoryName = directoryNames[0];
+        QDir *directory = new QDir(directoryName);
+        QStringList listOfFiles = directory->entryList();
+        if(listOfFiles.contains("GAT_Export.xml") && listOfFiles.contains("GCA_Export.xml") && listOfFiles.contains("GVE_Export.xml") && listOfFiles.contains("GDO_Export.xml"))
+        {
+            QMessageBox::information(this, "Information", "Le dossier choisi contient les fichiers necessaire au fonctionnement de l'outil");
+        }
+        else
+        {
+            QMessageBox::warning(this, "Attention", "Il semble qu'un ou plusieurs fichiers soient manquants pour le bon fonctionnement de l'outil dans le dossier choisi");
+        }
+    }
 }
 
 void MainWindow::on_officialsButton_released()

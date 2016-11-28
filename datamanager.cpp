@@ -1376,5 +1376,15 @@ void DataManager::pasteAttribute(QString idCurrentConfig, QString codeObjectPast
     noCopiedValues.clear();
 }
 
+QString DataManager::findValueOfMap(QString mapName, QString key, QString nameAttribute)
+{
+    const QMap<QString, QMap<QString, QString> > *map = getMapFromName(mapName);
+    QMap<QString, QMap<QString, QString> >::const_iterator iterator;
+    iterator = map->find(key);
+    const QMap<QString, QString> values = iterator.value();
+    QString result = values.value(nameAttribute);
+    return result;
+}
+
 
 

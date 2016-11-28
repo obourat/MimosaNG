@@ -50,6 +50,8 @@ public:
     void addKeyToMapEraseList(QString mapName, QString id);
     //Ajoute à la map l'attribut collé à une configuration
     void pasteAttribute(QString idCurrentConfig, QString codeObjectPaste);
+    //Renvoie la valeur voulue de la map slectionnée
+    QString findValueOfMap(QString mapName, QString key, QString nameAttribute);
 
     //Getters et Setters
     QString getCurrentConfigNameGCA() const;
