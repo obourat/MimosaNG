@@ -51,6 +51,7 @@ signals:
     void signalUpdateLayoutsViewers();
     void signalUpdateLayoutsOptions();
     void signalChangeColumn();
+    void signalCaseChanged();
 
 private slots:
     //Slots du clic sur les différents boutons de la MainWindow

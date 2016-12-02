@@ -15,6 +15,7 @@ dataManager(dataManager)
 {
     mapAddList = dataManager->getMapAddList();
     mapEraseList = dataManager->getMapEraseList();
+    settings = dataManager->getFileSetting();
 }
 
 void FileWriter::modifyFiles(const QString mapName)
@@ -24,7 +25,7 @@ void FileWriter::modifyFiles(const QString mapName)
     if(mapName == "mapGCS")
     {
         QDomDocument dom("Filegenerated");
-        QFile file("GCS_Export.xml");
+        QFile file(settings->value("fileGCS").toString());
 
         if(!file.open(QIODevice::ReadOnly))
         {
@@ -99,7 +100,7 @@ void FileWriter::modifyFiles(const QString mapName)
         QDomDocument dom("Filegenerated");
         QStringList nameObjectDec = mapName.split("p");
         QString nameObject = nameObjectDec[1];
-        QFile file(nameObject % "_Export.xml");
+        QFile file(settings->value("file"%nameObject).toString());
         QString keyName;
 
         if(!file.open(QIODevice::ReadOnly))
@@ -208,7 +209,7 @@ void FileWriter::addToFiles(const QString mapName)
     QDomDocument dom("Filegenerated");
     QStringList nameObjectDec = mapName.split("p");
     QString nameObject = nameObjectDec[1];
-    QFile file(nameObject % "_Export.xml");
+    QFile file(settings->value("file"%nameObject).toString());
     QString keyName;
 
     if(!file.open(QIODevice::ReadOnly))
@@ -286,7 +287,7 @@ void FileWriter::eraseOfFiles(const QString mapName)
     QDomDocument dom("Filegenerated");
     QStringList nameObjectDec = mapName.split("p");
     QString nameObject = nameObjectDec[1];
-    QFile file(nameObject % "_Export.xml");
+    QFile file(settings->value("file"%nameObject).toString());
 
     if(!file.open(QIODevice::ReadOnly))
     {

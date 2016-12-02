@@ -17,6 +17,8 @@ class SearchCard;
 class MainWindow;
 class ExportForm;
 class PrintForm;
+class ImportForm;
+class FileWriter;
 
 namespace Ui {
 class DataViewer;
@@ -60,6 +62,12 @@ public:
     void setChoiceAddObject(const QString &value);
 
 
+    QString getCurrentConfigName() const;
+    void setCurrentConfigName(const QString &value);
+
+    QString getCodeObject() const;
+    void setCodeObject(const QString &value);
+
 public slots:
     //Slot pour le menu
     void customMenuRequested(QPoint pos);
@@ -78,16 +86,19 @@ private slots:
     void onSubListRestrainButtonTriggered();
     void onSubListAddButtonTriggered();
     void onItemDoubleClicked();
-    void onCreateNewButtonTrigerred();
-    void onCreateCopyButtonTrigerred();
+    void onCreateNewButtonTriggered();
+    void onCreateCopyButtonTriggered();
     void onEraseButtonTriggered();
     void setColumnHidden();
     void onSortContent();
-    void onCopyButtonTrigerred();
-    void onExportButtonTrigerred();
-    void onPrintButtonTrigerred();
+    void onCopyButtonTriggered();
+    void onExportButtonTriggered();
+    void onPrintButtonTriggered();
+    void onImportButtonTriggered();
     void slotUpdateLayout();
     void slotChangeColumn();
+
+    void on_savePushButton_released();
 
 private:
     //User Interface
@@ -105,6 +116,8 @@ private:
     SearchCard *searchCard;
     ExportForm *exportForm;
     PrintForm *printForm;
+    ImportForm *importForm;
+    FileWriter *fileWriter;
 
     //Code Objet associé au type de données affichées
     QString codeObject;
@@ -128,6 +141,8 @@ private:
     QList<QString> resultList;
     //Liste des clés affichés avant la création d'un nouveau doc dansla cas d'une recherche
     QList<QString> displayedRowsBeforeUpdate;
+    //Indicateur de mise a jour du QSetting (permet d'eviter le bug d'ajout de colonne)
+    int indicUpdateSetting;
 };
 
 #endif // DATAVIEWER_H
