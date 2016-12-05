@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QMap>
+#include <QSettings>
 
 class DataManager;
 
@@ -29,6 +30,7 @@ private:
     QMap<QString, QString> mapChangeList;
     QMap<QString, QString> mapAddList;
     QMap<QString, QString> mapEraseList;
+    QSettings *settings;
 };
 
 #endif // FILEWRITER_H

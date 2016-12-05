@@ -9,6 +9,8 @@
 #include "mainwindow.h"
 #include "exportform.h"
 #include "printform.h"
+#include "importform.h"
+#include "filewriter.h"
 
 #include <QSortFilterProxyModel>
 #include <QtGui>
@@ -54,27 +56,27 @@ DataViewer::DataViewer(DataManager *dataManager, MainWindow *mainWindow, const Q
 
     if(codeObject == "GCA")
     {
-        QByteArray myArray = mySetting.value("columnConfigGCA","").toByteArray();
+        QByteArray myArray = mySetting.value("columnConfigGCA").toByteArray();
         ui->tableView->horizontalHeader()->restoreState(myArray);
     }
     else if(codeObject == "GAT")
     {
-        QByteArray myArray = mySetting.value("columnConfigGAT","").toByteArray();
+        QByteArray myArray = mySetting.value("columnConfigGAT").toByteArray();
         ui->tableView->horizontalHeader()->restoreState(myArray);
     }
     else if(codeObject == "GVE")
     {
-        QByteArray myArray = mySetting.value("columnConfigGVE","").toByteArray();
+        QByteArray myArray = mySetting.value("columnConfigGVE").toByteArray();
         ui->tableView->horizontalHeader()->restoreState(myArray);
     }
     else if(codeObject == "GDO")
     {
-        QByteArray myArray = mySetting.value("columnConfigGDO","").toByteArray();
+        QByteArray myArray = mySetting.value("columnConfigGDO").toByteArray();
         ui->tableView->horizontalHeader()->restoreState(myArray);
     }
     else if(codeObject == "GRS")
     {
-        QByteArray myArray = mySetting.value("columnConfigGRS","").toByteArray();
+        QByteArray myArray = mySetting.value("columnConfigGRS").toByteArray();
         ui->tableView->horizontalHeader()->restoreState(myArray);
     }
 
@@ -169,6 +171,12 @@ DataViewer::DataViewer(DataManager *dataManager, MainWindow *mainWindow, const Q
 
     //Quand le signal removeColumn est emis dans mainWindow, on update le modele
     connect(mainWindow, SIGNAL(signalChangeColumn()), this, SLOT(slotChangeColumn()));
+
+    //On instancie un nouveau fileWriter pour les sauvegardes manuelles
+    fileWriter = new FileWriter(dataManager);
+
+    //Quand l'affaire change, on femre tous les dataViewers
+    connect(mainWindow, SIGNAL(signalCaseChanged()), this, SLOT(close()));
 
 }
 
@@ -346,26 +354,46 @@ void DataViewer::updateKeyRowMap()
 DataViewer::~DataViewer()
 {
     //ui->tableView->setModel(myModel);
+    //mySetting.clear();
     QByteArray myArray = ui->tableView->horizontalHeader()->saveState();
     if(codeObject == "GCA")
     {
+        if(indicUpdateSetting == 0)
+        {
+            myArray.clear();
+        }
         mySetting.setValue("columnConfigGCA", myArray);
     }
     else if(codeObject == "GAT")
     {
+        if(indicUpdateSetting == 0)
+        {
+            myArray.clear();
+        }
         mySetting.setValue("columnConfigGAT", myArray);
     }
     else if(codeObject == "GVE")
     {
+        if(indicUpdateSetting == 0)
+        {
+            myArray.clear();
+        }
         mySetting.setValue("columnConfigGVE", myArray);
     }
     else if(codeObject == "GDO")
     {
-        //myArray.clear();
+        if(indicUpdateSetting == 0)
+        {
+            myArray.clear();
+        }
         mySetting.setValue("columnConfigGDO", myArray);
     }
     if(codeObject == "GRS")
     {
+        if(indicUpdateSetting == 0)
+        {
+            myArray.clear();
+        }
         mySetting.setValue("columnConfigGRS", myArray);
     }
     delete ui;
@@ -425,11 +453,12 @@ void DataViewer::customMenuRequested(QPoint pos)
     QAction* erase = menu->addAction("Supprimer");
     QAction* exportation = menu->addAction("Exporter");
     QAction* print = menu->addAction("Imprimer");
+    QAction* importation = menu->addAction("Importer");
 
     if(codeObject == "GAT")
     {
         QAction* copy = menu->addAction("Copier");
-        connect(copy, SIGNAL(triggered()), this, SLOT(onCopyButtonTrigerred()));
+        connect(copy, SIGNAL(triggered()), this, SLOT(onCopyButtonTriggered()));
         if(accessLevel <1)
         {
             copy->setEnabled(false);
@@ -446,7 +475,7 @@ void DataViewer::customMenuRequested(QPoint pos)
         QAction* createCopy = create->addAction("Par copie");
         connect(displayDescriptiveCardCurrent, SIGNAL(triggered()), this, SLOT(onDisplayDescriptiveCardButtonTriggered()));
         connect(displayDescriptiveCardComplete, SIGNAL(triggered()), this, SLOT(onDisplayDescriptiveCardCompleteButtonTriggered()));
-        connect(createCopy, SIGNAL(triggered()), this, SLOT(onCreateCopyButtonTrigerred()));
+        connect(createCopy, SIGNAL(triggered()), this, SLOT(onCreateCopyButtonTriggered()));
     }
 
     if(accessLevel <2)
@@ -467,10 +496,11 @@ void DataViewer::customMenuRequested(QPoint pos)
     connect(total, SIGNAL(triggered()), this, SLOT(onTotalSelectionButtonTriggered()));
     connect(restrain, SIGNAL(triggered()), this, SLOT(onSubListRestrainButtonTriggered()));
     connect(add, SIGNAL(triggered()), this, SLOT(onSubListAddButtonTriggered()));
-    connect(createNew, SIGNAL(triggered()), this, SLOT(onCreateNewButtonTrigerred()));
+    connect(createNew, SIGNAL(triggered()), this, SLOT(onCreateNewButtonTriggered()));
     connect(erase, SIGNAL(triggered()), this, SLOT(onEraseButtonTriggered()));
-    connect(exportation, SIGNAL(triggered()), this, SLOT(onExportButtonTrigerred()));
-    connect(print, SIGNAL(triggered()), this, SLOT(onPrintButtonTrigerred()));
+    connect(exportation, SIGNAL(triggered()), this, SLOT(onExportButtonTriggered()));
+    connect(print, SIGNAL(triggered()), this, SLOT(onPrintButtonTriggered()));
+    connect(importation, SIGNAL(triggered()), this, SLOT(onImportButtonTriggered()));
 
 }
 
@@ -754,7 +784,7 @@ void DataViewer::onItemDoubleClicked()
     descriptiveCard->show();
 }
 
-void DataViewer::onCreateNewButtonTrigerred()
+void DataViewer::onCreateNewButtonTriggered()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"complete","create",this);
@@ -763,7 +793,7 @@ void DataViewer::onCreateNewButtonTrigerred()
     descriptiveCard->show();
 }
 
-void DataViewer::onCreateCopyButtonTrigerred()
+void DataViewer::onCreateCopyButtonTriggered()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"complete","copy",this);
@@ -785,6 +815,24 @@ void DataViewer::onEraseButtonTriggered()
     switch(ret)
     {
     case QMessageBox::Apply:
+        //Cas ou on supprime un/des attribut(s), on doit mettre a jour les colonnes
+        if(codeObject == "GAT")
+        {
+            for(int j=0; j<keysList.count();++j)
+            {
+                QString nameToDel = dataManager->findValueOfMap("mapGAT", keysList[j], "NomAttribut");
+                QString codeObjWhereDel = dataManager->findValueOfMap("mapGAT", keysList[j], "CodeObj");
+                dataManager->setColumnToTreatName(nameToDel);
+                dataManager->setColumnToTreatCodeObject(codeObjWhereDel);
+                QString idConfAttr = dataManager->findValueOfMap("mapGAT", keysList[j], "IdCnfAtt");
+                QString nomConfWhereDel = dataManager->findValueOfMap("mapGCA", idConfAttr, "NomConf");
+                dataManager->setColumnToTreatConfigName(nomConfWhereDel);
+                searchColumnToRemoveIndex();
+                dataManager->setSignalChangeColumn(1);
+                mainWindow->triggerSignalChangeColumn();
+            }
+        }
+
         for(int i=0; i < keysList.count(); ++i)
         {
             dataManager->eraseDataOfMap("map"%codeObject,keysList[i]);
@@ -819,6 +867,7 @@ void DataViewer::setColumnHidden()
             mainWindow->setKeysToTreat(keyTested);
         }
     }
+
     mainWindow->setChoiceAddObject("modify");
     mainWindow->updateLayoutsViewers();
     mainWindow->updateLayoutsOptions();
@@ -834,18 +883,24 @@ void DataViewer::onSortContent()
     updateKeyRowMap();
 }
 
-void DataViewer::onCopyButtonTrigerred()
+void DataViewer::onImportButtonTriggered()
+{
+    importForm = new ImportForm(dataManager, codeObject, this);
+    importForm->exec();
+}
+
+void DataViewer::onCopyButtonTriggered()
 {
     dataManager->setCopiedKeys(keysList);
 }
 
-void DataViewer::onExportButtonTrigerred()
+void DataViewer::onExportButtonTriggered()
 {;
     exportForm = new ExportForm(dataManager, keysList, codeObject, this);
     exportForm->exec();
 }
 
-void DataViewer::onPrintButtonTrigerred()
+void DataViewer::onPrintButtonTriggered()
 {
     printForm = new PrintForm(ui->tableView,this);
     printForm->exec();
@@ -862,21 +917,20 @@ void DataViewer::slotChangeColumn()
     QString columnToTreatCodeObject = dataManager->getColumnToTreatCodeObject();
     QString columnToTreatConfigName = dataManager->getColumnToTreatConfigName();
 
-    //Si on a changé l'indicateur d'affichage à "Non" d'une fiche descriptive, signalChangeColumn = 1 et on cherche la colonne a enlever
+    //Si on a changé l'indicateur d'affichage à "Non" d'une fiche descriptive, ou que l'on supprime un attribut, signalChangeColumn = 1 et on cherche la colonne a enlever
     if(signalChangeColumn == 1)
     {
         searchColumnToRemoveIndex();
-        dataManager->setSignalChangeColumn(0);
         if(columnToTreatCodeObject == codeObject && columnToTreatConfigName == currentConfigName)
         {
             int columnToRemoveIndex = mainWindow->getColumnToRemoveIndex();
             myModel->removeModelColumn(columnToRemoveIndex);
         }
+        dataManager->setSignalChangeColumn(0);
     }
     //Si on a changé l'indicateur d'affichage a "Oui" d'une fiche descriptive, signalChangeColumn = 2 et on ajoute la colonne a la suite des autres
     else if(signalChangeColumn == 2)
     {
-        dataManager->setSignalChangeColumn(0);
         if(columnToTreatCodeObject == codeObject && columnToTreatConfigName == currentConfigName)
         {
             int columnToAddIndex = ui->tableView->model()->columnCount();
@@ -912,8 +966,31 @@ void DataViewer::slotChangeColumn()
 
             myModel->addModelColumn(map,columnToAddIndex, columnOfKey, nameOfAttrToAdd, nameOfColumnToAdd);
         }
+        dataManager->setSignalChangeColumn(0);
+        indicUpdateSetting = 0;
     }
 }
+
+QString DataViewer::getCodeObject() const
+{
+    return codeObject;
+}
+
+void DataViewer::setCodeObject(const QString &value)
+{
+    codeObject = value;
+}
+
+QString DataViewer::getCurrentConfigName() const
+{
+    return currentConfigName;
+}
+
+void DataViewer::setCurrentConfigName(const QString &value)
+{
+    currentConfigName = value;
+}
+
 
 void DataViewer::searchColumnToRemoveIndex()
 {
@@ -993,6 +1070,119 @@ void DataViewer::setKeysList(const QStringList &value)
     keysList = value;
 }
 
+void DataViewer::on_savePushButton_released()
+{
+    QMap<QString, QString> changeList = dataManager->getMapChangeList();
+    QMap<QString, QString> addList = dataManager->getMapAddList();
+    QMap<QString, QString> eraseList = dataManager->getMapEraseList();
+    if(!changeList.values("mapGDO").isEmpty())
+    {
+        fileWriter->modifyFiles("mapGDO");
+    }
+    if(!changeList.values("mapGCA").isEmpty())
+    {
+        fileWriter->modifyFiles("mapGCA");
+    }
+    if(!changeList.values("mapGAT").isEmpty())
+    {
+        fileWriter->modifyFiles("mapGAT");
+    }
+    if(!changeList.values("mapGVE").isEmpty())
+    {
+        fileWriter->modifyFiles("mapGVE");
+    }
+    if(!changeList.values("mapGRS").isEmpty())
+    {
+        fileWriter->modifyFiles("mapGRS");
+    }
 
+    if(!addList.values("mapGDO").isEmpty())
+    {
+        if(!eraseList.values("mapGDO").isEmpty())
+        {
+            fileWriter->compareCurrentMaps("mapGDO");
+            addList = dataManager->getMapAddList();
+        }
+        if(!addList.values("mapGDO").isEmpty())
+        {
+            fileWriter->addToFiles("mapGDO");
+        }
+    }
+    if(!addList.values("mapGCA").isEmpty())
+    {
+        if(!eraseList.values("mapGCA").isEmpty())
+        {
+            fileWriter->compareCurrentMaps("mapGCA");
+            addList = dataManager->getMapAddList();
+        }
+        if(!addList.values("mapGCA").isEmpty())
+        {
+            fileWriter->addToFiles("mapGCA");
+        }
+    }
+    if(!addList.values("mapGAT").isEmpty())
+    {
+        if(!eraseList.values("mapGAT").isEmpty())
+        {
+            fileWriter->compareCurrentMaps("mapGAT");
+            addList = dataManager->getMapAddList();
+        }
+        if(!addList.values("mapGAT").isEmpty())
+        {
+            fileWriter->addToFiles("mapGAT");
+        }
+    }
+    if(!addList.values("mapGVE").isEmpty())
+    {
+        if(!eraseList.values("mapGVE").isEmpty())
+        {
+            fileWriter->compareCurrentMaps("mapGVE");
+            addList = dataManager->getMapAddList();
+        }
+        if(!addList.values("mapGVE").isEmpty())
+        {
+            fileWriter->addToFiles("mapGVE");
+        }
+    }
+    if(!addList.values("mapGRS").isEmpty())
+    {
+        if(!eraseList.values("mapGRS").isEmpty())
+        {
+            fileWriter->compareCurrentMaps("mapGRS");
+            addList = dataManager->getMapAddList();
+        }
+        if(!addList.values("mapGRS").isEmpty())
+        {
+            fileWriter->addToFiles("mapGRS");
+        }
+    }
 
+    if(!eraseList.values("mapGDO").isEmpty())
+    {
+        fileWriter->eraseOfFiles("mapGDO");
+    }
+    if(!eraseList.values("mapGCA").isEmpty())
+    {
+        fileWriter->eraseOfFiles("mapGCA");
+    }
+    if(!eraseList.values("mapGAT").isEmpty())
+    {
+        fileWriter->eraseOfFiles("mapGAT");
+    }
+    if(!eraseList.values("mapGVE").isEmpty())
+    {
+        fileWriter->eraseOfFiles("mapGVE");
+    }
+    if(!eraseList.values("mapGRS").isEmpty())
+    {
+        fileWriter->eraseOfFiles("mapGRS");
+    }
 
+    fileWriter->modifyFiles("mapGCS");
+
+    QMap<QString, QString> nullMap;
+
+    dataManager->setMapAddList(nullMap);
+    dataManager->setMapChangeList(nullMap);
+    dataManager->setMapEraseList(nullMap);
+}

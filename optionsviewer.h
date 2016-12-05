@@ -41,6 +41,7 @@ private slots:
     void onDisplayDescriptiveCardCompleteButtonTriggered();
     void onCopyButtonTriggered();
     void onPasteButtonTriggered();
+    void onEraseButtonTriggered();
     void onItemDoubleClicked();
     void slotUpdateLayout();
 

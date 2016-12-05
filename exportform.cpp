@@ -17,7 +17,7 @@ ExportForm::ExportForm(DataManager *dataManager, QStringList keysList, QString c
     codeObjet(codeObjet)
 {
     ui->setupUi(this);
-    this->setWindowTitle("Options d'exportation");
+    this->setWindowTitle("Exporter");
     ui->destinationComboBox->addItem("Fichier");
     ui->destinationComboBox->addItem("Ecran");
     ui->concatenationComboBox->addItem("Oui");
@@ -244,6 +244,8 @@ void ExportForm::on_browseButton_released()
 {
     QFileDialog *dialog = new QFileDialog(this);
     dialog->setWindowTitle("Selectionnez un fichier");
+    dialog->setDefaultSuffix("txt");
+    dialog->setNameFilter("*.txt");
     if(dialog->exec())
     {
         QStringList fileNames = dialog->selectedFiles();

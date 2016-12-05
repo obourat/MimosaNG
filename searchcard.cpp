@@ -53,19 +53,19 @@ SearchCard::SearchCard(DataManager *dataManager,DataViewer *dataViewer, QString 
     }
     else if(codeObject == "GRS")
     {
-        this->setWindowTitle("Fiche descriptive de Responsable");
+        this->setWindowTitle("Filtre de recherche de Responsable");
         selectedMap = dataManager->getMapFromName("mapGRS");
         attributesOfExportConfig = dataManager->getAttributesOfExportConfig("GRS");
     }
     else if(codeObject == "GVE")
     {
-        this->setWindowTitle("Fiche descriptive de Variable d'Environnement");
+        this->setWindowTitle("Filtre de recherche de Variable d'Environnement");
         selectedMap = dataManager->getMapFromName("mapGVE");
         attributesOfExportConfig = dataManager->getAttributesOfExportConfig("GVE");
     }
     else if(codeObject == "GDO")
     {
-        this->setWindowTitle("Fiche descriptive de Document");
+        this->setWindowTitle("Filtre de recherche de Document");
         selectedMap = dataManager->getMapFromName("mapGDO");
         attributesOfExportConfig = dataManager->getAttributesOfExportConfig("GDO");
     }

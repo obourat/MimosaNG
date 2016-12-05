@@ -237,6 +237,8 @@ void OptionsViewer::customMenuRequested(QPoint pos)
         connect(copy, SIGNAL(triggered()), this, SLOT(onCopyButtonTriggered()));
         QAction* paste = menu->addAction("Coller");
         connect(paste, SIGNAL(triggered()), this, SLOT(onPasteButtonTriggered()));
+        QAction* erase = menu->addAction("Supprimer");
+        connect(erase, SIGNAL(triggered()), this, SLOT(onEraseButtonTriggered()));
         if(dataManager->getAccessLevel() < 1)
         {
             paste->setEnabled(false);
@@ -324,7 +326,7 @@ void OptionsViewer::onDisplayDescriptiveCardButtonTriggered()
         descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer, "GAT", keysList[0],"current", "modify",this);
         descriptiveCard->setWindowFlags(Qt::Dialog);
         descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
-        descriptiveCard->exec();
+        descriptiveCard->show();
         updateLayout();
     }
 }
@@ -345,7 +347,7 @@ void OptionsViewer::onDisplayDescriptiveCardCompleteButtonTriggered()
         descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer,"GAT", keysList[0],"complete","modify",this);
         descriptiveCard->setWindowFlags(Qt::Dialog);
         descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
-        descriptiveCard->exec();
+        descriptiveCard->show();
         updateLayout();
     }
 }
@@ -397,6 +399,58 @@ void OptionsViewer::onPasteButtonTriggered()
     //On emet le signal qui conduit au slot de changement des colonnes
     mainWindow->triggerSignalChangeColumn();
     mainWindow->resetKeysToTreat();
+}
+
+void OptionsViewer::onEraseButtonTriggered()
+{
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Attention");
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setText("<b>Vous etes sur le point de supprimer un ou plusieurs objets.</b>");
+    msgBox.setInformativeText("=> Supprimer definitivement le/les element(s) selectionne(s) ?");
+    msgBox.setStandardButtons(QMessageBox::Apply | QMessageBox::Cancel);
+    int ret = msgBox.exec();
+
+    switch(ret)
+    {
+    case QMessageBox::Apply:
+
+        if(selectedOption == "attributes")
+        {
+            for(int j=0; j<keysList.count();++j)
+            {
+                QString nameToDel = dataManager->findValueOfMap("mapGAT", keysList[j], "NomAttribut");
+                QString codeObjWhereDel = dataViewer->getCodeObject();
+                dataManager->setColumnToTreatName(nameToDel);
+                dataManager->setColumnToTreatCodeObject(codeObjWhereDel);
+                QString nomConfWhereDel = dataViewer->getCurrentConfigName();
+                dataManager->setColumnToTreatConfigName(nomConfWhereDel);
+                dataViewer->searchColumnToRemoveIndex();
+                dataManager->setSignalChangeColumn(1);
+                mainWindow->triggerSignalChangeColumn();
+            }
+        }
+
+        for(int i=0; i < keysList.count(); ++i)
+        {
+            dataManager->eraseDataOfMap("map"%codeObject,keysList[i]);
+            dataManager->addKeyToMapEraseList(codeObject, keysList[i]);
+            mainWindow->setKeysToTreat(keysList[i]);
+        }
+        dataManager->setIdOfLastSupprObjects(keysList);
+        mainWindow->setChoiceAddObject("suppr");
+        mainWindow->updateLayoutsViewers();
+        mainWindow->updateLayoutsOptions();
+        if(selectedOption == "attributes")
+        {
+            dataManager->setColumnToTreatCodeObject(dataViewer->getCodeObject());
+            dataManager->setColumnToTreatConfigName(dataViewer->getCurrentConfigName());
+            dataManager->setSignalChangeColumn(1);
+            mainWindow->triggerSignalChangeColumn();
+        }
+        mainWindow->resetKeysToTreat();
+        mainWindow->setChoiceAddObject("none");
+    }
 }
 
 void OptionsViewer::onItemDoubleClicked()

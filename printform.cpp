@@ -14,7 +14,7 @@ PrintForm::PrintForm(QTableView * view, QWidget *parent) :
     view(view)
 {
     ui->setupUi(this);
-    this->setWindowTitle("Options d'impression");
+    this->setWindowTitle("Impression");
 
     ui->orientationComboBox->addItem("Portrait");
     ui->orientationComboBox->addItem("Paysage");

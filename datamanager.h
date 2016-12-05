@@ -4,6 +4,7 @@
 #include <QString>
 #include <QStringList>
 #include <QMap>
+#include <QSettings>
 
 class DataManager
 {
@@ -50,6 +51,8 @@ public:
     void addKeyToMapEraseList(QString mapName, QString id);
     //Ajoute à la map l'attribut collé à une configuration
     void pasteAttribute(QString idCurrentConfig, QString codeObjectPaste);
+    //Renvoie la valeur voulue de la map slectionnée
+    QString findValueOfMap(QString mapName, QString key, QString nameAttribute);
 
     //Getters et Setters
     QString getCurrentConfigNameGCA() const;
@@ -113,6 +116,10 @@ public:
     int getSignalChangeColumn() const;
     void setSignalChangeColumn(int value);
 
+
+    QSettings *getFileSetting() const;
+    void setFileSetting(QSettings *value);
+
 private:
     //On définit les différentes maps des objets
     QMap<QString, QMap<QString, QString> > mapGVE;
@@ -165,6 +172,8 @@ private:
     QString columnToTreatName;
     //Signal pour enlever une colonne quand on a mis sur Non indicAffichage dans une fiche descriptive d'attribut
     int signalChangeColumn;
+    //Settings des noms de fichiers
+    QSettings *fileSetting;
 
 };
 #endif // DATAMANAGER_H
