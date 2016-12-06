@@ -256,7 +256,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>Afficher la liste des dossiers </string>
+          <string>Dossiers</string>
          </property>
         </widget>
        </item>
@@ -269,7 +269,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>Afficher la liste des documents</string>
+          <string>Documents</string>
          </property>
         </widget>
        </item>
@@ -314,7 +314,7 @@
        <item row="3" column="2">
         <widget class="QPushButton" name="attributesButton">
          <property name="text">
-          <string>Afficher la liste des attributs</string>
+          <string>Attributs</string>
          </property>
         </widget>
        </item>
@@ -334,7 +334,7 @@
        <item row="3" column="1">
         <widget class="QPushButton" name="attributesConfigurationsButton">
          <property name="text">
-          <string>Afficher la liste des configurations d'attributs</string>
+          <string>Configurations d'attributs</string>
          </property>
         </widget>
        </item>
@@ -386,7 +386,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>Afficher la liste des variables d'environnement </string>
+          <string>Variables d'environnement</string>
          </property>
         </widget>
        </item>
@@ -399,7 +399,7 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>Afficher la liste des responsables</string>
+          <string>Responsables</string>
          </property>
         </widget>
        </item>

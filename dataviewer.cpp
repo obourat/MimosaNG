@@ -308,7 +308,7 @@ void DataViewer::updateLayout()
     }
 
 
-    //On chache la dernière colonne
+    //On chache la colonne comportant les clés
     for(int i=0; i!= columnIteratorMax; ++i)
     {
         columnName = ui->tableView->model()->headerData(i,Qt::Horizontal).toString();
@@ -1018,6 +1018,24 @@ void DataViewer::resetModel()
 {
     const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("map"%codeObject, codeObject);
     myModel->resetModel(maps);
+    ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
+}
+
+void DataViewer::hideKeyColumn()
+{
+    int columnIteratorMax = ui->tableView->model()->columnCount();
+    QString columnName;
+    //On chache la colonne comportant les clés
+    for(int i=0; i!= columnIteratorMax; ++i)
+    {
+        columnName = ui->tableView->model()->headerData(i,Qt::Horizontal).toString();
+        if(columnName == "key")
+        {
+            ui->tableView->setColumnHidden(i,true);
+            ui->tableView->columnAt(i);
+            break;
+        }
+    }
 }
 
 QList<QString> DataViewer::getDisplayedRowsBeforeUpdate() const
