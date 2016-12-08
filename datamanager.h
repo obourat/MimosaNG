@@ -53,6 +53,8 @@ public:
     void pasteAttribute(QString idCurrentConfig, QString codeObjectPaste);
     //Renvoie la valeur voulue de la map slectionnée
     QString findValueOfMap(QString mapName, QString key, QString nameAttribute);
+    //Efface les maps quand on chage d'affaire
+    void clearAllMaps();
 
     //Getters et Setters
     QString getCurrentConfigNameGCA() const;
@@ -116,9 +118,11 @@ public:
     int getSignalChangeColumn() const;
     void setSignalChangeColumn(int value);
 
-
     QSettings *getFileSetting() const;
-    void setFileSetting(QSettings *value);
+    void setFileSetting(QString key, QString value);
+
+    QStringList getIdToPaste() const;
+    void setIdToPaste(const QStringList &value);
 
 private:
     //On définit les différentes maps des objets
@@ -174,6 +178,8 @@ private:
     int signalChangeColumn;
     //Settings des noms de fichiers
     QSettings *fileSetting;
+    //Identifiants des nouveaux objets crées à partir d'une copie lorsqu'on le colle
+    QStringList idToPaste;
 
 };
 #endif // DATAMANAGER_H

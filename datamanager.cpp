@@ -8,7 +8,7 @@
 DataManager::DataManager()
 {
     //On charge les options de noms des fichiers sur lesquels on veut faire le traitement
-    fileSetting(new QSettings("datamanager.cpp", QSettings::IniFormat));
+    fileSetting = new QSettings("filesPaths.cpp", QSettings::IniFormat);
 }
 
 //Destructeur
@@ -534,9 +534,18 @@ QSettings *DataManager::getFileSetting() const
     return fileSetting;
 }
 
-void DataManager::setFileSetting(QSettings *value)
+void DataManager::setFileSetting(QString key, QString value)
 {
-    fileSetting = value;
+    fileSetting->setValue(key, value);
+}
+QStringList DataManager::getIdToPaste() const
+{
+    return idToPaste;
+}
+
+void DataManager::setIdToPaste(const QStringList &value)
+{
+    idToPaste = value;
 }
 
 
@@ -778,7 +787,6 @@ const QList<QMap<QString, QString> > DataManager::getSmallMapsFromMapName(const 
         //On ajoute dans la liste maps les valeurs correspondantes au contenu de la clé (la sous map)
         maps << selectedMap->value(iterator.key());
     }
-#warning fix this
 #if 0
     for(int i=0; i<maps.length();++i)
     {
@@ -1347,6 +1355,9 @@ void DataManager::pasteAttribute(QString idCurrentConfig, QString codeObjectPast
                 {
                     mapAddList.insertMulti(mapName, currentMaxKeyStr);
                 }
+                //Renseignement de l'id de la nouvelle clé crée
+                idToPaste.append(currentMaxKeyStr);
+
                 currentMaxKey++;
                 currentMaxKeyStr = QString::number(currentMaxKey);
 
@@ -1391,6 +1402,16 @@ QString DataManager::findValueOfMap(QString mapName, QString key, QString nameAt
     const QMap<QString, QString> values = iterator.value();
     QString result = values.value(nameAttribute);
     return result;
+}
+
+void DataManager::clearAllMaps()
+{
+    mapGAT.clear();
+    mapGCA.clear();
+    mapGCS.clear();
+    mapGDO.clear();
+    mapGRS.clear();
+    mapGVE.clear();
 }
 
 

@@ -84,7 +84,7 @@ Model::Model(const QList<QMap<QString, QString> > &smallMapsFromMapName)
 
 void Model::updateModelRows(const QList<QMap<QString, QString> > &smallMapsFromMapName, QStringList keysToTreat, QString choiceAddObject, int columnOfKey)
 {
-    if(choiceAddObject == "copy" || choiceAddObject == "new")
+    if(choiceAddObject == "copy" || choiceAddObject == "create")
     {
         for (int i = 0; i < smallMapsFromMapName.count(); ++i)
         {

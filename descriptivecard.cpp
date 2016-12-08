@@ -204,6 +204,7 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, MainWindow *mainWindo
 
     attributeNamesOfCurrentConfig = dataManager->getAttributesOfCurrentConfigNames(attributesOfCurrentConfig);
     QString testName;
+    QString currentId;
     QString nameAttributeSelected;
     const QMap<QString, QMap<QString, QString> > mapGAT = *dataManager->getMapFromName("mapGAT");
     QStringList list;
@@ -279,8 +280,12 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, MainWindow *mainWindo
                     {
                         if(attributeNamesOfCurrentConfig[j]==name)
                         {
-                            nameAttributeSelected = mapGAT[testName]["NomAttribut"];
-                            setNewWidget(type, name, var, value, nameAttributeSelected);
+                            currentId = attributesOfCurrentConfig[j];
+                            if(mapGAT[currentId]["IndicAffichage"] == "Oui")
+                            {
+                                nameAttributeSelected = mapGAT[testName]["NomAttribut"];
+                                setNewWidget(type, name, var, value, nameAttributeSelected);
+                            }
                             break;
                         }
                     }
@@ -315,6 +320,9 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, MainWindow *mainWindo
     {
         ui->buttonBox->setEnabled(false);
     }
+
+    //Quand l'affaire change, on femre tous les dataViewers
+    connect(mainWindow, SIGNAL(signalCaseChanged()), this, SLOT(close()));
 
     QPalette pal(palette());
     QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
@@ -692,20 +700,22 @@ void DescriptiveCard::on_buttonBox_accepted()
 
         if(choice == "create")
         {
-            mainWindow->setChoiceAddObject("new");
+            mainWindow->setChoiceAddObject("create");
+            mainWindow->setKeysToTreat(currentMaxKey);
         }
         else if (choice == "copy")
         {
             mainWindow->setChoiceAddObject("copy");
+            mainWindow->setKeysToTreat(currentMaxKey);
         }
     }
 
     else if(choice == "modify")
     {
         mainWindow->setChoiceAddObject("modify");
+        mainWindow->setKeysToTreat(key);
     }
 
-    mainWindow->setKeysToTreat(key);
     mainWindow->updateLayoutsViewers();
     mainWindow->updateLayoutsOptions();
     mainWindow->setChoiceAddObject("none");
