@@ -8,7 +8,7 @@
 DataManager::DataManager()
 {
     //On charge les options de noms des fichiers sur lesquels on veut faire le traitement
-    fileSetting(new QSettings("datamanager.cpp", QSettings::IniFormat));
+    fileSetting = new QSettings("datamanager.cpp", QSettings::IniFormat);
 }
 
 //Destructeur
@@ -534,9 +534,9 @@ QSettings *DataManager::getFileSetting() const
     return fileSetting;
 }
 
-void DataManager::setFileSetting(QSettings *value)
+void DataManager::setFileSetting(QString key, QString value)
 {
-    fileSetting = value;
+    fileSetting->setValue(key, value);
 }
 
 
@@ -778,7 +778,6 @@ const QList<QMap<QString, QString> > DataManager::getSmallMapsFromMapName(const 
         //On ajoute dans la liste maps les valeurs correspondantes au contenu de la clé (la sous map)
         maps << selectedMap->value(iterator.key());
     }
-#warning fix this
 #if 0
     for(int i=0; i<maps.length();++i)
     {
@@ -1391,6 +1390,16 @@ QString DataManager::findValueOfMap(QString mapName, QString key, QString nameAt
     const QMap<QString, QString> values = iterator.value();
     QString result = values.value(nameAttribute);
     return result;
+}
+
+void DataManager::clearAllMaps()
+{
+    mapGAT.clear();
+    mapGCA.clear();
+    mapGCS.clear();
+    mapGDO.clear();
+    mapGRS.clear();
+    mapGVE.clear();
 }
 
 

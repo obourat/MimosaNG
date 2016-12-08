@@ -39,6 +39,8 @@ public:
     void searchColumnToRemoveIndex();
     //Fonction qui initialise la reinitialisation du modèle
     void resetModel();
+    //Fonction qui cache la colonne clé après un reset du modèle
+    void hideKeyColumn();
     //Destructeur
     ~DataViewer();
 

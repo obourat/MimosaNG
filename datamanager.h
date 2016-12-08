@@ -53,6 +53,8 @@ public:
     void pasteAttribute(QString idCurrentConfig, QString codeObjectPaste);
     //Renvoie la valeur voulue de la map slectionnée
     QString findValueOfMap(QString mapName, QString key, QString nameAttribute);
+    //Efface les maps quand on chage d'affaire
+    void clearAllMaps();
 
     //Getters et Setters
     QString getCurrentConfigNameGCA() const;
@@ -118,7 +120,7 @@ public:
 
 
     QSettings *getFileSetting() const;
-    void setFileSetting(QSettings *value);
+    void setFileSetting(QString key, QString value);
 
 private:
     //On définit les différentes maps des objets

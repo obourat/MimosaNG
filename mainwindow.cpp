@@ -255,12 +255,15 @@ void MainWindow::on_attributesButton_released()
 
 void MainWindow::on_caseSelectionButton_released()
 {
+
     QFileDialog *dialog = new QFileDialog(this);
     dialog->setWindowTitle("Selectionnez le dossier ou se trouvent les fichiers");
     dialog->setFileMode(QFileDialog::Directory);
     dialog->setOption(QFileDialog::ShowDirsOnly);
     if(dialog->exec())
     {
+        dataManager->clearAllMaps();
+
         QStringList directoryNames = dialog->selectedFiles();
         QString directoryName = directoryNames[0];
         QDir *directory = new QDir(directoryName);
@@ -278,82 +281,82 @@ void MainWindow::on_caseSelectionButton_released()
         if(listOfFiles.contains("GAT_Export.xml"))
         {
             name = directoryName % "/GAT_Export.xml";
-            QVariant nameV(name);
-            fileSettings.setValue("fileGAT", nameV);
+            dataManager->setFileSetting("fileGAT", name);
         }
         if(listOfFiles.contains("GCA_Export.xml"))
         {
             name = directoryName % "/GCA_Export.xml";
-            QVariant nameV(name);
-            fileSettings.setValue("fileGCA", nameV);
+            dataManager->setFileSetting("fileGCA", name);
         }
         if(listOfFiles.contains("GVE_Export.xml"))
         {
             name = directoryName % "/GVE_Export.xml";
-            QVariant nameV(name);
-            fileSettings.setValue("fileGVE", nameV);
+            dataManager->setFileSetting("fileGVE", name);
         }
         if(listOfFiles.contains("GDO_Export.xml"))
         {
-            name = directoryName % "/GDO_Export.xml";
-            QVariant nameV(name);
-            fileSettings.setValue("fileGDO", nameV);
+            name = directoryName % "/GDO_Export.xml";;
+            dataManager->setFileSetting("fileGDO", name);
         }
         if(listOfFiles.contains("GRS_Export.xml"))
         {
             name = directoryName % "/GRS_Export.xml";
-            QVariant nameV(name);
-            fileSettings.setValue("fileGRS", nameV);
+            dataManager->setFileSetting("fileGRS", name);
         }
         if(listOfFiles.contains("GCS_Export.xml"))
         {
             name = directoryName % "/GCS_Export.xml";
-            QVariant nameV(name);
-            fileSettings.setValue("fileGCS", nameV);
+            dataManager->setFileSetting("fileGCS", name);
         }
-        dataManager->setFileSetting(&fileSettings);
+
         //On emet le signal que l'affaire a changé et on ferme toutes les fenêtres
         emit signalCaseChanged();
+
+        //On fait appel au fileReader pour parser les fichiers à l'aide de la fonction parseFile()
+        fileReader->setFileName(fileSettings.value("fileGVE").toString());
+        fileReader->parseFile("Objects_list", "Object", "Id", "mapGVE");
+        fileReader->setFileName(fileSettings.value("fileGCA").toString());
+        fileReader->parseFile("Objects_list", "Object", "Id", "mapGCA");
+        fileReader->setFileName(fileSettings.value("fileGAT").toString());
+        fileReader->parseFile("Objects_list", "Object", "Id", "mapGAT");
+        fileReader->setFileName(fileSettings.value("fileGRS").toString());
+        fileReader->parseFile("Objects_list", "Object", "Id", "mapGRS");
+        fileReader->setFileName(fileSettings.value("fileGDO").toString());
+        fileReader->parseFile("Objects_list", "Object", "NumOrdre", "mapGDO");
+        fileReader->setFileName(fileSettings.value("fileGCS").toString());
+        fileReader->parseFile("Objects_list", "Object", "CodeObjet", "mapGCS");
+
+        //On rempli la mapConcordance avec les valeurs du fichier
+        dataManager->setDataOfMapConcordance();
+
+        //On définit le nom de la configuration courante par défaut
+        QString standardConfigName;
+        standardConfigName = dataManager->getStandardConfigName("GCA");
+        dataManager->setCurrentConfigNameGCA(standardConfigName);
+        standardConfigName = dataManager->getStandardConfigName("GAT");
+        dataManager->setCurrentConfigNameGAT(standardConfigName);
+        standardConfigName = dataManager->getStandardConfigName("GRS");
+        dataManager->setCurrentConfigNameGRS(standardConfigName);
+        standardConfigName = dataManager->getStandardConfigName("GVE");
+        dataManager->setCurrentConfigNameGVE(standardConfigName);
+        standardConfigName = dataManager->getStandardConfigName("GDO");
+        dataManager->setCurrentConfigNameGDO(standardConfigName);
+
+        dataManager->setIndicFirstCreate(1);
+        dataManager->setIncrementCreation(1);
+
+        dataManager->setAccessLevel(0);
+        ui->consultationButton->setChecked(true);
+
+        dataManager->setIndicRestoreState(1);
+
+        QMap<QString, QString> nullMap;
+
+        dataManager->setMapAddList(nullMap);
+        dataManager->setMapChangeList(nullMap);
+        dataManager->setMapEraseList(nullMap);
+
     }
-
-    //On fait appel au fileReader pour parser les fichiers à l'aide de la fonction parseFile()
-    QSettings *fileSettings = dataManager->getFileSetting();
-    QString test = fileSettings->value("fileGVE").toString();
-    int a=0;
-    fileReader->setFileName(fileSettings->value("fileGVE").toString());
-    fileReader->parseFile("Objects_list", "Object", "Id", "mapGVE");
-    fileReader->setFileName(fileSettings->value("fileGCA").toString());
-    fileReader->parseFile("Objects_list", "Object", "Id", "mapGCA");
-    fileReader->setFileName(fileSettings->value("fileGAT").toString());
-    fileReader->parseFile("Objects_list", "Object", "Id", "mapGAT");
-    fileReader->setFileName(fileSettings->value("fileGRS").toString());
-    fileReader->parseFile("Objects_list", "Object", "Id", "mapGRS");
-    fileReader->setFileName(fileSettings->value("fileGDO").toString());
-    fileReader->parseFile("Objects_list", "Object", "NumOrdre", "mapGDO");
-    fileReader->setFileName(fileSettings->value("fileGCS").toString());
-    fileReader->parseFile("Objects_list", "Object", "CodeObjet", "mapGCS");
-
-    //On rempli la mapConcordance avec les valeurs du fichier
-    dataManager->setDataOfMapConcordance();
-
-    //On définit le nom de la configuration courante par défaut
-    QString standardConfigName;
-    standardConfigName = dataManager->getStandardConfigName("GCA");
-    dataManager->setCurrentConfigNameGCA(standardConfigName);
-    standardConfigName = dataManager->getStandardConfigName("GAT");
-    dataManager->setCurrentConfigNameGAT(standardConfigName);
-    standardConfigName = dataManager->getStandardConfigName("GRS");
-    dataManager->setCurrentConfigNameGRS(standardConfigName);
-    standardConfigName = dataManager->getStandardConfigName("GVE");
-    dataManager->setCurrentConfigNameGVE(standardConfigName);
-    standardConfigName = dataManager->getStandardConfigName("GDO");
-    dataManager->setCurrentConfigNameGDO(standardConfigName);
-
-    QMap<QString, QString> nullMap;
-
-    dataManager->setMapAddList(nullMap);
-    dataManager->setMapChangeList(nullMap);
-    dataManager->setMapEraseList(nullMap);
 }
 
 void MainWindow::on_officialsButton_released()

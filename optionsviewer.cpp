@@ -134,6 +134,9 @@ OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager,MainWi
     this->setPalette(pal);
 
     connect(mainWindow, SIGNAL(signalUpdateLayoutsOptions()), this, SLOT(slotUpdateLayout()));
+
+    //Quand l'affaire change, on femre tous les dataViewers
+    connect(mainWindow, SIGNAL(signalCaseChanged()), this, SLOT(close()));
 }
 
 void OptionsViewer::updateLayout()
@@ -279,7 +282,9 @@ void OptionsViewer::on_confirmButtonBox_accepted()
 
             dataManager->replaceDataOfMap("mapGCS",codeObject,currentConfigSelectedName,"NomConfStd");
 
+            dataViewer->setCurrentConfigName(currentConfigSelectedName);
             dataViewer->resetModel();
+            dataViewer->hideKeyColumn();
 
         }
 
@@ -474,18 +479,23 @@ void OptionsViewer::onItemDoubleClicked()
     QString key;
     key = selectedIndexes[columnOfKey].data(0).toString();
     keysList.append(key);
-    //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
+    //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
     if(selectedOption == "configurations")
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
         descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer, "GCA", keysList[0],"complete","modify",this);
+        descriptiveCard->setWindowFlags(Qt::Dialog);
+        descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
         descriptiveCard->show();
     }
     else if(selectedOption == "attributes")
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
         descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer,"GAT", keysList[0],"complete","modify",this);
+        descriptiveCard->setWindowFlags(Qt::Dialog);
+        descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
         descriptiveCard->show();
+        updateLayout();
     }
 }
 
