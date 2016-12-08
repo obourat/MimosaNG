@@ -135,8 +135,10 @@ OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager,MainWi
 
     connect(mainWindow, SIGNAL(signalUpdateLayoutsOptions()), this, SLOT(slotUpdateLayout()));
 
-    //Quand l'affaire change, on femre tous les dataViewers
+    //Quand l'affaire change, on ferme tous les dataViewers
     connect(mainWindow, SIGNAL(signalCaseChanged()), this, SLOT(close()));
+
+    //Compteur du nombre d'objets dans maps, permet de relancer OptionsViewer dans le cas ou maps n'a auun élément
 }
 
 void OptionsViewer::updateLayout()
@@ -162,6 +164,7 @@ void OptionsViewer::updateLayout()
 
     myOptionsModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
 
+#if 0
     for(int i=0; i<columnCount; ++i)
     {
         columnName = ui->optionsView->model()->headerData(i,Qt::Horizontal).toString();
@@ -170,6 +173,7 @@ void OptionsViewer::updateLayout()
             ui->optionsView->setColumnHidden(i, true);
         }
     }
+#endif
 
     int rowCount = ui->optionsView->model()->rowCount();
     QString rows = QString::number(rowCount);
@@ -186,69 +190,72 @@ void OptionsViewer::customMenuRequested(QPoint pos)
     keysList.clear();
 
     QModelIndex index = ui->optionsView->indexAt(pos);
-    QString data = index.data(0).toString();
-
-    //On compte le nombre de colonnes sélectionnées -1 pour aoir l'index de la dernière colonne
-    QAbstractItemModel* tableModel = ui->optionsView->model();
-    int columnCount = tableModel->columnCount();
-
-    //On crée le string permettant de stocker la clé de la ligne sélectionnée
-    QString key;
-    QModelIndexList selectedIndexes = ui->optionsView->selectionModel()->selectedIndexes();
-
-    int columnIteratorMax = columnCount;
-    int columnOfKey;
-    QString columnName;
-
-    for(int j=0; j!= columnIteratorMax; ++j)
+    int checkItemSelected = index.column();
+    //On regarde si un element a bien été selectionné
+    if(checkItemSelected != -1)
     {
-        columnName = ui->optionsView->model()->headerData(j,Qt::Horizontal).toString();
-        if(columnName == "key")
+        //On compte le nombre de colonnes sélectionnées -1 pour avoir l'index de la dernière colonne
+        QAbstractItemModel* tableModel = ui->optionsView->model();
+        int columnCount = tableModel->columnCount();
+
+        //On crée le string permettant de stocker la clé de la ligne sélectionnée
+        QString key;
+        QModelIndexList selectedIndexes = ui->optionsView->selectionModel()->selectedIndexes();
+
+        int columnIteratorMax = columnCount;
+        int columnOfKey;
+        QString columnName;
+
+        for(int j=0; j!= columnIteratorMax; ++j)
         {
-            columnOfKey = j;
-            break;
+            columnName = ui->optionsView->model()->headerData(j,Qt::Horizontal).toString();
+            if(columnName == "key")
+            {
+                columnOfKey = j;
+                break;
+            }
         }
-    }
 
-    //On soustrait de la liste d'index les index dont la colonne n'est pas égal à la clé
-    for(int j=0; j<selectedIndexes.count(); ++j)
-    {
-        if(selectedIndexes[j].column() != columnOfKey)
+        //On soustrait de la liste d'index les index dont la colonne n'est pas égal à la clé
+        for(int j=0; j<selectedIndexes.count(); ++j)
         {
-            selectedIndexes.removeOne(selectedIndexes[j]);
-            --j;
+            if(selectedIndexes[j].column() != columnOfKey)
+            {
+                selectedIndexes.removeOne(selectedIndexes[j]);
+                --j;
+            }
         }
-    }
 
-    //Pour les éléments restants de la liste, on va chercher la valeur correpondant à la clé et on l'ajoute à la liste de clés
-    for(int i=0; i<selectedIndexes.length(); ++i)
-    {
-        key = selectedIndexes[i].data(0).toString();
-        keysList.append(key);
-    }
-
-    QMenu *menu = new QMenu(this);
-    QMenu *displayDescriptiveCardMenu = menu->addMenu("Afficher la fiche descriptive de l'objet selectionne");
-    QAction* displayDescriptiveCardComplete = displayDescriptiveCardMenu->addAction("Fiche complete");
-    QAction* displayDescriptiveCardCurrent = displayDescriptiveCardMenu->addAction("Fiche de la configuration courante");
-    connect(displayDescriptiveCardCurrent, SIGNAL(triggered()), this, SLOT(onDisplayDescriptiveCardButtonTriggered()));
-    connect(displayDescriptiveCardComplete, SIGNAL(triggered()), this, SLOT(onDisplayDescriptiveCardCompleteButtonTriggered()));
-
-    if(selectedOption == "attributes")
-    {
-        QAction* copy = menu->addAction("Copier");
-        connect(copy, SIGNAL(triggered()), this, SLOT(onCopyButtonTriggered()));
-        QAction* paste = menu->addAction("Coller");
-        connect(paste, SIGNAL(triggered()), this, SLOT(onPasteButtonTriggered()));
-        QAction* erase = menu->addAction("Supprimer");
-        connect(erase, SIGNAL(triggered()), this, SLOT(onEraseButtonTriggered()));
-        if(dataManager->getAccessLevel() < 1)
+        //Pour les éléments restants de la liste, on va chercher la valeur correpondant à la clé et on l'ajoute à la liste de clés
+        for(int i=0; i<selectedIndexes.length(); ++i)
         {
-            paste->setEnabled(false);
+            key = selectedIndexes[i].data(0).toString();
+            keysList.append(key);
         }
-    }
 
-    menu->popup(ui->optionsView->viewport()->mapToGlobal(pos));
+        QMenu *menu = new QMenu(this);
+        QMenu *displayDescriptiveCardMenu = menu->addMenu("Afficher la fiche descriptive de l'objet selectionne");
+        QAction* displayDescriptiveCardComplete = displayDescriptiveCardMenu->addAction("Fiche complete");
+        QAction* displayDescriptiveCardCurrent = displayDescriptiveCardMenu->addAction("Fiche de la configuration courante");
+        connect(displayDescriptiveCardCurrent, SIGNAL(triggered()), this, SLOT(onDisplayDescriptiveCardButtonTriggered()));
+        connect(displayDescriptiveCardComplete, SIGNAL(triggered()), this, SLOT(onDisplayDescriptiveCardCompleteButtonTriggered()));
+
+        if(selectedOption == "attributes")
+        {
+            QAction* copy = menu->addAction("Copier");
+            connect(copy, SIGNAL(triggered()), this, SLOT(onCopyButtonTriggered()));
+            QAction* paste = menu->addAction("Coller");
+            connect(paste, SIGNAL(triggered()), this, SLOT(onPasteButtonTriggered()));
+            QAction* erase = menu->addAction("Supprimer");
+            connect(erase, SIGNAL(triggered()), this, SLOT(onEraseButtonTriggered()));
+            if(dataManager->getAccessLevel() < 1)
+            {
+                paste->setEnabled(false);
+            }
+        }
+
+        menu->popup(ui->optionsView->viewport()->mapToGlobal(pos));
+    }
 }
 
 void OptionsViewer::on_confirmButtonBox_accepted()
@@ -391,9 +398,11 @@ void OptionsViewer::onPasteButtonTriggered()
     }
     dataManager->setNumOrdreMax(ui->optionsView->model()->rowCount());
     dataManager->pasteAttribute(idCurrentConfig, codeObject);
-    for(int i=0; i<keysList.count();++i)
+
+    QStringList idToPaste = dataManager->getIdToPaste();
+    for(int i=0; i<idToPaste.count();++i)
     {
-        mainWindow->setKeysToTreat(keysList[i]);
+        mainWindow->setKeysToTreat(idToPaste[i]);
     }
 
     mainWindow->setChoiceAddObject("copy");
@@ -404,6 +413,8 @@ void OptionsViewer::onPasteButtonTriggered()
     //On emet le signal qui conduit au slot de changement des colonnes
     mainWindow->triggerSignalChangeColumn();
     mainWindow->resetKeysToTreat();
+    QStringList nullList;
+    dataManager->setIdToPaste(nullList);
 }
 
 void OptionsViewer::onEraseButtonTriggered()

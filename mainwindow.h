@@ -86,6 +86,8 @@ private:
     QString columnToTreatConfigName;
     //Numéro de colonne de l'index a supprimer des modeles de données
     int columnToRemoveIndex;
+    //Indicateur de mise à jour des fichiers
+    int indicUpdateFiles;
 
 
 

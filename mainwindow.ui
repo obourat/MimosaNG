@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Atelier de maîtrise d'oeuvre MIMOSA</string>
+   <string>MimosaNG (v1.02)</string>
   </property>
   <property name="documentMode">
    <bool>false</bool>

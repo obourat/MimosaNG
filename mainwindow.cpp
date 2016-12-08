@@ -12,6 +12,8 @@
 #include <QLinearGradient>
 #include <QFileDialog>
 #include <QStringBuilder>
+#include <QApplication>
+#include <QProcess>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -76,6 +78,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     dataManager->setIndicRestoreState(1);
 
+    //Initialisation de indicUpdateFile à 1
+    indicUpdateFiles = 1;
 
     //Les features non disponibles actuellement sont grisées
     ui->foldersButton->setEnabled(false);
@@ -85,114 +89,116 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     //delete dataViewer;
-
-    QMap<QString, QString> changeList = dataManager->getMapChangeList();
-    QMap<QString, QString> addList = dataManager->getMapAddList();
-    QMap<QString, QString> eraseList = dataManager->getMapEraseList();
-    if(!changeList.values("mapGDO").isEmpty())
+    if(indicUpdateFiles != 0)
     {
-        fileWriter->modifyFiles("mapGDO");
-    }
-    if(!changeList.values("mapGCA").isEmpty())
-    {
-        fileWriter->modifyFiles("mapGCA");
-    }
-    if(!changeList.values("mapGAT").isEmpty())
-    {
-        fileWriter->modifyFiles("mapGAT");
-    }
-    if(!changeList.values("mapGVE").isEmpty())
-    {
-        fileWriter->modifyFiles("mapGVE");
-    }
-    if(!changeList.values("mapGRS").isEmpty())
-    {
-        fileWriter->modifyFiles("mapGRS");
-    }
-
-    if(!addList.values("mapGDO").isEmpty())
-    {
-        if(!eraseList.values("mapGDO").isEmpty())
+        QMap<QString, QString> changeList = dataManager->getMapChangeList();
+        QMap<QString, QString> addList = dataManager->getMapAddList();
+        QMap<QString, QString> eraseList = dataManager->getMapEraseList();
+        if(!changeList.values("mapGDO").isEmpty())
         {
-            fileWriter->compareCurrentMaps("mapGDO");
-            addList = dataManager->getMapAddList();
+            fileWriter->modifyFiles("mapGDO");
         }
+        if(!changeList.values("mapGCA").isEmpty())
+        {
+            fileWriter->modifyFiles("mapGCA");
+        }
+        if(!changeList.values("mapGAT").isEmpty())
+        {
+            fileWriter->modifyFiles("mapGAT");
+        }
+        if(!changeList.values("mapGVE").isEmpty())
+        {
+            fileWriter->modifyFiles("mapGVE");
+        }
+        if(!changeList.values("mapGRS").isEmpty())
+        {
+            fileWriter->modifyFiles("mapGRS");
+        }
+
         if(!addList.values("mapGDO").isEmpty())
         {
-            fileWriter->addToFiles("mapGDO");
-        }
-    }
-    if(!addList.values("mapGCA").isEmpty())
-    {
-        if(!eraseList.values("mapGCA").isEmpty())
-        {
-            fileWriter->compareCurrentMaps("mapGCA");
-            addList = dataManager->getMapAddList();
+            if(!eraseList.values("mapGDO").isEmpty())
+            {
+                fileWriter->compareCurrentMaps("mapGDO");
+                addList = dataManager->getMapAddList();
+            }
+            if(!addList.values("mapGDO").isEmpty())
+            {
+                fileWriter->addToFiles("mapGDO");
+            }
         }
         if(!addList.values("mapGCA").isEmpty())
         {
-            fileWriter->addToFiles("mapGCA");
-        }
-    }
-    if(!addList.values("mapGAT").isEmpty())
-    {
-        if(!eraseList.values("mapGAT").isEmpty())
-        {
-            fileWriter->compareCurrentMaps("mapGAT");
-            addList = dataManager->getMapAddList();
+            if(!eraseList.values("mapGCA").isEmpty())
+            {
+                fileWriter->compareCurrentMaps("mapGCA");
+                addList = dataManager->getMapAddList();
+            }
+            if(!addList.values("mapGCA").isEmpty())
+            {
+                fileWriter->addToFiles("mapGCA");
+            }
         }
         if(!addList.values("mapGAT").isEmpty())
         {
-            fileWriter->addToFiles("mapGAT");
-        }
-    }
-    if(!addList.values("mapGVE").isEmpty())
-    {
-        if(!eraseList.values("mapGVE").isEmpty())
-        {
-            fileWriter->compareCurrentMaps("mapGVE");
-            addList = dataManager->getMapAddList();
+            if(!eraseList.values("mapGAT").isEmpty())
+            {
+                fileWriter->compareCurrentMaps("mapGAT");
+                addList = dataManager->getMapAddList();
+            }
+            if(!addList.values("mapGAT").isEmpty())
+            {
+                fileWriter->addToFiles("mapGAT");
+            }
         }
         if(!addList.values("mapGVE").isEmpty())
         {
-            fileWriter->addToFiles("mapGVE");
-        }
-    }
-    if(!addList.values("mapGRS").isEmpty())
-    {
-        if(!eraseList.values("mapGRS").isEmpty())
-        {
-            fileWriter->compareCurrentMaps("mapGRS");
-            addList = dataManager->getMapAddList();
+            if(!eraseList.values("mapGVE").isEmpty())
+            {
+                fileWriter->compareCurrentMaps("mapGVE");
+                addList = dataManager->getMapAddList();
+            }
+            if(!addList.values("mapGVE").isEmpty())
+            {
+                fileWriter->addToFiles("mapGVE");
+            }
         }
         if(!addList.values("mapGRS").isEmpty())
         {
-            fileWriter->addToFiles("mapGRS");
+            if(!eraseList.values("mapGRS").isEmpty())
+            {
+                fileWriter->compareCurrentMaps("mapGRS");
+                addList = dataManager->getMapAddList();
+            }
+            if(!addList.values("mapGRS").isEmpty())
+            {
+                fileWriter->addToFiles("mapGRS");
+            }
         }
-    }
 
-    if(!eraseList.values("mapGDO").isEmpty())
-    {
-        fileWriter->eraseOfFiles("mapGDO");
-    }
-    if(!eraseList.values("mapGCA").isEmpty())
-    {
-        fileWriter->eraseOfFiles("mapGCA");
-    }
-    if(!eraseList.values("mapGAT").isEmpty())
-    {
-        fileWriter->eraseOfFiles("mapGAT");
-    }
-    if(!eraseList.values("mapGVE").isEmpty())
-    {
-        fileWriter->eraseOfFiles("mapGVE");
-    }
-    if(!eraseList.values("mapGRS").isEmpty())
-    {
-        fileWriter->eraseOfFiles("mapGRS");
-    }
+        if(!eraseList.values("mapGDO").isEmpty())
+        {
+            fileWriter->eraseOfFiles("mapGDO");
+        }
+        if(!eraseList.values("mapGCA").isEmpty())
+        {
+            fileWriter->eraseOfFiles("mapGCA");
+        }
+        if(!eraseList.values("mapGAT").isEmpty())
+        {
+            fileWriter->eraseOfFiles("mapGAT");
+        }
+        if(!eraseList.values("mapGVE").isEmpty())
+        {
+            fileWriter->eraseOfFiles("mapGVE");
+        }
+        if(!eraseList.values("mapGRS").isEmpty())
+        {
+            fileWriter->eraseOfFiles("mapGRS");
+        }
 
-    fileWriter->modifyFiles("mapGCS");
+        fileWriter->modifyFiles("mapGCS");
+    }
 
     delete dataManager;
     delete fileReader;
@@ -312,6 +318,11 @@ void MainWindow::on_caseSelectionButton_released()
         //On emet le signal que l'affaire a changé et on ferme toutes les fenêtres
         emit signalCaseChanged();
 
+        //On ferme et réouvre l'outil en mettant a jour les données de fichier
+        indicUpdateFiles = 0;
+        this->close();
+        QProcess::startDetached(QApplication::applicationFilePath());
+#if 0
         //On fait appel au fileReader pour parser les fichiers à l'aide de la fonction parseFile()
         fileReader->setFileName(fileSettings.value("fileGVE").toString());
         fileReader->parseFile("Objects_list", "Object", "Id", "mapGVE");
@@ -355,7 +366,7 @@ void MainWindow::on_caseSelectionButton_released()
         dataManager->setMapAddList(nullMap);
         dataManager->setMapChangeList(nullMap);
         dataManager->setMapEraseList(nullMap);
-
+#endif
     }
 }
 

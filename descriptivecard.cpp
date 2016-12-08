@@ -700,20 +700,22 @@ void DescriptiveCard::on_buttonBox_accepted()
 
         if(choice == "create")
         {
-            mainWindow->setChoiceAddObject("new");
+            mainWindow->setChoiceAddObject("create");
+            mainWindow->setKeysToTreat(currentMaxKey);
         }
         else if (choice == "copy")
         {
             mainWindow->setChoiceAddObject("copy");
+            mainWindow->setKeysToTreat(currentMaxKey);
         }
     }
 
     else if(choice == "modify")
     {
         mainWindow->setChoiceAddObject("modify");
+        mainWindow->setKeysToTreat(key);
     }
 
-    mainWindow->setKeysToTreat(key);
     mainWindow->updateLayoutsViewers();
     mainWindow->updateLayoutsOptions();
     mainWindow->setChoiceAddObject("none");

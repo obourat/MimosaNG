@@ -8,7 +8,7 @@
 DataManager::DataManager()
 {
     //On charge les options de noms des fichiers sur lesquels on veut faire le traitement
-    fileSetting = new QSettings("datamanager.cpp", QSettings::IniFormat);
+    fileSetting = new QSettings("filesPaths.cpp", QSettings::IniFormat);
 }
 
 //Destructeur
@@ -537,6 +537,15 @@ QSettings *DataManager::getFileSetting() const
 void DataManager::setFileSetting(QString key, QString value)
 {
     fileSetting->setValue(key, value);
+}
+QStringList DataManager::getIdToPaste() const
+{
+    return idToPaste;
+}
+
+void DataManager::setIdToPaste(const QStringList &value)
+{
+    idToPaste = value;
 }
 
 
@@ -1346,6 +1355,9 @@ void DataManager::pasteAttribute(QString idCurrentConfig, QString codeObjectPast
                 {
                     mapAddList.insertMulti(mapName, currentMaxKeyStr);
                 }
+                //Renseignement de l'id de la nouvelle clé crée
+                idToPaste.append(currentMaxKeyStr);
+
                 currentMaxKey++;
                 currentMaxKeyStr = QString::number(currentMaxKey);
 
