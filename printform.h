@@ -19,15 +19,20 @@ public:
     ~PrintForm();
 
 private:
+    //Crée le fichier de configurations
     void makePrintConfigFile();
+    //Crée le fichier de données
     void makePrintDataFile();
 
 private slots:
+    //Slot de validation
     void on_buttonBox_accepted();
 
 private:
+    //User interface
     Ui::PrintForm *ui;
-    //Model *model;
+
+    //Vue pour les données
     QTableView *view;
 };
 

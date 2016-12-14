@@ -29,20 +29,19 @@ class DataViewer : public QDialog
     Q_OBJECT
 
 public:
-    //Constructeur
     explicit DataViewer(DataManager *dataManager, MainWindow *mainWindow ,const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent = 0);
-    //Fonction mettant à jour le modèle en supprimant en fonction des données ajoutées ou supprimées
-    void updateLayout();
-    //Fonction mettant a jour la map d'association clé/ligne
-    void updateKeyRowMap();
-    //Fonction permettant de recherhce l'index de la colonne a supprimer
-    void searchColumnToRemoveIndex();
-    //Fonction qui initialise la reinitialisation du modèle
-    void resetModel();
-    //Fonction qui cache la colonne clé après un reset du modèle
-    void hideKeyColumn();
-    //Destructeur
     ~DataViewer();
+
+    //Met à jour le modèle en tenant compte des données ajoutées ou supprimées
+    void updateLayout();
+    //Met à jour la map d'association clé/ligne
+    void updateKeyRowMap();
+    //Recherche l'index de la colonne a supprimer
+    void searchColumnToRemoveIndex();
+    //Initialise la reinitialisation du modèle
+    void resetModel();
+    //Cache la colonne clé dans la vue (après un reset du modèle)
+    void hideKeyColumn();
 
     //Getters et Setters
     QStringList getKeysList() const;
@@ -63,7 +62,6 @@ public:
     QString getChoiceAddObject() const;
     void setChoiceAddObject(const QString &value);
 
-
     QString getCurrentConfigName() const;
     void setCurrentConfigName(const QString &value);
 
@@ -71,12 +69,14 @@ public:
     void setCodeObject(const QString &value);
 
 public slots:
-    //Slot pour le menu
+    //Slot clic droit tableau
     void customMenuRequested(QPoint pos);
+
+    //Slot clic droit header
     void customHeaderMenuRequested(QPoint pos);
 
 private slots:
-    //Slots pour les bouttons du menu
+    //Slots des options du menu
     void onChangeCurrentConfigButtonTriggered();
     void onChangeCurrentConfigAttributesButtonTriggered();
     void onDisplayDescriptiveCardButtonTriggered();
@@ -97,9 +97,12 @@ private slots:
     void onExportButtonTriggered();
     void onPrintButtonTriggered();
     void onImportButtonTriggered();
+
+    //Slots de changement dans le modèle et affichage
     void slotUpdateLayout();
     void slotChangeColumn();
 
+    //Slot du bouton sauver
     void on_savePushButton_released();
 
 private:
@@ -132,12 +135,15 @@ private:
     //Compteurs de lignes et colonnes
     int rowCount;
     int columnCount;
+    //Nombre de lignes affichées
     int rowsDisplayed;
-    //Settings
+    //Settings d'affichage
     QSettings mySetting;
-    //Indicateurs de recherche
+    //Index de l'élément sélectionné lors d'un clic
     int index;
+    //Indicateur de première recherche
     int indicFirstSearch;
+    //Indicateur du mode de recherche (restreindre ou ajouter)
     QString indicSearch;
     //Liste des resultats de recherche trouvés dans searchCard.cpp
     QList<QString> resultList;

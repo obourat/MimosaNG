@@ -6,7 +6,6 @@
 #include "ui_optionsviewer.h"
 #include "model.h"
 
-
 #include <QSortFilterProxyModel>
 #include <QtGui>
 
@@ -141,6 +140,11 @@ OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager,MainWi
     //Compteur du nombre d'objets dans maps, permet de relancer OptionsViewer dans le cas ou maps n'a auun élément
 }
 
+OptionsViewer::~OptionsViewer()
+{
+    delete ui;
+}
+
 void OptionsViewer::updateLayout()
 {
     const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapNameOptions("mapGAT","GAT", codeObject);
@@ -180,17 +184,14 @@ void OptionsViewer::updateLayout()
     ui->infoNbObject->setText("Nombre d'objets: "+rows);
 }
 
-OptionsViewer::~OptionsViewer()
-{
-    delete ui;
-}
-
 void OptionsViewer::customMenuRequested(QPoint pos)
 {
     keysList.clear();
 
     QModelIndex index = ui->optionsView->indexAt(pos);
     int checkItemSelected = index.column();
+
+    QMenu *menu = new QMenu(this);
     //On regarde si un element a bien été selectionné
     if(checkItemSelected != -1)
     {
@@ -233,7 +234,6 @@ void OptionsViewer::customMenuRequested(QPoint pos)
             keysList.append(key);
         }
 
-        QMenu *menu = new QMenu(this);
         QMenu *displayDescriptiveCardMenu = menu->addMenu("Afficher la fiche descriptive de l'objet selectionne");
         QAction* displayDescriptiveCardComplete = displayDescriptiveCardMenu->addAction("Fiche complete");
         QAction* displayDescriptiveCardCurrent = displayDescriptiveCardMenu->addAction("Fiche de la configuration courante");
@@ -244,18 +244,23 @@ void OptionsViewer::customMenuRequested(QPoint pos)
         {
             QAction* copy = menu->addAction("Copier");
             connect(copy, SIGNAL(triggered()), this, SLOT(onCopyButtonTriggered()));
-            QAction* paste = menu->addAction("Coller");
-            connect(paste, SIGNAL(triggered()), this, SLOT(onPasteButtonTriggered()));
             QAction* erase = menu->addAction("Supprimer");
             connect(erase, SIGNAL(triggered()), this, SLOT(onEraseButtonTriggered()));
-            if(dataManager->getAccessLevel() < 1)
-            {
-                paste->setEnabled(false);
-            }
         }
-
-        menu->popup(ui->optionsView->viewport()->mapToGlobal(pos));
     }
+
+    if(selectedOption == "attributes")
+    {
+        QAction* paste = menu->addAction("Coller");
+        connect(paste, SIGNAL(triggered()), this, SLOT(onPasteButtonTriggered()));
+        if(dataManager->getAccessLevel() < 1)
+        {
+            paste->setEnabled(false);
+        }
+    }
+
+    menu->popup(ui->optionsView->viewport()->mapToGlobal(pos));
+
 }
 
 void OptionsViewer::on_confirmButtonBox_accepted()
@@ -310,8 +315,6 @@ void OptionsViewer::on_confirmButtonBox_accepted()
     //Model model = ui->optionsView->model();
     //QString data;
 }
-
-
 
 void OptionsViewer::on_optionsView_clicked()
 {
@@ -514,4 +517,3 @@ void OptionsViewer::slotUpdateLayout()
 {
     updateLayout();
 }
-

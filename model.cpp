@@ -2,11 +2,9 @@
 
 #include <QStandardItemModel>
 
-//Constructeur
 Model::Model(const QList<QMap<QString, QString> > &smallMapsFromMapName)
 {
 #if 1
-
     //On définit un nouveau modèle de données
     model = new QStandardItemModel(this);
 
@@ -80,6 +78,11 @@ Model::Model(const QList<QMap<QString, QString> > &smallMapsFromMapName)
 
     model->setHorizontalHeaderLabels(keys);
 #endif
+}
+
+Model::~Model()
+{
+
 }
 
 void Model::updateModelRows(const QList<QMap<QString, QString> > &smallMapsFromMapName, QStringList keysToTreat, QString choiceAddObject, int columnOfKey)
@@ -261,14 +264,6 @@ void Model::resetModel(const QList<QMap<QString, QString> > &smallMapsFromMapNam
         model->appendRow(itemsToInclude);
     }
     endInsertRows();
-
-}
-
-
-//Destructeur
-Model::~Model()
-{
-
 }
 
 int Model::rowCount(const QModelIndex &parent) const
@@ -330,7 +325,6 @@ QVariant Model::data(const QModelIndex &index, int role) const
     return currentData.toString();
 
     //return model->index(index.row(), index.column()).data();
-
 }
 
 QVariant Model::headerData(int section, Qt::Orientation orientation, int role) const
@@ -371,5 +365,3 @@ void Model::sort(int column, Qt::SortOrder order)
 
 }
 #endif
-
-

@@ -33,7 +33,6 @@ PasswordForm::PasswordForm(DataManager *dataManager, int levelRequested,QWidget 
     gradient.setColorAt(1, QColor(245,255,255,255));
     pal.setBrush(QPalette::Background, QBrush(gradient));
     this->setPalette(pal);
-
 }
 
 PasswordForm::~PasswordForm()
