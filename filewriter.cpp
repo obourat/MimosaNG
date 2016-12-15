@@ -9,7 +9,6 @@ using namespace std;
 #include <QMessageBox>
 #include <QMap>
 
-
 FileWriter::FileWriter(DataManager *dataManager):
 dataManager(dataManager)
 {
@@ -197,7 +196,6 @@ void FileWriter::modifyFiles(const QString mapName)
         file.write(dom.toByteArray());
         file.close();
     }
-
 }
 
 void FileWriter::addToFiles(const QString mapName)
@@ -351,13 +349,13 @@ void FileWriter::eraseOfFiles(const QString mapName)
         }
         docElem = docElem.nextSibling();
     }
-
-//    nodesToErase = dom.elementsByTagName("Object/");
-//    for(int i=0; i<nodesToErase.count(); ++i)
-//    {
-//        dom.documentElement().removeChild(nodesToErase.item(i));
-//    }
-
+#if 0
+    nodesToErase = dom.elementsByTagName("Object/");
+    for(int i=0; i<nodesToErase.count(); ++i)
+    {
+        dom.documentElement().removeChild(nodesToErase.item(i));
+    }
+#endif
     file.open(QIODevice::WriteOnly);
     file.write(dom.toByteArray());
     file.close();
@@ -422,21 +420,20 @@ void FileWriter::compareCurrentMaps(const QString mapName)
                 mapEraseList.insertMulti(mapName,valuesErase[l]);
             }
         }
-
-//            for(int i=0; i< mapEraseList.values(mapName).count(); ++i)
-//            {
-//                if(values.value(i) == listOfMatchingKeys[k])
-//                {
-//                    mapEraseList.values(mapName).removeAt(i);
-//                    mapEraseList.values(mapName).removeOne(listOfMatchingKeys[k]);
-//                    break;
-//                }
-//            }
-            //mapEraseList.value(mapName,listOfMatchingKeys[k]).clear();
-            //mapAddList.value(mapName,listOfMatchingKeys[k]).clear();
-
+#if 0
+            for(int i=0; i< mapEraseList.values(mapName).count(); ++i)
+            {
+                if(values.value(i) == listOfMatchingKeys[k])
+                {
+                    mapEraseList.values(mapName).removeAt(i);
+                    mapEraseList.values(mapName).removeOne(listOfMatchingKeys[k]);
+                    break;
+                }
+            }
+            mapEraseList.value(mapName,listOfMatchingKeys[k]).clear();
+            mapAddList.value(mapName,listOfMatchingKeys[k]).clear();
+#endif
         dataManager->setMapAddList(mapAddList);
         dataManager->setMapEraseList(mapEraseList);
     }
 }
-

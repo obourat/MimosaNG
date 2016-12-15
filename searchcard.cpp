@@ -1,4 +1,4 @@
- #include "searchcard.h"
+#include "searchcard.h"
 #include "ui_searchcard.h"
 #include "datamanager.h"
 #include "dataviewer.h"
@@ -115,11 +115,12 @@ SearchCard::SearchCard(DataManager *dataManager,DataViewer *dataViewer, QString 
     this->setPalette(pal);
 
     confirmSearch = 0;
-
-
 }
 
-
+SearchCard::~SearchCard()
+{
+    delete ui;
+}
 
 void SearchCard::setNewWidget(QString type,QString var, QString name, QString nameAttributeSelected)
 {
@@ -208,9 +209,7 @@ void SearchCard::setNewWidget(QString type,QString var, QString name, QString na
         }
         else
         {
-            //QCheckBox *checkbox = new QCheckBox;
-            //checkbox->setText("");
-            //gLayout2->addWidget(checkbox);
+        //Condition éventuelle dans le cas d'un énumératif sans valeur
         }
         label->setText(nameAttributeSelected);
         label->setAccessibleName(name);
@@ -315,7 +314,6 @@ void SearchCard::setNewWidget(QString type,QString var, QString name, QString na
         gLayout2->addWidget(comboBox);
         ui->verticalLayout->addLayout(hLayout);
         ui->verticalLayout->addLayout(gLayout2);
-
     }
 //    else if(type == "comment")
 //    {
@@ -346,15 +344,8 @@ void SearchCard::setNewWidget(QString type,QString var, QString name, QString na
         gLayout2->addWidget(lineEdit);
         ui->verticalLayout->addLayout(hLayout);
         ui->verticalLayout->addLayout(gLayout2);
-
     }
-
 }
-
-
-
-
-
 
 //Fonction de recherche qui listes les clés de la map "map" vérifiant la présence des couples clé, valeur de la map "mapSearch"
 QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QString> >& map, const QMap<QString, QString >& mapSearch)
@@ -750,12 +741,12 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
             }
             progress.setValue(iteratorListKeys);
         }
-
     }
     progress.setValue(mapListKeysSize);
     dataViewer->setResultList(resultList);
     return resultList;
 }
+
 int SearchCard::getConfirmSearch() const
 {
     return confirmSearch;
@@ -774,13 +765,6 @@ QList<QString> SearchCard::getSearchResults() const
 void SearchCard::setSearchResults(const QList<QString> &value)
 {
     searchResults = value;
-}
-
-
-
-SearchCard::~SearchCard()
-{
-    delete ui;
 }
 
 void SearchCard::on_buttonBox_accepted()
@@ -871,10 +855,9 @@ void SearchCard::on_buttonBox_accepted()
                 mapOfSearch.insert(title,valueOfChoiceFilter);
                 mapOfSearch.insertMulti(title,valueOfLineEdit);
             }
-
         }
-        valueOfLineEdit = "";
 
+        valueOfLineEdit = "";
     }
     //On cherche l'indicateur de première recherche
     int indicFirstSearch = dataViewer->getIndicFirstSearch();
@@ -903,7 +886,7 @@ void SearchCard::on_buttonBox_accepted()
 
             searchResults = searchMatches(selectedSmallerMap,mapOfSearch);
         }
-        //Cas où l'on étend la liste, on effectue la recherhce sur la liste des clés non affichées
+        //Cas où l'on étend la liste, on effectue la recherche sur la liste des clés non affichées
         else if(indicSearch == "add")
         {
             QList<QString>resultList = dataViewer->getResultList();
@@ -929,8 +912,6 @@ QString SearchCard::getFileValue(const QMap<QString, QMap<QString, QString> > ma
     QString fileValue = map[key][searchName];
     return fileValue;
 }
-
-
 
 void SearchCard::on_buttonBox_rejected()
 {

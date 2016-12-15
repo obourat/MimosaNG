@@ -18,20 +18,23 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    //Constructeur
     explicit MainWindow(QWidget *parent = 0);
-    //Destructeur
     ~MainWindow();
-    //Emet le signal de mise à jour des layout de dataViewer pour mettre a jour les layout des optionsViewer
+
+    //Emet le signal de mise à jour des layout des DataViewers et OptionsViewers
     void updateLayoutsOptions();
     void updateLayoutsViewers();
+
+    //Enleve du modèle la colonne renseignée
     void removeColumn(QString codeObject, QString currentConfigName, int index);
-    void setColumnChangeIndic(QString choice, int index);
     //Permet a d'autres classes (descriptiveCard) d'emettre le signal de suppression de la colonne
     void triggerSignalChangeColumn();
     //Reset kesToTreat après la mise à jour du modele
     void resetKeysToTreat();
+    //Met à jour le nom de l'affaire dans mainWindow
+    void updateCaseName();
 
+    //Getters et Setters
     QStringList getKeysToTreat() const;
     void setKeysToTreat(const QString &value);
 
@@ -48,6 +51,7 @@ public:
     void setColumnToRemoveIndex(int value);
 
 signals:
+    //Signaux de mise à jour des Modèles/Vues
     void signalUpdateLayoutsViewers();
     void signalUpdateLayoutsOptions();
     void signalChangeColumn();
@@ -61,22 +65,22 @@ private slots:
     void on_caseSelectionButton_released();
     void on_officialsButton_released();
     void on_documentsButton_released();
-
     void on_consultationButton_released();
-
     void on_modificationButton_released();
-
     void on_adminButton_released();
 
 private:
     //User Interface
     Ui::MainWindow *ui;
-    //On définit les attributs pour les objets dont on a besoin
+
+    //Définition des objets nécessaire pour la gestion des données
     DataViewer *dataViewer;
     DataManager *dataManager;
     FileReader *fileReader;
     FileWriter *fileWriter;
     PasswordForm *passwordForm;
+
+    //Liste des objets à traiter lors d'une modification
     QStringList keysToTreat;
     //Choix de l'objet à ajouter, renseigné lors du clic sur le menu
     QString choiceAddObject;

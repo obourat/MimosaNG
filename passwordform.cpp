@@ -33,7 +33,6 @@ PasswordForm::PasswordForm(DataManager *dataManager, int levelRequested,QWidget 
     gradient.setColorAt(1, QColor(245,255,255,255));
     pal.setBrush(QPalette::Background, QBrush(gradient));
     this->setPalette(pal);
-
 }
 
 PasswordForm::~PasswordForm()
@@ -48,7 +47,7 @@ void PasswordForm::on_buttonBox_accepted()
     QString hashedResult(passwordGiven.toHex());
     if(levelRequested == 1)
     {
-        if(hashedResult == "e8cfbc52c87859884531b4b9871f6711")
+        if(hashedResult == "6837f21bced828f5c056e059fee1298b")
         {
             dataManager->setAccessLevel(1);
             QMessageBox::information(this, "Acces autorise", "L'atelier passe en mode modification");
@@ -60,7 +59,7 @@ void PasswordForm::on_buttonBox_accepted()
     }
     else if(levelRequested == 2)
     {
-        if(hashedResult == "0b5c12b883e411b07dfaca2c0882051d")
+        if(hashedResult == "f7ab1ea1137877706c67b20f19c64dd1")
         {
             dataManager->setAccessLevel(2);
             QMessageBox::information(this, "Acces autorise", "L'atelier passe en mode administration");

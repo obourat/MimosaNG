@@ -19,13 +19,19 @@ public:
     ~PasswordForm();
 
 private slots:
+    //Slot de validation
     void on_buttonBox_accepted();
 
 private:
+    //User interface
     Ui::PasswordForm *ui;
 
+    //Definition des objets pour le traitement des données
     DataManager *dataManager;
+
+    //Indicateur du niveau d'autorisation demandé
     int levelRequested;
+    //Définition de l'input de mot de passe
     QLineEdit *password;
 };
 

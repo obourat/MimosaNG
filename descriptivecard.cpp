@@ -170,35 +170,32 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, MainWindow *mainWindo
 
     if(choice == "create" || choice == "copy")
     {
-            QString currentKey;
-            int currentKeyInt;
-            int currentMaxKey = 0;
-            QList<QString> keysList = selectedMap->keys();
+        QString currentKey;
+        int currentKeyInt;
+        int currentMaxKey = 0;
+        QList<QString> keysList = selectedMap->keys();
 
-            for(int i=0; i<keysList.count(); ++i)
+        for(int i=0; i<keysList.count(); ++i)
+        {
+            currentKey = keysList[i];
+            currentKeyInt = currentKey.toInt();
+            if(currentKeyInt > currentMaxKey)
             {
-                currentKey = keysList[i];
-                currentKeyInt = currentKey.toInt();
-                if(currentKeyInt > currentMaxKey)
-                {
-                    currentMaxKey = currentKeyInt;
-                }
+                currentMaxKey = currentKeyInt;
             }
-            currentMaxKey++;
-            if(indicFirstCreate != 1)
-            {
-                currentMaxKey = currentMaxKey + incrementCreation;
-            }
-            QString currentMaxKeyString = QString::number(currentMaxKey);
-            this->currentMaxKey = currentMaxKeyString;
-            int maxNumOdre = keysList.count();
-            maxNumOdre++;
-            QString maxNumOrdreString = QString::number(maxNumOdre);
-            this->currentMaxNumOrdre = maxNumOrdreString;
-     }
-
-
-
+        }
+        currentMaxKey++;
+        if(indicFirstCreate != 1)
+        {
+            currentMaxKey = currentMaxKey + incrementCreation;
+        }
+        QString currentMaxKeyString = QString::number(currentMaxKey);
+        this->currentMaxKey = currentMaxKeyString;
+        int maxNumOdre = keysList.count();
+        maxNumOdre++;
+        QString maxNumOrdreString = QString::number(maxNumOdre);
+        this->currentMaxNumOrdre = maxNumOrdreString;
+    }
 
     mapsOfKey = selectedMap->value(key);
 
@@ -309,7 +306,7 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, MainWindow *mainWindo
     }
     else
     {
-       ui->instructionsLabel->setText("Modifiez les attributs editables voulus et cliquez sur OK pour valider les modifications \n(Mode modification et administration uniquement)");
+        ui->instructionsLabel->setText("Modifiez les attributs editables voulus et cliquez sur OK pour valider les modifications \n(Mode modification et administration uniquement)");
     }
 
     //Permet d'enlever la croix de fermeture de la fiche descritive (génère des bugs)
@@ -332,13 +329,10 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, MainWindow *mainWindo
     this->setPalette(pal);
 }
 
-
-
 DescriptiveCard::~DescriptiveCard()
 {
     delete ui;
 }
-
 
 void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QString value, QString nameAttributeSelected)
 {
@@ -575,8 +569,6 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
 
 }
 
-
-
 void DescriptiveCard::on_buttonBox_accepted()
 {
     QString mapName = "map" % codeObject;
@@ -726,4 +718,3 @@ void DescriptiveCard::on_buttonBox_accepted()
     }
     mainWindow->resetKeysToTreat();
 }
-

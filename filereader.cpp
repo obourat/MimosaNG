@@ -4,7 +4,6 @@
 #include <QDate>
 #include <QStringBuilder>
 
-//Constructeur
 FileReader::FileReader(DataManager *dataManager, const QString &fileName):
     dataManager(dataManager),
     fileName(fileName)
@@ -12,7 +11,6 @@ FileReader::FileReader(DataManager *dataManager, const QString &fileName):
 
 }
 
-//Destructeur
 FileReader::~FileReader()
 {
 
