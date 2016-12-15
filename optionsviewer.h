@@ -21,34 +21,38 @@ class OptionsViewer : public QDialog
     Q_OBJECT
 
 public:
-    //Constructeur
     explicit OptionsViewer(QString codeObject, DataManager *dataManager, MainWindow *mainWindow, DataViewer *dataViewer,const QList<QMap<QString, QString> >& maps,QString selectedOption, QWidget *parent = 0);
-    void updateLayout();
-    //Destructeur
     ~OptionsViewer();
 
+    //Met à jour le modèle en tenant compte des objets ajoutés ou supprimés
+    void updateLayout();
+
 public slots:
-    //Slot du menu
+    //Slot du clic droit
     void customMenuRequested(QPoint pos);
 
 private slots:
-    //Slots pour le clic sur le bouton "Ok" et pour la sélection d'un élément
+    //Slot de validation
     void on_confirmButtonBox_accepted();
+    //Slot du clic sur un élément
     void on_optionsView_clicked();
 
-    //Slots pour les options
+    //Slots des options du menu
     void onDisplayDescriptiveCardButtonTriggered();
     void onDisplayDescriptiveCardCompleteButtonTriggered();
     void onCopyButtonTriggered();
     void onPasteButtonTriggered();
     void onEraseButtonTriggered();
     void onItemDoubleClicked();
+
+    //Slot de changement dans le modèle et affichage
     void slotUpdateLayout();
 
 
 private:
     //User interface
     Ui::OptionsViewer *ui;
+
     //Definition des objets dont on a besoin pour le traitement des données et l'affichage
     Model *myOptionsModel;
     QSortFilterProxyModel *proxyOptionsModel;
@@ -57,6 +61,7 @@ private:
     MainWindow *mainWindow;
     DataViewer *dataViewer;
     DescriptiveCard *descriptiveCard;
+
     //Nom de la configuration courante
     QString currentConfigSelectedName;
     //Nom de l'option selectionnée dans dataViewer

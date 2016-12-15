@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MimosaNG (v1.02)</string>
+   <string>MimosaNG (v1.03)</string>
   </property>
   <property name="documentMode">
    <bool>false</bool>
@@ -158,6 +158,16 @@
       </property>
       <property name="text">
        <string>Selection de l'affaire </string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="caseNameLabel">
+      <property name="text">
+       <string>TextLabel</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>

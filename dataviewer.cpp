@@ -18,7 +18,6 @@
 #include <QProgressBar>
 #include <QString>
 
-//Constructeur
 DataViewer::DataViewer(DataManager *dataManager, MainWindow *mainWindow, const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DataViewer),
@@ -170,6 +169,54 @@ DataViewer::DataViewer(DataManager *dataManager, MainWindow *mainWindow, const Q
 
 }
 
+DataViewer::~DataViewer()
+{
+    //ui->tableView->setModel(myModel);
+    //mySetting.clear();
+    QByteArray myArray = ui->tableView->horizontalHeader()->saveState();
+    if(codeObject == "GCA")
+    {
+        if(indicUpdateSetting == 0)
+        {
+            myArray.clear();
+        }
+        mySetting.setValue("columnConfigGCA", myArray);
+    }
+    else if(codeObject == "GAT")
+    {
+        if(indicUpdateSetting == 0)
+        {
+            myArray.clear();
+        }
+        mySetting.setValue("columnConfigGAT", myArray);
+    }
+    else if(codeObject == "GVE")
+    {
+        if(indicUpdateSetting == 0)
+        {
+            myArray.clear();
+        }
+        mySetting.setValue("columnConfigGVE", myArray);
+    }
+    else if(codeObject == "GDO")
+    {
+        if(indicUpdateSetting == 0)
+        {
+            myArray.clear();
+        }
+        mySetting.setValue("columnConfigGDO", myArray);
+    }
+    if(codeObject == "GRS")
+    {
+        if(indicUpdateSetting == 0)
+        {
+            myArray.clear();
+        }
+        mySetting.setValue("columnConfigGRS", myArray);
+    }
+    delete ui;
+}
+
 void DataViewer::updateLayout()
 {
     QString currentConfigName;
@@ -297,7 +344,6 @@ void DataViewer::updateLayout()
         ui->infoNbObject->setText("Nombre d'objets: "+rowsStr);
     }
 
-
     //On chache la colonne comportant les clés
     for(int i=0; i!= columnIteratorMax; ++i)
     {
@@ -339,56 +385,6 @@ void DataViewer::updateKeyRowMap()
     }
 }
 
-
-//Destructeur
-DataViewer::~DataViewer()
-{
-    //ui->tableView->setModel(myModel);
-    //mySetting.clear();
-    QByteArray myArray = ui->tableView->horizontalHeader()->saveState();
-    if(codeObject == "GCA")
-    {
-        if(indicUpdateSetting == 0)
-        {
-            myArray.clear();
-        }
-        mySetting.setValue("columnConfigGCA", myArray);
-    }
-    else if(codeObject == "GAT")
-    {
-        if(indicUpdateSetting == 0)
-        {
-            myArray.clear();
-        }
-        mySetting.setValue("columnConfigGAT", myArray);
-    }
-    else if(codeObject == "GVE")
-    {
-        if(indicUpdateSetting == 0)
-        {
-            myArray.clear();
-        }
-        mySetting.setValue("columnConfigGVE", myArray);
-    }
-    else if(codeObject == "GDO")
-    {
-        if(indicUpdateSetting == 0)
-        {
-            myArray.clear();
-        }
-        mySetting.setValue("columnConfigGDO", myArray);
-    }
-    if(codeObject == "GRS")
-    {
-        if(indicUpdateSetting == 0)
-        {
-            myArray.clear();
-        }
-        mySetting.setValue("columnConfigGRS", myArray);
-    }
-    delete ui;
-}
-
 void DataViewer::customMenuRequested(QPoint pos)
 {
     keysList.clear();
@@ -402,37 +398,37 @@ void DataViewer::customMenuRequested(QPoint pos)
     int rowCount = ui->tableView->selectionModel()->selectedRows().count();
 #endif
     //On regarde si un element a bien été selectionné
+    //On compte le nombre de colonnes sélectionnées -1 pour avoir l'index de la dernière colonne
+    QAbstractItemModel* tableModel = ui->tableView->model();
+    int columnCount = tableModel->columnCount();
+    --columnCount;
+    //On crée le string permettant de stocker la clé de la ligne sélectionnée
+    QString key;
+    //On crée la liste d'index qui contient tous les index de toutes les colonnes des lignes sélectionnées
+    QModelIndexList selectedIndexes = ui->tableView->selectionModel()->selectedIndexes();
+
+    //On soustrait de la liste d'index les index dont la colonne n'est pas égal à la dernière
+    for(int j=0; j<selectedIndexes.count(); ++j)
+    {
+        if(selectedIndexes[j].column() != columnCount)
+        {
+            selectedIndexes.removeOne(selectedIndexes[j]);
+            --j;
+        }
+    }
+
+    //Pour les éléments restants de la liste, on va chercher la valeur correpondant à la clé et on l'ajoute à la liste de clés
+    for(int i=0; i<selectedIndexes.length(); ++i)
+    {
+        key = selectedIndexes[i].data(0).toString();
+        keysList.append(key);
+    }
+
+    QMenu* menu = new QMenu(this);
+    QAction* changeCurrentConfig = new QAction("Voir les configurations d'attribut du type d'objet", this);
+    QAction* changeCurrentConfigAttributes = new QAction("Gerer les attributs de la configuration courante", this);
     if(checkItemSelected != -1)
     {
-        //On compte le nombre de colonnes sélectionnées -1 pour avoir l'index de la dernière colonne
-        QAbstractItemModel* tableModel = ui->tableView->model();
-        int columnCount = tableModel->columnCount();
-        --columnCount;
-        //On crée le string permettant de stocker la clé de la ligne sélectionnée
-        QString key;
-        //On crée la liste d'index qui contient tous les index de toutes les colonnes des lignes sélectionnées
-        QModelIndexList selectedIndexes = ui->tableView->selectionModel()->selectedIndexes();
-
-        //On soustrait de la liste d'index les index dont la colonne n'est pas égal à la dernière
-        for(int j=0; j<selectedIndexes.count(); ++j)
-        {
-            if(selectedIndexes[j].column() != columnCount)
-            {
-                selectedIndexes.removeOne(selectedIndexes[j]);
-                --j;
-            }
-        }
-
-        //Pour les éléments restants de la liste, on va chercher la valeur correpondant à la clé et on l'ajoute à la liste de clés
-        for(int i=0; i<selectedIndexes.length(); ++i)
-        {
-            key = selectedIndexes[i].data(0).toString();
-            keysList.append(key);
-        }
-
-        QMenu* menu = new QMenu(this);
-        QAction* changeCurrentConfig = new QAction("Voir les configurations d'attribut du type d'objet", this);
-        QAction* changeCurrentConfigAttributes = new QAction("Gerer les attributs de la configuration courante", this);
         QMenu* selection = menu->addMenu("Selectionner");
         QMenu* subList = selection->addMenu("Sous-Liste");
         QAction* total = selection->addAction("Totalite");
@@ -458,8 +454,6 @@ void DataViewer::customMenuRequested(QPoint pos)
                 copy->setEnabled(false);
             }
         }
-        menu->addAction(changeCurrentConfig);
-        menu->addAction(changeCurrentConfigAttributes);
 
         if(keysList.length() == 1)
         {
@@ -472,18 +466,25 @@ void DataViewer::customMenuRequested(QPoint pos)
             connect(createCopy, SIGNAL(triggered()), this, SLOT(onCreateCopyButtonTriggered()));
         }
 
-        if(accessLevel <2)
+        if(codeObject != "GDO")
         {
-            createNew->setEnabled(false);
-            erase->setEnabled(false);
-            create->setEnabled(false);
+            if(accessLevel <2)
+            {
+                createNew->setEnabled(false);
+                erase->setEnabled(false);
+                create->setEnabled(false);
+            }
+        }
+        else
+        {
+            if(accessLevel <1)
+            {
+                createNew->setEnabled(false);
+                erase->setEnabled(false);
+                create->setEnabled(false);
+            }
         }
 
-
-        menu->popup(ui->tableView->viewport()->mapToGlobal(pos));
-
-        connect(changeCurrentConfig, SIGNAL(triggered()), this, SLOT(onChangeCurrentConfigButtonTriggered()));
-        connect(changeCurrentConfigAttributes, SIGNAL(triggered()), this, SLOT(onChangeCurrentConfigAttributesButtonTriggered()));
         connect(validateSelection, SIGNAL(triggered()), this, SLOT(onValidateSelectionButtonTriggered()));
         connect(hideSelection, SIGNAL(triggered()), this, SLOT(onHideSelectionButtonTriggered()));
         connect(resetSelection, SIGNAL(triggered()), this, SLOT(onResetSelectionButtonTriggered()));
@@ -496,6 +497,13 @@ void DataViewer::customMenuRequested(QPoint pos)
         connect(print, SIGNAL(triggered()), this, SLOT(onPrintButtonTriggered()));
         connect(importation, SIGNAL(triggered()), this, SLOT(onImportButtonTriggered()));
     }
+
+    menu->addAction(changeCurrentConfig);
+    menu->addAction(changeCurrentConfigAttributes);
+    connect(changeCurrentConfig, SIGNAL(triggered()), this, SLOT(onChangeCurrentConfigButtonTriggered()));
+    connect(changeCurrentConfigAttributes, SIGNAL(triggered()), this, SLOT(onChangeCurrentConfigAttributesButtonTriggered()));
+
+    menu->popup(ui->tableView->viewport()->mapToGlobal(pos));
 }
 
 void DataViewer::customHeaderMenuRequested(QPoint pos)
@@ -507,7 +515,6 @@ void DataViewer::customHeaderMenuRequested(QPoint pos)
     menu->addAction(hideColumn);
     menu->popup(ui->tableView->viewport()->mapToGlobal(pos));
     connect(hideColumn, SIGNAL(triggered()), this, SLOT(setColumnHidden()));
-
 }
 
 
@@ -518,7 +525,6 @@ void DataViewer::onChangeCurrentConfigButtonTriggered()
     optionsViewerCurrentConfig = new OptionsViewer(codeObject, dataManager, mainWindow, this,dataManager->getSmallMapsFromMapNameOptions("mapGCA", "GCA",codeObject),"configurations", this);
     optionsViewerCurrentConfig->setAttribute(Qt::WA_DeleteOnClose);
     optionsViewerCurrentConfig->show();
-
 }
 
 void DataViewer::onChangeCurrentConfigAttributesButtonTriggered()
@@ -535,7 +541,6 @@ void DataViewer::onDisplayDescriptiveCardButtonTriggered()
     descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"current","modify",this);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
     descriptiveCard->show();
-
 }
 
 void DataViewer::onDisplayDescriptiveCardCompleteButtonTriggered()
@@ -701,7 +706,6 @@ void DataViewer::onSubListAddButtonTriggered()
     columnCountValue--;
     int rowCountValue = rowCount;
 
-
     //Affiche les lignes de résultat obtenus lors de la recherche
     int confirmsearch = searchCard->getConfirmSearch();
 
@@ -746,7 +750,6 @@ void DataViewer::onSubListAddButtonTriggered()
         QString newRowCountToString = QString::number(newRowCount);
         ui->infoNbObject->setText("Nombre d'objets: "+newRowCountToString);
     }
-
 }
 
 
@@ -889,7 +892,7 @@ void DataViewer::onCopyButtonTriggered()
 }
 
 void DataViewer::onExportButtonTriggered()
-{;
+{
     exportForm = new ExportForm(dataManager, keysList, codeObject, this);
     exportForm->exec();
 }
@@ -984,7 +987,6 @@ void DataViewer::setCurrentConfigName(const QString &value)
 {
     currentConfigName = value;
 }
-
 
 void DataViewer::searchColumnToRemoveIndex()
 {

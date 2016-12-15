@@ -17,10 +17,9 @@ class SearchCard : public QDialog
     Q_OBJECT
 
 public:
-    //Constructeur
     explicit SearchCard(DataManager *dataManager, DataViewer *dataViewer, QString codeObject, QString key, QWidget *parent);
-    //Destructeur
     ~SearchCard();
+
     //Fonction qui retourne la valeur d'une balise de nom "searchName" dans la clé "key", dans la map "map"
     QString getFileValue(const QMap<QString, QMap<QString, QString> > map, const QString key, const QString searchName);
 
@@ -31,7 +30,7 @@ public:
     void setConfirmSearch(int value);
 
 private slots:
-    //Slots
+    //Slots de validation et d'annulation
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
 
@@ -44,16 +43,16 @@ private:
 private:
     //User Interface
     Ui::SearchCard *ui;
-    //Objets dans on a besoin pour le traitement des données et l'affichage
+
+    //Definition des objets pour le traitement des données
     DataManager *dataManager;
     DataViewer *dataViewer;
-    //Type d'objet recherché
+
+    //Code objet de l'objet affiché
     QString codeObject;
-    //Clé
+    //Clé de l'objet
     QString key;
-    //
-    QString valueOfEditedLine;
-    //Map rassemblant les critères de rechrhces rentrés dans la fiche
+    //Map rassemblant les critères de recherche rentrés dans la fiche
     QMap<QString, QString> mapOfSearch;
     //Map dont on a besoin recupérés dans dataManager
     const QMap<QString, QMap<QString, QString> >* mapGVE;

@@ -8,17 +8,19 @@ class QStandardItemModel;
 class Model : public QAbstractTableModel
 {
 public:
-    // Constructeur
     explicit Model(const QList<QMap<QString, QString> > &smallMapsFromMapName);
-    void updateModelRows(const QList<QMap<QString, QString> > &smallMapsFromMapName, QStringList keysToTreat, QString choiceAddObject, int columnOfKey);
-    void removeModelColumn(int columnToRemoveIndex);
-    void addModelColumn(const QMap<QString, QMap<QString, QString> > *map, int columnToAddIndex, int columnOfKey, QString nameOfAttrToAdd, QString nameOfColumnToAdd);
-    void resetModel(const QList<QMap<QString, QString> > &smallMapsFromMapName);
-    // Destructeur
     ~Model();
 
-    // Methodes de QAbstractTableModel a deriver
+    //Mets à jour les lignes dans le modèle
+    void updateModelRows(const QList<QMap<QString, QString> > &smallMapsFromMapName, QStringList keysToTreat, QString choiceAddObject, int columnOfKey);
+    //Enlève la colonne du modèle à l'index renseigné
+    void removeModelColumn(int columnToRemoveIndex);
+    //Ajoute une colonne au modèle
+    void addModelColumn(const QMap<QString, QMap<QString, QString> > *map, int columnToAddIndex, int columnOfKey, QString nameOfAttrToAdd, QString nameOfColumnToAdd);
+    //Réinitialise le modèle
+    void resetModel(const QList<QMap<QString, QString> > &smallMapsFromMapName);
 
+    //Fonctions virtuelles
     // Compteur de lignes
     int rowCount(const QModelIndex &parent) const;
     //Compteur de colonnes

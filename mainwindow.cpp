@@ -15,7 +15,6 @@
 #include <QApplication>
 #include <QProcess>
 
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -83,9 +82,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Les features non disponibles actuellement sont grisées
     ui->foldersButton->setEnabled(false);
+
+    //Cherche et renseigne le nom de l'affaire sur le label prévu à cet effet
+    updateCaseName();
 }
 
-//Destructeur
 MainWindow::~MainWindow()
 {
     //delete dataViewer;
@@ -233,6 +234,17 @@ void MainWindow::resetKeysToTreat()
     keysToTreat.clear();
 }
 
+void MainWindow::updateCaseName()
+{
+    //Recupération du Nom de l'affaire
+    QSettings *settings = dataManager->getFileSetting();
+    QString path = settings->value("fileGCA").toString();
+    QStringList list = path.split("/");
+    int length = list.count();
+    length = length -2;
+    QString caseName = "Affaire actuelle : " % list[length];
+    ui->caseNameLabel->setText(caseName);
+}
 
 void MainWindow::on_environmentalVariablesButton_released()
 {
@@ -240,7 +252,6 @@ void MainWindow::on_environmentalVariablesButton_released()
     dataViewer = new DataViewer(dataManager, this, dataManager->getSmallMapsFromMapName("mapGVE", "GVE"),"GVE", this);
     dataViewer->setAttribute(Qt::WA_DeleteOnClose);
     dataViewer->show();
-
 }
 
 void MainWindow::on_attributesConfigurationsButton_released()
@@ -261,7 +272,6 @@ void MainWindow::on_attributesButton_released()
 
 void MainWindow::on_caseSelectionButton_released()
 {
-
     QFileDialog *dialog = new QFileDialog(this);
     dialog->setWindowTitle("Selectionnez le dossier ou se trouvent les fichiers");
     dialog->setFileMode(QFileDialog::Directory);
@@ -289,30 +299,54 @@ void MainWindow::on_caseSelectionButton_released()
             name = directoryName % "/GAT_Export.xml";
             dataManager->setFileSetting("fileGAT", name);
         }
+        else
+        {
+            dataManager->setFileSetting("fileGAT", "");
+        }
         if(listOfFiles.contains("GCA_Export.xml"))
         {
             name = directoryName % "/GCA_Export.xml";
             dataManager->setFileSetting("fileGCA", name);
+        }
+        else
+        {
+            dataManager->setFileSetting("fileGCA", "");
         }
         if(listOfFiles.contains("GVE_Export.xml"))
         {
             name = directoryName % "/GVE_Export.xml";
             dataManager->setFileSetting("fileGVE", name);
         }
+        else
+        {
+            dataManager->setFileSetting("fileGVE", "");
+        }
         if(listOfFiles.contains("GDO_Export.xml"))
         {
             name = directoryName % "/GDO_Export.xml";;
             dataManager->setFileSetting("fileGDO", name);
+        }
+        else
+        {
+            dataManager->setFileSetting("fileGDO", "");
         }
         if(listOfFiles.contains("GRS_Export.xml"))
         {
             name = directoryName % "/GRS_Export.xml";
             dataManager->setFileSetting("fileGRS", name);
         }
+        else
+        {
+            dataManager->setFileSetting("fileGRS", "");
+        }
         if(listOfFiles.contains("GCS_Export.xml"))
         {
             name = directoryName % "/GCS_Export.xml";
             dataManager->setFileSetting("fileGCS", name);
+        }
+        else
+        {
+            dataManager->setFileSetting("fileGCS", "");
         }
 
         //On emet le signal que l'affaire a changé et on ferme toutes les fenêtres
@@ -456,7 +490,6 @@ void MainWindow::setColumnToTreatCodeObject(const QString &value)
     columnToTreatCodeObject = value;
 }
 
-
 QString MainWindow::getChoiceAddObject() const
 {
     return choiceAddObject;
@@ -476,4 +509,3 @@ void MainWindow::setKeysToTreat(const QString &value)
 {
     keysToTreat.append(value);
 }
-

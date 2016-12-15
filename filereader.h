@@ -10,13 +10,12 @@ class DataManager;
 class FileReader
 {
 public:
-    //Constructeur (un fileReader est associé à un dataManager qui gère les données lues et à un nom de fichier qui devra être lu)
     FileReader(DataManager *dataManager, const QString& fileName = QString());
-    //Destructeur
     ~FileReader();
+
     //Associe à l'attribut fileName la valeur rentrée en paramètre
     void setFileName(const QString& fileName);
-    //Parse le fichier en tenant compte de son premier élément, du nom de chaque bloc, de la clé pour chaque blox, et stocke les données dans la map mapName
+    //Parse le fichier en tenant compte de son premier élément, du nom de chaque bloc, de la clé pour chaque bloc, et stocke les données dans la map mapName
     bool parseFile(const QString& rootName, const QString& blockName, const QString& keyBlock, const QString& mapName);
 
 private:
@@ -24,13 +23,13 @@ private:
     void handlesBlock(const QString &keyBlock, const QString& mapName);
 
 private:
-    //On définit les objets dont on a besoin pour lire le fichier et transmettre les données au datamanager
+    //Définition des objets nécessaires à la gestion des données
     DataManager *dataManager;
+
     //Nom du fichier lu
     QString fileName;
     //Définition du parser XML
     QXmlStreamReader reader;
-
 };
 
 #endif // FILEREADER_H
