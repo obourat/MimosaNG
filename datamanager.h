@@ -9,27 +9,26 @@
 class DataManager
 {
 public:
-    //Constructeur
     DataManager();
-    //Destructeur
     ~DataManager();
-    // Permet d'insérer des données dans la map qui a pour nom mapName, qui a pour clé key, et on met la valeur map
+
+    // Insére la valeur "map" dans la map qui a pour nom mapName, qui a pour clé key
     void insertDataToMap(const QString& mapName, const QString& key, const QMap<QString, QString>& map);
-    //Permet d'effacer la clé de la map selectionnée
+    // Efface la clé de la map selectionnée
     void eraseDataOfMap(const QString& mapName, const QString& key);
-    //Fonction qui remplace les données d'une clé
+    //Remplace les données d'une sous map dans la map sélectionnée
     void replaceDataOfMap(const QString& mapName, const QString& key, const QString& valueToAdd, const QString smallKeyNameToReplace);
-    //Fonction qui retourne la liste des clés pertinentes en fonction des critères de l'objet objectType (retourne les attributs de la configuration courante)
+    //Retourne la liste des Id des attributs de la configuration courante en fonction des critères de l'objet objectType
     const QStringList getAttributesOfCurrentConfig(const QString& objectType);
-    //Fonction qui retourne le nom de des attributs de la configuration courante
+    //Retourne le nom de des attributs associé à chaque clé de la liste rentré
     QStringList getAttributesOfCurrentConfigNames(QStringList attributesKeyList);
-    //Fonction qui retourne les attributs de la configuration Export (celle qui contient tous les attributs)
+    //Retourne les Id des attributs de la configuration Export (celle qui contient tous les attributs)
     const QStringList getAttributesOfExportConfig(const QString &objectType);
     //Prend en paramètre une map mapName et retourne la liste de sousMaps contenue dans mapName
     const QList<QMap<QString, QString> > getSmallMapsFromMapName(const QString& mapName, QString codeObject);
     //Prend en paramètre  une map mapName et retourne la liste des configurations d'attributs correspondants au code objet codeObject
     const QList<QMap<QString, QString> > getSmallMapsFromMapNameOptions(const QString& mapName, QString codeObject, QString codeObjectForOptions);
-    //Prend en parmètre une liste de sous map et renvoie les valeurs faisant partie de la configuration d'attribut
+    //Prend en paramètre une liste de sous map et renvoie les valeurs faisant partie de la configuration d'attribut
     const QList<QMap<QString, QString> > selectAttributesOfSmallMapsList(const QList<QMap<QString, QString> > maps, const QString codeObject, const QString keyName);
     //Selectionne les attributs à afficher pour les options uniquement
     const QList<QMap<QString, QString> > selectAttributesOfSmallMapsListOptions(const QList<QMap<QString, QString> > maps, const QString codeObject, const QString keyName);
@@ -39,7 +38,7 @@ public:
     const QString getCurrentConfigId(const QString currentConfigName, const QString mapName, const QString codeObject);
     //Prend en paramètre mapName et vérifie s'il il s'agit bien d'un nom de map, si oui, retourne la map correspondante, sinon, ne renvoie rien
     const QMap<QString, QMap<QString, QString> >* getMapFromName(const QString& mapName) const;
-    //Retourne pamConcordance
+    //Retourne mapConcordance
     const QMap<QString, QString>* getMapConcordance() const;
     //Insère dans mapConcordance les valeurs pour chaque objet
     void setDataOfMapConcordance();
@@ -102,7 +101,6 @@ public:
     int getNumOrdreMax() const;
     void setNumOrdreMax(int value);
 
-
     QStringList getIdOfLastSupprObjects() const;
     void setIdOfLastSupprObjects(const QStringList &value);
 
@@ -125,7 +123,7 @@ public:
     void setIdToPaste(const QStringList &value);
 
 private:
-    //On définit les différentes maps des objets
+    //Définition des différentes maps des objets (structures de données)
     QMap<QString, QMap<QString, QString> > mapGVE;
     QMap<QString, QMap<QString, QString> > mapGCA;
     QMap<QString, QMap<QString, QString> > mapGAT;
@@ -143,7 +141,7 @@ private:
     //Map qui contient les nouvelles clés à supprimer dans le XML en fonction du type d'objet
     QMap<QString, QString> mapEraseList;
 
-    //On définit l'attribut correpondant au nom de la configuration courante
+    //Noms des configurations courantes pour chaque type d'objet
     QString currentConfigNameGCA;
     QString currentConfigNameGAT;
     QString currentConfigNameGRS;

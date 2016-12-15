@@ -18,7 +18,6 @@
 #include <QProgressBar>
 #include <QString>
 
-//Constructeur
 DataViewer::DataViewer(DataManager *dataManager, MainWindow *mainWindow, const QList<QMap<QString, QString> >& maps, const QString codeObject, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DataViewer),
@@ -28,32 +27,32 @@ DataViewer::DataViewer(DataManager *dataManager, MainWindow *mainWindow, const Q
     mySetting(new QSettings("dataviewer.cpp", QSettings::IniFormat))
 
 {
-    //On instancie la fenêtre
+    //Instanciation de la fenêtre
     ui->setupUi(this);
 
-    //On définit un modèle qui contient toutes les clés récupérées
+    //Définition du modèle qui contient toutes les clés récupérées
     myModel = new Model(maps);
-    //On définit un proxyModel servant pour le tri (croissant, décroissant, alphabétique, numérique)
+    //Définition du proxyModel servant pour le tri (croissant, décroissant, alphabétique, numérique)
     proxyModel = new QSortFilterProxyModel(this);
 
-    //On associe les données du model au proxyModel
+    //Association des données du model au proxyModel
     proxyModel->setSourceModel(myModel);
     proxyModel->setDynamicSortFilter(true);
 
-    //On associe la vue au modèle contenu dans le proxyModel
+    //Association de la vue au modèle contenu dans le proxyModel
     ui->tableView->setModel(proxyModel);
 
-    //On autorise les colonnes a être déplacées
+    //Autorisation au déplacement de colonne
     ui->tableView->horizontalHeader()->setMovable(true);
 
-    //On ajuste la taille des colonnes au contenu
+    //Ajustement de la taille des colonnes au contenu
     ui->tableView->resizeColumnsToContents();
 
     ui->tableView->horizontalHeader()->setResizeMode(QHeaderView::Interactive);
     ui->tableView->horizontalHeader()->setStretchLastSection(true);
     ui->tableView->horizontalHeader()->setContextMenuPolicy(Qt::CustomContextMenu);
 
-
+    //Restauration de l'état antérieur de la vue
     if(codeObject == "GCA")
     {
         QByteArray myArray = mySetting.value("columnConfigGCA").toByteArray();
@@ -80,16 +79,17 @@ DataViewer::DataViewer(DataManager *dataManager, MainWindow *mainWindow, const Q
         ui->tableView->horizontalHeader()->restoreState(myArray);
     }
 
+    //Connexions pour les actions sur le header
     connect(ui->tableView->horizontalHeader(), SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(customHeaderMenuRequested(QPoint)));
     connect(ui->tableView->horizontalHeader(), SIGNAL(sectionResized(int,int,int)), this, SLOT(resizeSection()));
     connect(ui->tableView->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(onSortContent()));
-    //ui->tableView->horizontalHeader()->setStretchLastSection(true);
 
-    //QVBoxLayout *l = new QVBoxLayout(this);
+    //Connexion pour les actions sur les éléments du tableau
     ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tableView, SIGNAL(customContextMenuRequested(QPoint)),this, SLOT(customMenuRequested(QPoint)));
     connect(ui->tableView, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(onItemDoubleClicked()));
 
+    //Recherche du nombre de colonnes et de lignes du modèle
     QAbstractItemModel* tableModel = ui->tableView->model();
     columnCount = tableModel->columnCount();
     rowCount = tableModel->rowCount();
@@ -98,7 +98,7 @@ DataViewer::DataViewer(DataManager *dataManager, MainWindow *mainWindow, const Q
     hideKeyColumn();
 
 
-    //On met à jour le nom de la fenêtre en fonction du code objet, et le nom de la configuration courante dans le label associé
+    //Mise à jour du nom de la fenêtre en fonction du code objet, et du nom de la configuration courante dans le label associé
     if(this->codeObject == "GCA")
     {
         this->setWindowTitle("Liste des objets de type : Configurations d'Attributs");
@@ -130,8 +130,8 @@ DataViewer::DataViewer(DataManager *dataManager, MainWindow *mainWindow, const Q
         ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
     }
 
+    //Affichage du nombre d'objet
     QString rows = QString::number(rowCount);
-
     ui->infoNbObject->setText("Nombre d'objets: "+rows);
 
     rowsDisplayed = rowCount;
@@ -143,6 +143,7 @@ DataViewer::DataViewer(DataManager *dataManager, MainWindow *mainWindow, const Q
     Qt::WindowFlags flags = Qt::Window | Qt::WindowSystemMenuHint| Qt::WindowMinimizeButtonHint| Qt::WindowCloseButtonHint;
     this->setWindowFlags(flags);
 
+    //Choix de présentation
     QPalette pal(palette());
     QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
     gradient.setColorAt(0, QColor(255,255,255,255));
@@ -150,10 +151,10 @@ DataViewer::DataViewer(DataManager *dataManager, MainWindow *mainWindow, const Q
     pal.setBrush(QPalette::Background, QBrush(gradient));
     this->setPalette(pal);
 
-    //On initalise l'indicateur de première recherche à 1
+    //Initialisation de l'indicateur de première recherche à 1
     indicFirstSearch = 1;
 
-    //On initialise le choix d'ajout d'objet à none
+    //Initialisation du choix d'ajout d'objet à none
     mainWindow->setChoiceAddObject("none");
 
     //Quand le signal update est emis dans mainWindow, on update le modele
@@ -165,186 +166,14 @@ DataViewer::DataViewer(DataManager *dataManager, MainWindow *mainWindow, const Q
     //On instancie un nouveau fileWriter pour les sauvegardes manuelles
     fileWriter = new FileWriter(dataManager);
 
-    //Quand l'affaire change, on femre tous les dataViewers
+    //Quand l'affaire change, on ferme tous les dataViewers
     connect(mainWindow, SIGNAL(signalCaseChanged()), this, SLOT(close()));
 
 }
 
-void DataViewer::updateLayout()
-{
-    QString currentConfigName;
-    QString idLastKeyAdded = dataManager->getIdOfLastCreatedObject();
-    QStringList idLastSupprObjects = dataManager->getIdOfLastSupprObjects();
-    QStringList keysToTreat = mainWindow->getKeysToTreat();
-    QString choiceAddObject = mainWindow->getChoiceAddObject();
-    QString testedKey;
-    int columnIteratorMax = columnCount;
-    int columnOfKey;
-    QString columnName;
-    int rows = rowCount;
-    int indicRestoreState = dataManager->getIndicRestoreState();
-    displayedRowsBeforeUpdate.clear();
-
-    for(int i=0; i!= columnIteratorMax; ++i)
-    {
-        //Quand on change de configuration, on réaffiche toutes les colonnes que l'on a pu supprimer de l'affichage
-        if(indicRestoreState == 0)
-        {
-           ui->tableView->setColumnHidden(i, false);
-        }
-    }
-    dataManager->setIndicRestoreState(1);
-
-    //On cherche le numéro de colonne correspondant à la clé
-    for(int j=0; j!= columnIteratorMax; ++j)
-    {
-        columnName = ui->tableView->model()->headerData(j,Qt::Horizontal).toString();
-        if(columnName == "key")
-        {
-            columnOfKey = j;
-            break;
-        }
-    }
-    //On ajoute à la liste displayedRowsBeforeUpdate les clés des lignes affichées avant la mise à jour lors de la création d'un nouvel objet (Utile dans recherche + changement de configuration)
-    for(int a=0; a<rows;++a)
-    {
-        if(ui->tableView->isRowHidden(a) == false)
-        {
-            testedKey = ui->tableView->model()->data(ui->tableView->model()->index(a,columnOfKey)).toString();
-            displayedRowsBeforeUpdate.append(testedKey);
-        }
-    }
-
-    //On ajoute la nouvelle clé à la ligne pour qu'elle s'affiche dans la recherche actuelle, dans le cas ou on en ajoute une
-    if(choiceAddObject == "copy" || choiceAddObject == "create")
-    {
-        displayedRowsBeforeUpdate.append(idLastKeyAdded);
-    }
-    //On supprime les clés des clés à afficher dans le cas ou on en a supprimé une ou plusieurs
-    if(choiceAddObject == "suppr")
-    {
-        for(int i=0; i< idLastSupprObjects.count();++i)
-        {
-            displayedRowsBeforeUpdate.removeAll(idLastSupprObjects[i]);
-        }
-    }
-
-    //Mise à jour du modèle de données
-    if(codeObject == "GCA")
-    {
-        const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGCA", "GCA");
-        myModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
-        currentConfigName = dataManager->getCurrentConfigNameGCA();
-        ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);        
-    }
-    else if(codeObject == "GAT")
-    {
-        const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGAT", "GAT");
-        myModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
-        currentConfigName = dataManager->getCurrentConfigNameGAT();
-        ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
-    }
-    else if(codeObject == "GRS")
-    {
-        const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGRS", "GRS");
-        myModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
-        currentConfigName = dataManager->getCurrentConfigNameGRS();
-        ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
-    }
-    else if(codeObject == "GDO")
-    {
-        const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGDO", "GDO");
-        myModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
-        currentConfigName = dataManager->getCurrentConfigNameGDO();
-        ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
-    }
-    else if(codeObject == "GVE")
-    {
-        const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGVE", "GVE");
-        myModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
-        currentConfigName = dataManager->getCurrentConfigNameGVE();
-        ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
-    }
-    //On remet à jour les compteurs de lignes et colonnes
-    rowCount = ui->tableView->model()->rowCount();
-    columnCount = ui->tableView->model()->columnCount();
-    columnIteratorMax = columnCount;
-    rows = rowCount;
-
-    //On met à jour la map des clés/lignes car il y a eu des modifications (ajout, suppression)
-    updateKeyRowMap();
-
-    QString rowsStr = QString::number(rowCount);
-    ui->infoNbObject->setText("Nombre d'objets: "+rowsStr);
-
-    // Dans le cas ou on a effectué une recherche, on cache les lignes précédemment cachés en affichant les autres dont la nouvelle
-    if(indicFirstSearch == 0)
-    {
-        for(int i=0; i<rows; ++i)
-        {
-            ui->tableView->hideRow(i);
-        }
-
-        QStringList displayedRows = displayedRowsBeforeUpdate;
-        for(int j=0; j<displayedRows.count(); ++j)
-        {
-            QString row = keyRowMap[displayedRows[j]];
-            int rowInt = row.toInt();
-            ui->tableView->showRow(rowInt);
-        }
-
-        rowsStr = QString::number(displayedRows.count());
-        ui->infoNbObject->setText("Nombre d'objets: "+rowsStr);
-    }
-
-
-    //On chache la colonne comportant les clés
-    for(int i=0; i!= columnIteratorMax; ++i)
-    {
-        columnName = ui->tableView->model()->headerData(i,Qt::Horizontal).toString();
-        if(columnName == "key")
-        {
-            ui->tableView->setColumnHidden(i,true);
-            ui->tableView->columnAt(i);
-            break;
-        }
-    }
-}
-
-void DataViewer::updateKeyRowMap()
-{
-    int columnOfKey;
-    int columnIteratorMax = columnCount;
-    QString columnName;
-    //On cherche le numéro de colonne correspondant à la clé
-    for(int i=0; i!= columnIteratorMax; ++i)
-    {
-        columnName = ui->tableView->model()->headerData(i,Qt::Horizontal).toString();
-        if(columnName == "key")
-        {
-            columnOfKey = i;
-            break;
-        }
-    }
-
-    keyRowMap.clear();
-    int rowCountNumber = rowCount;
-    QString key;
-    QString rowNumber;
-    for(int i=0; i!= rowCountNumber; ++i)
-    {
-        key = ui->tableView->model()->data(ui->tableView->model()->index(i,columnOfKey)).toString();
-        rowNumber = QString::number(i);
-        keyRowMap.insert(key,rowNumber);
-    }
-}
-
-
-//Destructeur
 DataViewer::~DataViewer()
 {
-    //ui->tableView->setModel(myModel);
-    //mySetting.clear();
+    //Mise à jour des settings à la fermeture de la fenêtre
     QByteArray myArray = ui->tableView->horizontalHeader()->saveState();
     if(codeObject == "GCA")
     {
@@ -389,6 +218,165 @@ DataViewer::~DataViewer()
     delete ui;
 }
 
+void DataViewer::updateLayout()
+{
+    QString currentConfigName;
+    QString idLastKeyAdded = dataManager->getIdOfLastCreatedObject();
+    QStringList idLastSupprObjects = dataManager->getIdOfLastSupprObjects();
+    QStringList keysToTreat = mainWindow->getKeysToTreat();
+    QString choiceAddObject = mainWindow->getChoiceAddObject();
+    QString testedKey;
+    int columnIteratorMax = columnCount;
+    int columnOfKey;
+    QString columnName;
+    int rows = rowCount;
+    int indicRestoreState = dataManager->getIndicRestoreState();
+    displayedRowsBeforeUpdate.clear();
+
+    for(int i=0; i!= columnIteratorMax; ++i)
+    {
+        //Quand on change de configuration, réinitialisation de l'affichage de toutes les colonnes
+        if(indicRestoreState == 0)
+        {
+           ui->tableView->setColumnHidden(i, false);
+        }
+    }
+    dataManager->setIndicRestoreState(1);
+
+    //Recherche du numéro de colonne correspondant à la clé
+    for(int j=0; j!= columnIteratorMax; ++j)
+    {
+        columnName = ui->tableView->model()->headerData(j,Qt::Horizontal).toString();
+        if(columnName == "key")
+        {
+            columnOfKey = j;
+            break;
+        }
+    }
+    //Ajout à la liste displayedRowsBeforeUpdate les clés des lignes affichées avant la mise à jour lors de la création d'un nouvel objet (Utile dans recherche + changement de configuration)
+    for(int a=0; a<rows;++a)
+    {
+        if(ui->tableView->isRowHidden(a) == false)
+        {
+            testedKey = ui->tableView->model()->data(ui->tableView->model()->index(a,columnOfKey)).toString();
+            displayedRowsBeforeUpdate.append(testedKey);
+        }
+    }
+
+    //Ajout de la nouvelle clé à la ligne pour qu'elle s'affiche dans la recherche actuelle, dans le cas ou on en ajoute une
+    if(choiceAddObject == "copy" || choiceAddObject == "create")
+    {
+        displayedRowsBeforeUpdate.append(idLastKeyAdded);
+    }
+    //Suppression des clés à afficher dans le cas ou on en a supprimé une ou plusieurs
+    if(choiceAddObject == "suppr")
+    {
+        for(int i=0; i< idLastSupprObjects.count();++i)
+        {
+            displayedRowsBeforeUpdate.removeAll(idLastSupprObjects[i]);
+        }
+    }
+
+    //Mise à jour du modèle de données
+    if(codeObject == "GCA")
+    {
+        const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGCA", "GCA");
+        myModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
+        currentConfigName = dataManager->getCurrentConfigNameGCA();
+        ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);        
+    }
+    else if(codeObject == "GAT")
+    {
+        const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGAT", "GAT");
+        myModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
+        currentConfigName = dataManager->getCurrentConfigNameGAT();
+        ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
+    }
+    else if(codeObject == "GRS")
+    {
+        const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGRS", "GRS");
+        myModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
+        currentConfigName = dataManager->getCurrentConfigNameGRS();
+        ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
+    }
+    else if(codeObject == "GDO")
+    {
+        const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGDO", "GDO");
+        myModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
+        currentConfigName = dataManager->getCurrentConfigNameGDO();
+        ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
+    }
+    else if(codeObject == "GVE")
+    {
+        const QList<QMap<QString, QString> > maps = dataManager->getSmallMapsFromMapName("mapGVE", "GVE");
+        myModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
+        currentConfigName = dataManager->getCurrentConfigNameGVE();
+        ui->infoNomConf->setText("Nom de la configuration courante : " + currentConfigName);
+    }
+    //Remise à jour des compteurs de lignes et colonnes
+    rowCount = ui->tableView->model()->rowCount();
+    columnCount = ui->tableView->model()->columnCount();
+    columnIteratorMax = columnCount;
+    rows = rowCount;
+
+    //Mise à jour de la map des clés/lignes car il y a eu des modifications (ajout, suppression)
+    updateKeyRowMap();
+
+    QString rowsStr = QString::number(rowCount);
+    ui->infoNbObject->setText("Nombre d'objets: "+rowsStr);
+
+    // Dans le cas ou on a effectué une recherche, on cache les lignes précédemment cachés en affichant les autres dont la nouvelle
+    if(indicFirstSearch == 0)
+    {
+        for(int i=0; i<rows; ++i)
+        {
+            ui->tableView->hideRow(i);
+        }
+
+        QStringList displayedRows = displayedRowsBeforeUpdate;
+        for(int j=0; j<displayedRows.count(); ++j)
+        {
+            QString row = keyRowMap[displayedRows[j]];
+            int rowInt = row.toInt();
+            ui->tableView->showRow(rowInt);
+        }
+
+        rowsStr = QString::number(displayedRows.count());
+        ui->infoNbObject->setText("Nombre d'objets: "+rowsStr);
+    }
+
+    //On chache la colonne comportant les clés
+    hideKeyColumn();
+}
+
+void DataViewer::updateKeyRowMap()
+{
+    int columnOfKey;
+    int columnIteratorMax = columnCount;
+    QString columnName;
+    //Recherche du numéro de colonne correspondant à la clé
+    for(int i=0; i!= columnIteratorMax; ++i)
+    {
+        columnName = ui->tableView->model()->headerData(i,Qt::Horizontal).toString();
+        if(columnName == "key")
+        {
+            columnOfKey = i;
+            break;
+        }
+    }
+    //Effacage de la map et réinsertion des données
+    keyRowMap.clear();
+    int rowCountNumber = rowCount;
+    QString key;
+    QString rowNumber;
+    for(int i=0; i!= rowCountNumber; ++i)
+    {
+        key = ui->tableView->model()->data(ui->tableView->model()->index(i,columnOfKey)).toString();
+        rowNumber = QString::number(i);
+        keyRowMap.insert(key,rowNumber);
+    }
+}
+
 void DataViewer::customMenuRequested(QPoint pos)
 {
     keysList.clear();
@@ -402,48 +390,50 @@ void DataViewer::customMenuRequested(QPoint pos)
     int rowCount = ui->tableView->selectionModel()->selectedRows().count();
 #endif
     //On regarde si un element a bien été selectionné
+    //On compte le nombre de colonnes sélectionnées -1 pour avoir l'index de la dernière colonne
+    QAbstractItemModel* tableModel = ui->tableView->model();
+    int columnCount = tableModel->columnCount();
+    --columnCount;
+    //On crée le string permettant de stocker la clé de la ligne sélectionnée
+    QString key;
+    //On crée la liste d'index qui contient tous les index de toutes les colonnes des lignes sélectionnées
+    QModelIndexList selectedIndexes = ui->tableView->selectionModel()->selectedIndexes();
+
+    //On soustrait de la liste d'index les index dont la colonne n'est pas égal à la dernière
+    for(int j=0; j<selectedIndexes.count(); ++j)
+    {
+        if(selectedIndexes[j].column() != columnCount)
+        {
+            selectedIndexes.removeOne(selectedIndexes[j]);
+            --j;
+        }
+    }
+
+    //Pour les éléments restants de la liste, on va chercher la valeur correpondant à la clé et on l'ajoute à la liste de clés
+    for(int i=0; i<selectedIndexes.length(); ++i)
+    {
+        key = selectedIndexes[i].data(0).toString();
+        keysList.append(key);
+    }
+
+    QMenu* menu = new QMenu(this);
+    //Actions du clic en dehors d'un élément
+    QAction* changeCurrentConfig = new QAction("Voir les configurations d'attribut du type d'objet", this);
+    QAction* changeCurrentConfigAttributes = new QAction("Gerer les attributs de la configuration courante", this);
+    QAction* resetSelection = menu->addAction("Rafraichir");
+    QMenu* selection = menu->addMenu("Selectionner");
+    QMenu* subList = selection->addMenu("Sous-Liste");
+    QAction* restrain = subList->addAction("Restreindre");
+    QAction* add = subList->addAction("Enrichir");
+    QMenu* create = menu->addMenu("Creer");
+    QAction* createNew = create->addAction("A partir d'une fiche vierge");
+    //Action du clic sur un élément
     if(checkItemSelected != -1)
     {
-        //On compte le nombre de colonnes sélectionnées -1 pour avoir l'index de la dernière colonne
-        QAbstractItemModel* tableModel = ui->tableView->model();
-        int columnCount = tableModel->columnCount();
-        --columnCount;
-        //On crée le string permettant de stocker la clé de la ligne sélectionnée
-        QString key;
-        //On crée la liste d'index qui contient tous les index de toutes les colonnes des lignes sélectionnées
-        QModelIndexList selectedIndexes = ui->tableView->selectionModel()->selectedIndexes();
-
-        //On soustrait de la liste d'index les index dont la colonne n'est pas égal à la dernière
-        for(int j=0; j<selectedIndexes.count(); ++j)
-        {
-            if(selectedIndexes[j].column() != columnCount)
-            {
-                selectedIndexes.removeOne(selectedIndexes[j]);
-                --j;
-            }
-        }
-
-        //Pour les éléments restants de la liste, on va chercher la valeur correpondant à la clé et on l'ajoute à la liste de clés
-        for(int i=0; i<selectedIndexes.length(); ++i)
-        {
-            key = selectedIndexes[i].data(0).toString();
-            keysList.append(key);
-        }
-
-        QMenu* menu = new QMenu(this);
-        QAction* changeCurrentConfig = new QAction("Voir les configurations d'attribut du type d'objet", this);
-        QAction* changeCurrentConfigAttributes = new QAction("Gerer les attributs de la configuration courante", this);
-        QMenu* selection = menu->addMenu("Selectionner");
-        QMenu* subList = selection->addMenu("Sous-Liste");
         QAction* total = selection->addAction("Totalite");
         QMenu* manually = selection->addMenu("Manuellement");
-        QAction* restrain = subList->addAction("Restreindre");
-        QAction* add = subList->addAction("Enrichir");
         QAction* validateSelection = manually->addAction("Valider la selection");
         QAction* hideSelection = manually->addAction("Cacher la selection");
-        QAction* resetSelection = menu->addAction("Rafraichir");
-        QMenu* create = menu->addMenu("Creer");
-        QAction* createNew = create->addAction("A partir d'une fiche vierge");
         QAction* erase = menu->addAction("Supprimer");
         QAction* exportation = menu->addAction("Exporter");
         QAction* print = menu->addAction("Imprimer");
@@ -458,8 +448,6 @@ void DataViewer::customMenuRequested(QPoint pos)
                 copy->setEnabled(false);
             }
         }
-        menu->addAction(changeCurrentConfig);
-        menu->addAction(changeCurrentConfigAttributes);
 
         if(keysList.length() == 1)
         {
@@ -472,30 +460,56 @@ void DataViewer::customMenuRequested(QPoint pos)
             connect(createCopy, SIGNAL(triggered()), this, SLOT(onCreateCopyButtonTriggered()));
         }
 
-        if(accessLevel <2)
+        if(codeObject != "GDO")
         {
-            createNew->setEnabled(false);
-            erase->setEnabled(false);
-            create->setEnabled(false);
+            if(accessLevel <2)
+            {
+                erase->setEnabled(false);
+                create->setEnabled(false);
+            }
+        }
+        else
+        {
+            if(accessLevel <1)
+            {
+                erase->setEnabled(false);
+                create->setEnabled(false);
+            }
         }
 
-
-        menu->popup(ui->tableView->viewport()->mapToGlobal(pos));
-
-        connect(changeCurrentConfig, SIGNAL(triggered()), this, SLOT(onChangeCurrentConfigButtonTriggered()));
-        connect(changeCurrentConfigAttributes, SIGNAL(triggered()), this, SLOT(onChangeCurrentConfigAttributesButtonTriggered()));
         connect(validateSelection, SIGNAL(triggered()), this, SLOT(onValidateSelectionButtonTriggered()));
         connect(hideSelection, SIGNAL(triggered()), this, SLOT(onHideSelectionButtonTriggered()));
-        connect(resetSelection, SIGNAL(triggered()), this, SLOT(onResetSelectionButtonTriggered()));
         connect(total, SIGNAL(triggered()), this, SLOT(onTotalSelectionButtonTriggered()));
-        connect(restrain, SIGNAL(triggered()), this, SLOT(onSubListRestrainButtonTriggered()));
-        connect(add, SIGNAL(triggered()), this, SLOT(onSubListAddButtonTriggered()));
-        connect(createNew, SIGNAL(triggered()), this, SLOT(onCreateNewButtonTriggered()));
         connect(erase, SIGNAL(triggered()), this, SLOT(onEraseButtonTriggered()));
         connect(exportation, SIGNAL(triggered()), this, SLOT(onExportButtonTriggered()));
         connect(print, SIGNAL(triggered()), this, SLOT(onPrintButtonTriggered()));
         connect(importation, SIGNAL(triggered()), this, SLOT(onImportButtonTriggered()));
     }
+
+    menu->addAction(changeCurrentConfig);
+    menu->addAction(changeCurrentConfigAttributes);
+    connect(changeCurrentConfig, SIGNAL(triggered()), this, SLOT(onChangeCurrentConfigButtonTriggered()));
+    connect(changeCurrentConfigAttributes, SIGNAL(triggered()), this, SLOT(onChangeCurrentConfigAttributesButtonTriggered()));
+    connect(resetSelection, SIGNAL(triggered()), this, SLOT(onResetSelectionButtonTriggered()));
+    connect(restrain, SIGNAL(triggered()), this, SLOT(onSubListRestrainButtonTriggered()));
+    connect(add, SIGNAL(triggered()), this, SLOT(onSubListAddButtonTriggered()));
+    connect(createNew, SIGNAL(triggered()), this, SLOT(onCreateNewButtonTriggered()));
+
+    if(codeObject != "GDO")
+    {
+        if(accessLevel <2)
+        {
+            createNew->setEnabled(false);
+        }
+    }
+    else
+    {
+        if(accessLevel <1)
+        {
+            createNew->setEnabled(false);
+        }
+    }
+    menu->popup(ui->tableView->viewport()->mapToGlobal(pos));
 }
 
 void DataViewer::customHeaderMenuRequested(QPoint pos)
@@ -507,7 +521,6 @@ void DataViewer::customHeaderMenuRequested(QPoint pos)
     menu->addAction(hideColumn);
     menu->popup(ui->tableView->viewport()->mapToGlobal(pos));
     connect(hideColumn, SIGNAL(triggered()), this, SLOT(setColumnHidden()));
-
 }
 
 
@@ -518,7 +531,6 @@ void DataViewer::onChangeCurrentConfigButtonTriggered()
     optionsViewerCurrentConfig = new OptionsViewer(codeObject, dataManager, mainWindow, this,dataManager->getSmallMapsFromMapNameOptions("mapGCA", "GCA",codeObject),"configurations", this);
     optionsViewerCurrentConfig->setAttribute(Qt::WA_DeleteOnClose);
     optionsViewerCurrentConfig->show();
-
 }
 
 void DataViewer::onChangeCurrentConfigAttributesButtonTriggered()
@@ -533,15 +545,16 @@ void DataViewer::onDisplayDescriptiveCardButtonTriggered()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"current","modify",this);
+    descriptiveCard->setWindowFlags(Qt::Dialog);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
     descriptiveCard->show();
-
 }
 
 void DataViewer::onDisplayDescriptiveCardCompleteButtonTriggered()
 {
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"complete","modify",this);
+    descriptiveCard->setWindowFlags(Qt::Dialog);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
     descriptiveCard->show();
 }
@@ -676,13 +689,8 @@ void DataViewer::onSubListRestrainButtonTriggered()
     {
         QMessageBox::information(this, "Information", "Aucun resultat disponible pour cette recherche");
     }
-
-    if(newRowCount != 0)
-    {
-        QString newRowCountToString = QString::number(newRowCount);
-        ui->infoNbObject->setText("Nombre d'objets: "+newRowCountToString);
-    }
-
+    QString newRowCountToString = QString::number(newRowCount);
+    ui->infoNbObject->setText("Nombre d'objets: "+newRowCountToString);
 }
 
 void DataViewer::onSubListAddButtonTriggered()
@@ -700,7 +708,6 @@ void DataViewer::onSubListAddButtonTriggered()
     int columnCountValue = columnCount;
     columnCountValue--;
     int rowCountValue = rowCount;
-
 
     //Affiche les lignes de résultat obtenus lors de la recherche
     int confirmsearch = searchCard->getConfirmSearch();
@@ -746,7 +753,6 @@ void DataViewer::onSubListAddButtonTriggered()
         QString newRowCountToString = QString::number(newRowCount);
         ui->infoNbObject->setText("Nombre d'objets: "+newRowCountToString);
     }
-
 }
 
 
@@ -889,7 +895,7 @@ void DataViewer::onCopyButtonTriggered()
 }
 
 void DataViewer::onExportButtonTriggered()
-{;
+{
     exportForm = new ExportForm(dataManager, keysList, codeObject, this);
     exportForm->exec();
 }
@@ -984,7 +990,6 @@ void DataViewer::setCurrentConfigName(const QString &value)
 {
     currentConfigName = value;
 }
-
 
 void DataViewer::searchColumnToRemoveIndex()
 {
