@@ -41,7 +41,7 @@ ImportForm::ImportForm(DataManager *dataManager, QString codeObjet, QWidget *par
     QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
     gradient.setColorAt(0, QColor(255,255,255,255));
     gradient.setColorAt(1, QColor(245,255,255,255));
-    pal.setBrush(QPalette::Background, QBrush(gradient));
+    pal.setBrush(QPalette::Window, QBrush(gradient));
     this->setPalette(pal);
 }
 

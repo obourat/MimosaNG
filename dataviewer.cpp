@@ -148,7 +148,7 @@ DataViewer::DataViewer(DataManager *dataManager, MainWindow *mainWindow, const Q
     QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
     gradient.setColorAt(0, QColor(255,255,255,255));
     gradient.setColorAt(1, QColor(245,255,255,255));
-    pal.setBrush(QPalette::Background, QBrush(gradient));
+    pal.setBrush(QPalette::Window, QBrush(gradient));
     this->setPalette(pal);
 
     //Initialisation de l'indicateur de première recherche à 1
@@ -689,8 +689,11 @@ void DataViewer::onSubListRestrainButtonTriggered()
     {
         QMessageBox::information(this, "Information", "Aucun resultat disponible pour cette recherche");
     }
-    QString newRowCountToString = QString::number(newRowCount);
-    ui->infoNbObject->setText("Nombre d'objets: "+newRowCountToString);
+    if(confirmsearch == 1)
+    {
+        QString newRowCountToString = QString::number(newRowCount);
+        ui->infoNbObject->setText("Nombre d'objets: "+newRowCountToString);
+    }
 }
 
 void DataViewer::onSubListAddButtonTriggered()
@@ -748,7 +751,7 @@ void DataViewer::onSubListAddButtonTriggered()
         QMessageBox::information(this, "Information", "Aucun resultat disponible pour cette recherche");
     }
 
-    if(newRowCount != 0)
+    if(newRowCount != 0 && confirmsearch == 1)
     {
         QString newRowCountToString = QString::number(newRowCount);
         ui->infoNbObject->setText("Nombre d'objets: "+newRowCountToString);
@@ -778,7 +781,7 @@ void DataViewer::onItemDoubleClicked()
     key = selectedIndexes[columnOfKey].data(0).toString();
     keysList.append(key);
     //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
-    descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"complete","modify",this);
+    descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"current","modify",this);
     descriptiveCard->setWindowFlags(Qt::Dialog);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
     descriptiveCard->show();
