@@ -129,7 +129,7 @@ OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager,MainWi
     QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
     gradient.setColorAt(0, QColor(255,255,255,255));
     gradient.setColorAt(1, QColor(245,255,255,255));
-    pal.setBrush(QPalette::Background, QBrush(gradient));
+    pal.setBrush(QPalette::Window, QBrush(gradient));
     this->setPalette(pal);
 
     connect(mainWindow, SIGNAL(signalUpdateLayoutsOptions()), this, SLOT(slotUpdateLayout()));
@@ -409,6 +409,7 @@ void OptionsViewer::onPasteButtonTriggered()
     }
 
     mainWindow->setChoiceAddObject("copy");
+    dataViewer->resetModel();
     mainWindow->updateLayoutsOptions();
     mainWindow->updateLayoutsViewers();
     mainWindow->setChoiceAddObject("none");
