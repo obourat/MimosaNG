@@ -40,8 +40,8 @@ MainWindow::MainWindow(QWidget *parent) :
     fileReader->parseFile("Objects_list", "Object", "Id", "mapGRS");
     fileReader->setFileName(fileSettings->value("fileGDO").toString());
     fileReader->parseFile("Objects_list", "Object", "NumOrdre", "mapGDO");
-    fileReader->setFileName(fileSettings->value("fileGCS").toString());
-    fileReader->parseFile("Objects_list", "Object", "CodeObjet", "mapGCS");
+    fileReader->setFileName(fileSettings->value("fileGOO").toString());
+    fileReader->parseFile("Objects_list", "Object", "CodeObjet", "mapGOO");
 
     //On rempli la mapConcordance avec les valeurs du fichier
     dataManager->setDataOfMapConcordance();
@@ -199,7 +199,7 @@ MainWindow::~MainWindow()
             fileWriter->eraseOfFiles("mapGRS");
         }
 
-        fileWriter->modifyFiles("mapGCS");
+        fileWriter->modifyFiles("mapGOO");
     }
 
     delete dataManager;
@@ -219,9 +219,11 @@ void MainWindow::updateLayoutsViewers()
 
 void MainWindow::removeColumn(QString codeObject, QString currentConfigName, int index)
 {
+    //Stockage des informations de la colonne a enlever
     columnToTreatCodeObject = codeObject;
     columnToTreatConfigName = currentConfigName;
     columnToRemoveIndex = index;
+    //Emission du signal de traitement de la colonne
     emit this->signalChangeColumn();
 }
 
@@ -285,7 +287,7 @@ void MainWindow::on_caseSelectionButton_released()
         QString directoryName = directoryNames[0];
         QDir *directory = new QDir(directoryName);
         QStringList listOfFiles = directory->entryList();
-        if(listOfFiles.contains("GAT_Export.xml") && listOfFiles.contains("GCA_Export.xml") && listOfFiles.contains("GVE_Export.xml") && listOfFiles.contains("GDO_Export.xml") && listOfFiles.contains("GCS_Export.xml"))
+        if(listOfFiles.contains("GAT_Export.xml") && listOfFiles.contains("GCA_Export.xml") && listOfFiles.contains("GVE_Export.xml") && listOfFiles.contains("GDO_Export.xml") && listOfFiles.contains("GOO_Export.xml"))
         {
             QMessageBox::information(this, "Information", "Le dossier choisi contient les fichiers necessaire au fonctionnement de l'outil");
         }
@@ -340,20 +342,20 @@ void MainWindow::on_caseSelectionButton_released()
         {
             dataManager->setFileSetting("fileGRS", "");
         }
-        if(listOfFiles.contains("GCS_Export.xml"))
+        if(listOfFiles.contains("GOO_Export.xml"))
         {
-            name = directoryName % "/GCS_Export.xml";
-            dataManager->setFileSetting("fileGCS", name);
+            name = directoryName % "/GOO_Export.xml";
+            dataManager->setFileSetting("fileGOO", name);
         }
         else
         {
-            dataManager->setFileSetting("fileGCS", "");
+            dataManager->setFileSetting("fileGOO", "");
         }
 
-        //On emet le signal que l'affaire a changé et on ferme toutes les fenêtres
+        //Emission du signal de changement d'affaire et fermeture de toutes les fenêtres
         emit signalCaseChanged();
 
-        //On ferme et réouvre l'outil en mettant a jour les données de fichier
+        //Fermeture et réouverture de l'outil en mettant a jour les données de fichier
         indicUpdateFiles = 0;
         this->close();
         QProcess::startDetached(QApplication::applicationFilePath());
@@ -369,8 +371,8 @@ void MainWindow::on_caseSelectionButton_released()
         fileReader->parseFile("Objects_list", "Object", "Id", "mapGRS");
         fileReader->setFileName(fileSettings.value("fileGDO").toString());
         fileReader->parseFile("Objects_list", "Object", "NumOrdre", "mapGDO");
-        fileReader->setFileName(fileSettings.value("fileGCS").toString());
-        fileReader->parseFile("Objects_list", "Object", "CodeObjet", "mapGCS");
+        fileReader->setFileName(fileSettings.value("fileGOO").toString());
+        fileReader->parseFile("Objects_list", "Object", "CodeObjet", "mapGOO");
 
         //On rempli la mapConcordance avec les valeurs du fichier
         dataManager->setDataOfMapConcordance();

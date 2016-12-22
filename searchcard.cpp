@@ -107,6 +107,7 @@ SearchCard::SearchCard(DataManager *dataManager,DataViewer *dataViewer, QString 
         }
     }
 
+    //Dégradé visuel
     QPalette pal(palette());
     QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
     gradient.setColorAt(0, QColor(255,255,255,255));
@@ -114,6 +115,7 @@ SearchCard::SearchCard(DataManager *dataManager,DataViewer *dataViewer, QString 
     pal.setBrush(QPalette::Window, QBrush(gradient));
     this->setPalette(pal);
 
+    //Confirmation de recherche initialisée à 0
     confirmSearch = 0;
 }
 
@@ -124,6 +126,7 @@ SearchCard::~SearchCard()
 
 void SearchCard::setNewWidget(QString type,QString var, QString name, QString nameAttributeSelected)
 {
+    //Cas d'une chaîne de caractères
     if(type == "string")
     {
         QLineEdit *lineEdit = new QLineEdit;
@@ -145,6 +148,7 @@ void SearchCard::setNewWidget(QString type,QString var, QString name, QString na
         ui->verticalLayout->addLayout(hLayout);
         ui->verticalLayout->addLayout(gLayout2);
     }
+    //Cas d'un entier
     else if(type == "num")
     {
         QSpinBox *spinBox = new QSpinBox;
@@ -168,6 +172,7 @@ void SearchCard::setNewWidget(QString type,QString var, QString name, QString na
         ui->verticalLayout->addLayout(hLayout);
         ui->verticalLayout->addLayout(gLayout2);
     }
+    //Cas d'un énumératif
     else if(type == "enum")
     {
         QLabel *label = new QLabel;
@@ -206,11 +211,12 @@ void SearchCard::setNewWidget(QString type,QString var, QString name, QString na
                     }
                 }
             }
-        }
+        }      
         else
         {
         //Condition éventuelle dans le cas d'un énumératif sans valeur
         }
+
         label->setText(nameAttributeSelected);
         label->setAccessibleName(name);
         QFont font = label->font();
@@ -227,6 +233,7 @@ void SearchCard::setNewWidget(QString type,QString var, QString name, QString na
         ui->verticalLayout->addLayout(hLayout);
         ui->verticalLayout->addLayout(gLayout2);
     }
+    //Cas d'une date
     else if(type == "strdate")
     {
         QLineEdit *lineEdit = new QLineEdit;
@@ -249,6 +256,7 @@ void SearchCard::setNewWidget(QString type,QString var, QString name, QString na
         ui->verticalLayout->addLayout(gLayout2);
 
     }
+    //Cas d'une date interne
     else if(type == "strtime")
     {
         QLineEdit *lineEdit = new QLineEdit;
@@ -271,6 +279,7 @@ void SearchCard::setNewWidget(QString type,QString var, QString name, QString na
         ui->verticalLayout->addLayout(gLayout2);
 
     }
+    //Cas d'un temps, pour l'instant non différencié de la date interne
     else if(type == "time")
     {
         QLineEdit *lineEdit = new QLineEdit;
@@ -292,6 +301,7 @@ void SearchCard::setNewWidget(QString type,QString var, QString name, QString na
         ui->verticalLayout->addLayout(hLayout);
         ui->verticalLayout->addLayout(gLayout2);
     }
+    //Cas d'un booléen
     else if(type == "bool")
     {
         QComboBox *comboBox = new QComboBox;
@@ -315,15 +325,19 @@ void SearchCard::setNewWidget(QString type,QString var, QString name, QString na
         ui->verticalLayout->addLayout(hLayout);
         ui->verticalLayout->addLayout(gLayout2);
     }
-//    else if(type == "comment")
-//    {
-//        QTextEdit *textEdit = new QTextEdit;
-//        QLabel *label = new QLabel;
-//        label->setText(nameAttributeSelected);
-//        label->setAccessibleName(name);
-//        ui->verticalLayout->addWidget(label);
-//        ui->verticalLayout->addWidget(textEdit);
-//    }
+#if 0
+    //Cas d'un commentaire
+    else if(type == "comment")
+    {
+        QTextEdit *textEdit = new QTextEdit;
+        QLabel *label = new QLabel;
+        label->setText(nameAttributeSelected);
+        label->setAccessibleName(name);
+        ui->verticalLayout->addWidget(label);
+        ui->verticalLayout->addWidget(textEdit);
+    }
+#endif
+    //Autres cas
     else
     {
         QLineEdit *lineEdit = new QLineEdit;
@@ -405,6 +419,7 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
 
                 fileValue = getFileValue(map, currentMapValue, currentMapSearchName);
 
+                //Cas de l'opérateur "contient"
                 if(oper == "~")
                 {
                     if(fileValue.contains(value))
@@ -425,6 +440,7 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
 
                     }
                 }
+                //Cas de l'opérateur "égal"
                 else if(oper == "=")
                 {
                     if(fileValue == value)
@@ -445,6 +461,7 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
 
                     }
                 }
+                //Cas de l'opérateur "différent"
                 else if(oper == "!=")
                 {
                     if(fileValue != value)
@@ -465,6 +482,7 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
 
                     }
                 }
+                //Cas de l'opérateur "ne contient pas"
                 else if(oper == "!~")
                 {
                     if(!fileValue.contains(value))
@@ -485,6 +503,7 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
 
                     }
                 }
+                //Cas de l'opérateur "inférieur" pour un champ date
                 else if(oper == "<" && currentMapSearchName.contains("Date"))
                 {
                     QStringList listOfValue = value.split("/");
@@ -515,6 +534,7 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
                     }
 
                 }
+                //Cas de l'opérateur "inférieur ou égal pour un champ date"
                 else if(oper == "<=" && currentMapSearchName.contains("Date"))
                 {
                     QStringList listOfValue = value.split("/");
@@ -545,6 +565,7 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
                     }
 
                 }
+                //Cas de l'opérateur "supérieur" pour un champ date
                 else if(oper == ">" && currentMapSearchName.contains("Date"))
                 {
                     QStringList listOfValue = value.split("/");
@@ -575,6 +596,7 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
                     }
 
                 }
+                //Cas de l'opérateur "supérieur ou égal" pour un champ date
                 else if(oper == ">=" && currentMapSearchName.contains("Date"))
                 {
                     QStringList listOfValue = value.split("/");
@@ -605,6 +627,7 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
                     }
 
                 }
+                //Cas de l'opérateur "inférieur" pour un champ autre
                 else if(oper == "<" && !currentMapSearchName.contains("Date"))
                 {
                     int compare = fileValue.compare(value);
@@ -625,6 +648,7 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
                         playAgain = 0;
                     }
                 }
+                //Cas de l'opérateur "inférieur ou égal" pour un champ autre
                 else if(oper == "<=" && !currentMapSearchName.contains("Date"))
                 {
                     int compare = fileValue.compare(value);
@@ -645,6 +669,7 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
                         playAgain = 0;
                     }
                 }
+                //Cas de l'opérateur "supérieur" pour un champ autre
                 else if(oper == ">" && !currentMapSearchName.contains("Date"))
                 {
                     int compare = fileValue.compare(value);
@@ -665,6 +690,7 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
                         playAgain = 0;
                     }
                 }
+                //Cas de l'opérateur "supérieur ou égal" pour un champ autre
                 else if(oper == ">=" && !currentMapSearchName.contains("Date"))
                 {
                     int compare = fileValue.compare(value);
@@ -685,6 +711,7 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
                         playAgain = 0;
                     }
                 }
+                //Cas de l'opérateur "ou"
                 else if(oper == "ou")
                 {
                     QStringList listOfValue = value.split("/");
@@ -712,6 +739,7 @@ QList<QString> SearchCard::searchMatches(const QMap<QString, QMap<QString, QStri
                         }
                     }
                 }
+                //Cas de l'opérateur "ni"
                 else if(oper == "ni")
                 {
                     QStringList listOfValue = value.split("/");
@@ -891,10 +919,12 @@ void SearchCard::on_buttonBox_accepted()
         {
             QList<QString>resultList = dataViewer->getResultList();
             QMap<QString, QMap<QString, QString> >* selectedMapRestrained = const_cast<QMap<QString, QMap<QString, QString> >*>(selectedMap);
-//            for(int i=0; i<resultList.count(); ++i)
-//            {
-//                selectedMapRestrained->remove(resultList[i]);
-//            }
+#if 0
+            for(int i=0; i<resultList.count(); ++i)
+            {
+                selectedMapRestrained->remove(resultList[i]);
+            }
+#endif
             QMap<QString, QMap<QString, QString> >* selectedMapRestrainedFinal = selectedMapRestrained;
             QList<QString> searchResultsAdded = searchMatches(*selectedMapRestrainedFinal, mapOfSearch);
             QList<QString> newSearchResults = resultList + searchResultsAdded;

@@ -165,9 +165,11 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, MainWindow *mainWindo
         attributesOfCurrentConfig = dataManager->getAttributesOfCurrentConfig("GDO");
     }
 
+    //Chargement des indicateurs de première création et d'incrémentation
     indicFirstCreate = dataManager->getIndicFirstCreate();
     incrementCreation = dataManager->getIncrementCreation();
 
+    //Dans le cas d'une création ou d'une copie, génération d'un nouvel identifiant et numéro d'ordre
     if(choice == "create" || choice == "copy")
     {
         QString currentKey;
@@ -309,8 +311,10 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, MainWindow *mainWindo
         ui->instructionsLabel->setText("Modifiez les attributs editables voulus et cliquez sur OK pour valider les modifications \n(Mode modification et administration uniquement)");
     }
 
+#if 0
     //Permet d'enlever la croix de fermeture de la fiche descritive (génère des bugs)
     this->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint| Qt::WindowSystemMenuHint);
+#endif
 
     //Si l'utilisateur ne possède pas le niveau d'autorisation il ne peut pas valider les modifications
     if(dataManager->getAccessLevel() < 1)
@@ -318,9 +322,10 @@ DescriptiveCard::DescriptiveCard(DataManager *dataManager, MainWindow *mainWindo
         ui->buttonBox->setEnabled(false);
     }
 
-    //Quand l'affaire change, on femre tous les dataViewers
+    //Quand l'affaire change, fermeture de tous les dataViewers
     connect(mainWindow, SIGNAL(signalCaseChanged()), this, SLOT(close()));
 
+    //Dégradé visuel
     QPalette pal(palette());
     QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
     gradient.setColorAt(0, QColor(255,255,255,255));
@@ -336,6 +341,7 @@ DescriptiveCard::~DescriptiveCard()
 
 void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QString value, QString nameAttributeSelected)
 {
+    //Cas d'une chaîne de caractères
     if(type == "string")
     {
         QLineEdit *lineEdit = new QLineEdit;
@@ -355,6 +361,7 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
         parameters.append(var);
         parameters.append(type);
     }
+    //Cas d'un entier
     else if(type == "num")
     {
         QSpinBox *spinBox = new QSpinBox;
@@ -381,6 +388,7 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
         parameters.append(var);
         parameters.append(type);
     }
+    //Cas d'un énumératif
     else if(type == "enum")
     {
         QLabel *label = new QLabel;
@@ -440,6 +448,7 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
         parameters.append(var);
         parameters.append(type);
     }
+    //Cas d'une date
     else if(type == "strdate")
     {
         QLineEdit *lineEdit = new QLineEdit;
@@ -460,6 +469,7 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
         parameters.append(type);
 
     }
+    //Cas d'une date interne
     else if(type == "strtime")
     {
         QLineEdit *lineEdit = new QLineEdit;
@@ -480,6 +490,7 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
         parameters.append(type);
 
     }
+    //Cas d'un temps, pour l'instant non différencié de la date interne
     else if(type == "time")
     {
         QLineEdit *lineEdit = new QLineEdit;
@@ -499,6 +510,7 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
         parameters.append(var);
         parameters.append(type);
     }
+    //Cas d'un booléen
     else if(type == "bool")
     {
         QComboBox *comboBox = new QComboBox;
@@ -527,6 +539,7 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
         parameters.append(type);
 
     }
+    //Cas d'une longue chaîne de caractères
     else if(type == "strlong")
     {
         QTextEdit *textEdit = new QTextEdit;
@@ -546,6 +559,7 @@ void DescriptiveCard::setNewWidget(QString type, QString name, QString var,  QSt
         parameters.append(var);
         parameters.append(type);
     }
+    //Autres cas
     else
     {
         QLineEdit *lineEdit = new QLineEdit;
@@ -602,6 +616,7 @@ void DescriptiveCard::on_buttonBox_accepted()
 
     int iteratorParameters = 0;
 
+    //Remplissage d'une map temporaires contenant les résultats de l'édition
     for(int i=0; i<=count;++i)
     {
         nameLayout = ui->verticalLayout->itemAt(i);
@@ -678,6 +693,7 @@ void DescriptiveCard::on_buttonBox_accepted()
         }
     }
 
+    //Dans le cas d'une création ou d'une copie, ajout du nouvel élément à la map et à la map d'ajout XML
     if(choice == "create" || choice == "copy")
     {
         dataManager->insertDataToMap(mapName, currentMaxKey, mapTemp);
@@ -702,6 +718,7 @@ void DescriptiveCard::on_buttonBox_accepted()
         }
     }
 
+    //Dans le cas d'une modifiation, mise à jour des Layouts et mise à jour dans la map
     else if(choice == "modify")
     {
         mainWindow->setChoiceAddObject("modify");

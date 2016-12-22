@@ -143,7 +143,7 @@ DataViewer::DataViewer(DataManager *dataManager, MainWindow *mainWindow, const Q
     Qt::WindowFlags flags = Qt::Window | Qt::WindowSystemMenuHint| Qt::WindowMinimizeButtonHint| Qt::WindowCloseButtonHint;
     this->setWindowFlags(flags);
 
-    //Choix de présentation
+    //Dégradé visuel
     QPalette pal(palette());
     QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
     gradient.setColorAt(0, QColor(255,255,255,255));
@@ -345,7 +345,7 @@ void DataViewer::updateLayout()
         ui->infoNbObject->setText("Nombre d'objets: "+rowsStr);
     }
 
-    //On chache la colonne comportant les clés
+    //On cache la colonne comportant les clés
     hideKeyColumn();
 }
 
@@ -443,10 +443,6 @@ void DataViewer::customMenuRequested(QPoint pos)
         {
             QAction* copy = menu->addAction("Copier");
             connect(copy, SIGNAL(triggered()), this, SLOT(onCopyButtonTriggered()));
-            if(accessLevel <1)
-            {
-                copy->setEnabled(false);
-            }
         }
 
         if(keysList.length() == 1)
@@ -527,7 +523,7 @@ void DataViewer::customHeaderMenuRequested(QPoint pos)
 
 void DataViewer::onChangeCurrentConfigButtonTriggered()
 {
-    //On instancie une vue optionsViewer en rentrant les valeurs données par le dataManager en utilisant les méthodes spécifiques aux options
+    //Instanciation d'une vue optionsViewer en rentrant les valeurs données par le dataManager en utilisant les méthodes spécifiques aux options
     optionsViewerCurrentConfig = new OptionsViewer(codeObject, dataManager, mainWindow, this,dataManager->getSmallMapsFromMapNameOptions("mapGCA", "GCA",codeObject),"configurations", this);
     optionsViewerCurrentConfig->setAttribute(Qt::WA_DeleteOnClose);
     optionsViewerCurrentConfig->show();
@@ -535,7 +531,7 @@ void DataViewer::onChangeCurrentConfigButtonTriggered()
 
 void DataViewer::onChangeCurrentConfigAttributesButtonTriggered()
 {
-    //On instancie une vue optionsViewer en rentrant les valeurs données par le dataManager en utilisant les méthodes spécifiques aux options
+    //Instanciation d'une vue optionsViewer en rentrant les valeurs données par le dataManager en utilisant les méthodes spécifiques aux options
     optionsViewerCurrentConfigAttributes = new OptionsViewer(codeObject, dataManager, mainWindow, this, dataManager->getSmallMapsFromMapNameOptions("mapGAT","GAT", codeObject),"attributes", this);
     optionsViewerCurrentConfigAttributes->setAttribute(Qt::WA_DeleteOnClose);
     optionsViewerCurrentConfigAttributes->show();
@@ -543,7 +539,7 @@ void DataViewer::onChangeCurrentConfigAttributesButtonTriggered()
 
 void DataViewer::onDisplayDescriptiveCardButtonTriggered()
 {
-    //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
+    //Instanciation d'une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"current","modify",this);
     descriptiveCard->setWindowFlags(Qt::Dialog);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
@@ -552,7 +548,7 @@ void DataViewer::onDisplayDescriptiveCardButtonTriggered()
 
 void DataViewer::onDisplayDescriptiveCardCompleteButtonTriggered()
 {
-    //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
+    //Instanciation d'une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"complete","modify",this);
     descriptiveCard->setWindowFlags(Qt::Dialog);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
@@ -561,6 +557,7 @@ void DataViewer::onDisplayDescriptiveCardCompleteButtonTriggered()
 
 void DataViewer::onValidateSelectionButtonTriggered()
 {
+    //Lors de la validation d'une selection de ligne, on parcours les identifiants et si ils sont présents dans la liste on affiche la ligne, sinon on cache
     QString testedKey;
     int columnCountValue = columnCount;
     columnCountValue--;
@@ -585,10 +582,13 @@ void DataViewer::onValidateSelectionButtonTriggered()
     }
     QString rows = QString::number(keysList.count());
     ui->infoNbObject->setText("Nombre d'objets: "+rows);
+
+    indicFirstSearch = 0;
 }
 
 void DataViewer::onHideSelectionButtonTriggered()
 {
+    //Lors du masquage d'une selection de ligne, on parcours les identifiants et si ils sont présents dans la liste on cache la ligne, sinon on affiche
     QString testedKey;
     int columnCountValue = columnCount;
     columnCountValue--;
@@ -609,10 +609,13 @@ void DataViewer::onHideSelectionButtonTriggered()
     rowsDisplayed = rowsDisplayed - keysList.count();
     QString rows = QString::number(rowsDisplayed);
     ui->infoNbObject->setText("Nombre d'objets: "+rows);
+
+    indicFirstSearch = 0;
 }
 
 void DataViewer::onResetSelectionButtonTriggered()
 {
+    //Reinitialisation => réaffichage de toute les lignes
     int rowCountValue = rowCount;
     for(int k=0; k!= rowCountValue; ++k)
     {
@@ -630,6 +633,7 @@ void DataViewer::onResetSelectionButtonTriggered()
 
 void DataViewer::onTotalSelectionButtonTriggered()
 {
+    //Sélection de toutes les lignes
     ui->tableView->selectAll();
 }
 
@@ -762,13 +766,13 @@ void DataViewer::onSubListAddButtonTriggered()
 void DataViewer::onItemDoubleClicked()
 {
     keysList.clear();
-    //On crée la liste d'index qui contient tous les index de toutes les colonnes des lignes sélectionnées
+    //Création de la liste d'index qui contient tous les index de toutes les colonnes des lignes sélectionnées
     QModelIndexList selectedIndexes = ui->tableView->selectionModel()->selectedIndexes();
     QString key;
     QString columnName;
     int columnOfKey;
 
-    //On cherche le numéro de colonne de la clé dans le tableau
+    //Recherche du numéro de colonne de la clé dans le tableau
     for(int j=0; j<ui->tableView->model()->columnCount();++j)
     {
         columnName = ui->tableView->model()->headerData(j,Qt::Horizontal).toString();
@@ -778,9 +782,10 @@ void DataViewer::onItemDoubleClicked()
             break;
         }
     }
+
     key = selectedIndexes[columnOfKey].data(0).toString();
     keysList.append(key);
-    //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
+    //Instanciation d'une vue descriptiveCard correspondant à la fiche descriptive pour l'objjet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"current","modify",this);
     descriptiveCard->setWindowFlags(Qt::Dialog);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
@@ -789,7 +794,7 @@ void DataViewer::onItemDoubleClicked()
 
 void DataViewer::onCreateNewButtonTriggered()
 {
-    //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
+    //Instanciation d'une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"complete","create",this);
     descriptiveCard->setWindowFlags(Qt::Dialog);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
@@ -798,7 +803,7 @@ void DataViewer::onCreateNewButtonTriggered()
 
 void DataViewer::onCreateCopyButtonTriggered()
 {
-    //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
+    //Instanciation d'une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
     descriptiveCard = new DescriptiveCard(dataManager, mainWindow, this, codeObject, keysList[0],"complete","copy",this);
     descriptiveCard->setWindowFlags(Qt::Dialog);
     descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
@@ -818,7 +823,7 @@ void DataViewer::onEraseButtonTriggered()
     switch(ret)
     {
     case QMessageBox::Apply:
-        //Cas ou on supprime un/des attribut(s), on doit mettre a jour les colonnes
+        //Cas ou on supprime un/des attribut(s), mise à jour les colonnes
         if(codeObject == "GAT")
         {
             for(int j=0; j<keysList.count();++j)
@@ -853,17 +858,30 @@ void DataViewer::onEraseButtonTriggered()
 
 void DataViewer::setColumnHidden()
 {
-    //On met à jour la map en changeant indicAffichage
+    //Mise à jour de la map en changeant indicAffichage
     QString columnName = ui->tableView->model()->headerData(index, Qt::Horizontal).toString();
     const QList<QMap <QString, QString> > list = dataManager->getSmallMapsFromMapNameOptions("mapGAT","GAT", codeObject);
     QMap<QString, QString> test;
     QString keyTested;
+    QString codeObj;
+    QString numInterne;
+    QString infoInterne;
+    QString key;
+    QString value;
     const QMap <QString, QMap <QString, QString> > *mapGAT = dataManager->getMapFromName("mapGAT");
+    const QMap <QString, QString> *mapConcordance = dataManager->getMapConcordance();
+
     for(int a=0; a<list.count();++a)
     {
         keyTested = list[a].value("key");
         test = mapGAT->value(keyTested);
-        if(test.value("NomAttribut") == columnName)
+        codeObj = test.value("CodeObj");
+        numInterne = test.value("NumeroInterne");
+        infoInterne = test.value("InfoInterne");
+
+        key = codeObj % numInterne % infoInterne;
+        value = mapConcordance->value(key);
+        if(value == columnName)
         {
             dataManager->replaceDataOfMap("mapGAT", keyTested, "Non", "IndicAffichage");
             dataManager->addKeyToMapChangeList("mapGAT",keyTested);
@@ -996,7 +1014,8 @@ void DataViewer::setCurrentConfigName(const QString &value)
 
 void DataViewer::searchColumnToRemoveIndex()
 {
-    //On transmet a mainWindow les données obtenues dans dataManager
+    //Transmission a mainWindow les données obtenues dans dataManager
+    mainWindow->setColumnToRemoveIndex(999);
     QString columToRemoveCodeObj = dataManager->getColumnToTreatCodeObject();
     QString columnToRemoveConfigName = dataManager->getColumnToTreatConfigName();
     mainWindow->setColumnToTreatCodeObject(columToRemoveCodeObj);
@@ -1004,7 +1023,7 @@ void DataViewer::searchColumnToRemoveIndex()
     QString columnToRemoveName = dataManager->getColumnToTreatName();
     QString columnName;
 
-    //On cherche l'index de la colonne a supprimer dans la vue
+    //Recherche de l'index de la colonne a supprimer dans la vue, dans le cas où la colonne est affichée
     for(int i=0; i<ui->tableView->model()->columnCount();++i)
     {
         columnName = ui->tableView->model()->headerData(i, Qt::Horizontal).toString();
@@ -1092,6 +1111,7 @@ void DataViewer::setKeysList(const QStringList &value)
 
 void DataViewer::on_savePushButton_released()
 {
+    //Chargement de la liste des identifiants à gérer et réecriture des fichiers XML
     QMap<QString, QString> changeList = dataManager->getMapChangeList();
     QMap<QString, QString> addList = dataManager->getMapAddList();
     QMap<QString, QString> eraseList = dataManager->getMapEraseList();
@@ -1198,7 +1218,7 @@ void DataViewer::on_savePushButton_released()
         fileWriter->eraseOfFiles("mapGRS");
     }
 
-    fileWriter->modifyFiles("mapGCS");
+    fileWriter->modifyFiles("mapGOO");
 
     QMap<QString, QString> nullMap;
 

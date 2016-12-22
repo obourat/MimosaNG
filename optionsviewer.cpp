@@ -37,12 +37,14 @@ OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager,MainWi
     //On ajuste la taille des colonnes au contenu
     ui->optionsView->resizeColumnsToContents();
 
+    //Extention de la dernière colonne
     ui->optionsView->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
-    //ui->tableView->horizontalHeader()->setStretchLastSection(true);
 
+    //Connection clic droit => menu
     ui->optionsView->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->optionsView, SIGNAL(customContextMenuRequested(QPoint)),this, SLOT(customMenuRequested(QPoint)));
 
+    //Masquage de la colonne "clé"
     QAbstractItemModel* tableModel = ui->optionsView->model();
     int columnCount = tableModel->columnCount();
     int rowCount = tableModel->rowCount();
@@ -121,23 +123,23 @@ OptionsViewer::OptionsViewer(QString codeObject, DataManager *dataManager,MainWi
         }
     }
   #endif
+
+    //Connection double clic => fiche descriptive
     connect(ui->optionsView, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(onItemDoubleClicked()));
-
+    //Connection fermeture => mise à jour du dataViewer
     connect(this, SIGNAL(destroyed()), this->parent(), SLOT(updateLayout()));
+    //Connection signal update => mise à jour du layout
+    connect(mainWindow, SIGNAL(signalUpdateLayoutsOptions()), this, SLOT(slotUpdateLayout()));
+    //Quand l'affaire change, on ferme tous les dataViewers
+    connect(mainWindow, SIGNAL(signalCaseChanged()), this, SLOT(close()));
 
+    //Dégradé visuel
     QPalette pal(palette());
     QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
     gradient.setColorAt(0, QColor(255,255,255,255));
     gradient.setColorAt(1, QColor(245,255,255,255));
     pal.setBrush(QPalette::Window, QBrush(gradient));
     this->setPalette(pal);
-
-    connect(mainWindow, SIGNAL(signalUpdateLayoutsOptions()), this, SLOT(slotUpdateLayout()));
-
-    //Quand l'affaire change, on ferme tous les dataViewers
-    connect(mainWindow, SIGNAL(signalCaseChanged()), this, SLOT(close()));
-
-    //Compteur du nombre d'objets dans maps, permet de relancer OptionsViewer dans le cas ou maps n'a auun élément
 }
 
 OptionsViewer::~OptionsViewer()
@@ -156,6 +158,7 @@ void OptionsViewer::updateLayout()
     int columnOfKey;
     QString columnName;
 
+    //Recherche de la colonne "clé"
     for(int j=0; j!= columnIteratorMax; ++j)
     {
         columnName = ui->optionsView->model()->headerData(j,Qt::Horizontal).toString();
@@ -166,6 +169,7 @@ void OptionsViewer::updateLayout()
         }
     }
 
+    //Mise à jour des lignes dans le modèle
     myOptionsModel->updateModelRows(maps,keysToTreat,choiceAddObject,columnOfKey);
 
 #if 0
@@ -253,10 +257,6 @@ void OptionsViewer::customMenuRequested(QPoint pos)
     {
         QAction* paste = menu->addAction("Coller");
         connect(paste, SIGNAL(triggered()), this, SLOT(onPasteButtonTriggered()));
-        if(dataManager->getAccessLevel() < 1)
-        {
-            paste->setEnabled(false);
-        }
     }
 
     menu->popup(ui->optionsView->viewport()->mapToGlobal(pos));
@@ -265,6 +265,7 @@ void OptionsViewer::customMenuRequested(QPoint pos)
 
 void OptionsViewer::on_confirmButtonBox_accepted()
 {
+    //Si les configurations sont listés, mise à jour de la config par celle sélectionnée
     if(selectedOption == "configurations")
     {
         if(!currentConfigSelectedName.isNull())
@@ -292,28 +293,13 @@ void OptionsViewer::on_confirmButtonBox_accepted()
                 dataManager->setCurrentConfigNameGDO(currentConfigSelectedName);
             }
 
-            dataManager->replaceDataOfMap("mapGCS",codeObject,currentConfigSelectedName,"NomConfStd");
+            dataManager->replaceDataOfMap("mapGOO",codeObject,currentConfigSelectedName,"NomConfStd");
 
             dataViewer->setCurrentConfigName(currentConfigSelectedName);
             dataViewer->resetModel();
             dataViewer->hideKeyColumn();
-
         }
-
     }
-
-    else if(selectedOption == "attributes")
-    {
-        //Gérer le cas ou l'on sélectionne ok pour un attribut dans la liste
-
-        //descriptiveCard = new DescriptiveCard(keysList[0],this);
-        //descriptiveCard->exec();
-    }
-
-    this->~OptionsViewer();
-
-    //Model model = ui->optionsView->model();
-    //QString data;
 }
 
 void OptionsViewer::on_optionsView_clicked()
@@ -408,6 +394,7 @@ void OptionsViewer::onPasteButtonTriggered()
         mainWindow->setKeysToTreat(idToPaste[i]);
     }
 
+    //Mise à jour des layouts et réinitialisation du dataViewer
     mainWindow->setChoiceAddObject("copy");
     dataViewer->resetModel();
     mainWindow->updateLayoutsOptions();
@@ -498,7 +485,7 @@ void OptionsViewer::onItemDoubleClicked()
     if(selectedOption == "configurations")
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
-        descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer, "GCA", keysList[0],"complete","modify",this);
+        descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer, "GCA", keysList[0],"current","modify",this);
         descriptiveCard->setWindowFlags(Qt::Dialog);
         descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
         descriptiveCard->show();
@@ -506,7 +493,7 @@ void OptionsViewer::onItemDoubleClicked()
     else if(selectedOption == "attributes")
     {
         //On instancie une vue descriptiveCard correspondant à la fiche descriptive pour l'objet sélectionné
-        descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer,"GAT", keysList[0],"complete","modify",this);
+        descriptiveCard = new DescriptiveCard(dataManager, mainWindow, dataViewer,"GAT", keysList[0],"current","modify",this);
         descriptiveCard->setWindowFlags(Qt::Dialog);
         descriptiveCard->setAttribute(Qt::WA_DeleteOnClose);
         descriptiveCard->show();
