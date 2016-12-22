@@ -87,6 +87,7 @@ Model::~Model()
 
 void Model::updateModelRows(const QList<QMap<QString, QString> > &smallMapsFromMapName, QStringList keysToTreat, QString choiceAddObject, int columnOfKey)
 {
+    //Cas d'une création ou d'une copie
     if(choiceAddObject == "copy" || choiceAddObject == "create")
     {
         for (int i = 0; i < smallMapsFromMapName.count(); ++i)
@@ -117,6 +118,7 @@ void Model::updateModelRows(const QList<QMap<QString, QString> > &smallMapsFromM
             }
         }
     }
+    //Cas d'une suppression
     else if(choiceAddObject == "suppr")
     {
         for(int j=0; j<keysToTreat.count();++j)
@@ -132,6 +134,7 @@ void Model::updateModelRows(const QList<QMap<QString, QString> > &smallMapsFromM
             }
         }
     }
+    //Cas d'une modification
     else if(choiceAddObject == "modify")
     {
         for(int j=0; j<keysToTreat.count();++j)

@@ -14,6 +14,8 @@ PasswordForm::PasswordForm(DataManager *dataManager, int levelRequested,QWidget 
     ui->setupUi(this);
 
     this->setWindowTitle("Mot de passe requis");
+
+    //Masquage du mot de passe saisi
     password = new QLineEdit(this);
     password->setEchoMode(QLineEdit::Password);
     password->setInputMethodHints(Qt::ImhHiddenText | Qt::ImhNoPredictiveText | Qt::ImhNoAutoUppercase);
@@ -27,6 +29,7 @@ PasswordForm::PasswordForm(DataManager *dataManager, int levelRequested,QWidget 
         ui->label->setText("Saisir le mot de passe pour passer en mode administration");
     }
 
+    //Dégradé visuel
     QPalette pal(palette());
     QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
     gradient.setColorAt(0, QColor(255,255,255,255));
@@ -42,6 +45,7 @@ PasswordForm::~PasswordForm()
 
 void PasswordForm::on_buttonBox_accepted()
 {
+    //Hachage de l'imput rentré et comparé avec la valeur du mot de passe
     QCryptographicHash* hash;
     QByteArray passwordGiven = hash->hash(password->text().toAscii(), QCryptographicHash::Md5);
     QString hashedResult(passwordGiven.toHex());
