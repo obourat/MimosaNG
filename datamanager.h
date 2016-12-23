@@ -128,7 +128,7 @@ private:
     QMap<QString, QMap<QString, QString> > mapGCA;
     QMap<QString, QMap<QString, QString> > mapGAT;
     QMap<QString, QMap<QString, QString> > mapGRS;
-    QMap<QString, QMap<QString, QString> > mapGCS;
+    QMap<QString, QMap<QString, QString> > mapGOO;
     QMap<QString, QMap<QString, QString> > mapGDO;
 
     //Map qui possède comme clé un triplé codeObjet, numéroInterne, InfoInterne permettant d'accéder à la valeur de la balise de titre des attributs

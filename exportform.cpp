@@ -18,11 +18,12 @@ ExportForm::ExportForm(DataManager *dataManager, QStringList keysList, QString c
 {
     ui->setupUi(this);
     this->setWindowTitle("Exporter");
+
+    //Ajout des options aux widgets
     ui->destinationComboBox->addItem("Fichier");
-    ui->destinationComboBox->addItem("Ecran");
+    //ui->destinationComboBox->addItem("Ecran");
     ui->concatenationComboBox->addItem("Oui");
     ui->concatenationComboBox->addItem("Non");
-
     configurationsKeys = dataManager->getSmallMapsFromMapNameOptions("mapGCA","GCA", codeObjet);
     QStringList values;
     for(int i=0; i<configurationsKeys.count();++i)
@@ -30,6 +31,8 @@ ExportForm::ExportForm(DataManager *dataManager, QStringList keysList, QString c
         values = configurationsKeys[i].values();
         ui->configComboBox->addItem(values.at(0));
     }
+
+    //Dégradé visuel
     QPalette pal(palette());
     QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
     gradient.setColorAt(0, QColor(255,255,255,255));
@@ -45,6 +48,7 @@ ExportForm::~ExportForm()
 
 void ExportForm::on_confirmButtonBox_accepted()
 {
+    //Récupération des options choisies
     QString destinationChoice = ui->destinationComboBox->currentText();
     QString concatenationChoice = ui->concatenationComboBox->currentText();
     QString fileName = ui->fileNameLineEdit->text();
@@ -75,6 +79,7 @@ void ExportForm::on_confirmButtonBox_accepted()
     QString baliseName;
     int indicFirstValue = 1;
 
+    //Génération des données à écrire
     for(iterator = mapGAT->begin(); iterator != mapGAT->end();++iterator)
     {
         attrGATTested = mapGAT->value(iterator.key());

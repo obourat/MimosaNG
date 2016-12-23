@@ -52,6 +52,7 @@ ImportForm::~ImportForm()
 
 void ImportForm::on_buttonBox_accepted()
 {
+    //Récupération des informations rentrées
     QString selectedOption = buttonGroup->checkedButton()->text();
     QString fileName = ui->fileLineEdit->text();
     QString configName = ui->configComboBox->currentText();

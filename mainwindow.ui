@@ -10,11 +10,11 @@
     <x>0</x>
     <y>0</y>
     <width>633</width>
-    <height>460</height>
+    <height>483</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MimosaNG (v1.03)</string>
+   <string>MimosaNG (v1.04)</string>
   </property>
   <property name="documentMode">
    <bool>false</bool>

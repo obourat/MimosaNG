@@ -135,8 +135,6 @@ private:
     //Compteurs de lignes et colonnes
     int rowCount;
     int columnCount;
-    //Nombre de lignes affichées
-    int rowsDisplayed;
     //Settings d'affichage
     QSettings mySetting;
     //Index de l'élément sélectionné lors d'un clic
