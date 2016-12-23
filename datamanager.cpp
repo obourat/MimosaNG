@@ -55,13 +55,13 @@ void DataManager::insertDataToMap(const QString &mapName, const QString &key, co
         }
     }
     // Choix de la map par rapport au nom donné
-    else if(mapName == "mapGCS")
+    else if(mapName == "mapGOO")
     {
         // Si la map ne contient pas deja la clef key
-        if(!mapGCS.contains(mapName))
+        if(!mapGOO.contains(mapName))
         {
             // Insertion des données
-            mapGCS.insert(key, map);
+            mapGOO.insert(key, map);
         }
     }
     // Choix de la map par rapport au nom donné
@@ -250,7 +250,27 @@ void DataManager::replaceDataOfMap(const QString &mapName, const QString &key, c
         {
 
             columnToTreatCodeObject = mapGAT[key].value("CodeObj");
-            columnToTreatConfigName = getCurrentConfigNameGAT();
+            if(columnToTreatCodeObject == "GAT")
+            {
+                columnToTreatConfigName = getCurrentConfigNameGAT();
+            }
+            else if(columnToTreatCodeObject == "GDO")
+            {
+                columnToTreatConfigName = getCurrentConfigNameGDO();
+            }
+            else if(columnToTreatCodeObject == "GVE")
+            {
+                columnToTreatConfigName = getCurrentConfigNameGVE();
+            }
+            else if(columnToTreatCodeObject == "GRS")
+            {
+                columnToTreatConfigName = getCurrentConfigNameGRS();
+            }
+            else if(columnToTreatCodeObject == "GCA")
+            {
+                columnToTreatConfigName = getCurrentConfigNameGCA();
+            }
+
             columnToTreatName = mapGAT[key].value("NomAttribut");
             if( valueToAdd == "Non")
             {
@@ -276,15 +296,15 @@ void DataManager::replaceDataOfMap(const QString &mapName, const QString &key, c
         mapGVE[key].insertMulti(smallKeyNameToReplace,valueToAdd);
     }
     // Choix de la map par rapport au nom donné
-    else if(mapName == "mapGCS")
+    else if(mapName == "mapGOO")
     {
-        smallMap = mapGCS[key];
+        smallMap = mapGOO[key];
         list = smallMap.values(smallKeyNameToReplace);
         type = list[1];
         //Déletion de la valeur présentes et insertion des nouvelles valeurs (value, type)
-        mapGCS[key].remove(smallKeyNameToReplace);
-        mapGCS[key].insert(smallKeyNameToReplace,type);
-        mapGCS[key].insertMulti(smallKeyNameToReplace,valueToAdd);
+        mapGOO[key].remove(smallKeyNameToReplace);
+        mapGOO[key].insert(smallKeyNameToReplace,type);
+        mapGOO[key].insertMulti(smallKeyNameToReplace,valueToAdd);
     }
     // Choix de la map par rapport au nom donné
     else if(mapName == "mapGRS")
@@ -332,9 +352,9 @@ const QMap<QString, QMap<QString, QString> >* DataManager::getMapFromName(const 
         return &mapGVE;
     }
 
-    else if(mapName == "mapGCS")
+    else if(mapName == "mapGOO")
     {
-        return &mapGCS;
+        return &mapGOO;
     }
 
     else if(mapName == "mapGRS")
@@ -704,23 +724,23 @@ const QStringList DataManager::getAttributesOfExportConfig(const QString &object
         int compareValue;
         if(objectType == "GCA")
         {
-            compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], mapGCS["GCA"]["NomConfXML"], Qt::CaseSensitive);
+            compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], mapGOO["GCA"]["NomConfXML"], Qt::CaseSensitive);
         }
         else if(objectType == "GAT")
         {
-            compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], mapGCS["GAT"]["NomConfXML"], Qt::CaseSensitive);
+            compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], mapGOO["GAT"]["NomConfXML"], Qt::CaseSensitive);
         }
         else if(objectType == "GRS")
         {
-            compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], mapGCS["GRS"]["NomConfXML"], Qt::CaseSensitive);
+            compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], mapGOO["GRS"]["NomConfXML"], Qt::CaseSensitive);
         }
         else if(objectType == "GVE")
         {
-            compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], mapGCS["GVE"]["NomConfXML"], Qt::CaseSensitive);
+            compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], mapGOO["GVE"]["NomConfXML"], Qt::CaseSensitive);
         }
         else if(objectType == "GDO")
         {
-            compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], mapGCS["GDO"]["NomConfXML"], Qt::CaseSensitive);
+            compareValue = QString ::compare(mapGCA[keys[i]]["NomConf"], mapGOO["GDO"]["NomConfXML"], Qt::CaseSensitive);
         }
 
         if (compareValue == 0)
@@ -1062,7 +1082,7 @@ const QString DataManager::getStandardConfigName(QString codeObject)
     //Définition d'une map selectedMap qui sera égale à la map sélectionnée
     const QMap<QString, QMap<QString, QString> >* selectedMap;
     //Retourne la map correspondante au nom rentré par l'utilisateur (si ce nom est valide)
-    selectedMap = getMapFromName("mapGCS");
+    selectedMap = getMapFromName("mapGOO");
 
     //Si la map est nulle
     if(selectedMap == NULL)
@@ -1138,17 +1158,17 @@ void DataManager::setDataOfMapConcordance()
     QString newKey;
     QStringList list;
     //Définition d'un iterateur sur les grande qMap pour passer en revue les clés
-    QMap<QString, QMap<QString, QString> >::Iterator iteratorGCS;
+    QMap<QString, QMap<QString, QString> >::Iterator iteratorGOO;
     QMap<QString, QMap<QString, QString> >::Iterator iteratorGCA;
     QMap<QString, QMap<QString, QString> >::Iterator iteratorGAT;
 
     //Pour chaque éléments de mapGCS
-    for(iteratorGCS = mapGCS.begin(); iteratorGCS != mapGCS.end(); ++iteratorGCS)
+    for(iteratorGOO = mapGOO.begin(); iteratorGOO != mapGOO.end(); ++iteratorGOO)
     {
         //Stockage de la clé = au codeObjet
-        currentKey = iteratorGCS.key();
+        currentKey = iteratorGOO.key();
         //Prise en paramètre du nom de la conf servant à l'export XML
-        nameConfXML = iteratorGCS.value()["NomConfXML"];
+        nameConfXML = iteratorGOO.value()["NomConfXML"];
 
         //Pour chaque configuration d'attribut
         for(iteratorGCA = mapGCA.begin(); iteratorGCA != mapGCA.end(); ++iteratorGCA)
@@ -1402,7 +1422,7 @@ void DataManager::clearAllMaps()
 {
     mapGAT.clear();
     mapGCA.clear();
-    mapGCS.clear();
+    mapGOO.clear();
     mapGDO.clear();
     mapGRS.clear();
     mapGVE.clear();

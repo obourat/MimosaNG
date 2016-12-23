@@ -37,6 +37,9 @@
      <property name="autoFillBackground">
       <bool>false</bool>
      </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed</set>
+     </property>
      <property name="dragEnabled">
       <bool>false</bool>
      </property>

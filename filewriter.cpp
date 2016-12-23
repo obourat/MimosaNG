@@ -21,10 +21,10 @@ void FileWriter::modifyFiles(const QString mapName)
 {
     mapChangeList = dataManager->getMapChangeList();
 
-    if(mapName == "mapGCS")
+    if(mapName == "mapGOO")
     {
         QDomDocument dom("Filegenerated");
-        QFile file(settings->value("fileGCS").toString());
+        QFile file(settings->value("fileGOO").toString());
 
         if(!file.open(QIODevice::ReadOnly))
         {
@@ -42,7 +42,7 @@ void FileWriter::modifyFiles(const QString mapName)
         QDomNode docElem = dom.documentElement().firstChild();
 
         QString keyName = "CodeObjet";
-        const QMap <QString, QMap<QString, QString> > *mapGCS = dataManager->getMapFromName("mapGCS");
+        const QMap <QString, QMap<QString, QString> > *mapGOO = dataManager->getMapFromName("mapGOO");
         QDomNode n;
         QDomElement e;
         QString baliseName;
@@ -61,7 +61,7 @@ void FileWriter::modifyFiles(const QString mapName)
                {
                     baliseValue = e.text();
                     n = docElem.firstChild();
-                    smallMap = mapGCS->value(baliseValue);
+                    smallMap = mapGOO->value(baliseValue);
                     while(!n.isNull())
                     {
                         e=n.toElement();

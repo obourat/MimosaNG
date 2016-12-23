@@ -19,7 +19,7 @@ PrintForm::PrintForm(QTableView * view, QWidget *parent) :
     ui->orientationComboBox->addItem("Portrait");
     ui->orientationComboBox->addItem("Paysage");
 
-
+    //Dégradé visuel
     QPalette pal(palette());
     QLinearGradient gradient(this->rect().topLeft(), this->rect().bottomRight());
     gradient.setColorAt(0, QColor(255,255,255,255));
@@ -40,8 +40,9 @@ void PrintForm::makePrintConfigFile()
     QString orientation = ui->orientationComboBox->currentText();
     QString nbObj = ui->objectNumberSpinBox->text();
     QString nbLines = ui->lineNumberSpinBox->text();
-
     QStringList parameters;
+
+    //Récupération des informations rentrées par l'utilisateur
     if(ui->titleCheckBox->isChecked())
     {
         parameters.append(ui->titleCheckBox->text());
@@ -71,6 +72,7 @@ void PrintForm::makePrintConfigFile()
         parameters.append(ui->grayCheckBox->text());
     }
 
+    //Ecriture dans le fichier de configurations
     QString directory = QDir::currentPath();
     directory = directory % "/printConfig.txt";
     QFile file(directory);
@@ -98,6 +100,7 @@ void PrintForm::makePrintDataFile()
     int rows = view->model()->rowCount(QModelIndex());
     int columns = view->model()->columnCount(QModelIndex());
 
+    //Ecriture des données dans le fichiers de données à récupérer
     for(int c=0; c<columns;++c)
     {
         //On cherche le numéro de colonne de la clé, pour l'enlever du fichier d'impression
@@ -149,6 +152,7 @@ void PrintForm::makePrintDataFile()
 
 void PrintForm::on_buttonBox_accepted()
 {
+    //Création des deux fichiers de configuration et de données
     makePrintConfigFile();
     makePrintDataFile();
 }
